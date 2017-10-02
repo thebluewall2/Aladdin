@@ -7,9 +7,14 @@ export default StyleSheet.create({
     paddingTop: 25,
     justifyContent: 'space-between',
     flex: 1,
-    paddingBottom: 80
+    paddingBottom: 80,
+    backgroundColor: 'white'
   },
-  quicksand: {
+  quicksandText: {
+    fontFamily: 'Quicksand',
+    fontSize: 13
+  },
+  quicksandTitle: {
     fontFamily: 'Quicksand',
     fontSize: 25
   },
@@ -26,7 +31,8 @@ export default StyleSheet.create({
   buttonCaption: {
     alignSelf: 'center',
     fontFamily: 'Quicksand',
-    fontSize: 20
+    fontSize: 20,
+    paddingTop: 16,
   },
   vendorCircle: {
     alignItems: 'center',

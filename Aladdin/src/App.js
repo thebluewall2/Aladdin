@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
 import Router from './Router';
 import ReduxThunk from 'redux-thunk';
-import reducers from './Reducers';
+import reducers from './Redux/';
 
 class App extends Component {
   componentWillMount() {
