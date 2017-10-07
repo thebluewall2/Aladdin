@@ -5,6 +5,14 @@ const authSetUserType = (userType) => ({
   userType
 });
 
+const authLoginUser = (email, password) => ({
+  type: Types.AUTH_LOGIN_USER,
+  email,
+  password
+});
+
+
 export default {
   authSetUserType,
-}
+  authLoginUser,
+};

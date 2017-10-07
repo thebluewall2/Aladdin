@@ -1,5 +1,5 @@
 import React from 'react';
-import { Scene, Router, Actions } from 'react-native-router-flux';
+import { Scene, Router } from 'react-native-router-flux';
 import LandingPage from './Containers/Auth/LandingPage';
 import UserLoginPage from './Containers/Auth/UserLoginPage';
 
@@ -12,6 +12,6 @@ const RouterComponent = () => {
       </Scene>
     </Router>
   );
-}
+};
 
 export default RouterComponent;
