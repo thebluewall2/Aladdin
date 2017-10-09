@@ -20,7 +20,7 @@ export function* handleLoginUser(email, password) {
 
     //LEE : once I login, dispatch this action back to Redux to all reducers, received at Redux/Auth/reducer.js
     yield put(ReduxActions.userLoginSuccess(userData));
-    Actions.homePage();
+    Actions.home();
   } catch (error) {
     //LEE : if error with login, the above action won't be dispatched and the below will be dispatched
     yield put(ReduxActions.userLoginFail(error));

@@ -7,14 +7,14 @@ import HomePage from './Containers/Home/HomePage';
 const RouterComponent = () => {
   return (
     <Router>
-      <Scene key="auth">
-        <Scene key="landingPage" component={LandingPage} initial />
-        <Scene key="userLoginPage" component={UserLoginPage} title={"Login"} />
-      </Scene>
+        <Scene key="auth">
+          <Scene key="landingPage" component={LandingPage} initial />
+          <Scene key="userLoginPage" component={UserLoginPage} title={"Login"} />
+        </Scene>
 
-      <Scene key="home">
-        <Scene key="homePage" component={HomePage} initial />
-      </Scene>
+        <Scene key="home">
+          <Scene key="homePage" component={HomePage} initial />
+        </Scene>
     </Router>
   );
 };
