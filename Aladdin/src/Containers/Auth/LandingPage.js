@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 
 import styles from './Styles';
-
 import ReduxActions from '../../Redux/Actions';
-import { Actions } from 'react-native-router-flux';
 
 class LandingPage extends Component {
 
@@ -58,7 +57,7 @@ const mapStateToProps = ({ auth }) => {
   const { userType } = auth;
 
   return { userType };
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
