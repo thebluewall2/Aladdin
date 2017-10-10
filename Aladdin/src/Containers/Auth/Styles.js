@@ -39,7 +39,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     width: 150,
     height: 150,
-    borderRadius: 150/2,
+    borderRadius: 150 / 2,
     backgroundColor: 'yellow'
   },
   customerCircle: {
@@ -47,7 +47,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     width: 150,
     height: 150,
-    borderRadius: 150/2,
+    borderRadius: 150 / 2,
     backgroundColor: '#00FFFF'
   }
 });
