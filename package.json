@@ -9,9 +9,8 @@
 	"dependencies": {
 		"firebase": "^4.4.0",
 		"react": "16.0.0-alpha.12",
-		"react-addons-pure-render-mixin": "^15.6.2",
 		"react-native": "0.48.4",
-		"react-native-router-flux": "^3.41.0",
+		"react-native-router-flux": "^4.0.0-beta.21",
 		"react-redux": "^5.0.6",
 		"redux": "^3.7.2",
 		"redux-saga": "^0.15.6",

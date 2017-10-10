@@ -14,12 +14,14 @@ class UserLoginPage extends Component {
     this.state = {
       email: '',
       password: '',
+      loading: false
     };
   }
 
   _handleLoginUser = () => {
     const { email, password } = this.state;
 
+    this.setState({ loading: true });
     this.props.loginUser(email, password);
   }
 
@@ -32,7 +34,7 @@ class UserLoginPage extends Component {
   }
 
   _renderLoginBtn() {
-    if (this.props.loading) {
+    if (this.state.loading) {
       return <LoadingSpinner />;
     }
 
@@ -65,15 +67,6 @@ class UserLoginPage extends Component {
           value={this.state.password}
         />
 
-        {/**LOUISA: error message goes here**/}
-        {this.props.errorMessage !== "" ? (
-          <View>
-            <Text style={{ color: 'red' }}>{this.props.errorMessage.message}</Text>
-          </View>
-        ) :
-          false
-        }
-
         {this._renderLoginBtn()}
 
       </View>
@@ -81,18 +74,11 @@ class UserLoginPage extends Component {
   }
 }
 
-const mapStateToProps = ({ auth }) => {
-  const { loading, errorMessage } = auth;
-
-  return { loading, errorMessage };
-};
-
 const mapDispatchToProps = (dispatch) => {
   return {
-    //LEE: dispatching action here to all reducers and sagas, receiving at Sagas/Auth/login.js
     loginUser: (email, password) =>
       dispatch(ReduxActions.authLoginUser(email, password)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserLoginPage);
+export default connect(null, mapDispatchToProps)(UserLoginPage);

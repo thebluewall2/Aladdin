@@ -11,20 +11,8 @@ const authLoginUser = (email, password) => ({
   password
 });
 
-const userLoginSuccess = (userData) => ({
-  type: Types.AUTH_USER_LOGIN_SUCCESS,
-  userData,
-});
-
-const userLoginFail = (error) => ({
-  type: Types.AUTH_USER_LOGIN_FAIL,
-  error
-});
-
 
 export default {
   authSetUserType,
   authLoginUser,
-  userLoginSuccess,
-  userLoginFail
 };
