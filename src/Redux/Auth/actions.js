@@ -26,10 +26,22 @@ const authSignUpAttempt = (userData) => ({
   userData
 });
 
+const userSignUpSuccess = (userData) => ({
+  type: Types.AUTH_USER_SIGNUP_SUCCESS,
+  userData
+});
+
+const userSignUpFail = (error) => ({
+  type: Types.AUTH_USER_SIGNUP_FAIL,
+  error
+});
+
 export default {
   authSetUserType,
   authLoginUser,
   userLoginSuccess,
   userLoginFail,
   authSignUpAttempt,
+  userSignUpSuccess,
+  userSignUpFail,
 };
