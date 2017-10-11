@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text, View } from 'react-native';
-import { Input, Button, LoadingSpinner } from '../../Components/common';
+import { Text, View, TouchableOpacity } from 'react-native';
+import { TextFieldComponent, LoadingSpinner } from '../../Components/common';
 import ReduxActions from '../../Redux/Actions';
+import { Image } from 'react-native';
 
 import styles from './Styles';
 
@@ -37,29 +38,36 @@ class UserLoginPage extends Component {
     }
 
     return (
-      <Button onPress={this._handleLoginUser}>
-        Login
-      </Button>
+      <View style={{paddingTop: 20}}>
+      <TouchableOpacity style={styles.buttonStyle} onPress={this._handleLoginUser} >
+      <Text style={styles.buttonTextStyle}>Sign In</Text>
+      </TouchableOpacity>
+      </View>
     );
   }
 
   render() {
     return (
-      <View style={styles.mainContainer}>
-        <Text style={styles.quicksandText}>
+      <View style={styles.loginPageMainContainer}>
+        <Image
+          source={require('../../../assets/pictures/ERenoLogo.png')}
+          style={styles.buttonImage}
+        />
+
+        <Text style={styles.quicksandTextSlogan}>
           Find the best service here in Aladdin
         </Text>
 
-        <Input
-          label="Email"
-          placeholder="john@abc.com"
+        <TextFieldComponent
+          label={'Email'}
+          highlightColor={'#00BCD4'}
           onChangeText={this._handleEmailChanged}
           value={this.state.email}
         />
 
-        <Input
-          label="Password"
-          placeholder="password"
+        <TextFieldComponent
+          label={"Password"}
+          highlightColor={'#00BCD4'}
           secureTextEntry
           onChangeText={this._handlePasswordChanged}
           value={this.state.password}
@@ -76,6 +84,22 @@ class UserLoginPage extends Component {
 
         {this._renderLoginBtn()}
 
+        <TouchableOpacity onPress={this._onVendorPressed}>
+          <View>
+            <Text style = {styles.linkStyleForgetPassword}>
+              Forget Passsword?
+            </Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={this._onVendorPressed}>
+          <View>
+            <Text style = {styles.linkStyleSignUpNow}>
+              New User? Sign Up now!
+            </Text>
+          </View>
+        </TouchableOpacity>
+
       </View>
     );
   }
@@ -91,7 +115,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     //LEE: dispatching action here to all reducers and sagas, receiving at Sagas/Auth/login.js
     loginUser: (email, password) =>
-      dispatch(ReduxActions.authLoginUser(email, password)),
+    dispatch(ReduxActions.authLoginUser(email, password)),
   };
 };
 

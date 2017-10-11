@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  mainContainer: {
+  landingPageMainContainer: {
     alignItems: 'center',
     flexDirection: 'column',
     paddingTop: 25,
@@ -10,13 +10,33 @@ export default StyleSheet.create({
     paddingBottom: 80,
     backgroundColor: 'white'
   },
+
+  loginPageMainContainer: {
+    alignItems: 'center',
+    flexDirection: 'column',
+    paddingTop: 25,
+    flex: 1,
+    paddingBottom: 80,
+    backgroundColor: 'white'
+  },
+
   quicksandText: {
     fontFamily: 'Quicksand',
-    fontSize: 13
+    fontSize: 13,
+    color: '#47525E'
   },
+
+  quicksandTextSlogan: {
+    paddingTop: 20,
+    paddingBottom: 25,
+    fontFamily: 'Quicksand',
+    fontSize: 13,
+    color: '#47525E'
+  },
+
   quicksandTitle: {
     fontFamily: 'Quicksand',
-    fontSize: 25
+    fontSize: 22
   },
   quicksandItalic: {
     fontFamily: 'Quicksand',
@@ -24,8 +44,8 @@ export default StyleSheet.create({
     fontSize: 20
   },
   buttonImage: {
-    height: 100,
-    width: 100,
+    height: 80,
+    width: 80,
     paddingBottom: 40
   },
   buttonCaption: {
@@ -37,17 +57,69 @@ export default StyleSheet.create({
   vendorCircle: {
     alignItems: 'center',
     justifyContent: 'center',
+<<<<<<< HEAD:Aladdin/src/Containers/Auth/Styles.js
+    width: 130,
+    height: 130,
+    borderRadius: 130/2,
+    backgroundColor: '#FFE758'
+=======
     width: 150,
     height: 150,
     borderRadius: 150 / 2,
     backgroundColor: 'yellow'
+>>>>>>> 069879131c89794596e3042c76a4812fa4ac51b4:src/Containers/Auth/Styles.js
   },
   customerCircle: {
     alignItems: 'center',
     justifyContent: 'center',
+<<<<<<< HEAD:Aladdin/src/Containers/Auth/Styles.js
+    width: 130,
+    height: 130,
+    borderRadius: 130/2,
+    backgroundColor: '#C1E1FA'
+  },
+  
+  buttonTextStyle:{
+    color: '#FFFFFF',
+    fontStyle: 'normal',
+    fontSize: 18
+  },
+
+  buttonStyle:{
+    backgroundColor: '#37474F',
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 260,
+    borderRadius: 10,
+  },
+
+  loginViewStyle:{
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  linkStyleForgetPassword:{
+    color: '#0284CC',
+    fontFamily: 'Quicksand-regular',
+    paddingTop: 33,
+    fontSize: 15
+  },
+
+  linkStyleSignUpNow:{
+    color: '#E3D666',
+    fontFamily: 'Quicksand-regular',
+    paddingTop: 30,
+    fontSize: 17
+=======
     width: 150,
     height: 150,
     borderRadius: 150 / 2,
     backgroundColor: '#00FFFF'
+>>>>>>> 069879131c89794596e3042c76a4812fa4ac51b4:src/Containers/Auth/Styles.js
   }
+
+
 });
