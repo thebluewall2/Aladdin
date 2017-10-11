@@ -20,7 +20,7 @@ class LandingPage extends Component {
 
   render() {
     return (
-      <View style={styles.mainContainer}>
+      <View style={styles.landingPageMainContainer}>
         <Text style={styles.quicksandTitle}>
           Are you a..
         </Text>
