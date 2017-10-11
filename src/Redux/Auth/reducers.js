@@ -24,6 +24,20 @@ const setUserLoginFail = (state = INITIAL_STATE, action) => {
     errorMessage: action.error
   };
 };
+const setUserSignUpSuccess = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    loading: false,
+    errorMessage: action.error
+  };
+};
+const setUserSignUpFail = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    loading: false,
+    errorMessage: action.error
+  };
+};
 
 export default {
   INITIAL_STATE,
@@ -32,4 +46,6 @@ export default {
   setUserStartLogin,
   setUserLoginSuccess,
   setUserLoginFail,
+  setUserSignUpSuccess,
+  setUserSignUpFail,
 };
