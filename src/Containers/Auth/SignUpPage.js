@@ -12,6 +12,7 @@ class SignUpPage extends Component {
 
       this.state = {
         name: '',
+        password: '',
         phoneNo: '',
         address: '',
         email: '',
@@ -23,6 +24,12 @@ class SignUpPage extends Component {
   _handleNameChanged = (name) => {
     this.setState({
       name
+    });
+  }
+
+  _handlePasswordChanged = (password) => {
+    this.setState({
+      password
     });
   }
 
@@ -56,17 +63,18 @@ class SignUpPage extends Component {
         error: 'Please agree to the terms and conditions before signing up.'
       });
     } else {
-      const { name, phoneNo, address, email } = this.state;
+      const { name, password, phoneNo, address, email } = this.state;
       const { userType } = this.props;
 
       const newSignUp = {
         name,
+        password,
         userType,
         phoneNo,
         address,
         email
       };
-      
+
       this.props.signUpUser(newSignUp);
     }
   }
@@ -82,6 +90,13 @@ class SignUpPage extends Component {
           label={"Name"}
           onChangeText={this._handleNameChanged}
           value={this.state.name}
+        />
+
+        <TextFieldComponent
+          label={"Password"}
+          secureTextEntry
+          onChangeText={this._handlePasswordChanged}
+          value={this.state.password}
         />
 
         <TextFieldComponent

@@ -5,15 +5,15 @@ import firebase from 'firebase';
 import ReduxActions from '../../Redux/Actions';
 import Types from '../../Redux/Auth/types';
 
-export function* watchSignUpUser() {
+export function* watchSignUp() {
   while (true) {
-    const { data } = yield take(Types.AUTH_SIGNUP_USER);
-    yield call(handleSignUpUser, data);
+    const { userData } = yield take(Types.AUTH_SIGN_UP_ATTEMPT);
+    yield call(handleSignUp, userData);
   }
 }
 
-export function handleSignUpUser(data) {
-  firebase.auth().createUserWithEmailAndPassword(data.Email, data.Password)
+export function handleSignUp(data) {
+  firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
     .then((user) => {
       handleUserSignUpSuccess(user, data);//If success store other details
     })
@@ -25,10 +25,17 @@ export function handleSignUpUser(data) {
 
 export function* handleUserSignUpSuccess(data) {
   const currentUser = firebase.auth();
-  firebase.database().ref(`Users/${currentUser.uid}/user`)
-  .push({ data.Name, data.UserType, data.PhoneNumber,
-     data.Location, data.Email, data.Checkbox });
+  const newUser = {
+    name: data.name,
+    userType: data.userType,
+    phonoNo: data.phoneNo,
+    address: data.address,
+    email: data.email,
+    checked: true,
+  };
 
+  firebase.database().ref(`Users/${currentUser.uid}/user`)
+    .push(newUser);
 
   yield put(ReduxActions.userSignUpSuccess());
 }
