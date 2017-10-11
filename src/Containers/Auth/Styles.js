@@ -57,35 +57,25 @@ export default StyleSheet.create({
   vendorCircle: {
     alignItems: 'center',
     justifyContent: 'center',
-<<<<<<< HEAD:Aladdin/src/Containers/Auth/Styles.js
     width: 130,
     height: 130,
-    borderRadius: 130/2,
+    borderRadius: 130 / 2,
     backgroundColor: '#FFE758'
-=======
-    width: 150,
-    height: 150,
-    borderRadius: 150 / 2,
-    backgroundColor: 'yellow'
->>>>>>> 069879131c89794596e3042c76a4812fa4ac51b4:src/Containers/Auth/Styles.js
   },
   customerCircle: {
     alignItems: 'center',
     justifyContent: 'center',
-<<<<<<< HEAD:Aladdin/src/Containers/Auth/Styles.js
     width: 130,
     height: 130,
-    borderRadius: 130/2,
+    borderRadius: 130 / 2,
     backgroundColor: '#C1E1FA'
   },
-  
-  buttonTextStyle:{
+  buttonTextStyle: {
     color: '#FFFFFF',
     fontStyle: 'normal',
     fontSize: 18
   },
-
-  buttonStyle:{
+  buttonStyle: {
     backgroundColor: '#37474F',
     height: 40,
     alignItems: 'center',
@@ -93,32 +83,23 @@ export default StyleSheet.create({
     width: 260,
     borderRadius: 10,
   },
-
-  loginViewStyle:{
+  loginViewStyle: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
-
-  linkStyleForgetPassword:{
+  linkStyleForgetPassword: {
     color: '#0284CC',
     fontFamily: 'Quicksand-regular',
     paddingTop: 33,
     fontSize: 15
   },
-
-  linkStyleSignUpNow:{
+  linkStyleSignUpNow: {
     color: '#E3D666',
     fontFamily: 'Quicksand-regular',
     paddingTop: 30,
     fontSize: 17
-=======
-    width: 150,
-    height: 150,
-    borderRadius: 150 / 2,
-    backgroundColor: '#00FFFF'
->>>>>>> 069879131c89794596e3042c76a4812fa4ac51b4:src/Containers/Auth/Styles.js
   }
 
 

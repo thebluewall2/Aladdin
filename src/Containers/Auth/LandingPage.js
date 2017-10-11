@@ -9,11 +9,11 @@ import ReduxActions from '../../Redux/Actions';
 class LandingPage extends Component {
 
   _onVendorPressed = () => {
-    this.props.setUserType(0);
+    this.props.setUserType('vendor');
   }
 
   _onCustomerPressed = () => {
-    this.props.setUserType(1);
+    this.props.setUserType('user');
     Actions.userLoginPage();
   }
 
