@@ -14,7 +14,7 @@ export default StyleSheet.create({
   loginPageMainContainer: {
     alignItems: 'center',
     flexDirection: 'column',
-    paddingTop: 25,
+    paddingTop: 90,
     flex: 1,
     paddingBottom: 80,
     backgroundColor: 'white'
@@ -36,7 +36,8 @@ export default StyleSheet.create({
 
   quicksandTitle: {
     fontFamily: 'Quicksand',
-    fontSize: 22
+    fontSize: 22,
+    paddingTop: 50
   },
   quicksandItalic: {
     fontFamily: 'Quicksand',
@@ -48,6 +49,7 @@ export default StyleSheet.create({
     width: 80,
     paddingBottom: 40
   },
+
   buttonCaption: {
     alignSelf: 'center',
     fontFamily: 'Quicksand',
@@ -57,28 +59,20 @@ export default StyleSheet.create({
   vendorCircle: {
     alignItems: 'center',
     justifyContent: 'center',
-<<<<<<< HEAD:Aladdin/src/Containers/Auth/Styles.js
     width: 130,
     height: 130,
     borderRadius: 130/2,
     backgroundColor: '#FFE758'
-=======
-    width: 150,
-    height: 150,
-    borderRadius: 150 / 2,
-    backgroundColor: 'yellow'
->>>>>>> 069879131c89794596e3042c76a4812fa4ac51b4:src/Containers/Auth/Styles.js
   },
   customerCircle: {
     alignItems: 'center',
     justifyContent: 'center',
-<<<<<<< HEAD:Aladdin/src/Containers/Auth/Styles.js
     width: 130,
     height: 130,
     borderRadius: 130/2,
     backgroundColor: '#C1E1FA'
   },
-  
+
   buttonTextStyle:{
     color: '#FFFFFF',
     fontStyle: 'normal',
@@ -113,12 +107,6 @@ export default StyleSheet.create({
     fontFamily: 'Quicksand-regular',
     paddingTop: 30,
     fontSize: 17
-=======
-    width: 150,
-    height: 150,
-    borderRadius: 150 / 2,
-    backgroundColor: '#00FFFF'
->>>>>>> 069879131c89794596e3042c76a4812fa4ac51b4:src/Containers/Auth/Styles.js
   }
 
 

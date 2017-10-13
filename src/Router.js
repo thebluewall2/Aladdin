@@ -7,9 +7,15 @@ import HomePage from './Containers/Home/HomePage';
 const RouterComponent = () => {
   return (
     <Router>
-        <Scene key="auth">
-          <Scene key="landingPage" component={LandingPage} initial />
-          <Scene key="userLoginPage" component={UserLoginPage} title={"Login"} />
+        <Scene key="auth" navigationBarStyle={styles.authNavBarStyle} >
+          <Scene key="landingPage" component={LandingPage} initial hideNavBar ={true} />
+
+          <Scene
+            key="userLoginPage"
+            component={UserLoginPage}
+            hideNavBar = {false}
+            titleStyle={styles.titleStyle} title={'E - R E N O'}/>
+
         </Scene>
 
         <Scene key="home">
@@ -18,5 +24,18 @@ const RouterComponent = () => {
     </Router>
   );
 };
+
+
+
+const styles = {
+  authNavBarStyle: {
+    backgroundColor: '#01579B',
+  },
+
+  titleStyle:{
+    color: '#FFFFFF'
+  }
+};
+
 
 export default RouterComponent;
