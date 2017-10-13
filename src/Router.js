@@ -2,6 +2,7 @@ import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
 import LandingPage from './Containers/Auth/LandingPage';
 import UserLoginPage from './Containers/Auth/UserLoginPage';
+import SignUpPage from './Containers/Auth/SignUpPage';
 import HomePage from './Containers/Home/HomePage';
 
 const RouterComponent = () => {
@@ -15,6 +16,8 @@ const RouterComponent = () => {
             component={UserLoginPage}
             hideNavBar = {false}
             titleStyle={styles.titleStyle} title={'E - R E N O'}/>
+
+          <Scene key="signUpPage" component={SignUpPage} title={"Sign up"} />
 
         </Scene>
 

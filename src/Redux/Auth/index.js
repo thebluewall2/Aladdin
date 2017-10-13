@@ -8,5 +8,7 @@ export default {
     [Types.AUTH_LOGIN_USER]: Reducers.setUserStartLogin,
     [Types.AUTH_USER_LOGIN_SUCCESS]: Reducers.setUserLoginSuccess,
     [Types.AUTH_USER_LOGIN_FAIL]: Reducers.setUserLoginFail,
+    [Types.AUTH_USER_SIGNUP_SUCCESS]: Reducers.setUserLoginSuccess,
+    [Types.AUTH_USER_LOGIN_FAIL]: Reducers.setUserLoginFail,
   })
 };

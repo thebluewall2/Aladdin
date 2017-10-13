@@ -61,7 +61,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     width: 130,
     height: 130,
-    borderRadius: 130/2,
+    borderRadius: 130 / 2,
     backgroundColor: '#FFE758'
   },
   customerCircle: {
@@ -69,17 +69,15 @@ export default StyleSheet.create({
     justifyContent: 'center',
     width: 130,
     height: 130,
-    borderRadius: 130/2,
+    borderRadius: 130 / 2,
     backgroundColor: '#C1E1FA'
   },
-
-  buttonTextStyle:{
+  buttonTextStyle: {
     color: '#FFFFFF',
     fontStyle: 'normal',
     fontSize: 18
   },
-
-  buttonStyle:{
+  buttonStyle: {
     backgroundColor: '#37474F',
     height: 40,
     alignItems: 'center',
@@ -87,22 +85,19 @@ export default StyleSheet.create({
     width: 260,
     borderRadius: 10,
   },
-
-  loginViewStyle:{
+  loginViewStyle: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
-
-  linkStyleForgetPassword:{
+  linkStyleForgetPassword: {
     color: '#0284CC',
     fontFamily: 'Quicksand-regular',
     paddingTop: 33,
     fontSize: 15
   },
-
-  linkStyleSignUpNow:{
+  linkStyleSignUpNow: {
     color: '#E3D666',
     fontFamily: 'Quicksand-regular',
     paddingTop: 30,

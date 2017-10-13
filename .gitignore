@@ -53,3 +53,4 @@ fastlane/Preview.html
 fastlane/screenshots
 Aladdin/.eslintrc
 Aladdin/package-lock.json
+.eslintrc

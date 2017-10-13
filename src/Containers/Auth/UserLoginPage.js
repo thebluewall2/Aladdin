@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, Image } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+
 import { TextFieldComponent, LoadingSpinner } from '../../Components/common';
 import ReduxActions from '../../Redux/Actions';
-import { Image } from 'react-native';
-
 import styles from './Styles';
 
 class UserLoginPage extends Component {
@@ -32,13 +32,21 @@ class UserLoginPage extends Component {
     this.setState({ password: text });
   }
 
+  _navToSignUp = () => {
+    Actions.signUpPage();
+  }
+
+  _navToForgetPassword = () => {
+    //to do
+  }
+
   _renderLoginBtn() {
     if (this.props.loading) {
       return <LoadingSpinner />;
     }
 
     return (
-      <View style={{paddingTop: 20}}>
+      <View style={{ paddingTop: 20 }}>
       <TouchableOpacity style={styles.buttonStyle} onPress={this._handleLoginUser} >
       <Text style={styles.buttonTextStyle}>Sign In</Text>
       </TouchableOpacity>
@@ -60,14 +68,12 @@ class UserLoginPage extends Component {
 
         <TextFieldComponent
           label={'Email'}
-          highlightColor={'#00BCD4'}
           onChangeText={this._handleEmailChanged}
           value={this.state.email}
         />
 
         <TextFieldComponent
           label={"Password"}
-          highlightColor={'#00BCD4'}
           secureTextEntry
           onChangeText={this._handlePasswordChanged}
           value={this.state.password}
@@ -84,17 +90,17 @@ class UserLoginPage extends Component {
 
         {this._renderLoginBtn()}
 
-        <TouchableOpacity onPress={this._onVendorPressed}>
+        <TouchableOpacity onPress={this._navToForgetPassword}>
           <View>
-            <Text style = {styles.linkStyleForgetPassword}>
-              Forget Passsword?
+            <Text style={styles.linkStyleForgetPassword}>
+              Forget Password?
             </Text>
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={this._onVendorPressed}>
+        <TouchableOpacity onPress={this._navToSignUp}>
           <View>
-            <Text style = {styles.linkStyleSignUpNow}>
+            <Text style={styles.linkStyleSignUpNow}>
               New User? Sign Up now!
             </Text>
           </View>

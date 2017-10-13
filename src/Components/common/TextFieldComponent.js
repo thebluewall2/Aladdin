@@ -4,11 +4,12 @@ import TextField from 'react-native-md-textinput';
 const TextFieldComponent = (props) => {
   const {
     label,
-    highlightColor,
     secureTextEntry,
     onChangeText,
     value
   } = props;
+
+  const highlightColor = '#00BCD4';
 
   return (
     <TextField
@@ -19,8 +20,8 @@ const TextFieldComponent = (props) => {
       onChangeText={onChangeText}
       value={value}
     />
-  )
-}
+  );
+};
 
 const styles = {
   textFieldStyle: {
