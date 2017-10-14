@@ -36,6 +36,12 @@ const userSignUpFail = (error) => ({
   error
 });
 
+const authResetPassword = (email, userType) => ({
+  type: Types.AUTH_RESET_PASSWORD,
+  email,
+  userType
+});
+
 export default {
   authSetUserType,
   authLoginUser,
@@ -44,4 +50,5 @@ export default {
   authSignUpAttempt,
   userSignUpSuccess,
   userSignUpFail,
+  authResetPassword
 };
