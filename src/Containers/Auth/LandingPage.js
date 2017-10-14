@@ -14,7 +14,7 @@ class LandingPage extends Component {
   }
 
   _onCustomerPressed = () => {
-    this.props.setUserType('user');
+    this.props.setUserType('customer');
     Actions.loginPage();
   }
 
