@@ -5,6 +5,7 @@ const authSetUserType = (userType) => ({
   userType
 });
 
+//User Auth Section
 const authLoginUser = (email, password) => ({
   type: Types.AUTH_LOGIN_USER,
   email,
@@ -21,8 +22,8 @@ const userLoginFail = (error) => ({
   error
 });
 
-const authSignUpAttempt = (userData) => ({
-  type: Types.AUTH_SIGN_UP_ATTEMPT,
+const authUserSignUpAttempt = (userData) => ({
+  type: Types.AUTH_USER_SIGNUP_ATTEMPT,
   userData
 });
 
@@ -36,12 +37,36 @@ const userSignUpFail = (error) => ({
   error
 });
 
+//Vendor Auth Section
+const vendorSignUpSuccess = (error) => ({
+  type: Types.AUTH_VENDOR_SIGNUP_SUCCESS,
+  error
+});
+
+const vendorSignUpFail = (error) => ({
+  type: Types.AUTH_VENDOR_SIGNUP_FAIL,
+  error
+});
+
+const authResetPassword = (email, userType) => ({
+  type: Types.AUTH_RESET_PASSWORD,
+  email,
+  userType
+
+});
+
 export default {
   authSetUserType,
+  //User Auth Section
   authLoginUser,
   userLoginSuccess,
   userLoginFail,
-  authSignUpAttempt,
+  authUserSignUpAttempt,
   userSignUpSuccess,
   userSignUpFail,
+  authResetPassword,
+  //Vendor Auth Section
+  //for vendor login
+  vendorSignUpSuccess,
+  vendorSignUpFail,
 };

@@ -37,7 +37,7 @@ class UserLoginPage extends Component {
   }
 
   _navToForgetPassword = () => {
-    //to do
+    Actions.forgotPassword();
   }
 
   _renderLoginBtn() {
