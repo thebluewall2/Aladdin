@@ -22,18 +22,18 @@ const authUserLoginFail = (error) => ({
   error
 });
 
-const authUserSignUpAttempt = (userData) => ({
+const authCustomerSignUpAttempt = (userData) => ({
   type: Types.AUTH_USER_SIGNUP_ATTEMPT,
   userData
 });
 
-const authUserSignUpSuccess = (userData) => ({
+const authCustomerSignUpSuccess = (userData) => ({
   type: Types.AUTH_USER_SIGNUP_SUCCESS,
   userData
 });
 
-const authUserSignUpFail = (error) => ({
-  type: Types.AUTH_USER_SIGNUP_FAIL,
+const authCustomerSignUpFail = (error) => ({
+  type: Types.AUTH_CUSTOMER_SIGNUP_FAIL,
   error
 });
 
@@ -67,9 +67,10 @@ export default {
   authLoginUser,
   authUserLoginSuccess,
   authUserLoginFail,
-  authUserSignUpAttempt,
-  authUserSignUpSuccess,
-  authUserSignUpFail,
+  
+  authCustomerSignUpAttempt,
+  authCustomerSignUpSuccess,
+  authCustomerSignUpFail,
   //Reset Password section
   authResetPassword,
 

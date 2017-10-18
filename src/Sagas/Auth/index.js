@@ -1,7 +1,7 @@
 import { fork } from 'redux-saga/effects';
 
 import { watchLoginUser } from './login';
-import { watchSignUp } from './signup';
+import { watchSignUp } from './customerSignUp';
 
 export default () => {
   function* rootSaga() {
