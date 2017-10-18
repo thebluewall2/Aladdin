@@ -46,6 +46,11 @@ const authUserSignUpFail = (error) => ({
   error
 });
 
+const authVendorSetData = (vendorData) => ({
+  type: Types.AUTH_VENDOR_SET_DATA,
+  vendorData
+});
+
 //Reset Password section
 const authResetPasswordAttempt = (email, userType) => ({
   type: Types.AUTH_RESET_PASSWORD_ATTEMPT,
@@ -74,6 +79,7 @@ export default {
   authUserSignUpAttempt,
   authUserSignUpSuccess,
   authUserSignUpFail,
+  authVendorSetData,
   //Reset Password section
   authResetPasswordAttempt,
   authResetPasswordSuccess,

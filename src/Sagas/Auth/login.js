@@ -18,7 +18,6 @@ export function* handleLoginUser(email, password) {
   try {
     // validateEmail(email);
     const userData = yield call(firebaseAuth, email, password);
-    console.log(userData);
 
     //need to get data by userData.uid
     //need usertype from liew

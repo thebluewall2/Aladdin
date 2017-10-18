@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ModalPicker from 'react-native-modal-picker';
+import { Actions } from 'react-native-router-flux';
 
 import { TextFieldComponent } from '../../Components/common';
 import ReduxActions from '../../Redux/Actions';
@@ -21,10 +22,12 @@ class VendorSignUpPage extends Component {
     return {
       companyName: '',
       name: '',
+      email: '',
+      password: '',
       phoneNo: '',
       officeNo: '',
-      addressLineOne: '',
-      addressLineTwo: '',
+      addressOne: '',
+      addressTwo: '',
       postcode: '',
       city: '',
       yearsOfExp: 0,
@@ -76,9 +79,14 @@ class VendorSignUpPage extends Component {
     });
   }
 
-  render() {
-    console.log(this.state);
+  _handleSelectCategories = () => {
+    const data = this.state;
+    this.props.setVendorData(data);
 
+    Actions.selectCategories();
+  }
+
+  render() {
     const yearsOfExpData = this.getYearsOfExperienceData();
     const yearsOfCompanyData = this.getYearsOfCompanyData();
     const noOfStaffData = this.getNoOfStaffData();
@@ -104,6 +112,22 @@ class VendorSignUpPage extends Component {
                 this._handleTextChanged(text, 'name');
               }}
               value={this.state.name}
+            />
+
+            <TextFieldComponent
+              label={"Email"}
+              onChangeText={(text) => {
+                this._handleTextChanged(text, 'email');
+              }}
+              value={this.state.email}
+            />
+
+            <TextFieldComponent
+              label={"Password"}
+              onChangeText={(text) => {
+                this._handleTextChanged(text, 'password');
+              }}
+              value={this.state.password}
             />
 
             <TextFieldComponent
@@ -151,7 +175,7 @@ class VendorSignUpPage extends Component {
               onChangeText={(text) => {
                 this._handleTextChanged(text, 'city');
               }}
-              value={this.state.postcode}
+              value={this.state.city}
             />
 
             <ModalPicker
@@ -180,6 +204,12 @@ class VendorSignUpPage extends Component {
               value={this.state.awards}
             />
 
+            <View style={styles.signUpButtonStyle}>
+              <TouchableOpacity style={styles.buttonStyle} onPress={this._handleSelectCategories}>
+                <Text style={styles.buttonTextStyle}> Choose Service Categories</Text>
+              </TouchableOpacity>
+            </View>
+
           </View>
         </KeyboardAwareScrollView>
       </View>
@@ -197,8 +227,8 @@ const mapStateToProps = ({ auth }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signUpUser: (userData) =>
-      dispatch(ReduxActions.authUserSignUpAttempt(userData)),
+    setVendorData: (vendorData) =>
+      dispatch(ReduxActions.authVendorSetData(vendorData)),
   };
 };
 

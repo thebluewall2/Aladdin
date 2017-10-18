@@ -4,6 +4,7 @@ import LandingPage from './Containers/Auth/LandingPage';
 import LoginPage from './Containers/Auth/LoginPage';
 import CustomerSignUpPage from './Containers/Auth/CustomerSignUpPage';
 import VendorSignUpPage from './Containers/Auth/VendorSignUpPage';
+import VendorSelectCategories from './Containers/Auth/VendorSelectCategories';
 import ForgotPassword from './Containers/Auth/ForgotPassword';
 import HomePage from './Containers/Home/HomePage';
 
@@ -28,12 +29,17 @@ const RouterComponent = () => {
           component={VendorSignUpPage}
           titleStyle={styles.titleStyle} title={'Sign up'}
         />
-
         <Scene
           key="forgotPassword"
           component={ForgotPassword}
           titleStyle={styles.titleStyle} title={'Reset password'}
         />
+        <Scene
+          key="selectCategories"
+          component={VendorSelectCategories}
+          title={'Select categories'}
+        />
+
       </Scene>
 
 

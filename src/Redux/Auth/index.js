@@ -18,5 +18,6 @@ export default {
 
     [Types.AUTH_SIGN_UP_SUCCESS]: Reducers.setSignUpSuccess,
     [Types.AUTH_SIGN_UP_FAIL]: Reducers.setSignUpFail,
+    [Types.AUTH_VENDOR_SET_DATA]: Reducers.setVendorData,
   })
 };

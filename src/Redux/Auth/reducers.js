@@ -5,7 +5,8 @@ const INITIAL_STATE = {
   loading: false,
   successMessage: '',
   errorMessage: '',
-  userData: ''
+  userData: '',
+  vendorData: '',
 };
 
 const setUserType = (state = INITIAL_STATE, action) => {
@@ -45,6 +46,10 @@ const setUserSignUpFail = (state = INITIAL_STATE, action) => {
   };
 };
 
+const setVendorData = (state = INITIAL_STATE, action) => {
+  return { ...state, vendorData: action.vendorData };
+};
+
 //Reset Password Section
 const setResetPasswordAttempt = (state = INITIAL_STATE) => {
   return { ...state, loading: true, errorMessage: '' };
@@ -77,6 +82,7 @@ export default {
   setUserLoginFail,
 
   setUserSignUpFail,
+  setVendorData,
 
   setResetPasswordAttempt,
   setResetPasswordSuccess,
