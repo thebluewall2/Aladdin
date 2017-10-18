@@ -119,9 +119,8 @@ const mapStateToProps = ({ auth }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    //LEE: dispatching action here to all reducers and sagas, receiving at Sagas/Auth/login.js
     loginUser: (email, password) =>
-    dispatch(ReduxActions.authLoginUser(email, password)),
+      dispatch(ReduxActions.authLoginUser(email, password)),
   };
 };
 
