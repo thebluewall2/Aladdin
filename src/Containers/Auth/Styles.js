@@ -155,6 +155,14 @@ export default StyleSheet.create({
     paddingBottom: 10,
     justifyContent: 'center',
     alignItems: 'center'
-  }
+  },
+  linkStyleServiceProvider: {
+    color: '#2980B9',
+    fontFamily: 'Quicksand-bold',
+    paddingTop: 30,
+    textAlign: 'center',
+    paddingBottom: 30,
+    fontSize: 17
+  },
 
 });

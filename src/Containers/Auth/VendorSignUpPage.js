@@ -6,6 +6,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 import { TextFieldComponent } from '../../Components/common';
 import ReduxActions from '../../Redux/Actions';
+import styles from './Styles';
 
 class VendorSignUpPage extends Component {
 
@@ -57,9 +58,12 @@ class VendorSignUpPage extends Component {
 
   render() {
     return (
-      <View style={{ paddingTop: 60, paddingLeft: 20, paddingRight: 20 }}>
+      <View style={styles.signUpPageMainContainer}>
         <KeyboardAwareScrollView>
           <View>
+            <Text style={styles.titleSignUpStyle}>
+              Sign up!
+            </Text>
             <TextFieldComponent
               label={"Company name"}
               onChangeText={(text) => {
@@ -125,7 +129,7 @@ class VendorSignUpPage extends Component {
             />
 
             <TouchableOpacity onPress={() => this._handlePickerPressed('category')}>
-              <Text>Services Category</Text>
+              <Text style={styles.linkStyleServiceProvider}> Services Category </Text>
             </TouchableOpacity>
 
             {this._renderPicker('category')}
