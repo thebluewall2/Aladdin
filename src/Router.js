@@ -13,7 +13,7 @@ const RouterComponent = () => {
       <Scene key="auth">
         <Scene key="landingPage" component={LandingPage} initial hideNavBar />
         <Scene
-          key="userLoginPage"
+          key="loginPage"
           component={LoginPage}
           hideNavBar={false}
           titleStyle={styles.titleStyle} title={'E - R E N O'}

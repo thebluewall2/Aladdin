@@ -22,44 +22,35 @@ const authUserLoginFail = (error) => ({
   error
 });
 
-const authCustomerSignUpAttempt = (userData) => ({
-  type: Types.AUTH_USER_SIGNUP_ATTEMPT,
+const authUserSignUpAttempt = (userData) => ({
+  type: Types.AUTH_SIGN_UP_ATTEMPT,
   userData
 });
 
-const authCustomerSignUpSuccess = (userData) => ({
-  type: Types.AUTH_USER_SIGNUP_SUCCESS,
-  userData
+const authUserSignUpSuccess = () => ({
+  type: Types.AUTH_SIGN_UP_SUCCESS,
 });
 
-const authCustomerSignUpFail = (error) => ({
-  type: Types.AUTH_CUSTOMER_SIGNUP_FAIL,
-  error
-});
-
-//Vendor Auth Section
-const authVendorSignUpAttempt = (error) => ({
-  type: Types.AUTH_VENDOR_SIGNUP_ATTEMPT,
-  error
-});
-
-const authVendorSignUpSuccess = (error) => ({
-  type: Types.AUTH_VENDOR_SIGNUP_SUCCESS,
-  error
-});
-
-const authVendorSignUpFail = (error) => ({
-  type: Types.AUTH_VENDOR_SIGNUP_FAIL,
+const authUserSignUpFail = (error) => ({
+  type: Types.AUTH_SIGN_UP_FAIL,
   error
 });
 
 //Reset Password section
-const authResetPassword = (email, userType) => ({
-  type: Types.AUTH_RESET_PASSWORD,
+const authResetPasswordAttempt = (email, userType) => ({
+  type: Types.AUTH_RESET_PASSWORD_ATTEMPT,
   email,
   userType
 });
 
+const authResetPasswordSuccess = () => ({
+  type: Types.AUTH_RESET_PASSWORD_SUCCESS,
+});
+
+const authResetPasswordFail = (error) => ({
+  type: Types.AUTH_RESET_PASSWORD_FAIL,
+  error
+});
 
 export default {
   authSetUserType,
@@ -67,16 +58,12 @@ export default {
   authLoginUser,
   authUserLoginSuccess,
   authUserLoginFail,
-  
-  authCustomerSignUpAttempt,
-  authCustomerSignUpSuccess,
-  authCustomerSignUpFail,
-  //Reset Password section
-  authResetPassword,
 
-  //Vendor Auth Section
-  //for vendor login
-  authVendorSignUpAttempt,
-  authVendorSignUpSuccess,
-  authVendorSignUpFail,
+  authUserSignUpAttempt,
+  authUserSignUpSuccess,
+  authUserSignUpFail,
+  //Reset Password section
+  authResetPasswordAttempt,
+  authResetPasswordSuccess,
+  authResetPasswordFail,
 };

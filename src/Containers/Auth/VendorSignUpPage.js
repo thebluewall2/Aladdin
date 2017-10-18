@@ -148,7 +148,7 @@ const mapStateToProps = ({ auth }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     signUpUser: (userData) =>
-      dispatch(ReduxActions.authSignUpAttempt(userData)),
+      dispatch(ReduxActions.authUserSignUpAttempt(userData)),
   };
 };
 

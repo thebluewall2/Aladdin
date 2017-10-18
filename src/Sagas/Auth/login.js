@@ -22,12 +22,10 @@ export function* handleLoginUser(email, password) {
 
     //need to get data by userData.uid
     //need usertype from liew
-    //LEE : once I login, dispatch this action back to Redux to all reducers, received at Redux/Auth/reducer.js
-    yield put(ReduxActions.userLoginSuccess(userData));
+    yield put(ReduxActions.authUserLoginSuccess(userData));
     Actions.home();
   } catch (error) {
-    //LEE : if error with login, the above action won't be dispatched and the below will be dispatched
-    yield put(ReduxActions.userLoginFail(error));
+    yield put(ReduxActions.authUserLoginFail(error));
   }
 }
 
@@ -41,9 +39,9 @@ export function* validateEmail(email) {
 
   if (email) {
     const error = "Email is Empty";
-    yield put(ReduxActions.userLoginFail(error));
+    yield put(ReduxActions.authUserLoginFail(error));
   } else if (reg.test(email) === false) {
     const error = "Email is Not Correct";
-    yield put(ReduxActions.userLoginFail(error));
+    yield put(ReduxActions.authUserLoginFail(error));
   }
 }
