@@ -47,11 +47,10 @@ export function* handleCustomerSignUpSuccess(data) {
     userType: data.userType,
     phonoNo: data.phoneNo,
     address: data.address,
-    email: data.email,
-    checked: true,
+    email: data.email
   };
   console.log(newUser);
-  firebase.database().ref(`Users/customer/${currentUser.uid}`)
+  firebase.database().ref(`Users/${data.userType}/${currentUser.uid}`)
     .push(newUser);
 
   yield put(ReduxActions.authUserSignUpSuccess());
@@ -59,7 +58,19 @@ export function* handleCustomerSignUpSuccess(data) {
 
 export function* handleVendorSignUpSuccess(data) {
   const currentUser = firebase.auth();
-//`Users/vendor/${currentUser.uid}`
+  const newUser = {
+      companyName: data.companyName,
+      name: data.name,
+      phoneNo: data.phoneNo,
+      officeNo: data.officeNo,
+      address: data.address,
+      postcode: data.postcode,
+      city: data.city,
+      category: data.category
+    };
+    console.log(newUser);
+    firebase.database().ref(`Users/${data.userType}/${currentUser.uid}`)
+      .push(newUser);
 
   //LEE : pass in sign up success data, to be set in redux state,
   //should be the same data as the sign in data
