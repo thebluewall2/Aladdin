@@ -16,15 +16,13 @@ export function* watchLoginUser() {
 
 export function* handleLoginUser(email, password) {
   try {
-    // validateEmail(email);
     const userData = yield call(firebaseAuth, email, password);
-    console.log(userData);
-
-    //need to get data by userData.uid
-    //need usertype from liew
     yield put(ReduxActions.authUserLoginSuccess(userData));
     Actions.home();
   } catch (error) {
+  if (error.code === 'auth/user-not-found') {
+    error.message = "User Not Found";
+  }
     yield put(ReduxActions.authUserLoginFail(error));
   }
 }
@@ -32,16 +30,4 @@ export function* handleLoginUser(email, password) {
 export function firebaseAuth(email, password) {
   return firebase.auth().signInWithEmailAndPassword(email, password)
     .catch((error) => { throw error; });
-}
-
-export function* validateEmail(email) {
-  const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
-  if (email) {
-    const error = "Email is Empty";
-    yield put(ReduxActions.authUserLoginFail(error));
-  } else if (reg.test(email) === false) {
-    const error = "Email is Not Correct";
-    yield put(ReduxActions.authUserLoginFail(error));
-  }
 }

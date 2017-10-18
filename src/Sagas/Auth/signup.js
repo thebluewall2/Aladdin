@@ -1,5 +1,5 @@
 import { take, call, put } from 'redux-saga/effects';
-
+import { Actions } from 'react-native-router-flux';
 import firebase from 'firebase';
 
 import ReduxActions from '../../Redux/Actions';
@@ -20,44 +20,37 @@ export function* handleSignUp(data) {
   }
 }
 
-export function handleCustomerSignUp(data) {
-  firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
-    .then((user) => {
-      handleCustomerSignUpSuccess(user, data);//If success store other details
-    })
-    .catch((error) => {
-      handleSignUpFail(error);//If fail dispatch error msg
-    });
+export function* handleCustomerSignUp(data) {
+  try {
+    const userData = yield call(CustomerSignUp, data);
+    const newUser = {
+      name: data.name,
+      userType: data.userType,
+      phoneNo: data.phoneNo,
+      address: data.address,
+      email: data.email
+    };
+    firebase.database().ref(`Users/${data.userType}/${userData.uid}`)
+      .set(newUser);
+
+    yield put(ReduxActions.authUserSignUpSuccess());
+    Actions.home();
+  } catch (error) {
+    yield put(ReduxActions.authUserSignUpFail(error));
+  }
 }
 
-export function handleVendorSignUp(data) {
-  firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
-    .then((user) => {
-      handleVendorSignUpSuccess(user, data);//If success store other details
-    })
-    .catch((error) => {
-      handleSignUpFail(error);//If fail dispatch error msg
-    });
+export function CustomerSignUp(data) {
+  return firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
+  .catch((error) => {
+    throw error;//If fail dispatch error msg
+  });
 }
 
-export function* handleCustomerSignUpSuccess(data) {
-  const currentUser = firebase.auth();
-  const newUser = {
-    name: data.name,
-    userType: data.userType,
-    phonoNo: data.phoneNo,
-    address: data.address,
-    email: data.email
-  };
-  console.log(newUser);
-  firebase.database().ref(`Users/${data.userType}/${currentUser.uid}`)
-    .push(newUser);
 
-  yield put(ReduxActions.authUserSignUpSuccess());
-}
-
-export function* handleVendorSignUpSuccess(data) {
-  const currentUser = firebase.auth();
+export function* handleVendorSignUp(data) {
+  try {
+  const userData = yield call(VendorSignUp, data);
   const newUser = {
       companyName: data.companyName,
       name: data.name,
@@ -66,18 +59,21 @@ export function* handleVendorSignUpSuccess(data) {
       address: data.address,
       postcode: data.postcode,
       city: data.city,
-      category: data.category
+      services: data.services//might remove this to have another section to add
     };
-    console.log(newUser);
-    firebase.database().ref(`Users/${data.userType}/${currentUser.uid}`)
-      .push(newUser);
+  firebase.database().ref(`Users/${data.userType}/${userData.uid}`)
+    .set(newUser);
 
-  //LEE : pass in sign up success data, to be set in redux state,
-  //should be the same data as the sign in data
   yield put(ReduxActions.authUserSignUpSuccess());
+  Actions.home();
+  } catch (error) {
+    yield put(ReduxActions.authUserSignUpFail(error));
+  }
 }
 
-export function* handleSignUpFail(error) {
-  console.log(error);
-  yield put(ReduxActions.authUserSignUpFail(error));
+export function VendorSignUp(data) {
+  firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
+  .catch((error) => {
+    throw error;//If fail dispatch error msg
+  });
 }
