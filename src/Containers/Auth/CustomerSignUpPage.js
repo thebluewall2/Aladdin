@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { TextFieldComponent } from '../../Components/common';
 import ReduxActions from '../../Redux/Actions';
 
-class SignUpPage extends Component {
+class CustomerSignUpPage extends Component {
 
   constructor(props) {
       super(props);
@@ -146,4 +146,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CustomerSignUpPage);

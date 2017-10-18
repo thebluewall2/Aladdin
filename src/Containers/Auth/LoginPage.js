@@ -33,7 +33,13 @@ class UserLoginPage extends Component {
   }
 
   _navToSignUp = () => {
-    Actions.signUpPage();
+    const { userType } = this.props;
+
+    if (userType === 'customer') {
+      Actions.customerSignUpPage();
+    } else if (userType === 'vendor') {
+      Actions.vendorSignUpPage();
+    }
   }
 
   _navToForgetPassword = () => {
@@ -112,9 +118,9 @@ class UserLoginPage extends Component {
 }
 
 const mapStateToProps = ({ auth }) => {
-  const { loading, errorMessage } = auth;
+  const { loading, errorMessage, userType } = auth;
 
-  return { loading, errorMessage };
+  return { loading, errorMessage, userType };
 };
 
 const mapDispatchToProps = (dispatch) => {
