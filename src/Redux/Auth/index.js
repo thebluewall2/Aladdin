@@ -5,6 +5,8 @@ import Types from './types';
 export default {
   reducer: createReducer(Reducers.INITIAL_STATE, {
     [Types.AUTH_SET_USER_TYPE]: Reducers.setUserType,
+    [Types.AUTH_EMAIL_CHANGED]: Reducers.setEmailChanged,
+    [Types.AUTH_PASSWORD_CHANGED]: Reducers.setPasswordChanged,
 
     [Types.AUTH_LOGIN_USER]: Reducers.setUserStartLogin,
     [Types.AUTH_USER_LOGIN_SUCCESS]: Reducers.setUserLoginSuccess,
