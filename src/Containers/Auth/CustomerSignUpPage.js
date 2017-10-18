@@ -3,7 +3,6 @@ import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
-
 import { TextFieldComponent } from '../../Components/common';
 import ReduxActions from '../../Redux/Actions';
 import styles from './Styles';
@@ -17,9 +16,10 @@ class CustomerSignUpPage extends Component {
         name: '',
         password: '',
         phoneNo: '',
-        address: '',
+        address1: '',
+        address2: '',
+        postcode: '',
         email: '',
-        checkedTerms: false,
         error: '',
       };
   }
@@ -32,62 +32,27 @@ class CustomerSignUpPage extends Component {
     Actions.PrivacyPolicyPage();
   }
 
-  _handleNameChanged = (name) => {
+  _handleTextChanged = (text, property) => {
     this.setState({
-      name
-    });
-  }
-
-  _handlePasswordChanged = (password) => {
-    this.setState({
-      password
-    });
-  }
-
-  _handlePhoneNoChanged = (phoneNo) => {
-    this.setState({
-      phoneNo
-    });
-  }
-
-  _handleAddressChanged = (address) => {
-    this.setState({
-      address
-    });
-  }
-
-  _handleEmailChanged = (email) => {
-    this.setState({
-      email
-    });
-  }
-
-  _handleCheckboxChecked = () => {
-    this.setState({
-      checkedTerms: !this.state.checkedTerms
+      [property]: text
     });
   }
 
   _handleSubmitSignUp = () => {
-    if (!this.state.checkedTerms) {
-      this.setState({
-        error: 'Please agree to the terms and conditions before signing up.'
-      });
-    } else {
-      const { name, password, phoneNo, address, email } = this.state;
-      const { userType } = this.props;
+    const { name, password, phoneNo, address1, address2, postcode, email } = this.state;
+    const { userType } = this.props;
 
-      const newSignUp = {
-        name,
-        password,
-        userType,
-        phoneNo,
-        address,
-        email
-      };
-
-      this.props.signUpUser(newSignUp);
-    }
+    const newSignUp = {
+      name,
+      password,
+      userType,
+      phoneNo,
+      address: address1.concat(" ").concat(address2),
+      postcode,
+      email
+    };
+    console.log(newSignUp);
+    this.props.signUpUser(newSignUp);
   }
 
   render() {
@@ -100,7 +65,9 @@ class CustomerSignUpPage extends Component {
 
         <TextFieldComponent
           label={"Name"}
-          onChangeText={this._handleNameChanged}
+          onChangeText={(text) => {
+            this._handleTextChanged(text, 'name');
+          }}
           value={this.state.name}
           componentStyle={styles.signUpTextFieldStyle}
         />
@@ -108,49 +75,63 @@ class CustomerSignUpPage extends Component {
         <TextFieldComponent
           label={"Password"}
           secureTextEntry
-          onChangeText={this._handlePasswordChanged}
+          onChangeText={(text) => {
+            this._handleTextChanged(text, 'password');
+          }}
           value={this.state.password}
           componentStyle={styles.signUpTextFieldStyle}
         />
 
         <TextFieldComponent
           label={"Phone number"}
-          onChangeText={this._handlePhoneNoChanged}
+          onChangeText={(text) => {
+            this._handleTextChanged(text, 'phoneNo');
+          }}
           value={this.state.phoneNo}
           componentStyle={styles.signUpTextFieldStyle}
         />
 
         <TextFieldComponent
           label={"Address 1"}
-          onChangeText={this._handleAddressChanged}
-          value={this.state.address}
+          onChangeText={(text) => {
+            this._handleTextChanged(text, 'address1');
+          }}
+          value={this.state.address1}
           componentStyle={styles.signUpTextFieldStyle}
         />
 
         <TextFieldComponent
           label={"Address 2"}
-          onChangeText={this._handleAddressChanged}
-          value={this.state.address}
+          onChangeText={(text) => {
+            this._handleTextChanged(text, 'address2');
+          }}
+          value={this.state.address2}
           componentStyle={styles.signUpTextFieldStyle}
         />
 
         <TextFieldComponent
           label={"City"}
-          onChangeText={this._handleAddressChanged}
-          value={this.state.address}
+          onChangeText={(text) => {
+            this._handleTextChanged(text, 'city');
+          }}
+          value={this.state.city}
           componentStyle={styles.signUpTextFieldStyle}
         />
 
         <TextFieldComponent
           label={"Postcode"}
-          onChangeText={this._handleAddressChanged}
-          value={this.state.address}
+          onChangeText={(text) => {
+            this._handleTextChanged(text, 'postcode');
+          }}
+          value={this.state.postcode}
           componentStyle={styles.signUpTextFieldStyle}
         />
 
         <TextFieldComponent
           label={"Email"}
-          onChangeText={this._handleEmailChanged}
+          onChangeText={(text) => {
+            this._handleTextChanged(text, 'email');
+          }}
           value={this.state.email}
           componentStyle={styles.signUpTextFieldStyle}
         />
@@ -195,7 +176,7 @@ const mapStateToProps = ({ auth }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     signUpUser: (userData) =>
-      dispatch(ReduxActions.authSignUpAttempt(userData)),
+      dispatch(ReduxActions.authUserSignUpAttempt(userData)),
   };
 };
 
