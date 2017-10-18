@@ -20,6 +20,15 @@ export default StyleSheet.create({
     backgroundColor: 'white'
   },
 
+  signUpPageMainContainer: {
+    alignItems: 'center',
+    flexDirection: 'column',
+    paddingTop: 90,
+    flex: 1,
+    paddingBottom: 10,
+    backgroundColor: 'white'
+  },
+
   quicksandText: {
     fontFamily: 'Quicksand',
     fontSize: 13,
@@ -102,7 +111,37 @@ export default StyleSheet.create({
     fontFamily: 'Quicksand-regular',
     paddingTop: 30,
     fontSize: 17
-  }
+  },
+  titleSignUpStyle: {
+    fontFamily: 'Quicksand',
+    fontSize: 22,
+    paddingTop: 15
+  },
+  tAndCStyle: {
+    fontFamily: 'Quicksand-light',
+    fontSize: 15,
+    paddingTop: 15,
+    width: 330,
+    alignItems: 'center'
+  },
+  tAndCLinkStyle: {
+    fontFamily: 'Quicksand-bold',
+    paddingTop: 10,
+    fontSize: 15,
+    color: '#1965B0',
+  },
 
+  signUpTextFieldStyle: {
+    height: 30,
+    width: 330,
+    fontFamily: 'Quicksand-LightItalic',
+  },
+
+  signUpButtonStyle: {
+    paddingTop: 20,
+    paddingBottom: 10,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
 
 });
