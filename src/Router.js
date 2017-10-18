@@ -20,7 +20,6 @@ const RouterComponent = () => {
         <Scene key="home">
           <Scene key="homePage" component={HomePage} initial />
         </Scene>
-
     </Router>
   );
 };

@@ -6,14 +6,15 @@ const TextFieldComponent = (props) => {
     label,
     secureTextEntry,
     onChangeText,
-    value
+    value,
+    componentStyle
   } = props;
 
   const highlightColor = '#00BCD4';
 
   return (
     <TextField
-      style={styles.textFieldStyle}
+      style={componentStyle ? componentStyle : styles.textFieldStyle}
       label={label}
       highlightColor={highlightColor}
       secureTextEntry={secureTextEntry}
