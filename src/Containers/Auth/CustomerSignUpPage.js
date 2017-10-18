@@ -51,14 +51,13 @@ class CustomerSignUpPage extends Component {
       postcode,
       email
     };
-    console.log(newSignUp);
     this.props.signUpUser(newSignUp);
   }
 
   render() {
     return (
       <View style={styles.signUpPageMainContainer}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.titleSignUpStyle}>
           Sign up!
         </Text>

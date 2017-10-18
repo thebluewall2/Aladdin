@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, Picker, TouchableOpacity, Text } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import ModalPicker from 'react-native-modal-picker';
 
 import { TextFieldComponent } from '../../Components/common';
 import ReduxActions from '../../Redux/Actions';
@@ -26,9 +27,47 @@ class VendorSignUpPage extends Component {
       addressLineTwo: '',
       postcode: '',
       city: '',
-      pickerSelected: false,
-      category: 'Services Categories',
+      yearsOfExp: 0,
+      yearsOfCompany: 0,
+      noOfStaff: 0,
+      awards: '',
     };
+  }
+
+  getYearsOfExperienceData = () => {
+    let index = 0;
+
+    const data = [
+      { key: index++, label: '0-2 years' },
+      { key: index++, label: '3-5 years' },
+      { key: index++, label: '5-7 years' },
+      { key: index++, label: '7+ years' }
+    ];
+    return data;
+  }
+
+  getYearsOfCompanyData = () => {
+    let index = 0;
+
+    const data = [
+      { key: index++, label: '0-2 years' },
+      { key: index++, label: '3-5 years' },
+      { key: index++, label: '5-7 years' },
+      { key: index++, label: '7+ years' }
+    ];
+    return data;
+  }
+
+  getNoOfStaffData = () => {
+    let index = 0;
+
+    const data = [
+      { key: index++, label: '1-10' },
+      { key: index++, label: '11-20' },
+      { key: index++, label: '21-50' },
+      { key: index++, label: '50+' }
+    ];
+    return data;
   }
 
   _handleTextChanged = (text, property) => {
@@ -37,29 +76,16 @@ class VendorSignUpPage extends Component {
     });
   }
 
-  _renderPicker = (property) => {
-    if (this.state.pickerSelected === property) {
-      return (
-        <Picker>
-          <Picker.Item label="Hi" />
-          <Picker.Item label="hello" />
-        </Picker>
-      );
-    }
-    return false;
-  }
-
-  _handlePickerPressed = (property) => {
-    this.setState({
-      pickerSelected: property
-    });
-  }
-
-
   render() {
+    console.log(this.state);
+
+    const yearsOfExpData = this.getYearsOfExperienceData();
+    const yearsOfCompanyData = this.getYearsOfCompanyData();
+    const noOfStaffData = this.getNoOfStaffData();
+
     return (
       <View style={styles.signUpPageMainContainer}>
-        <KeyboardAwareScrollView>
+        <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
           <View>
             <Text style={styles.titleSignUpStyle}>
               Sign up!
@@ -128,11 +154,31 @@ class VendorSignUpPage extends Component {
               value={this.state.postcode}
             />
 
-            <TouchableOpacity onPress={() => this._handlePickerPressed('category')}>
-              <Text style={styles.linkStyleServiceProvider}> Services Category </Text>
-            </TouchableOpacity>
+            <ModalPicker
+              data={yearsOfExpData}
+              initValue="Years of Experience"
+              onChange={(option) => this._handleTextChanged(option.label, 'yearsOfExp')}
+            />
 
-            {this._renderPicker('category')}
+            <ModalPicker
+              data={yearsOfCompanyData}
+              initValue="Years of Company Establish"
+              onChange={(option) => this._handleTextChanged(option.label, 'yearsOfCompany')}
+            />
+
+            <ModalPicker
+              data={noOfStaffData}
+              initValue="Number of Staff"
+              onChange={(option) => this._handleTextChanged(option.label, 'noOfStaff')}
+            />
+
+            <TextFieldComponent
+              label={"Awards / Certificates"}
+              onChangeText={(text) => {
+                this._handleTextChanged(text, 'awards');
+              }}
+              value={this.state.awards}
+            />
 
           </View>
         </KeyboardAwareScrollView>

@@ -1,5 +1,7 @@
 const INITIAL_STATE = {
   userType: '',
+  email: '',
+  password: '',
   loading: false,
   successMessage: '',
   errorMessage: '',
@@ -10,13 +12,21 @@ const setUserType = (state = INITIAL_STATE, action) => {
   return { ...state, userType: action.userType };
 };
 
+const setEmailChanged = (state = INITIAL_STATE, action) => {
+  return { ...state, email: action.email };
+};
+
+const setPasswordChanged = (state = INITIAL_STATE, action) => {
+  return { ...state, password: action.password };
+};
+
 //User Login Section
 const setUserStartLogin = (state = INITIAL_STATE) => {
   return { ...state, loading: true, errorMessage: '' };
 };
 
 const setUserLoginSuccess = (state = INITIAL_STATE, action) => {
-  return { ...state, ...INITIAL_STATE, userData: action.userData };
+  return { ...state, ...INITIAL_STATE, email: action.userData.email, userData: action.userData };
 };
 
 const setUserLoginFail = (state = INITIAL_STATE, action) => {
@@ -60,6 +70,8 @@ export default {
   INITIAL_STATE,
 
   setUserType,
+  setEmailChanged,
+  setPasswordChanged,
   setUserStartLogin,
   setUserLoginSuccess,
   setUserLoginFail,

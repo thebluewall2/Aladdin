@@ -6,6 +6,16 @@ const authSetUserType = (userType) => ({
 });
 
 //User Auth Section
+const authEmailChanged = (email) => ({
+  type: Types.AUTH_EMAIL_CHANGED,
+  email,
+});
+
+const authPasswordChanged = (password) => ({
+  type: Types.AUTH_PASSWORD_CHANGED,
+  password,
+});
+
 const authLoginUser = (email, password) => ({
   type: Types.AUTH_LOGIN_USER,
   email,
@@ -54,6 +64,8 @@ const authResetPasswordFail = (error) => ({
 
 export default {
   authSetUserType,
+  authEmailChanged,
+  authPasswordChanged,
   //User Auth Section
   authLoginUser,
   authUserLoginSuccess,

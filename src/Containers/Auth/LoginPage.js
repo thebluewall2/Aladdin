@@ -9,27 +9,18 @@ import styles from './Styles';
 
 class UserLoginPage extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      email: '',
-      password: '',
-    };
-  }
-
   _handleLoginUser = () => {
-    const { email, password } = this.state;
+    const { email, password } = this.props;
 
     this.props.loginUser(email, password);
   }
 
   _handleEmailChanged = (text) => {
-    this.setState({ email: text });
+    this.props.emailChanged(text);
   }
 
   _handlePasswordChanged = (text) => {
-    this.setState({ password: text });
+    this.props.passwordChanged(text);
   }
 
   _navToSignUp = () => {
@@ -75,14 +66,14 @@ class UserLoginPage extends Component {
         <TextFieldComponent
           label={'Email'}
           onChangeText={this._handleEmailChanged}
-          value={this.state.email}
+          value={this.props.email}
         />
 
         <TextFieldComponent
           label={"Password"}
           secureTextEntry
           onChangeText={this._handlePasswordChanged}
-          value={this.state.password}
+          value={this.props.password}
         />
 
         {/**LOUISA: error message goes here**/}
@@ -118,9 +109,10 @@ class UserLoginPage extends Component {
 }
 
 const mapStateToProps = ({ auth }) => {
-  const { loading, errorMessage, userType } = auth;
+  console.log(auth);
+  const { loading, errorMessage, userType, email, password } = auth;
 
-  return { loading, errorMessage, userType };
+  return { loading, errorMessage, userType, email, password };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -128,6 +120,10 @@ const mapDispatchToProps = (dispatch) => {
     //LEE: dispatching action here to all reducers and sagas, receiving at Sagas/Auth/login.js
     loginUser: (email, password) =>
       dispatch(ReduxActions.authLoginUser(email, password)),
+    emailChanged: (email) =>
+      dispatch(ReduxActions.authEmailChanged(email)),
+    passwordChanged: (password) =>
+      dispatch(ReduxActions.authPasswordChanged(password)),
   };
 };
 
