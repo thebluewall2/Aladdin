@@ -13,11 +13,28 @@ export function* watchResetPassword() {
     yield call(handleResetPassword, email, userType);
   }
 }
+//might not need userType
+export function handleResetPassword(email) {
+  const auth = firebase.getInstance();
 
-export function* handleResetPassword(email, userType) {
-
-
-
+  auth.sendPasswordResetEmail(email)
+    .then(() => {
+      handleResetPasswordSuccess();
+    })
+    .catch((error) => {
+      handleResetPasswordFail(error);
+    });
   //back to login page after resetting successfully
+  //should notify user?
   Actions.loginPage();
+}
+
+export function* handleResetPasswordFail(error) {
+  console.log(error);
+
+  yield put(ReduxActions.resetPasswordFail(error));
+}
+
+export function* handleResetPasswordSuccess() {
+  yield put(ReduxActions.resetPasswordSuccess());
 }

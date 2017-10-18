@@ -16,8 +16,12 @@ export function* watchLoginUser() {
 
 export function* handleLoginUser(email, password) {
   try {
+    // validateEmail(email);
     const userData = yield call(firebaseAuth, email, password);
+    console.log(userData);
 
+    //need to get data by userData.uid
+    //need usertype from liew
     //LEE : once I login, dispatch this action back to Redux to all reducers, received at Redux/Auth/reducer.js
     yield put(ReduxActions.userLoginSuccess(userData));
     Actions.home();
@@ -30,4 +34,16 @@ export function* handleLoginUser(email, password) {
 export function firebaseAuth(email, password) {
   return firebase.auth().signInWithEmailAndPassword(email, password)
     .catch((error) => { throw error; });
+}
+
+export function* validateEmail(email) {
+  const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+  if (email) {
+    const error = "Email is Empty";
+    yield put(ReduxActions.userLoginFail(error));
+  } else if (reg.test(email) === false) {
+    const error = "Email is Not Correct";
+    yield put(ReduxActions.userLoginFail(error));
+  }
 }
