@@ -42,11 +42,24 @@ export default StyleSheet.create({
     fontSize: 13,
     color: '#47525E'
   },
-
+  quicksandTextDescription: {
+    paddingTop: 20,
+    paddingBottom: 25,
+    fontFamily: 'Quicksand',
+    fontSize: 15,
+    color: '#47525E',
+    textAlign: 'center'
+  },
   quicksandTitle: {
     fontFamily: 'Quicksand',
     fontSize: 22,
     paddingTop: 50
+  },
+  quicksandSubTitle: {
+    fontFamily: 'Quicksand',
+    fontSize: 16,
+    paddingTop: 30,
+    paddingBottom: 20
   },
   quicksandItalic: {
     fontFamily: 'Quicksand',
@@ -102,13 +115,13 @@ export default StyleSheet.create({
   },
   linkStyleForgetPassword: {
     color: '#0284CC',
-    fontFamily: 'Quicksand-regular',
+    fontFamily: 'Quicksand-bold',
     paddingTop: 33,
     fontSize: 15
   },
   linkStyleSignUpNow: {
-    color: '#E3D666',
-    fontFamily: 'Quicksand-regular',
+    color: '#FFCC00',
+    fontFamily: 'Quicksand-bold',
     paddingTop: 30,
     fontSize: 17
   },

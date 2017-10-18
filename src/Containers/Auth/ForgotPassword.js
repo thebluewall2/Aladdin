@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { connect } from 'react-redux';
+import styles from './Styles';
+
 
 import { TextFieldComponent } from '../../Components/common/TextFieldComponent';
 
@@ -39,8 +41,20 @@ class ForgotPassword extends Component {
 
   render() {
     return (
-      <View style={{ paddingTop: 60 }}>
-        <Text>Please enter your email</Text>
+      <View style={styles.loginPageMainContainer}>
+        <Image
+          source={require('../../../assets/pictures/ERenoLogo.png')}
+          style={styles.buttonImage}
+        />
+
+        <Text style={styles.quicksandSubTitle}>
+          Forgot Password?
+        </Text>
+
+        <Text style={styles.quicksandTextDescription}>
+          Please enter your registered Email address.
+          Password reset instruction will be sent to your mailbox.
+        </Text>
 
         <TextFieldComponent
           label={'Email'}
@@ -50,11 +64,14 @@ class ForgotPassword extends Component {
 
         {this._renderErrorMessage}
 
-        <TouchableOpacity>
-          <Text>Reset password</Text>
-        </TouchableOpacity>
-
+        <View style={{ paddingTop: 20 }}>
+          <TouchableOpacity style={styles.buttonStyle} onPress={this._handleResetPassword} >
+            <Text style={styles.buttonTextStyle}>Reset Password</Text>
+          </TouchableOpacity>
+        </View>
+        
       </View>
+
     );
   }
 }

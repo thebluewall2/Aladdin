@@ -28,7 +28,7 @@ const styles = {
   textFieldStyle: {
     height: 30,
     width: 300,
-    fontFamily: 'Quicksand-LightItalic',
+    fontFamily: 'Quicksand-light',
   },
 };
 

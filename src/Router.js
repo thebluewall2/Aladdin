@@ -10,7 +10,7 @@ import HomePage from './Containers/Home/HomePage';
 const RouterComponent = () => {
   return (
     <Router>
-      <Scene key="auth">
+      <Scene key="auth" navigationBarStyle={styles.authNavBarStyle}>
         <Scene key="landingPage" component={LandingPage} initial hideNavBar />
         <Scene
           key="loginPage"
@@ -18,14 +18,33 @@ const RouterComponent = () => {
           hideNavBar={false}
           titleStyle={styles.titleStyle} title={'E - R E N O'}
         />
-        <Scene key="customerSignUpPage" component={CustomerSignUpPage} title={'Sign up'} />
-        <Scene key="vendorSignUpPage" component={VendorSignUpPage} title={'Sign up'} />
-        <Scene key="forgotPassword" component={ForgotPassword} title={'Reset password'} />
+        <Scene
+          key="customerSignUpPage"
+          component={CustomerSignUpPage}
+          titleStyle={styles.titleStyle} title={'Sign up'}
+        />
+        <Scene
+          key="vendorSignUpPage"
+          component={VendorSignUpPage}
+          titleStyle={styles.titleStyle} title={'Sign up'}
+        />
+
+        <Scene
+          key="forgotPassword"
+          component={ForgotPassword}
+          titleStyle={styles.titleStyle} title={'Reset password'}
+        />
       </Scene>
 
-      <Scene key="home">
-        <Scene key="homePage" component={HomePage} initial />
+
+      <Scene key="home" navigationBarStyle={styles.authNavBarStyle}>
+        <Scene
+          key="homePage"
+          component={HomePage}
+          titleStyle={styles.titleStyle} title={'E - R E N O'}
+        />
       </Scene>
+
     </Router>
   );
 };
