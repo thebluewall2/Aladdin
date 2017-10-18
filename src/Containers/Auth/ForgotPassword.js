@@ -68,7 +68,7 @@ const mapStateToProps = ({ auth }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     resetPassword: (email, userType) =>
-      dispatch(ReduxActions.authResetPassword(email, userType)),
+      dispatch(ReduxActions.authResetPasswordAttempt(email, userType)),
   };
 };
 

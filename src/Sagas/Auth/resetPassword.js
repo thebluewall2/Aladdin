@@ -9,7 +9,7 @@ import Types from '../../Redux/Auth/types';
 
 export function* watchResetPassword() {
   while (true) {
-    const { email, userType } = yield take(Types.AUTH_RESET_PASSWORD);
+    const { email, userType } = yield take(Types.AUTH_RESET_PASSWORD_ATTEMPT);
     yield call(handleResetPassword, email, userType);
   }
 }
@@ -32,9 +32,9 @@ export function handleResetPassword(email) {
 export function* handleResetPasswordFail(error) {
   console.log(error);
 
-  yield put(ReduxActions.resetPasswordFail(error));
+  yield put(ReduxActions.authResetPasswordFail(error));
 }
 
 export function* handleResetPasswordSuccess() {
-  yield put(ReduxActions.resetPasswordSuccess());
+  yield put(ReduxActions.authResetPasswordSuccess());
 }
