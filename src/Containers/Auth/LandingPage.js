@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 
 import styles from './Styles';
-
 import ReduxActions from '../../Redux/Actions';
-import { Actions } from 'react-native-router-flux';
 
 class LandingPage extends Component {
 
   _onVendorPressed = () => {
-    this.props.setUserType(0);
+    this.props.setUserType('vendor');
+    Actions.loginPage();
   }
 
   _onCustomerPressed = () => {
-    this.props.setUserType(1);
-    Actions.userLoginPage();
+    this.props.setUserType('customer');
+    Actions.loginPage();
   }
 
   render() {
     return (
-      <View style={styles.mainContainer}>
+
+      <View style={styles.landingPageMainContainer}>
         <Text style={styles.quicksandTitle}>
           Are you a..
         </Text>
@@ -58,7 +59,7 @@ const mapStateToProps = ({ auth }) => {
   const { userType } = auth;
 
   return { userType };
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {

@@ -33,11 +33,17 @@ class UserLoginPage extends Component {
   }
 
   _navToSignUp = () => {
-    Actions.customerSignUpPage();
+    const { userType } = this.props;
+
+    if (userType === 'customer') {
+      Actions.customerSignUpPage();
+    } else if (userType === 'vendor') {
+      Actions.vendorSignUpPage();
+    }
   }
 
   _navToForgetPassword = () => {
-    //to do
+    Actions.forgotPassword();
   }
 
   _renderLoginBtn() {
@@ -47,9 +53,9 @@ class UserLoginPage extends Component {
 
     return (
       <View style={{ paddingTop: 20 }}>
-      <TouchableOpacity style={styles.buttonStyle} onPress={this._handleLoginUser} >
-      <Text style={styles.buttonTextStyle}>Sign In</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.buttonStyle} onPress={this._handleLoginUser} >
+          <Text style={styles.buttonTextStyle}>Sign In</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -112,13 +118,14 @@ class UserLoginPage extends Component {
 }
 
 const mapStateToProps = ({ auth }) => {
-  const { loading, errorMessage } = auth;
+  const { loading, errorMessage, userType } = auth;
 
-  return { loading, errorMessage };
+  return { loading, errorMessage, userType };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    //LEE: dispatching action here to all reducers and sagas, receiving at Sagas/Auth/login.js
     loginUser: (email, password) =>
       dispatch(ReduxActions.authLoginUser(email, password)),
   };
