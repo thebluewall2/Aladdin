@@ -1,0 +1,17 @@
+[{
+    "category": "Air Condition Services",
+    "subcategories": ["Yearly check up", "Air condition cleaning services",
+      "Old model air condition cooling services", "New model air condition cooling services",
+      "Noise reduction service for air condition", "Shift air condition location",
+      "Remove air condition (both external and internal)", "Remove air condition (internal)",
+      "Air condition pipe cleaning", "Air condition leaking problem", "Other issues"
+    ]
+  },
+  {
+    "category": "Refrigerator",
+    "subcategories": ["Yearly check up", "Faulty/Not working", "Cooling issue",
+      "Noise reduction services", "Leaking issues", "Light not working",
+      "Fridge display not working", "Refrigerator cleaning issue", "Other issues"
+    ]
+  },
+]
