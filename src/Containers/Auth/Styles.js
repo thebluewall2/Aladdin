@@ -167,5 +167,26 @@ export default StyleSheet.create({
   selectCategoriesContainer: {
     marginTop: 70,
     elevation: 1,
-  }
+  },
+  modalPickerStyle: {
+    paddingTop: 15,
+    paddingBottom: 15,
+  },
+
+  modalPickerSelectTextStyle: {
+    fontFamily: 'Quicksand',
+    textAlign: 'left',
+    color: '#47525E'
+  },
+
+  modalPickerOptionTextStyle: {
+  fontFamily: 'Quicksand',
+  color: '#000000'
+  },
+
+  modalPickerCancelTextStyle: {
+  fontFamily: 'Quicksand',
+  color: '#000000'
+  },
+
 });

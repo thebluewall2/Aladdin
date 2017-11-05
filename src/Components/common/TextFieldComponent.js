@@ -15,6 +15,7 @@ const TextFieldComponent = (props) => {
   return (
     <TextField
       style={componentStyle ? componentStyle : styles.textFieldStyle}
+      labelStyle={styles.labelStyle}
       label={label}
       highlightColor={highlightColor}
       secureTextEntry={secureTextEntry}
@@ -28,8 +29,12 @@ const styles = {
   textFieldStyle: {
     height: 30,
     width: 300,
-    fontFamily: 'Quicksand-light',
+    fontFamily: 'Quicksand',
   },
+  labelStyle: {
+    fontFamily: 'Quicksand',
+    color: '#47525E'
+  }
 };
 
 export { TextFieldComponent };
