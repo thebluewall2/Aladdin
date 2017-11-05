@@ -55,6 +55,14 @@ class VendorSelectCategories extends Component {
           multiple
           returnValue={"label"}
           callback={(result) => this.handleSelectSubcategory(category, result)}
+          placeholder={"Search"}
+          placeholderTextColor={'#47525E'}
+          iconColor={"#00BCD4"}
+          rowBackgroundColor={"#EEEEEE"}
+          iconSize={20}
+          rowHeight={50}
+          rowRadius={6}
+          fontFamily={'Quicksand'}
           selectedIconName={"ios-checkmark-circle-outline"}
           unselectedIconName={"ios-radio-button-off-outline"}
         />

@@ -14,4 +14,73 @@
       "Fridge display not working", "Refrigerator cleaning issue", "Other issues"
     ]
   },
+
+  {
+    "category": "Water Heater",
+    "subcategories": ["Yearly check up", "Faulty/Not working", "Heater Swtich not working",
+      "Heater Switch's Light not turning red", "Electricity leakage", "Remove heater",
+      "Other issues"
+    ]
+  },
+
+  {
+    "category": "Washing Machine",
+    "subcategories": ["Yearly check up", "Faulty/Not working", "Piping Issues",
+      "Spinner Issues", "Washing Machine Cleaning Service", "Other Issues"
+    ]
+  },
+
+  {
+    "category": "Kitchen / Household",
+    "subcategories": ["Oil filter yearly check up", "Induction Fauty", "Air Filter Issues",
+      "Dishwasher Faulty", "Microwave Cleaning Service", "Other Issues"
+    ]
+  },
+
+  {
+    "category": "Installation",
+    "subcategories": ["Water Heater Installation", "TV Installation", "Air Ventilation Installation",
+      "Ceiling Fan Installation", "Oil Filter Pipe Installation", "Water Purifier Installation"
+    ]
+  },
+
+  {
+    "category": "Furniture Installation",
+    "subcategories": ["Bed Installation", "TV Cabinet / Cupboard / Closet / Shoes Cabinet", "Sofa Installation",
+      "Study Table / Table / Dining Table", "Study Chair / Chair / Dining Chair", "Other Furniture Installation"
+    ]
+  },
+
+  {
+    "category": "Drilling Services",
+    "subcategories": ["Wall Drilling Services (50MM - 80MM)", "Wall Drilling Services(100MM - 120MM)", "Wall Drilling Services(160MM - 180MM)"
+    ]
+  },
+
+  {
+    "category": "Washroom / Bathroom",
+    "subcategories": ["Toilet Bowl Installation", "Flush Button Faulty", "Water Pipe Faulty", "Toilet Bowl Cover Installation", "Toilet Bowl Water Leaking Issues",
+      "Toilet Bowl Check Up", "Basin Installation", "Basin Water Pipe Installation", "Showerhead Installation", "Showerhead Check Up",
+      "Bathtub Installation", "Bathtub water pipe installation", "Bathtub Water Pipe Check Up Services", "Other Services"
+    ]
+  },
+
+  {
+    "category": "Locksmith",
+    "subcategories": ["Bedroom door unlock services", "Anti-Theft Door Unlock Service", "Change Lock for PVC Door",
+      "Electricity Door Lock Installation", "Other Services"
+    ]
+  },
+
+  {
+    "category": "Cleaning",
+    "subcategories": ["Normal Cleaning Services", "Deep Cleaning Services", "New House Cleaning Services",
+      "Professional Cleaning Services", "Other Cleaning Services"
+    ]
+  },
+
+  {
+    "category": "Water Leaking Issues",
+    "subcategories": ["Face - to - Face Negotiation"]
+  },
 ]

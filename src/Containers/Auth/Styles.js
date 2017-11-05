@@ -96,7 +96,7 @@ export default StyleSheet.create({
   },
   buttonTextStyle: {
     color: '#FFFFFF',
-    fontStyle: 'normal',
+    fontFamily: 'Quicksand-Regular',
     fontSize: 18
   },
   buttonStyle: {
@@ -156,6 +156,14 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+
+  vendorNextButtonStyle: {
+    paddingTop: 30,
+    paddingBottom: 10,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
   linkStyleServiceProvider: {
     color: '#2980B9',
     fontFamily: 'Quicksand-bold',
