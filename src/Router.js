@@ -13,7 +13,12 @@ const RouterComponent = () => {
   return (
     <Router>
       <Scene key="auth" navigationBarStyle={styles.authNavBarStyle}>
-        <Scene key="landingPage" component={LandingPage} initial hideNavBar />
+        <Scene
+          key="landingPage"
+          component={LandingPage}
+          initial
+          hideNavBar
+        />
         <Scene
           key="loginPage"
           component={LoginPage}
@@ -47,12 +52,12 @@ const RouterComponent = () => {
         />
       </Scene>
 
-
       <Scene key="home" navigationBarStyle={styles.authNavBarStyle}>
         <Scene
           key="homePage"
           component={HomePage}
-          titleStyle={styles.titleStyle} title={'E - R E N O'}
+          titleStyle={styles.titleStyle}
+          title={'E - R E N O'}
         />
       </Scene>
 

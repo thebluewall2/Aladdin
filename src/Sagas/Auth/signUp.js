@@ -34,7 +34,7 @@ export function* handleCustomerSignUp(data) {
       .set(newUser);
 
     yield put(ReduxActions.authUserSignUpSuccess());
-    Actions.home();
+    Actions.loginPage();
   } catch (error) {
     yield put(ReduxActions.authUserSignUpFail(error));
   }
@@ -65,7 +65,7 @@ export function* handleVendorSignUp(data) {
     .set(newUser);
 
   yield put(ReduxActions.authUserSignUpSuccess());
-  Actions.home();
+  Actions.loginPage();
   } catch (error) {
     yield put(ReduxActions.authUserSignUpFail(error));
   }
