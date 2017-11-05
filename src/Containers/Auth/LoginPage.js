@@ -109,7 +109,6 @@ class UserLoginPage extends Component {
 }
 
 const mapStateToProps = ({ auth }) => {
-  console.log(auth);
   const { loading, errorMessage, userType, email, password } = auth;
 
   return { loading, errorMessage, userType, email, password };

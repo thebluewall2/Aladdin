@@ -3,9 +3,9 @@ import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
-import { TextFieldComponent } from '../../Components/common';
-import ReduxActions from '../../Redux/Actions';
-import styles from './Styles';
+import { TextFieldComponent } from '../../../Components/common';
+import ReduxActions from '../../../Redux/Actions';
+import styles from '../Styles';
 
 class CustomerSignUpPage extends Component {
 

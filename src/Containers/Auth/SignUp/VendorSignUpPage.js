@@ -6,9 +6,9 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import ModalPicker from 'react-native-modal-picker';
 import { Actions } from 'react-native-router-flux';
 
-import { TextFieldComponent } from '../../Components/common';
-import ReduxActions from '../../Redux/Actions';
-import styles from './Styles';
+import { TextFieldComponent } from '../../../Components/common';
+import ReduxActions from '../../../Redux/Actions';
+import styles from '../Styles';
 
 class VendorSignUpPage extends Component {
 
@@ -93,7 +93,10 @@ class VendorSignUpPage extends Component {
 
     return (
       <View style={styles.signUpPageMainContainer}>
-        <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
+        <KeyboardAwareScrollView
+          showsVerticalScrollIndicator={false}
+          enableResetScrollToCoords={false}
+        >
           <View>
             <Text style={styles.titleSignUpStyle}>
               Sign up!
@@ -206,7 +209,7 @@ class VendorSignUpPage extends Component {
 
             <View style={styles.signUpButtonStyle}>
               <TouchableOpacity style={styles.buttonStyle} onPress={this._handleSelectCategories}>
-                <Text style={styles.buttonTextStyle}> Choose Service Categories</Text>
+                <Text style={styles.buttonTextStyle}>Next</Text>
               </TouchableOpacity>
             </View>
 

@@ -164,5 +164,8 @@ export default StyleSheet.create({
     paddingBottom: 30,
     fontSize: 17
   },
-
+  selectCategoriesContainer: {
+    marginTop: 70,
+    elevation: 1,
+  }
 });

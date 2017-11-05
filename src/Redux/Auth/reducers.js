@@ -10,24 +10,37 @@ const INITIAL_STATE = {
 };
 
 const setUserType = (state = INITIAL_STATE, action) => {
-  return { ...state, userType: action.userType };
+  return { ...state,
+    userType: action.userType
+  };
 };
 
 const setEmailChanged = (state = INITIAL_STATE, action) => {
-  return { ...state, email: action.email };
+  return { ...state,
+    email: action.email
+  };
 };
 
 const setPasswordChanged = (state = INITIAL_STATE, action) => {
-  return { ...state, password: action.password };
+  return { ...state,
+    password: action.password
+  };
 };
 
 //User Login Section
 const setUserStartLogin = (state = INITIAL_STATE) => {
-  return { ...state, loading: true, errorMessage: '' };
+  return { ...state,
+    loading: true,
+    errorMessage: ''
+  };
 };
 
 const setUserLoginSuccess = (state = INITIAL_STATE, action) => {
-  return { ...state, ...INITIAL_STATE, email: action.userData.email, userData: action.userData };
+  return { ...state,
+    ...INITIAL_STATE,
+    email: action.userData.email,
+    userData: action.userData
+  };
 };
 
 const setUserLoginFail = (state = INITIAL_STATE, action) => {
@@ -47,12 +60,37 @@ const setUserSignUpFail = (state = INITIAL_STATE, action) => {
 };
 
 const setVendorData = (state = INITIAL_STATE, action) => {
-  return { ...state, vendorData: action.vendorData };
+  return { ...state,
+    vendorData: action.vendorData
+  };
+};
+
+const setVendorCategories = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    vendorData: {
+      ...state.vendorData,
+      categories: action.categories,
+    }
+  };
+};
+
+const setVendorSubcategories = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    vendorData: {
+      ...state.vendorData,
+      subcategories: action.subcategories
+    }
+  };
 };
 
 //Reset Password Section
 const setResetPasswordAttempt = (state = INITIAL_STATE) => {
-  return { ...state, loading: true, errorMessage: '' };
+  return { ...state,
+    loading: true,
+    errorMessage: ''
+  };
 };
 
 const setResetPasswordSuccess = (state = INITIAL_STATE) => {
@@ -83,6 +121,8 @@ export default {
 
   setUserSignUpFail,
   setVendorData,
+  setVendorCategories,
+  setVendorSubcategories,
 
   setResetPasswordAttempt,
   setResetPasswordSuccess,
