@@ -147,7 +147,7 @@ export default StyleSheet.create({
   signUpTextFieldStyle: {
     height: 30,
     width: 330,
-    fontFamily: 'Quicksand-LightItalic',
+    fontFamily: 'Quicksand-light'
   },
 
   signUpButtonStyle: {

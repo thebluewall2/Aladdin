@@ -69,7 +69,7 @@ class ForgotPassword extends Component {
             <Text style={styles.buttonTextStyle}>Reset Password</Text>
           </TouchableOpacity>
         </View>
-        
+
       </View>
 
     );

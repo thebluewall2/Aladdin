@@ -6,7 +6,9 @@ class HomePage extends Component {
     return (
       <View style={{ paddingTop: 100, paddingLeft: 50 }}>
         <Text>HomePage</Text>
-      </View>
+    </View>
+
+
     );
   }
 }
