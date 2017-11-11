@@ -16,7 +16,7 @@ const RouterComponent = () => {
         <Scene
           key="landingPage"
           component={LandingPage}
-          initial
+          initial 
           hideNavBar
         />
         <Scene

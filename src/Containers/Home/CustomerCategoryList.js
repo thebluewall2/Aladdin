@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, View } from 'react-native';
 
+import styles from './Styles';
 import ServiceCategoryButton from '../../Components/ServiceCategoryButton';
 
 class CustomerCategoryList extends Component {
@@ -24,7 +25,9 @@ class CustomerCategoryList extends Component {
   render() {
     return (
       <ScrollView>
+      <View style={styles.homePageCategories}>
         {this._renderCategories()}
+      </View>
       </ScrollView>
     );
   }

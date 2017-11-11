@@ -116,7 +116,7 @@ export default StyleSheet.create({
   linkStyleForgetPassword: {
     color: '#0284CC',
     fontFamily: 'Quicksand-bold',
-    paddingTop: 33,
+    paddingTop: 10,
     fontSize: 15
   },
   linkStyleSignUpNow: {

@@ -1,12 +1,10 @@
 [{
-    "category": "Air Condition Services",
-    "subcategories": ["Yearly check up", "Air condition cleaning services",
-      "Old model air condition cooling services", "New model air condition cooling services",
-      "Noise reduction service for air condition", "Shift air condition location",
-      "Remove air condition (both external and internal)", "Remove air condition (internal)",
-      "Air condition pipe cleaning", "Air condition leaking problem", "Other issues"
+    "category": "Installation",
+    "subcategories": ["Water Heater Installation", "TV Installation", "Air Ventilation Installation",
+      "Ceiling Fan Installation", "Oil Filter Pipe Installation", "Water Purifier Installation"
     ]
   },
+
   {
     "category": "Refrigerator",
     "subcategories": ["Yearly check up", "Faulty/Not working", "Cooling issue",
@@ -38,9 +36,12 @@
   },
 
   {
-    "category": "Installation",
-    "subcategories": ["Water Heater Installation", "TV Installation", "Air Ventilation Installation",
-      "Ceiling Fan Installation", "Oil Filter Pipe Installation", "Water Purifier Installation"
+    "category": "Air Condition Services",
+    "subcategories": ["Yearly check up", "Air condition cleaning services",
+      "Old model air condition cooling services", "New model air condition cooling services",
+      "Noise reduction service for air condition", "Shift air condition location",
+      "Remove air condition (both external and internal)", "Remove air condition (internal)",
+      "Air condition pipe cleaning", "Air condition leaking problem", "Other issues"
     ]
   },
 

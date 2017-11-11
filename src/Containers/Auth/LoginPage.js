@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Text, View, TouchableOpacity, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
@@ -43,7 +43,7 @@ class UserLoginPage extends Component {
     }
 
     return (
-      <View style={{ paddingTop: 20 }}>
+      <View style={{ paddingTop: 20, paddingBottom: 20 }}>
         <TouchableOpacity style={styles.buttonStyle} onPress={this._handleLoginUser} >
           <Text style={styles.buttonTextStyle}>Sign In</Text>
         </TouchableOpacity>

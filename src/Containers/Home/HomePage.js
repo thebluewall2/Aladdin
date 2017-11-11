@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import ReduxActions from '../../Redux/Actions';
 import serviceCategory from '../../../assets/data/ServiceCategories.json';
+import styles from './Styles';
 import CustomerCategoryList from './CustomerCategoryList';
 
 class HomePage extends Component {
@@ -14,16 +15,17 @@ class HomePage extends Component {
 
   render() {
     return (
-      <View style={{ paddingTop: 100, paddingLeft: 50 }}>
+      <View style={styles.homePageContainer}>
         <View>
-          <Text>Welcome {this.props.email}</Text>
+          <Text style={styles.homePageWelcomeText} >
+          Welcome {this.props.email}
+          </Text>
         </View>
 
         <CustomerCategoryList
           serviceCategories={serviceCategory}
           onPress={(category) => this._categoryPressed(category)}
         />
-
       </View>
     );
   }
