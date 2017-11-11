@@ -2,6 +2,8 @@ import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
 import LandingPage from './Containers/Auth/LandingPage';
 import LoginPage from './Containers/Auth/LoginPage';
+import TermsOfUse from './Containers/Auth/TermsOfUse';
+import PrivacyPolicy from './Containers/Auth/PrivacyPolicy';
 import CustomerSignUpPage from './Containers/Auth/SignUp/CustomerSignUpPage';
 import VendorSignUpPage from './Containers/Auth/SignUp/VendorSignUpPage';
 import VendorSelectCategories from './Containers/Auth/SignUp/VendorSelectCategories';
@@ -51,6 +53,14 @@ const RouterComponent = () => {
           key="selectSubcategories"
           component={VendorSelectSubcategories}
           title={'Select subcategories'}
+        />
+        <Scene
+          key="termsOfUse"
+          component={TermsOfUse}
+        />
+        <Scene
+          key="privacyPolicy"
+          component={PrivacyPolicy}
         />
       </Scene>
 
