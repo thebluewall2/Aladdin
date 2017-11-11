@@ -20,7 +20,7 @@ class VendorSelectCategories extends Component {
 
   _handleSelectSubcategories = () => {
     const { selectedCategories } = this.state;
-    
+
     this.props.setVendorCategories(selectedCategories);
 
     Actions.selectSubcategories();
@@ -35,23 +35,34 @@ class VendorSelectCategories extends Component {
     }
 
     return (
-      <ScrollView style={{ paddingTop: 100 }}>
-        <CustomMultiPicker
-          options={categories}
-          search
-          multiple
-          returnValue={"label"}
-          callback={(result) => this.setState({ selectedCategories: result })}
-          selectedIconName={"ios-checkmark-circle-outline"}
-          unselectedIconName={"ios-radio-button-off-outline"}
-        />
+      <View style={{ flexGrow: 1 }}>
+        <ScrollView style={{ paddingTop: 70 }}>
+          <CustomMultiPicker
+            options={categories}
+            search
+            multiple
+            returnValue={"label"}
+            callback={(result) => this.setState({ selectedCategories: result })}
+            placeholder={"Search"}
+            placeholderTextColor={'#47525E'}
+            iconColor={"#00BCD4"}
+            rowBackgroundColor={"#EEEEEE"}
+            iconSize={20}
+            rowHeight={50}
+            rowRadius={6}
+            scrollViewHeight={450}
+            fontFamily={'Quicksand'}
+            selectedIconName={"ios-checkmark-circle-outline"}
+            unselectedIconName={"ios-radio-button-off-outline"}
+          />
 
-        <View style={styles.signUpButtonStyle}>
-          <TouchableOpacity style={styles.buttonStyle} onPress={this._handleSelectSubcategories}>
-            <Text style={styles.buttonTextStyle}>Next</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+          <View style={styles.vendorNextButtonStyle}>
+            <TouchableOpacity style={styles.buttonStyle} onPress={this._handleSelectSubcategories}>
+              <Text style={styles.buttonTextStyle}>Next</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+     </View>
     );
   }
 }

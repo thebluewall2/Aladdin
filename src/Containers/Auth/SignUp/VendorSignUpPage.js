@@ -127,6 +127,7 @@ class VendorSignUpPage extends Component {
 
             <TextFieldComponent
               label={"Password"}
+              secureTextEntry
               onChangeText={(text) => {
                 this._handleTextChanged(text, 'password');
               }}
