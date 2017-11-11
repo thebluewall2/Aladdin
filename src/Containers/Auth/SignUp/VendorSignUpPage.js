@@ -20,6 +20,7 @@ class VendorSignUpPage extends Component {
 
   getInitialState = () => {
     return {
+      userType: 'vendor',
       companyName: '',
       name: '',
       email: '',

@@ -25,11 +25,11 @@ class CustomerSignUpPage extends Component {
   }
 
   _onTermsOfUsePress = () => {
-    Actions.TermsOfUsePage();
+    Actions.termsOfUse();
   }
 
   _onPrivacyPolicyPress = () => {
-    Actions.PrivacyPolicyPage();
+    Actions.privacyPolicy();
   }
 
   _handleTextChanged = (text, property) => {
