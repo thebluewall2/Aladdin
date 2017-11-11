@@ -8,6 +8,8 @@ import VendorSelectCategories from './Containers/Auth/SignUp/VendorSelectCategor
 import VendorSelectSubcategories from './Containers/Auth/SignUp/VendorSelectSubcategories';
 import ForgotPassword from './Containers/Auth/ForgotPassword';
 import HomePage from './Containers/Home/HomePage';
+import VendorList from './Containers/Home/VendorList';
+import SelectSubcategory from './Containers/Home/SelectSubcategory';
 
 const RouterComponent = () => {
   return (
@@ -58,6 +60,15 @@ const RouterComponent = () => {
           component={HomePage}
           titleStyle={styles.titleStyle}
           title={'E - R E N O'}
+          initial
+        />
+        <Scene
+          key="vendorList"
+          component={VendorList}
+        />
+        <Scene
+          key="selectSubcategory"
+          component={SelectSubcategory}
         />
       </Scene>
 

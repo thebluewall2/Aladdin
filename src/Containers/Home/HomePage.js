@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text} from 'react-native';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 
 import ReduxActions from '../../Redux/Actions';
 import serviceCategory from '../../../assets/data/ServiceCategories.json';
@@ -8,15 +9,16 @@ import CustomerCategoryList from './CustomerCategoryList';
 
 class HomePage extends Component {
   _categoryPressed = (category) => {
-    console.log("pressed:");
-    console.log(category);
+    this.props.setSearchCategory(category);
+
+    Actions.selectSubcategory();
   }
 
   render() {
     return (
       <View style={{ paddingTop: 100, paddingLeft: 50 }}>
         <View>
-          <Text>Welcome {this.props.email}</Text>
+          <Text>Welcome, {this.props.email}</Text>
         </View>
 
         <CustomerCategoryList
@@ -39,13 +41,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    //LEE: dispatching action here to all reducers and sagas, receiving at Sagas/Auth/login.js
-    loginUser: (email, password) =>
-      dispatch(ReduxActions.authLoginUser(email, password)),
-    emailChanged: (email) =>
-      dispatch(ReduxActions.authEmailChanged(email)),
-    passwordChanged: (password) =>
-      dispatch(ReduxActions.authPasswordChanged(password)),
+    setSearchCategory: (category) =>
+      dispatch(ReduxActions.homeSetSearchCategory(category)),
   };
 };
 

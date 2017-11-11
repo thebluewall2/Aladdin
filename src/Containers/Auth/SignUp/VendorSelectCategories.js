@@ -20,7 +20,7 @@ class VendorSelectCategories extends Component {
 
   _handleSelectSubcategories = () => {
     const { selectedCategories } = this.state;
-    
+
     this.props.setVendorCategories(selectedCategories);
 
     Actions.selectSubcategories();
