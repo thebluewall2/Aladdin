@@ -181,30 +181,45 @@ class VendorSignUpPage extends Component {
               value={this.state.city}
             />
 
-            <ModalPicker
-              data={yearsOfExpData}
-              initValue="Years of Experience"
-              onChange={(option) => this._handleTextChanged(option.label, 'yearsOfExp')}
-            />
-
-            <ModalPicker
-              data={yearsOfCompanyData}
-              initValue="Years of Company Establish"
-              onChange={(option) => this._handleTextChanged(option.label, 'yearsOfCompany')}
-            />
-
-            <ModalPicker
-              data={noOfStaffData}
-              initValue="Number of Staff"
-              onChange={(option) => this._handleTextChanged(option.label, 'noOfStaff')}
-            />
-
             <TextFieldComponent
               label={"Awards / Certificates"}
               onChangeText={(text) => {
                 this._handleTextChanged(text, 'awards');
               }}
               value={this.state.awards}
+            />
+
+            <ModalPicker
+              style={styles.modalPickerStyle}
+              selectTextStyle={styles.modalPickerSelectTextStyle}
+              optionTextStyle={styles.modalPickerOptionTextStyle}
+              cancelTextStyle={styles.modalPickerCancelTextStyle}
+              data={yearsOfExpData}
+              initValue="Years of Experience"
+              onChange={(option) => this._handleTextChanged(option.label, 'yearsOfExp')}
+              cancelText={'Cancel'}
+            />
+
+            <ModalPicker
+              style={styles.modalPickerStyle}
+              selectTextStyle={styles.modalPickerSelectTextStyle}
+              optionTextStyle={styles.modalPickerOptionTextStyle}
+              cancelTextStyle={styles.modalPickerCancelTextStyle}
+              data={yearsOfCompanyData}
+              initValue="Years of Company Establish"
+              onChange={(option) => this._handleTextChanged(option.label, 'yearsOfCompany')}
+              cancelText={'Cancel'}
+            />
+
+            <ModalPicker
+              style={styles.modalPickerStyle}
+              selectTextStyle={styles.modalPickerSelectTextStyle}
+              optionTextStyle={styles.modalPickerOptionTextStyle}
+              cancelTextStyle={styles.modalPickerCancelTextStyle}
+              data={noOfStaffData}
+              initValue="Number of Staff"
+              onChange={(option) => this._handleTextChanged(option.label, 'noOfStaff')}
+              cancelText={'Cancel'}
             />
 
             <View style={styles.signUpButtonStyle}>

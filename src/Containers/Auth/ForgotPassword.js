@@ -39,6 +39,12 @@ class ForgotPassword extends Component {
     this.props.resetPassword(email, userType);
   }
 
+  _handleTextChanged = (email) => {
+    this.setState({
+      email
+    });
+  }
+
   render() {
     return (
       <View style={styles.loginPageMainContainer}>
@@ -52,13 +58,13 @@ class ForgotPassword extends Component {
         </Text>
 
         <Text style={styles.quicksandTextDescription}>
-          Please enter your registered Email address.
+          Please enter your registered email address.
           Password reset instruction will be sent to your mailbox.
         </Text>
 
         <TextFieldComponent
           label={'Email'}
-          onChangeText={this._handleResetPassword}
+          onChangeText={text => this._handleTextChanged(text)}
           value={this.state.email}
         />
 
