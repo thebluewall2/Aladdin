@@ -26,7 +26,13 @@ export function* handleResetPassword(email) {
 }
 
 export function ResetPassword(email) {
+<<<<<<< Updated upstream
   firebase.auth().sendPasswordResetEmail(email)
+=======
+  const auth = firebase.getInstance();
+  console.log(auth);
+  auth.sendPasswordResetEmail(email)
+>>>>>>> Stashed changes
   .catch((error) => {
     throw error;
   });
