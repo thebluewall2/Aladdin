@@ -51,7 +51,21 @@ const setUserLoginFail = (state = INITIAL_STATE, action) => {
   };
 };
 
-const setUserSignUpFail = (state = INITIAL_STATE, action) => {
+const setSignUpAttempt = (state = INITIAL_STATE) => {
+  return {
+    ...state,
+    loading: true,
+  };
+};
+
+const setSignUpSuccess = (state = INITIAL_STATE) => {
+  return {
+    ...state,
+    loading: false
+  };
+};
+
+const setSignUpFail = (state = INITIAL_STATE, action) => {
   return {
     ...state,
     loading: false,
@@ -119,7 +133,10 @@ export default {
   setUserLoginSuccess,
   setUserLoginFail,
 
-  setUserSignUpFail,
+  setSignUpAttempt,
+  setSignUpSuccess,
+  setSignUpFail,
+
   setVendorData,
   setVendorCategories,
   setVendorSubcategories,

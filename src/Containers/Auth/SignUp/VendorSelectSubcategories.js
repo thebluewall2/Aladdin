@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import CustomMultiPicker from "react-native-multiple-select-list";
 
 import serviceCategories from '../../../../assets/data/ServiceCategories.json';
+import { LoadingSpinner } from '../../../Components/common';
 import styles from '../Styles';
 import ReduxActions from '../../../Redux/Actions';
 
@@ -32,6 +33,21 @@ class VendorSelectCategories extends Component {
       [category]: subcategories
     });
   }
+
+  _renderSubmitBtn = () => {
+    console.log(this.props.loading);
+    if (this.props.loading) {
+      return <LoadingSpinner />;
+    }
+
+    return (
+      <View style={styles.signUpButtonStyle}>
+        <TouchableOpacity style={styles.buttonStyle} onPress={this.handleSignUp}>
+          <Text style={styles.buttonTextStyle}>Sign Up!</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
 
   renderSelectSubcategory = (category) => {
     let thisSubcategory = [];
@@ -81,11 +97,7 @@ class VendorSelectCategories extends Component {
           ))
         }
 
-        <View style={styles.signUpButtonStyle}>
-          <TouchableOpacity style={styles.buttonStyle} onPress={this.handleSignUp}>
-            <Text style={styles.buttonTextStyle}>Sign Up!</Text>
-          </TouchableOpacity>
-        </View>
+        {this._renderSubmitBtn()}
       </ScrollView>
     );
   }
@@ -97,6 +109,7 @@ const mapStateToProps = ({ auth }) => {
 
   return {
     categories,
+    loading: auth.loading,
     vendorData: auth.vendorData
   };
 };
