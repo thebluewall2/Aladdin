@@ -12,14 +12,10 @@ class CustomerCategoryList extends Component {
     return serviceCategories.map(thisCategory =>
       <ServiceCategoryButton
         key={thisCategory.category}
-        onPress={this._handleOnPress(thisCategory)}
+        onPress={() => onPress(thisCategory)}
         category={thisCategory}
       />
     );
-  }
-
-  _handleOnPress = (category) => {
-    this.props.onPress(category);
   }
 
   render() {
