@@ -16,6 +16,7 @@ export default {
     [Types.AUTH_RESET_PASSWORD_SUCCESS]: Reducers.setResetPasswordSuccess,
     [Types.AUTH_RESET_PASSWORD_FAIL]: Reducers.setResetPasswordFail,
 
+    [Types.AUTH_SIGN_UP_ATTEMPT]: Reducers.setSignUpAttempt,
     [Types.AUTH_SIGN_UP_SUCCESS]: Reducers.setSignUpSuccess,
     [Types.AUTH_SIGN_UP_FAIL]: Reducers.setSignUpFail,
     [Types.AUTH_VENDOR_SET_DATA]: Reducers.setVendorData,
