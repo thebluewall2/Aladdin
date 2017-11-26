@@ -15,7 +15,6 @@ export function* watchResetPassword() {
 //might not need userType
 export function* handleResetPassword(email) {
   try {
-    console.log(email);
     yield call(ResetPassword, email);
     yield put(ReduxActions.authResetPasswordSuccess());
     Actions.loginPage();

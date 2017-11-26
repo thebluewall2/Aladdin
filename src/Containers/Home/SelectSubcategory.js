@@ -11,7 +11,7 @@ class SelectSubcategory extends Component {
 
   _handleSubcategoryPressed = (subcategory) => {
     this.props.setSearchSubcategory(subcategory);
-    
+
     Actions.vendorList();
   }
 
@@ -24,6 +24,15 @@ class SelectSubcategory extends Component {
         search
         returnValue={"label"}
         callback={(result) => this._handleSubcategoryPressed(result)}
+        placeholder={"Search"}
+        placeholderTextColor={'#47525E'}
+        iconColor={"#00BCD4"}
+        rowBackgroundColor={"#EEEEEE"}
+        iconSize={20}
+        rowHeight={50}
+        rowRadius={6}
+        scrollViewHeight={450}
+        fontFamily={'Quicksand'}
         selectedIconName={"ios-arrow-dropright-circle"}
         unselectedIconName={"ios-arrow-dropright"}
       />
@@ -34,9 +43,9 @@ class SelectSubcategory extends Component {
     const { category } = this.props;
 
     return (
-      <View style={{ paddingTop: 100 }}>
+      <View style={{ flex: 1, justifyContent: 'center' }}>
         <View>
-          <Text style={{ paddingLeft: 5 }}>{category.category}</Text>
+          <Text style={{ fontFamily: 'Quicksand-regular', fontSize: 20, paddingLeft: 5, paddingTop: 20 }} > {category.category}</Text>
           <ScrollView>
             {this._renderSubcategories()}
           </ScrollView>

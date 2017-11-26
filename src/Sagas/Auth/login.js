@@ -1,6 +1,7 @@
 import { take, call, put } from 'redux-saga/effects';
 
 import firebase from 'firebase';
+import { getAll } from 'firebase-saga';
 import { Actions } from 'react-native-router-flux';
 
 import ReduxActions from '../../Redux/Actions';
@@ -15,6 +16,8 @@ export function* watchLoginUser() {
 }
 
 export function* handleLoginUser(email, password) {
+  const allServices = yield call(getAll, 'Services');
+  console.log(allServices);
   try {
     const userData = yield call(firebaseAuth, email, password);
     yield put(ReduxActions.authUserLoginSuccess(userData));

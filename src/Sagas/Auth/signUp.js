@@ -1,6 +1,7 @@
 import { take, call, put } from 'redux-saga/effects';
 import { Actions } from 'react-native-router-flux';
 import firebase from 'firebase';
+import { get, create } from 'firebase-saga';
 
 import ReduxActions from '../../Redux/Actions';
 import Types from '../../Redux/Auth/types';
@@ -13,44 +14,75 @@ export function* watchUserSignUp() {
 }
 
 export function* handleSignUp(data) {
-  if (data.userType === 'customer') {
-    yield call(handleCustomerSignUp, data);
-  } else if (data.userType === 'vendor') {
-    yield call(handleVendorSignUp, data);
-  }
-}
+  console.log(data);
 
-export function* handleCustomerSignUp(data) {
   try {
-    const userData = yield call(CustomerSignUp, data);
-    const newUser = {
-      name: data.name,
-      userType: data.userType,
-      phoneNo: data.phoneNo,
-      address: data.address,
-      email: data.email
-    };
-    firebase.database().ref(`Users/${data.userType}/${userData.uid}`)
-      .set(newUser);
-
+    yield call(CheckPhoneNumber, data);
+    console.log("checked phone no");
+    yield call(SignUp, data);
     yield put(ReduxActions.authUserSignUpSuccess());
+
     Actions.loginPage();
   } catch (error) {
     yield put(ReduxActions.authUserSignUpFail(error));
   }
 }
 
+export function* CheckPhoneNumber(data) {
+  console.log("checking phone no");
+  const phoneNo = yield call(get, `PhoneNumbers/${data.userType}`, data.phoneNo);
+  console.log(phoneNo);
+  if (phoneNo === null) {
+    console.log('Go ahead');
+    yield call(create, `PhoneNumbers/${data.userType}/${data.phoneNo}`, () => ({
+                [`PhoneNumbers/${data.userType}/${data.phoneNo}`]: { email: data.email }
+              })
+            );
+  } else {
+    console.log('Phone number in use!');
+    const err = new Error("Phone number in use!");
+    console.log(err);
+    throw err;
+  }
+}
+
+export function* SignUp(data) {
+  console.log(data);
+  if (data.userType === 'customer') {
+    const userData = yield call(CustomerSignUp, data);
+    yield call(CustomerInfo, data, userData);
+  } else if (data.userType === 'vendor') {
+    const userData = yield call(VendorSignUp, data);
+    yield call(VendorInfo, data, userData);
+  }
+}
+
 export function CustomerSignUp(data) {
-  return firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
+  const userData = firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
   .catch((error) => {
+    console.log(error.message);
     throw error;//If fail dispatch error msg
   });
+  return userData;
+}
+
+export function* CustomerInfo(data, userData) {
+  yield call(create, `Users/${data.userType}/${userData.uid}`, () => ({
+      [`Users/${data.userType}/${userData.uid}`]:
+        {
+          name: data.name,
+          userType: data.userType,
+          phoneNo: data.phoneNo,
+          address: data.address,
+          email: data.email
+        }
+    })
+  );
 }
 
 
-export function* handleVendorSignUp(data) {
+export function* VendorInfo(data, userData) {
   try {
-  const userData = yield call(VendorSignUp, data);
   const newUser = {
       companyName: data.companyName,
       name: data.name,
@@ -59,11 +91,13 @@ export function* handleVendorSignUp(data) {
       address: data.address,
       postcode: data.postcode,
       city: data.city,
-      services: data.services//might remove this to have another section to add
+      yearsOfExp: data.yearsOfExp,
+      yearsOfCompany: data.yearsOfCompany,
+      noOfStaff: data.noOfStaff,
+      awards: data.awards
     };
   firebase.database().ref(`Users/${data.userType}/${userData.uid}`)
     .set(newUser);
-
   yield put(ReduxActions.authUserSignUpSuccess());
   Actions.loginPage();
   } catch (error) {
@@ -72,7 +106,7 @@ export function* handleVendorSignUp(data) {
 }
 
 export function VendorSignUp(data) {
-  firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
+  return firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
   .catch((error) => {
     throw error;//If fail dispatch error msg
   });

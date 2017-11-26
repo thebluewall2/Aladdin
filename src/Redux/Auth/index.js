@@ -19,8 +19,15 @@ export default {
     [Types.AUTH_SIGN_UP_ATTEMPT]: Reducers.setSignUpAttempt,
     [Types.AUTH_SIGN_UP_SUCCESS]: Reducers.setSignUpSuccess,
     [Types.AUTH_SIGN_UP_FAIL]: Reducers.setSignUpFail,
+
     [Types.AUTH_VENDOR_SET_DATA]: Reducers.setVendorData,
     [Types.AUTH_VENDOR_SET_CATEGORIES]: Reducers.setVendorCategories,
     [Types.AUTH_VENDOR_SET_SUBCATEGORIES]: Reducers.setVendorSubcategories,
+
+    [Types.HOME_GET_ALL_SERVICES_ATTEMPT]: Reducers.getAllServicesAttempt,
+    [Types.HOME_GET_ALL_SERVICES_SUCCESS]: Reducers.getAllServicesSuccess,
+    [Types.HOME_GET_ALL_SERVICES_FAIL]: Reducers.getAllServicesFail,
+
+
   })
 };
