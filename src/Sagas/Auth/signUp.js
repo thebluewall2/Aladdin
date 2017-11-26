@@ -14,6 +14,8 @@ export function* watchUserSignUp() {
 }
 
 export function* handleSignUp(data) {
+  console.log(data);
+
   try {
     yield call(CheckPhoneNumber, data);
     console.log("checked phone no");
@@ -45,6 +47,7 @@ export function* CheckPhoneNumber(data) {
 }
 
 export function* SignUp(data) {
+  console.log(data);
   if (data.userType === 'customer') {
     const userData = yield call(CustomerSignUp, data);
     yield call(CustomerInfo, data, userData);
@@ -55,7 +58,6 @@ export function* SignUp(data) {
 }
 
 export function CustomerSignUp(data) {
-  console.log(data.email, data.password);
   const userData = firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
   .catch((error) => {
     console.log(error.message);
@@ -104,7 +106,7 @@ export function* VendorInfo(data, userData) {
 }
 
 export function VendorSignUp(data) {
-  firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
+  return firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
   .catch((error) => {
     throw error;//If fail dispatch error msg
   });

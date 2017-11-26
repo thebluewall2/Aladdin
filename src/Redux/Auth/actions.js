@@ -77,6 +77,20 @@ const authResetPasswordFail = (error) => ({
   error
 });
 
+//Get All Services Section
+const homeGetAllServicesAttempt = () => ({
+  type: Types.HOME_GET_ALL_SERVICES_ATTEMPT,
+});
+
+const homeGetAllServicesSuccess = () => ({
+  type: Types.HOME_GET_ALL_SERVICES_SUCCESS,
+});
+
+const homeGetAllServicesFail = (error) => ({
+  type: Types.HOME_GET_ALL_SERVICES_FAIL,
+  error
+});
+
 export default {
   authSetUserType,
   authEmailChanged,
@@ -97,4 +111,10 @@ export default {
   authResetPasswordAttempt,
   authResetPasswordSuccess,
   authResetPasswordFail,
+
+  //Get All Services Section
+  homeGetAllServicesAttempt,
+  homeGetAllServicesSuccess,
+  homeGetAllServicesFail
+
 };
