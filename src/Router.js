@@ -13,14 +13,16 @@ import HomePage from './Containers/Home/HomePage';
 import VendorList from './Containers/Home/VendorList';
 import SelectSubcategory from './Containers/Home/SelectSubcategory';
 
+import TabIcon from './Components/TabIcon';
+
 const RouterComponent = () => {
   return (
     <Router>
-      <Scene key="auth" navigationBarStyle={styles.authNavBarStyle}>
+      <Scene key="auth" initial navigationBarStyle={styles.authNavBarStyle}>
         <Scene
           key="landingPage"
           component={LandingPage}
-          initial 
+          initial
           hideNavBar
         />
         <Scene
@@ -64,22 +66,17 @@ const RouterComponent = () => {
         />
       </Scene>
 
-      <Scene key="home" navigationBarStyle={styles.authNavBarStyle}>
-        <Scene
-          key="homePage"
-          component={HomePage}
-          titleStyle={styles.titleStyle}
-          title={'E - R E N O'}
-          initial
-        />
-        <Scene
-          key="vendorList"
-          component={VendorList}
-        />
-        <Scene
-          key="selectSubcategory"
-          component={SelectSubcategory}
-        />
+      <Scene key="home" tabs >
+        <Scene key="homePage" title="Home" icon={TabIcon} >
+          <Scene key="homeTab" component={HomePage} />
+          <Scene key="selectSubcategory" component={SelectSubcategory} />
+          <Scene key="vendorList" component={VendorList} />
+        </Scene>
+        <Scene key="requests" title="Request" icon={TabIcon} >
+          <Scene key="requestPage" component={LandingPage} />
+        </Scene>
+
+        <Scene key="settingsPage" title="Settings" component={LandingPage} icon={TabIcon} />
       </Scene>
 
     </Router>

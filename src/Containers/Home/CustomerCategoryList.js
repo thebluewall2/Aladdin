@@ -21,9 +21,9 @@ class CustomerCategoryList extends Component {
   render() {
     return (
       <ScrollView>
-      <View style={styles.homePageCategories}>
-        {this._renderCategories()}
-      </View>
+        <View style={styles.homePageCategories}>
+          {this._renderCategories()}
+        </View>
       </ScrollView>
     );
   }
