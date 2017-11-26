@@ -79,7 +79,7 @@ class UserLoginPage extends Component {
         {/**LOUISA: error message goes here**/}
         {this.props.errorMessage !== "" ? (
           <View>
-            <Text style={{ color: 'red' }}>{this.props.errorMessage.message}</Text>
+            <Text style={styles.errorMessageStyle}>{this.props.errorMessage.message}</Text>
           </View>
         ) :
           false
