@@ -1,6 +1,7 @@
 import { take, call, put } from 'redux-saga/effects';
 import { Actions } from 'react-native-router-flux';
 import firebase from 'firebase';
+import { get, create } from 'firebase-saga';
 
 import ReduxActions from '../../Redux/Actions';
 import Types from '../../Redux/Auth/types';
@@ -14,43 +15,44 @@ export function* watchUserSignUp() {
 
 export function* handleSignUp(data) {
   try {
-    const isSuccess = yield call(CheckAndSignUp, data);
-console.log(isSuccess);
-    if (isSuccess === false) {
-      const error = new Error('PhoneNoUsed');
-      error.code = "PhoneNoUsed";
-      error.message = "Phone Number is use!";
-      throw error;
-    }
+    yield call(CheckPhoneNumber, data);
+    console.log("checked phone no");
+    yield call(SignUp, data);
     yield put(ReduxActions.authUserSignUpSuccess());
+
     Actions.loginPage();
   } catch (error) {
-    console.log(error);
-    console.log("error");
     yield put(ReduxActions.authUserSignUpFail(error));
   }
 }
 
-export function* CheckAndSignUp(data) {
-  firebase.database().ref(`Duplicates/${data.userType}/${data.phoneNo}`).set(data.email)
-    .catch(() => {
-      return false;
-  });
-  yield call(SignUp, data);
-  return true;
+export function* CheckPhoneNumber(data) {
+  console.log("checking phone no");
+  const phoneNo = yield call(get, `PhoneNumbers/${data.userType}`, data.phoneNo);
+  console.log(phoneNo);
+  if (phoneNo === null) {
+    console.log('Go ahead');
+    yield call(create, `PhoneNumbers/${data.userType}/${data.phoneNo}`, () => ({
+                [`PhoneNumbers/${data.userType}/${data.phoneNo}`]: { email: data.email }
+              })
+            );
+  } else {
+    console.log('Phone number in use!');
+    const err = new Error("Phone number in use!");
+    console.log(err);
+    throw err;
+  }
 }
 
 export function* SignUp(data) {
   if (data.userType === 'customer') {
     const userData = yield call(CustomerSignUp, data);
-    console.log(userData);
     yield call(CustomerInfo, data, userData);
   } else if (data.userType === 'vendor') {
     const userData = yield call(VendorSignUp, data);
     yield call(VendorInfo, data, userData);
   }
 }
-
 
 export function CustomerSignUp(data) {
   console.log(data.email, data.password);
@@ -62,20 +64,23 @@ export function CustomerSignUp(data) {
   return userData;
 }
 
-export function CustomerInfo(data, userData) {
-  const newUser = {
-    name: data.name,
-    userType: data.userType,
-    phoneNo: data.phoneNo,
-    address: data.address,
-    email: data.email
-  };
-  firebase.database().ref(`Users/${data.userType}/${userData.uid}`)
-    .set(newUser);
+export function* CustomerInfo(data, userData) {
+  yield call(create, `Users/${data.userType}/${userData.uid}`, () => ({
+      [`Users/${data.userType}/${userData.uid}`]:
+        {
+          name: data.name,
+          userType: data.userType,
+          phoneNo: data.phoneNo,
+          address: data.address,
+          email: data.email
+        }
+    })
+  );
 }
 
+
 export function* VendorInfo(data, userData) {
-  try{
+  try {
   const newUser = {
       companyName: data.companyName,
       name: data.name,

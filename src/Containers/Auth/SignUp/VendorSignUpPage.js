@@ -94,18 +94,10 @@ class VendorSignUpPage extends Component {
 
     return (
       <View style={styles.signUpPageMainContainer}>
-<<<<<<< Updated upstream:src/Containers/Auth/SignUp/VendorSignUpPage.js
-<<<<<<< Updated upstream:src/Containers/Auth/SignUp/VendorSignUpPage.js
         <KeyboardAwareScrollView
           showsVerticalScrollIndicator={false}
           enableResetScrollToCoords={false}
         >
-=======
-        <KeyboardAwareScrollView showsVerticalScrollIndicator={false} enableResetScrollToCords={false}>
->>>>>>> Stashed changes:src/Containers/Auth/VendorSignUpPage.js
-=======
-        <KeyboardAwareScrollView showsVerticalScrollIndicator={false} enableResetScrollToCords={false}>
->>>>>>> Stashed changes:src/Containers/Auth/VendorSignUpPage.js
           <View>
             <Text style={styles.titleSignUpStyle}>
               Sign up!

@@ -15,7 +15,6 @@ export function* watchResetPassword() {
 //might not need userType
 export function* handleResetPassword(email) {
   try {
-    console.log(email);
     yield call(ResetPassword, email);
     yield put(ReduxActions.authResetPasswordSuccess());
     Actions.loginPage();
@@ -26,13 +25,7 @@ export function* handleResetPassword(email) {
 }
 
 export function ResetPassword(email) {
-<<<<<<< Updated upstream
   firebase.auth().sendPasswordResetEmail(email)
-=======
-  const auth = firebase.getInstance();
-  console.log(auth);
-  auth.sendPasswordResetEmail(email)
->>>>>>> Stashed changes
   .catch((error) => {
     throw error;
   });

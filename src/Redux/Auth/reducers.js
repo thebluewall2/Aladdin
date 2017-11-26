@@ -101,18 +101,10 @@ const setVendorSubcategories = (state = INITIAL_STATE, action) => {
 
 //Reset Password Section
 const setResetPasswordAttempt = (state = INITIAL_STATE) => {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
   return { ...state,
     loading: true,
     errorMessage: ''
   };
-=======
-  return { ...state, loading: true, email: 'kevinleechenchuen@gmail.com' };
->>>>>>> Stashed changes
-=======
-  return { ...state, loading: true, email: 'kevinleechenchuen@gmail.com' };
->>>>>>> Stashed changes
 };
 
 const setResetPasswordSuccess = (state = INITIAL_STATE) => {
