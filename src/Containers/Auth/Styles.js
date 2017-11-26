@@ -197,4 +197,10 @@ export default StyleSheet.create({
   color: '#000000'
   },
 
+  errorMessageStyle: {
+    color: 'red',
+    fontFamily: 'Quicksand',
+    textAlign: 'center'
+  }
+
 });
