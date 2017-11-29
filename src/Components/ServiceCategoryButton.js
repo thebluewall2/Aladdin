@@ -1,17 +1,17 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
-import Icons from './GetServiceCategoryIcons';
+// import Icons from './GetServiceCategoryIcons';
 
 
 const ServiceCategoryButton = ({ onPress, category }) => {
-  const icon = getImage(category);
+  const { imageURL, categoryName } = category;
 
   return (
     <View style={styles.viewStyle}>
     <TouchableOpacity onPress={onPress}>
       <View style={styles.circleStyle}>
         <Image
-          source={icon}
+          source={{ uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1200px-Apple_logo_black.svg.png" }}
           style={styles.buttonImage}
         />
         <Text style={styles.textStyle}>
@@ -23,36 +23,36 @@ const ServiceCategoryButton = ({ onPress, category }) => {
   );
 };
 
-const getImage = (category) => {
-  switch (category.category) {
-    case "Air Condition Services":
-      return Icons.air_conditioning;
-    case "Cleaning":
-      return Icons.cleaning;
-    case "Water Leaking Issues":
-        return Icons.plumbing;
-    case "Furniture Installation":
-        return Icons.moving;
-    case "Washing Machine":
-        return Icons.washingMachine;
-    case "Installation":
-        return Icons.installation;
-    case "Kitchen / Household":
-        return Icons.household;
-    case "Water Heater":
-        return Icons.heater;
-    case "Refrigerator":
-        return Icons.fridge;
-    case "Washroom / Bathroom":
-        return Icons.washroom;
-    case "Drilling Services":
-        return Icons.drill;
-    case "Locksmith":
-        return Icons.locksmith;
-    default:
-      return Icons.default;
-  }
-};
+// const getImage = (category) => {
+//   switch (category.category) {
+//     case "Air Condition Services":
+//       return Icons.air_conditioning;
+//     case "Cleaning":
+//       return Icons.cleaning;
+//     case "Water Leaking Issues":
+//         return Icons.plumbing;
+//     case "Furniture Installation":
+//         return Icons.moving;
+//     case "Washing Machine":
+//         return Icons.washingMachine;
+//     case "Installation":
+//         return Icons.installation;
+//     case "Kitchen / Household":
+//         return Icons.household;
+//     case "Water Heater":
+//         return Icons.heater;
+//     case "Refrigerator":
+//         return Icons.fridge;
+//     case "Washroom / Bathroom":
+//         return Icons.washroom;
+//     case "Drilling Services":
+//         return Icons.drill;
+//     case "Locksmith":
+//         return Icons.locksmith;
+//     default:
+//       return Icons.default;
+//   }
+// };
 
 const styles = {
   viewStyle: {

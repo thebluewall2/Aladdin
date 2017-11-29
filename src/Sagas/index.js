@@ -5,5 +5,5 @@ import home from './Home';
 
 export default function* root() {
   yield fork(auth().rootSaga);
-  // yield fork(home().rootSaga);
+  yield fork(home().rootSaga);
 }

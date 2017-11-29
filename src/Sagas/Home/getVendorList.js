@@ -1,7 +1,7 @@
 import { take, call, put } from 'redux-saga/effects';
 
 import ReduxActions from '../../Redux/Actions';
-import Types from '../../Redux/Auth/types';
+import Types from '../../Redux/Home/types';
 
 export function* watchGetVendorList() {
   while (true) {

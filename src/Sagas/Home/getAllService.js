@@ -1,26 +1,54 @@
-import { take, call, put } from 'redux-saga/effects';
-
-import firebase from 'firebase';
+import {
+  take,
+  call,
+  put
+} from 'redux-saga/effects';
 import { getAll } from 'firebase-saga';
-import { Actions } from 'react-native-router-flux';
 
 import ReduxActions from '../../Redux/Actions';
-import Types from '../../Redux/Auth/types';
+import Types from '../../Redux/Home/types';
 
-export function* watchGetAllSevices() {
+export function* watchGetAllServices() {
   while (true) {
-    const { email, userType } = yield take(Types.HOME_GET_ALL_SERVICES_ATTEMPT);
-    yield call(handleGetAllServices, email, userType);
+    yield take(Types.HOME_GET_ALL_SERVICES_ATTEMPT);
+    yield call(handleGetAllServices);
   }
 }
-//might not need userType
 export function* handleGetAllServices() {
   try {
     const allServices = yield call(getAll, 'Services');
-    console.log(allServices);
-    yield put(ReduxActions.homeGetAllServicesSuccess(allServices));
+    let servicesArray = [];
+
+    //converting to arrays
+    Object.keys(allServices)
+      .map(name => {
+        if (name !== 'imageURL') {
+          servicesArray.push({
+            category: name,
+            subcategories: getSubcategories(allServices[name]),
+            imageURL: allServices[name].imageURL,
+          });
+        }
+      });
+
+    yield put(ReduxActions.homeGetAllServicesSuccess(servicesArray));
   } catch (error) {
-    console.log(error);
     yield put(ReduxActions.homeGetAllServicesFail(error));
   }
+}
+
+function getSubcategories(subcategoriesFromFirebase) {
+  let subcategories = [];
+
+  Object.keys(subcategoriesFromFirebase)
+    .map(sub => {
+      if (sub !== 'imageURL') {
+        subcategories.push({
+          name: subcategoriesFromFirebase[sub].name,
+          id: sub
+        });
+      }
+    });
+
+  return subcategories;
 }

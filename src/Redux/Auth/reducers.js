@@ -122,30 +122,6 @@ const setResetPasswordFail = (state = INITIAL_STATE, action) => {
     errorMessage: action.error
   };
 };
-
-  //Get All Services Section
-const getAllServicesAttempt = (state = INITIAL_STATE) => {
-  return { ...state,
-    loading: true,
-    errorMessage: ''
-  };
-};
-
-const getAllServicesSuccess = (state = INITIAL_STATE) => {
-  return {
-    ...state,
-    loading: false,
-  };
-};
-
-const getAllServicesFail = (state = INITIAL_STATE, action) => {
-  return {
-    ...state,
-    loading: false,
-    errorMessage: action.error
-  };
-};
-
 export default {
   INITIAL_STATE,
 
@@ -167,9 +143,4 @@ export default {
   setResetPasswordAttempt,
   setResetPasswordSuccess,
   setResetPasswordFail,
-
-  //Get All Services Section
-  getAllServicesAttempt,
-  getAllServicesSuccess,
-  getAllServicesFail
 };

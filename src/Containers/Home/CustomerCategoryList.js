@@ -9,6 +9,10 @@ class CustomerCategoryList extends Component {
   _renderCategories() {
     const { serviceCategories, onPress } = this.props;
 
+    if (!serviceCategories) {
+      return false;
+    }
+
     return serviceCategories.map(thisCategory =>
       <ServiceCategoryButton
         key={thisCategory.category}

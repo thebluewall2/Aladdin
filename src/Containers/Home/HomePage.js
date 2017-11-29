@@ -4,15 +4,33 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
 import ReduxActions from '../../Redux/Actions';
-import serviceCategory from '../../../assets/data/ServiceCategories.json';
 import styles from './Styles';
 import CustomerCategoryList from './CustomerCategoryList';
+import { LoadingSpinner } from '../../Components/common';
 
 class HomePage extends Component {
+
+  componentWillMount() {
+    this.props.getServiceCategories();
+  }
+
   _categoryPressed = (category) => {
     this.props.setSearchCategory(category);
 
     Actions.selectSubcategory();
+  }
+
+  _renderList = () => {
+    if (this.props.loading) {
+      return <LoadingSpinner />;
+    }
+
+    return (
+      <CustomerCategoryList
+        serviceCategories={this.props.serviceCategories}
+        onPress={(category) => this._categoryPressed(category)}
+      />
+    );
   }
 
   render() {
@@ -24,10 +42,7 @@ class HomePage extends Component {
           </Text>
         </View>
 
-        <CustomerCategoryList
-          serviceCategories={serviceCategory}
-          onPress={(category) => this._categoryPressed(category)}
-        />
+        {this._renderList()}
       </View>
     );
   }
@@ -35,9 +50,12 @@ class HomePage extends Component {
 
 const mapStateToProps = (state) => {
   const { email } = state.auth;
+  const { loading, serviceCategories } = state.home;
 
   return {
-    email
+    email,
+    loading,
+    serviceCategories,
   };
 };
 
@@ -45,6 +63,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setSearchCategory: (category) =>
       dispatch(ReduxActions.homeSetSearchCategory(category)),
+    getServiceCategories: () =>
+      dispatch(ReduxActions.homeGetAllServicesAttempt()),
   };
 };
 

@@ -10,17 +10,22 @@ import ReduxActions from '../../Redux/Actions';
 class SelectSubcategory extends Component {
 
   _handleSubcategoryPressed = (subcategory) => {
-    this.props.setSearchSubcategory(subcategory);
+    this.props.setSearchSubcategory(subcategory[0]);
 
     Actions.vendorList();
   }
 
   _renderSubcategories = () => {
     const { subcategories } = this.props.category;
+    let subCategoriesToRender = [];
+
+    subcategories.map(sub =>
+      subCategoriesToRender.push(sub.name)
+    );
 
     return (
       <CustomMultiPicker
-        options={subcategories}
+        options={subCategoriesToRender}
         search
         returnValue={"label"}
         callback={(result) => this._handleSubcategoryPressed(result)}
