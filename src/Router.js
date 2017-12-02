@@ -2,16 +2,23 @@ import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
 import LandingPage from './Containers/Auth/LandingPage';
 import LoginPage from './Containers/Auth/LoginPage';
+
 import TermsOfUse from './Containers/Auth/TermsOfUse';
 import PrivacyPolicy from './Containers/Auth/PrivacyPolicy';
+
 import CustomerSignUpPage from './Containers/Auth/SignUp/CustomerSignUpPage';
+
 import VendorSignUpPage from './Containers/Auth/SignUp/VendorSignUpPage';
 import VendorSelectCategories from './Containers/Auth/SignUp/VendorSelectCategories';
 import VendorSelectSubcategories from './Containers/Auth/SignUp/VendorSelectSubcategories';
+
 import ForgotPassword from './Containers/Auth/ForgotPassword';
+
 import HomePage from './Containers/Home/HomePage';
 import VendorList from './Containers/Home/VendorList';
 import SelectSubcategory from './Containers/Home/SelectSubcategory';
+
+import Settings from './Containers/Settings/Settings';
 
 import TabIcon from './Components/TabIcon';
 
@@ -68,7 +75,7 @@ const RouterComponent = () => {
 
       <Scene key="home" tabs >
         <Scene key="homePage" title="Home" icon={TabIcon} >
-          <Scene key="homeTab" component={HomePage} />
+          <Scene key="homeTab" component={HomePage} panHandlers={null} renderBackButton={() => (null)} />
           <Scene key="selectSubcategory" component={SelectSubcategory} />
           <Scene key="vendorList" component={VendorList} />
         </Scene>
@@ -76,7 +83,7 @@ const RouterComponent = () => {
           <Scene key="requestPage" component={LandingPage} />
         </Scene>
 
-        <Scene key="settingsPage" title="Settings" component={LandingPage} icon={TabIcon} />
+        <Scene key="settingsPage" title="Settings" component={Settings} icon={TabIcon} renderBackButton={() => (null)} />
       </Scene>
 
     </Router>

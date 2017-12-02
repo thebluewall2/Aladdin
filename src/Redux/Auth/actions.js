@@ -1,5 +1,10 @@
 import Types from './types';
 
+const authAppStartUp = (startingUp) => ({
+  type: Types.AUTH_APP_START_UP,
+  startingUp
+});
+
 const authSetUserType = (userType) => ({
   type: Types.AUTH_SET_USER_TYPE,
   userType
@@ -79,6 +84,8 @@ const authResetPasswordFail = (error) => ({
 
 
 export default {
+  authAppStartUp,
+
   authSetUserType,
   authEmailChanged,
   authPasswordChanged,

@@ -11,7 +11,7 @@ const ServiceCategoryButton = ({ onPress, category }) => {
     <TouchableOpacity onPress={onPress}>
       <View style={styles.circleStyle}>
         <Image
-          source={{ uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1200px-Apple_logo_black.svg.png" }}
+          source={{ uri: imageURL }}
           style={styles.buttonImage}
         />
         <Text style={styles.textStyle}>

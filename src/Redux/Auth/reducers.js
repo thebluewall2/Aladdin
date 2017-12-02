@@ -1,4 +1,5 @@
 const INITIAL_STATE = {
+  startingUp: '',
   userType: '',
   email: '',
   password: '',
@@ -7,6 +8,12 @@ const INITIAL_STATE = {
   errorMessage: '',
   userData: '',
   vendorData: '',
+};
+
+const setStartUp = (state = INITIAL_STATE, action) => {
+  return { ...state,
+    startingUp: action.startingUp
+  };
 };
 
 const setUserType = (state = INITIAL_STATE, action) => {
@@ -124,6 +131,8 @@ const setResetPasswordFail = (state = INITIAL_STATE, action) => {
 };
 export default {
   INITIAL_STATE,
+
+  setStartUp,
 
   setUserType,
   setEmailChanged,
