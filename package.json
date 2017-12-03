@@ -19,6 +19,7 @@
 		"react-native-modal-picker": "0.0.16",
 		"react-native-multiple-select-list": "^1.0.4",
 		"react-native-router-flux": "^3.41.0",
+		"react-native-vector-icons": "^4.4.2",
 		"react-redux": "^5.0.6",
 		"redux": "^3.7.2",
 		"redux-saga": "^0.15.6",

@@ -1,0 +1,3 @@
+export default {
+  SETTINGS_SET_SETTINGS: 'SETTINGS_SET_SETTINGS',
+};
