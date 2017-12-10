@@ -4,8 +4,6 @@ export default StyleSheet.create({
   homePageContainer: {
     flexDirection: 'column',
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     paddingTop: 100
   },
 
@@ -19,7 +17,9 @@ export default StyleSheet.create({
 
   homePageWelcomeText: {
     fontFamily: 'Quicksand-bold',
-    fontSize: 15
+    fontSize: 15,
+    paddingTop: 10,
+    paddingBottom: 20
   },
 
   selectSubcategoryViewStyle: {
@@ -27,5 +27,12 @@ export default StyleSheet.create({
     paddingTop: 80,
     paddingLeft: 5,
     paddingRight: 5,
+  },
+
+  homePageTitle: {
+    fontFamily: 'Quicksand-regular',
+    justifyContent: 'flex-start',
+    paddingLeft: 10,
+    fontSize: 20
   }
 });

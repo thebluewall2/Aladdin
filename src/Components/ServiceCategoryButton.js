@@ -39,8 +39,8 @@ const styles = {
     justifyContent: 'center',
     width: 110,
     height: 110,
-    borderRadius: 10,
-    backgroundColor: '#fff9c4',
+    borderRadius: 3,
+    backgroundColor: '#FBFBFB',
   },
   textStyle: {
     fontFamily: 'Quicksand',
