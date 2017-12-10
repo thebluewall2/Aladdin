@@ -1,8 +1,5 @@
-import {
-  take,
-  call,
-  put
-} from 'redux-saga/effects';
+import { take, call, put } from 'redux-saga/effects';
+
 import { getAll } from 'firebase-saga';
 
 import ReduxActions from '../../Redux/Actions';
