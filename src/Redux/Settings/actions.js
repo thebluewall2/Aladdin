@@ -10,8 +10,28 @@ const settingsSetPushNotifications = (pushNotifications) => ({
   pushNotifications,
 });
 
+const settingsChangePasswordAttempt = (oldPassword, newPassword) => ({
+  type: Types.SETTINGS_CHANGE_PASSWORD_ATTEMPT,
+  oldPassword,
+  newPassword,
+});
+
+const settingsChangePasswordSuccess = (successMsg) => ({
+  type: Types.SETTINGS_CHANGE_PASSWORD_SUCCESS,
+  successMsg,
+});
+
+const settingsChangePasswordFailure = (errorMsg) => ({
+  type: Types.SETTINGS_CHANGE_PASSWORD_FAILURE,
+  errorMsg
+});
+
 export default {
   settingsSetSettings,
 
   settingsSetPushNotifications,
+
+  settingsChangePasswordAttempt,
+  settingsChangePasswordSuccess,
+  settingsChangePasswordFailure,
 };

@@ -14,6 +14,10 @@ class Settings extends Component {
     this.props.setPushNotifications(!pushNotifications);
   }
 
+  _navToChangePassword = () => {
+    Actions.changePasswordPage();
+  }
+
   _navToTermsOfUse = () => {
     Actions.termsOfUse();
   }
@@ -43,6 +47,7 @@ class Settings extends Component {
         <SettingsCard
           title={"Change Password"}
           icon={"ios-key"}
+          onPress={this._navToChangePassword}
         />
 
         <SettingsCard

@@ -1,5 +1,8 @@
 const INITIAL_STATE = {
   settings: {},
+  attempting: false,
+  errorMsg: '',
+  successMsg: '',
 };
 
 const setSettings = (state = INITIAL_STATE, action) => {
@@ -19,6 +22,32 @@ const setPushNotifications = (state = INITIAL_STATE, action) => {
   };
 };
 
+const changePasswordAttempt = (state = INITIAL_STATE) => {
+  return {
+    ...state,
+    attempting: true,
+    errorMsg: '',
+    successMsg: '',
+  };
+};
+
+const changePasswordSuccess = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    attempting: false,
+    errorMsg: '',
+    successMsg: action.successMsg
+  };
+};
+
+const changePasswordFailure = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    attempting: false,
+    errorMsg: action.errorMsg,
+    successMsg: '',
+  };
+};
 
 export default {
   INITIAL_STATE,
@@ -26,4 +55,8 @@ export default {
   setSettings,
 
   setPushNotifications,
+
+  changePasswordAttempt,
+  changePasswordSuccess,
+  changePasswordFailure,
 };
