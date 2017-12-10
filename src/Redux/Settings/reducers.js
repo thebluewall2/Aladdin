@@ -9,9 +9,21 @@ const setSettings = (state = INITIAL_STATE, action) => {
   };
 };
 
+const setPushNotifications = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    settings: {
+      ...state.settings,
+      pushNotifications: action.pushNotifications,
+    }
+  };
+};
+
 
 export default {
   INITIAL_STATE,
 
-  setSettings
+  setSettings,
+
+  setPushNotifications,
 };

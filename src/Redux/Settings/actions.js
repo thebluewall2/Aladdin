@@ -5,6 +5,13 @@ const settingsSetSettings = (settings) => ({
   settings
 });
 
+const settingsSetPushNotifications = (pushNotifications) => ({
+  type: Types.SETTINGS_SET_PUSH_NOTIFICATIONS,
+  pushNotifications,
+});
+
 export default {
   settingsSetSettings,
+
+  settingsSetPushNotifications,
 };

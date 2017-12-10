@@ -1,11 +1,27 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 
 import SettingsCard from '../../Components/SettingsCard';
 import ReduxActions from '../../Redux/Actions';
 
 class Settings extends Component {
+
+  _handleTogglePushNotifications = () => {
+    const { pushNotifications } = this.props.settings;
+
+    this.props.setPushNotifications(!pushNotifications);
+  }
+
+  _navToTermsOfUse = () => {
+    Actions.termsOfUse();
+  }
+
+  _navToPrivacyPolicy = () => {
+    Actions.privacyPolicy();
+  }
+
   render() {
     const { pushNotifications } = this.props.settings;
 
@@ -16,7 +32,7 @@ class Settings extends Component {
           icon={"ios-notifications-outline"}
           hasSwitch
           toggleValue={pushNotifications}
-          onPress={() => false}
+          onPress={this._handleTogglePushNotifications}
         />
 
         <SettingsCard
@@ -41,11 +57,13 @@ class Settings extends Component {
         <SettingsCard
           title={"Terms of Use"}
           icon={"md-bookmarks"}
+          onPress={this._navToTermsOfUse}
         />
 
         <SettingsCard
           title={"Privacy Policy"}
           icon={"md-lock"}
+          onPress={this._navToPrivacyPolicy}
         />
       </View>
     );
@@ -60,6 +78,8 @@ const mapStateToProps = ({ settings }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    setPushNotifications: (pushNotifications) =>
+      dispatch(ReduxActions.settingsSetPushNotifications(pushNotifications)),
   };
 };
 
