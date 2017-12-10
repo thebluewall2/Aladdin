@@ -9,7 +9,7 @@ class VendorList extends Component {
   componentWillMount() {
     const { category, subcategory } = this.props;
 
-    // this.props.getVendorList(category, subcategory);
+    this.props.getVendorList(category, subcategory);
   }
 
   render() {

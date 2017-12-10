@@ -1,6 +1,8 @@
 const INITIAL_STATE = {
   search: {},
   loading: false,
+  vendorList: [],
+  errorMsg: '',
 };
 
 const setSearchCategory = (state = INITIAL_STATE, action) => {
@@ -18,6 +20,29 @@ const setSearchSubcategory = (state = INITIAL_STATE, action) => {
       ...state.search,
       subcategory: action.subcategory
     }
+  };
+};
+
+const getVendorListAttempt = (state = INITIAL_STATE) => {
+  return { ...state,
+    loading: true,
+    errorMsg: '',
+    vendorList: [],
+  };
+};
+
+const getVendorListSuccess = (state = INITIAL_STATE, action) => {
+  return { ...state,
+    loading: false,
+    errorMsg: '',
+    vendorList: action.vendorList,
+  };
+};
+
+const getVendorListFailure = (state = INITIAL_STATE, action) => {
+  return { ...state,
+    loading: false,
+    errorMsg: action.errorMsg,
   };
 };
 
@@ -49,6 +74,10 @@ export default {
 
   setSearchCategory,
   setSearchSubcategory,
+
+  getVendorListAttempt,
+  getVendorListSuccess,
+  getVendorListFailure,
 
   getAllServicesAttempt,
   getAllServicesSuccess,

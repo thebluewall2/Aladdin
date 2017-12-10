@@ -20,5 +20,12 @@ export default StyleSheet.create({
   homePageWelcomeText: {
     fontFamily: 'Quicksand-bold',
     fontSize: 15
+  },
+
+  selectSubcategoryViewStyle: {
+    flex: 1,
+    paddingTop: 80,
+    paddingLeft: 5,
+    paddingRight: 5,
   }
 });

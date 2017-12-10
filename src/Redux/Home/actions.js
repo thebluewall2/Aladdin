@@ -16,6 +16,16 @@ const homeGetVendorListAttempt = (category, subcategory) => ({
   subcategory
 });
 
+const homeGetVendorListSuccess = (vendorList) => ({
+  type: Types.HOME_GET_VENDOR_LIST_SUCCESS,
+  vendorList
+});
+
+const homeGetVendorListFailure = (errorMsg) => ({
+  type: Types.HOME_GET_VENDOR_LIST_FAILURE,
+  errorMsg,
+});
+
 //Get All Services Section
 const homeGetAllServicesAttempt = () => ({
   type: Types.HOME_GET_ALL_SERVICES_ATTEMPT,
@@ -35,7 +45,10 @@ const homeGetAllServicesFail = (error) => ({
 export default {
   homeSetSearchCategory,
   homeSetSearchSubcategory,
+
   homeGetVendorListAttempt,
+  homeGetVendorListSuccess,
+  homeGetVendorListFailure,
 
   homeGetAllServicesAttempt,
   homeGetAllServicesSuccess,

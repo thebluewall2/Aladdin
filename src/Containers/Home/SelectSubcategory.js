@@ -6,6 +6,7 @@ import { Actions } from 'react-native-router-flux';
 import CustomMultiPicker from "react-native-multiple-select-list";
 
 import ReduxActions from '../../Redux/Actions';
+import styles from './Styles';
 
 class SelectSubcategory extends Component {
 
@@ -48,7 +49,7 @@ class SelectSubcategory extends Component {
     const { category } = this.props;
 
     return (
-      <View style={{ flex: 1, justifyContent: 'center' }}>
+      <View style={styles.selectSubcategoryViewStyle} >
         <View>
           <Text style={{ fontFamily: 'Quicksand-regular', fontSize: 20, paddingLeft: 5, paddingTop: 20 }} > {category.category}</Text>
           <ScrollView>
