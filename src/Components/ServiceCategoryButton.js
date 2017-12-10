@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
-// import Icons from './GetServiceCategoryIcons';
 
+import CacheableImage from 'react-native-cacheable-image';
 
 const ServiceCategoryButton = ({ onPress, category }) => {
   const { imageURL, categoryName } = category;
@@ -10,10 +10,12 @@ const ServiceCategoryButton = ({ onPress, category }) => {
     <View style={styles.viewStyle}>
     <TouchableOpacity onPress={onPress}>
       <View style={styles.circleStyle}>
-        <Image
+
+        <CacheableImage
           source={{ uri: imageURL }}
           style={styles.buttonImage}
         />
+
         <Text style={styles.textStyle}>
           {category.category}
         </Text>
@@ -22,37 +24,6 @@ const ServiceCategoryButton = ({ onPress, category }) => {
     </View>
   );
 };
-
-// const getImage = (category) => {
-//   switch (category.category) {
-//     case "Air Condition Services":
-//       return Icons.air_conditioning;
-//     case "Cleaning":
-//       return Icons.cleaning;
-//     case "Water Leaking Issues":
-//         return Icons.plumbing;
-//     case "Furniture Installation":
-//         return Icons.moving;
-//     case "Washing Machine":
-//         return Icons.washingMachine;
-//     case "Installation":
-//         return Icons.installation;
-//     case "Kitchen / Household":
-//         return Icons.household;
-//     case "Water Heater":
-//         return Icons.heater;
-//     case "Refrigerator":
-//         return Icons.fridge;
-//     case "Washroom / Bathroom":
-//         return Icons.washroom;
-//     case "Drilling Services":
-//         return Icons.drill;
-//     case "Locksmith":
-//         return Icons.locksmith;
-//     default:
-//       return Icons.default;
-//   }
-// };
 
 const styles = {
   viewStyle: {
