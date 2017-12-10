@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { TextFieldComponent } from '../../../Components/common';
 import ReduxActions from '../../../Redux/Actions';
@@ -57,7 +58,10 @@ class CustomerSignUpPage extends Component {
   render() {
     return (
       <View style={styles.signUpPageMainContainer}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <KeyboardAwareScrollView
+        showsVerticalScrollIndicator={false}
+        enableResetScrollToCoords={false}
+      >
         <Text style={styles.titleSignUpStyle}>
           Sign up!
         </Text>
@@ -88,6 +92,7 @@ class CustomerSignUpPage extends Component {
           }}
           value={this.state.phoneNo}
           componentStyle={styles.signUpTextFieldStyle}
+          keyboardType={"phone-pad"}
         />
 
         <TextFieldComponent
@@ -124,6 +129,7 @@ class CustomerSignUpPage extends Component {
           }}
           value={this.state.postcode}
           componentStyle={styles.signUpTextFieldStyle}
+          keyboardType={"numeric"}
         />
 
         <TextFieldComponent
@@ -133,6 +139,7 @@ class CustomerSignUpPage extends Component {
           }}
           value={this.state.email}
           componentStyle={styles.signUpTextFieldStyle}
+          keyboardType={"email-address"}
         />
 
           <Text style={styles.tAndCStyle}>
@@ -158,7 +165,7 @@ class CustomerSignUpPage extends Component {
             </TouchableOpacity>
           </View>
         </View>
-      </ScrollView>
+      </KeyboardAwareScrollView>
       </View>
     );
   }

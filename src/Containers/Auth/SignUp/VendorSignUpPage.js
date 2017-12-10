@@ -124,6 +124,7 @@ class VendorSignUpPage extends Component {
                 this._handleTextChanged(text, 'email');
               }}
               value={this.state.email}
+              keyboardType={'email-address'}
             />
 
             <TextFieldComponent
@@ -141,6 +142,7 @@ class VendorSignUpPage extends Component {
                 this._handleTextChanged(text, 'phoneNo');
               }}
               value={this.state.phoneNo}
+              keyboardType={'phone-pad'}
             />
 
             <TextFieldComponent
@@ -149,6 +151,7 @@ class VendorSignUpPage extends Component {
                 this._handleTextChanged(text, 'officeNo');
               }}
               value={this.state.officeNo}
+              keyboardType={'phone-pad'}
             />
 
             <TextFieldComponent
@@ -173,6 +176,7 @@ class VendorSignUpPage extends Component {
                 this._handleTextChanged(text, 'postcode');
               }}
               value={this.state.postcode}
+              keyboardType={'numeric'}
             />
 
             <TextFieldComponent

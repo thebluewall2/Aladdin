@@ -67,6 +67,8 @@ class UserLoginPage extends Component {
           label={'Email'}
           onChangeText={this._handleEmailChanged}
           value={this.props.email}
+          autoCapitalize={"none"}
+          keyboardType={"email-address"}
         />
 
         <TextFieldComponent
