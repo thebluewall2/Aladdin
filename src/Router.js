@@ -2,6 +2,7 @@ import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
 
 //importing screens
+import LoadingScreen from './Containers/Auth/LoadingScreen';
 import LandingPage from './Containers/Auth/LandingPage';
 import LoginPage from './Containers/Auth/LoginPage';
 
@@ -31,15 +32,19 @@ const RouterComponent = () => {
     <Router>
       <Scene key="auth" initial navigationBarStyle={styles.authNavBarStyle}>
         <Scene
+          key="loadingPage"
+          component={LoadingScreen}
+          initial
+          hideNavBar
+        />
+        <Scene
           key="landingPage"
           component={LandingPage}
-          initial
           hideNavBar
         />
         <Scene
           key="loginPage"
           component={LoginPage}
-          hideNavBar={false}
           titleStyle={styles.titleStyle} title={'E - R E N O'}
         />
         <Scene

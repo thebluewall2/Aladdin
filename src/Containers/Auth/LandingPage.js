@@ -8,10 +8,6 @@ import ReduxActions from '../../Redux/Actions';
 
 class LandingPage extends Component {
 
-  componentWillMount() {
-    this.props.appStartUp(true);
-  }
-
   _onVendorPressed = () => {
     this.props.setUserType('vendor');
     Actions.loginPage();
@@ -23,10 +19,6 @@ class LandingPage extends Component {
   }
 
   render() {
-    if (this.props.startingUp) {
-      return false;
-    }
-
     return (
 
       <View style={styles.landingPageMainContainer}>
@@ -64,17 +56,15 @@ class LandingPage extends Component {
 }
 
 const mapStateToProps = ({ auth }) => {
-  const { userType, startingUp } = auth;
+  const { userType } = auth;
 
-  return { userType, startingUp };
+  return { userType };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     setUserType: (userType) =>
       dispatch(ReduxActions.authSetUserType(userType)),
-    appStartUp: (startingUp) =>
-      dispatch(ReduxActions.authAppStartUp(startingUp)),
   };
 };
 

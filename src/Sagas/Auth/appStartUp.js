@@ -10,8 +10,11 @@ import Types from '../../Redux/Auth/types';
 
 export function* watchAppStartUp() {
   while (true) {
-    yield take(Types.AUTH_APP_START_UP);
-    yield call(handleStartUp);
+    const { startingUp } = yield take(Types.AUTH_APP_START_UP);
+
+    if (startingUp) {
+      yield call(handleStartUp);
+    }
   }
 }
 
