@@ -13,7 +13,7 @@ class SelectSubcategory extends Component {
   _handleSubcategoryPressed = (subcategory) => {
     this.props.setSearchSubcategory(subcategory[0]);
 
-    Actions.vendorList();
+    Actions.selectAddress();
   }
 
   _renderSubcategories = () => {

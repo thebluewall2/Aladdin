@@ -20,6 +20,8 @@ export function* handleLoginUser(email, password) {
 
   try {
     const userData = yield call(firebaseAuth, email, password);
+
+    //save password so that we can autologin next time user opens app
     setGenericPassword(email, password);
 
     yield put(ReduxActions.authUserLoginSuccess(userData));
@@ -30,7 +32,7 @@ export function* handleLoginUser(email, password) {
     if (error.code === 'auth/user-not-found') {
       error.message = "User Not Found";
     }
-
+    
     yield put(ReduxActions.authUserLoginFail(error));
   }
 }

@@ -20,6 +20,7 @@ import ForgotPassword from './Containers/Auth/ForgotPassword';
 import HomePage from './Containers/Home/HomePage';
 import VendorList from './Containers/Home/VendorList';
 import SelectSubcategory from './Containers/Home/SelectSubcategory';
+import SelectAddress from './Containers/Home/SelectAddress';
 
 import Settings from './Containers/Settings/Settings';
 import ChangePassword from './Containers/Settings/ChangePassword';
@@ -30,7 +31,7 @@ import TabIcon from './Components/TabIcon';
 const RouterComponent = () => {
   return (
     <Router>
-      <Scene key="auth" initial navigationBarStyle={styles.authNavBarStyle}>
+      <Scene key="auth" initial navigationBarStyle={styles.authNavBarStyle} >
         <Scene
           key="loadingPage"
           component={LoadingScreen}
@@ -41,10 +42,12 @@ const RouterComponent = () => {
           key="landingPage"
           component={LandingPage}
           hideNavBar
+          panHandlers={null}
         />
         <Scene
           key="loginPage"
           component={LoginPage}
+          hideNavBar={false}
           titleStyle={styles.titleStyle} title={'E - R E N O'}
         />
         <Scene
@@ -74,10 +77,11 @@ const RouterComponent = () => {
         />
       </Scene>
 
-      <Scene key="home" tabs >
+      <Scene key="home" tabs>
         <Scene key="homePage" title="Home" icon={TabIcon} >
           <Scene key="homeTab" component={HomePage} panHandlers={null} renderBackButton={() => (null)} />
           <Scene key="selectSubcategory" component={SelectSubcategory} />
+          <Scene key="selectAddress" component={SelectAddress} title={'Select address'} />
           <Scene key="vendorList" component={VendorList} />
         </Scene>
         <Scene key="requests" title="Request" icon={TabIcon} >

@@ -1,10 +1,20 @@
-import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import React, { PureComponent } from 'react';
+import { View, Text, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 
 import ReduxActions from '../../Redux/Actions';
 
-class VendorList extends Component {
+import { LoadingSpinner } from '../../Components/common';
+
+class VendorList extends PureComponent {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      vendorList: []
+    };
+  }
 
   componentWillMount() {
     const { category, subcategory } = this.props;
@@ -12,23 +22,61 @@ class VendorList extends Component {
     this.props.getVendorList(category, subcategory);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.vendorList !== this.state.vendorList) {
+      this.setState({
+        vendorList: nextProps.vendorList
+      });
+    }
+  }
+
+  _keyExtractor = (item) => item.vendorId;
+
+  _renderContent = () => {
+    const { loading } = this.props;
+
+    if (loading) {
+      return (
+        <LoadingSpinner />
+      );
+    }
+
+    return (
+      <FlatList
+        data={this.state.vendorList}
+        renderItem={this._renderItem}
+        keyExtractor={this._keyExtractor}
+      />
+    );
+  }
+
+  _renderItem = (item) => {
+    const { vendorName } = item.item;
+
+    return (
+      <Text>{vendorName}</Text>
+    );
+  }
+
   render() {
     return (
-      <View style={{ paddingTop: 100, paddingLeft: 50 }}>
+      <View style={{ paddingTop: 100, paddingLeft: 15 }}>
         <View>
-          <Text>Unfinished page</Text>
+          {this._renderContent()}
         </View>
       </View>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  const { search } = state.home;
+const mapStateToProps = ({ home }) => {
+  const { search, loading } = home;
 
   return {
     category: search.category.category,
     subcategory: search.subcategory[0],
+    vendorList: home.vendorList,
+    loading
   };
 };
 

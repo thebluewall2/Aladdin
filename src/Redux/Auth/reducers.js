@@ -129,6 +129,12 @@ const setResetPasswordFail = (state = INITIAL_STATE, action) => {
     errorMessage: action.error
   };
 };
+
+const logout = () => {
+  //reset state on logout
+  return INITIAL_STATE;
+};
+
 export default {
   INITIAL_STATE,
 
@@ -152,4 +158,6 @@ export default {
   setResetPasswordAttempt,
   setResetPasswordSuccess,
   setResetPasswordFail,
+
+  logout,
 };

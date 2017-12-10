@@ -82,6 +82,10 @@ const authResetPasswordFail = (error) => ({
   error
 });
 
+const authLogout = () => ({
+  type: Types.AUTH_LOG_OUT,
+});
+
 
 export default {
   authAppStartUp,
@@ -105,4 +109,6 @@ export default {
   authResetPasswordAttempt,
   authResetPasswordSuccess,
   authResetPasswordFail,
+
+  authLogout,
 };
