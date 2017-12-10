@@ -21,8 +21,9 @@ export function* handleLoginUser(email, password) {
   try {
     const userData = yield call(firebaseAuth, email, password);
     setGenericPassword(email, password);
-    
+
     yield put(ReduxActions.authUserLoginSuccess(userData));
+    yield put(ReduxActions.authAppStartUp(false));
 
     Actions.home();
   } catch (error) {

@@ -16,13 +16,8 @@ export function* watchAppStartUp() {
 }
 
 export function* handleStartUp() {
-  yield call(getLocalServiceCategories);
   yield call(getAllSettings);
   yield call(autoLoginUser);
-}
-
-export function* getLocalServiceCategories() {
-
 }
 
 export function* getAllSettings() {
@@ -54,8 +49,9 @@ export function* autoLoginUser() {
   if (credentials) {
     const { username, password } = credentials;
 
-    yield call(ReduxActions.authAppStartUp, false);
     yield put(ReduxActions.authLoginUser(username, password));
+  } else {
+    yield put(ReduxActions.authAppStartUp(false));
   }
 }
 
