@@ -25,11 +25,11 @@ export function* handleGetVendorList(category, subcategory) {
             coordinates: listOfVendorsFromFirebase.vendors[vendorUID].coordinates,
           });
       });
-
-    ReduxActions.getGetVendorListSuccess(listOfVendor);
+      
+    ReduxActions.homeGetVendorListSuccess(listOfVendor);
   } catch (error) {
       const err = new Error("No Vendor Found!");
-      
-      ReduxActions.getGetVendorListFailure(err);
+
+      ReduxActions.homeGetVendorListFailure(err);
   }
 }

@@ -7,7 +7,6 @@ const INITIAL_STATE = {
   successMessage: '',
   errorMessage: '',
   userData: '',
-  vendorData: '',
 };
 
 const setStartUp = (state = INITIAL_STATE, action) => {
