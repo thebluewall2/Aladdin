@@ -45,8 +45,9 @@ const setUserStartLogin = (state = INITIAL_STATE) => {
 const setUserLoginSuccess = (state = INITIAL_STATE, action) => {
   return { ...state,
     ...INITIAL_STATE,
-    email: action.userData.email,
-    userData: action.userData
+    uid: action.uid,
+    fullName: action.fullName,
+    address: action.address
   };
 };
 
