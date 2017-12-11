@@ -13,6 +13,6 @@ export default {
 
     [Types.HOME_GET_ALL_SERVICES_ATTEMPT]: Reducers.getAllServicesAttempt,
     [Types.HOME_GET_ALL_SERVICES_SUCCESS]: Reducers.getAllServicesSuccess,
-    [Types.HOME_GET_ALL_SERVICES_FAIL]: Reducers.getAllServicesFail,
+    [Types.HOME_GET_ALL_SERVICES_FAILURE]: Reducers.getAllServicesFailure,
   })
 };
