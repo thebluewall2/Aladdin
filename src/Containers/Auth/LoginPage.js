@@ -10,9 +10,9 @@ import styles from './Styles';
 class UserLoginPage extends Component {
 
   _handleLoginUser = () => {
-    const { email, password } = this.props;
+    const { userType, email, password } = this.props;
 
-    this.props.loginUser(email, password);
+    this.props.loginUser(userType, email, password);
   }
 
   _handleEmailChanged = (text) => {
@@ -119,8 +119,8 @@ const mapStateToProps = ({ auth }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     //LEE: dispatching action here to all reducers and sagas, receiving at Sagas/Auth/login.js
-    loginUser: (email, password) =>
-      dispatch(ReduxActions.authLoginUser(email, password)),
+    loginUser: (userType, email, password) =>
+      dispatch(ReduxActions.authLoginUser(userType, email, password)),
     emailChanged: (email) =>
       dispatch(ReduxActions.authEmailChanged(email)),
     passwordChanged: (password) =>
