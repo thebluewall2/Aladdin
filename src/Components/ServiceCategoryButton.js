@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 
 import CacheableImage from 'react-native-cacheable-image';
 
 const ServiceCategoryButton = ({ onPress, category }) => {
-  const { imageURL, categoryName } = category;
+  const { imageURL } = category;
 
   return (
     <View style={styles.viewStyle}>
@@ -39,8 +39,8 @@ const styles = {
     justifyContent: 'center',
     width: 110,
     height: 110,
-    borderRadius: 3,
-    backgroundColor: '#FBFBFB',
+    borderRadius: 5,
+    backgroundColor: '#FFFFFF',
   },
   textStyle: {
     fontFamily: 'Quicksand',

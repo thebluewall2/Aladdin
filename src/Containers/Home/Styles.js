@@ -4,10 +4,15 @@ export default StyleSheet.create({
   homePageContainer: {
     flexDirection: 'column',
     flex: 1,
-    paddingTop: 100
+    backgroundColor: '#FBFBFB'
   },
 
-  homePageCategories: {
+  homePageCategoriesContainer: {
+    flex: 1,
+    paddingBottom: 40
+  },
+
+  homePageCategoriesViewStyle: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -15,11 +20,20 @@ export default StyleSheet.create({
     alignContent: 'center'
   },
 
+  homePageWelcomeTextContainer: {
+    alignItems: 'center',
+    backgroundColor: '#0057B8',
+    paddingTop: 65,
+    padding: 43
+  },
+
   homePageWelcomeText: {
-    fontFamily: 'Quicksand-bold',
+    fontFamily: 'Quicksand-regular',
+    textAlign: 'center',
+    color: '#FFFFFF',
     fontSize: 15,
-    paddingTop: 10,
-    paddingBottom: 20
+    paddingTop: 15,
+
   },
 
   selectSubcategoryViewStyle: {
@@ -34,5 +48,12 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     paddingLeft: 10,
     fontSize: 20
+  },
+
+  selectSubcategoryTextStyle: {
+    fontFamily: 'Quicksand-regular',
+    fontSize: 20,
+    paddingLeft: 5,
+    paddingTop: 20
   }
 });
