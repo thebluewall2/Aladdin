@@ -21,8 +21,9 @@ const authPasswordChanged = (password) => ({
   password,
 });
 
-const authLoginUser = (email, password) => ({
+const authLoginUser = (userType, email, password) => ({
   type: Types.AUTH_LOGIN_USER,
+  userType,
   email,
   password
 });

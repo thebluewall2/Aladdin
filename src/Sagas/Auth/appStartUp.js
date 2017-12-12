@@ -19,14 +19,24 @@ export function* watchAppStartUp() {
 }
 
 export function* handleStartUp() {
-  yield call(getAllSettings);
-  yield call(autoLoginUser);
+  const userType = yield call(getAllSettings);
+
+  if (userType) {
+    //if user has logged out, we would have deleted his userType from asyncstorage
+    yield call(autoLoginUser, userType);
+  } else {
+    Actions.landingPage();
+  }
 }
 
 export function* getAllSettings() {
   const settings = yield call(getSettingsFromStorage);
+  const userType = yield call(getUserTypeFromStorage);
 
   yield put(ReduxActions.settingsSetSettings(settings));
+  yield put(ReduxActions.authSetUserType(userType));
+
+  return userType;
 }
 
 async function getSettingsFromStorage() {
@@ -46,13 +56,24 @@ async function getSettingsFromStorage() {
   return defaultSettings;
 }
 
-export function* autoLoginUser() {
+async function getUserTypeFromStorage() {
+  const userType = await AsyncStorage.getItem('userType');
+
+  if (userType) {
+    return userType;
+  }
+
+  //if user has no userType, just return empty string as per reducer's default value
+  return null;
+}
+
+export function* autoLoginUser(userType) {
   const credentials = yield call(getUserCredentials);
 
   if (credentials) {
     const { username, password } = credentials;
 
-    yield put(ReduxActions.authLoginUser(username, password));
+    yield put(ReduxActions.authLoginUser(userType, username, password));
   } else {
     yield put(ReduxActions.authAppStartUp(false));
   }
