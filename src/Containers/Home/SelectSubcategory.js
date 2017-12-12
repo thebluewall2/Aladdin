@@ -51,7 +51,7 @@ class SelectSubcategory extends Component {
     return (
       <View style={styles.selectSubcategoryViewStyle} >
         <View>
-          <Text style={{ fontFamily: 'Quicksand-regular', fontSize: 20, paddingLeft: 5, paddingTop: 20 }} > {category.category}</Text>
+          <Text style={styles.selectSubcategoryTextStyle} > {category.category}</Text>
           <ScrollView>
             {this._renderSubcategories()}
           </ScrollView>

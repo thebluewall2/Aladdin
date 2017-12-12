@@ -36,7 +36,7 @@ class HomePage extends Component {
   render() {
     return (
       <View style={styles.homePageContainer}>
-        <View>
+        <View style={styles.homePageWelcomeTextContainer}>
           <Text style={styles.homePageWelcomeText}>
             Welcome, {this.props.email}
           </Text>
