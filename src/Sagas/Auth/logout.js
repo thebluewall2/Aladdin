@@ -33,5 +33,5 @@ export function handleLogout() {
 export function resetAsyncStorage() {
   const keys = ['settings', 'userType'];
 
-  AsyncStorage.multiDelete(keys);
+  AsyncStorage.multiRemove(keys);
 }
