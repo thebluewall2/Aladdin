@@ -26,6 +26,10 @@ class Settings extends Component {
     Actions.privacyPolicy();
   }
 
+  _handleLogOut = () => {
+    this.props.logout();
+  }
+
   render() {
     const { pushNotifications } = this.props.settings;
 
@@ -53,6 +57,7 @@ class Settings extends Component {
         <SettingsCard
           title={"Log out"}
           icon={"ios-log-out"}
+          onPress={this._handleLogOut}
         />
 
         <Text style={{ paddingTop: 30, fontWeight: '500', paddingLeft: 8, paddingBottom: 5, fontSize: 15 }}>
@@ -85,6 +90,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setPushNotifications: (pushNotifications) =>
       dispatch(ReduxActions.settingsSetPushNotifications(pushNotifications)),
+    logout: () =>
+      dispatch(ReduxActions.authLogout()),
   };
 };
 

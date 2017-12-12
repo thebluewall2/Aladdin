@@ -61,13 +61,14 @@ const getAllServicesSuccess = (state = INITIAL_STATE, action) => {
   };
 };
 
-const getAllServicesFail = (state = INITIAL_STATE, action) => {
+const getAllServicesFailure = (state = INITIAL_STATE, action) => {
   return {
     ...state,
     loading: false,
     errorMessage: action.error
   };
 };
+
 
 export default {
   INITIAL_STATE,
@@ -81,5 +82,5 @@ export default {
 
   getAllServicesAttempt,
   getAllServicesSuccess,
-  getAllServicesFail
+  getAllServicesFailure
 };

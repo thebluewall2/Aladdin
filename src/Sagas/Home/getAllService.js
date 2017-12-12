@@ -1,8 +1,5 @@
-import {
-  take,
-  call,
-  put
-} from 'redux-saga/effects';
+import { take, call, put } from 'redux-saga/effects';
+
 import { getAll } from 'firebase-saga';
 
 import ReduxActions from '../../Redux/Actions';
@@ -33,7 +30,7 @@ export function* handleGetAllServices() {
 
     yield put(ReduxActions.homeGetAllServicesSuccess(servicesArray));
   } catch (error) {
-    yield put(ReduxActions.homeGetAllServicesFail(error));
+    yield put(ReduxActions.homeGetAllServicesFailure(error));
   }
 }
 

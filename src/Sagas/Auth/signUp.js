@@ -83,21 +83,41 @@ export function* CustomerInfo(data, userData) {
 
 export function* VendorInfo(data, userData) {
   try {
-  const newUser = {
-      companyName: data.companyName,
-      name: data.name,
-      phoneNo: data.phoneNo,
-      officeNo: data.officeNo,
-      address: data.address,
-      postcode: data.postcode,
-      city: data.city,
-      yearsOfExp: data.yearsOfExp,
-      yearsOfCompany: data.yearsOfCompany,
-      noOfStaff: data.noOfStaff,
-      awards: data.awards
-    };
-  firebase.database().ref(`Users/${data.userType}/${userData.uid}`)
-    .set(newUser);
+  yield call(create, `Users/${data.userType}/${userData.uid}`, () => ({
+      [`Users/${data.userType}/${userData.uid}`]:
+        {
+          companyName: data.companyName,
+          name: data.name,
+          phoneNo: data.phoneNo,
+          officeNo: data.officeNo,
+          address: `${data.addressOne} ${data.addressTwo}`,
+          postcode: data.postcode,
+          city: data.city,
+          yearsOfExp: data.yearsOfExp,
+          yearsOfCompany: data.yearsOfCompany,
+          noOfStaff: data.noOfStaff,
+          awards: data.awards
+        }
+    })
+  );
+  // yield call(create, `Services/${data.categories}/${userData.uid}`, () => ({
+  //     [`Users/${data.userType}/${userData.uid}`]:
+  //       {
+  //         companyName: data.companyName,
+  //         name: data.name,
+  //         phoneNo: data.phoneNo,
+  //         officeNo: data.officeNo,
+  //         address: `${data.addressOne} ${data.addressTwo}`,
+  //         postcode: data.postcode,
+  //         city: data.city,
+  //         yearsOfExp: data.yearsOfExp,
+  //         yearsOfCompany: data.yearsOfCompany,
+  //         noOfStaff: data.noOfStaff,
+  //         awards: data.awards
+  //       }
+  //   })
+  // );
+
   yield put(ReduxActions.authUserSignUpSuccess());
   Actions.loginPage();
   } catch (error) {

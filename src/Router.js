@@ -2,6 +2,7 @@ import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
 
 //importing screens
+import LoadingScreen from './Containers/Auth/LoadingScreen';
 import LandingPage from './Containers/Auth/LandingPage';
 import LoginPage from './Containers/Auth/LoginPage';
 
@@ -19,6 +20,7 @@ import ForgotPassword from './Containers/Auth/ForgotPassword';
 import HomePage from './Containers/Home/HomePage';
 import VendorList from './Containers/Home/VendorList';
 import SelectSubcategory from './Containers/Home/SelectSubcategory';
+import SelectAddress from './Containers/Home/SelectAddress';
 
 import Settings from './Containers/Settings/Settings';
 import ChangePassword from './Containers/Settings/ChangePassword';
@@ -29,12 +31,18 @@ import TabIcon from './Components/TabIcon';
 const RouterComponent = () => {
   return (
     <Router>
-      <Scene key="auth" initial navigationBarStyle={styles.authNavBarStyle}>
+      <Scene key="auth" initial navigationBarStyle={styles.authNavBarStyle} >
+        <Scene
+          key="loadingPage"
+          component={LoadingScreen}
+          initial
+          hideNavBar
+        />
         <Scene
           key="landingPage"
           component={LandingPage}
-          initial
           hideNavBar
+          panHandlers={null}
         />
         <Scene
           key="loginPage"
@@ -69,10 +77,11 @@ const RouterComponent = () => {
         />
       </Scene>
 
-      <Scene key="home" tabs >
+      <Scene key="home" tabs>
         <Scene key="homePage" title="Home" icon={TabIcon} >
           <Scene key="homeTab" component={HomePage} panHandlers={null} renderBackButton={() => (null)} />
           <Scene key="selectSubcategory" component={SelectSubcategory} />
+          <Scene key="selectAddress" component={SelectAddress} title={'Select address'} />
           <Scene key="vendorList" component={VendorList} />
         </Scene>
         <Scene key="requests" title="Request" icon={TabIcon} >

@@ -36,8 +36,8 @@ const homeGetAllServicesSuccess = (services) => ({
   services
 });
 
-const homeGetAllServicesFail = (error) => ({
-  type: Types.HOME_GET_ALL_SERVICES_FAIL,
+const homeGetAllServicesFailure = (error) => ({
+  type: Types.HOME_GET_ALL_SERVICES_FAILURE,
   error
 });
 
@@ -52,6 +52,6 @@ export default {
 
   homeGetAllServicesAttempt,
   homeGetAllServicesSuccess,
-  homeGetAllServicesFail
+  homeGetAllServicesFailure,
 
 };
