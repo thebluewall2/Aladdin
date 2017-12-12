@@ -21,13 +21,20 @@ export function* watchLoginUser() {
 export function* handleLoginUser(userType, email, password) {
   try {
     const userData = yield call(firebaseAuth, email, password);
-    const userInfo = yield call(get, `Users/${userType}`, userData.uid);
+    // const userInfo = yield call(get, `Users/${userType}`, userData.uid);
+
+    //TEMPORARY MOCKED DATA
+    const userInfo = {
+      name: "james",
+      address: "jalan 3"
+    }
+
     const response = cleanResponse(email, userData.uid, userInfo.name, userInfo.address);
 
     //save password so that we can autologin next time user opens app
     setGenericPassword(email, password);
     saveUserType(userType);
-    
+
     yield put(ReduxActions.authUserLoginSuccess(response));
     yield put(ReduxActions.authAppStartUp(false));
 
