@@ -21,13 +21,7 @@ export function* watchLoginUser() {
 export function* handleLoginUser(userType, email, password) {
   try {
     const userData = yield call(firebaseAuth, email, password);
-    // const userInfo = yield call(get, `Users/${userType}`, userData.uid);
-
-    //TEMPORARY MOCKED DATA
-    const userInfo = {
-      name: "james",
-      address: "jalan 3"
-    }
+    const userInfo = yield call(get, `Users/${userType}`, userData.uid);
 
     const response = cleanResponse(email, userData.uid, userInfo.name, userInfo.address);
 
