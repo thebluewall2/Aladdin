@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
@@ -21,8 +21,12 @@ class LoadingScreen extends Component {
 
   render() {
     return (
-      <View style={{ paddingTop: 80, paddingLeft: 15 }}>
-        <Text>Loading screen</Text>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Image
+        source={require('../../../assets/pictures/ERenoLogo.png')}
+        style={styles.iconStyle}
+        />
+        <Text style={{ fontFamily: 'Quicksand-regular', fontSize: 16, textAlign: 'center' }}> {'\n'} Diversified services. Unvarying quality. </Text>
       </View>
     );
   }

@@ -201,6 +201,11 @@ export default StyleSheet.create({
     color: 'red',
     fontFamily: 'Quicksand',
     textAlign: 'center'
+  },
+
+  iconStyle: {
+    width: 100,
+    height: 100,
   }
 
 });
