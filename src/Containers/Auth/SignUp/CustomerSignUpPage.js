@@ -25,11 +25,11 @@ class CustomerSignUpPage extends Component {
       };
   }
 
-  _onTermsOfUsePress = () => {
+  _navToTermsOfUse = () => {
     Actions.termsOfUse();
   }
 
-  _onPrivacyPolicyPress = () => {
+  _navToPrivacyPolicy = () => {
     Actions.privacyPolicy();
   }
 
@@ -154,13 +154,13 @@ class CustomerSignUpPage extends Component {
 
         <View style={{ flexDirection: 'row', flex: 2, justifyContent: 'space-between', paddingTop: 15 }}>
           <View style={{ bottom: 0, left: 10, right: 10, flexDirection: 'row' }} >
-            <TouchableOpacity onPress={this._onTermsOfUsePress}>
+            <TouchableOpacity onPress={this._navToTermsOfUse}>
                 <Text style={styles.tAndCLinkStyle}>Terms of Use</Text>
             </TouchableOpacity>
           </View>
 
           <View style={{ bottom: 0, right: 0, flexDirection: 'row' }} >
-            <TouchableOpacity onPress={this._onPrivacyPolicyPress}>
+            <TouchableOpacity onPress={this._navToPrivacyPolicy}>
                 <Text style={styles.tAndCLinkStyle}>Privacy Policy</Text>
             </TouchableOpacity>
           </View>

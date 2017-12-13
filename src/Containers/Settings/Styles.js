@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
 
-  termsOfUseContainer: {
+  legalContainer: {
     flex: 1,
     paddingBottom: 40
   },

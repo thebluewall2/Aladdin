@@ -26,7 +26,7 @@ const renderImage = (tabTitle) => {
   } else if (tabTitle === 'Request') {
     return (
       <Image
-        source={require('../../assets/pictures/request.png')}
+        source={require('../../assets/pictures/requests.png')}
         style={styles.iconStyle}
       />
     );
@@ -50,7 +50,7 @@ const styles = {
   tabContainer: {
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: '#FDFDFD',
+    backgroundColor: '#62727b',
     borderWidth: 0.5,
     borderColor: '#AAA9A8',
   },
@@ -61,11 +61,14 @@ const styles = {
     alignItems: 'center',
     paddingBottom: 5,
     paddingTop: 5,
+    backgroundColor: '#62727b'
   },
 
   textStyle: {
-    fontFamily: 'quicksand-regular',
-    fontSize: 12
+    fontFamily: 'quicksand-bold',
+    fontSize: 12,
+    color: '#FFFFFF'
+
   }
 };
 

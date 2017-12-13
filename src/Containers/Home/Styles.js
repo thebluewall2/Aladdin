@@ -4,12 +4,12 @@ export default StyleSheet.create({
   homePageContainer: {
     flexDirection: 'column',
     flex: 1,
-    backgroundColor: '#FBFBFB'
+    backgroundColor: '#102027'
   },
 
   homePageCategoriesContainer: {
     flex: 1,
-    paddingBottom: 40
+    paddingBottom: 50
   },
 
   homePageCategoriesViewStyle: {
@@ -17,22 +17,24 @@ export default StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     flexWrap: 'wrap',
-    alignContent: 'center'
+    alignContent: 'center',
+    padding: 3
   },
 
   homePageWelcomeTextContainer: {
     alignItems: 'center',
-    backgroundColor: '#0057B8',
-    paddingTop: 65,
-    padding: 43
+    backgroundColor: '#002b7a',
+    paddingTop: 10,
+    padding: 15
   },
 
   homePageWelcomeText: {
     fontFamily: 'Quicksand-regular',
     textAlign: 'center',
+    justifyContent: 'center',
     color: '#FFFFFF',
     fontSize: 15,
-    paddingTop: 15,
+    paddingTop: 70,
 
   },
 
