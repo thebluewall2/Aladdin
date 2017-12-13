@@ -41,6 +41,21 @@ const homeGetAllServicesFailure = (error) => ({
   error
 });
 
+//Get Vendor Data
+const homeGetVendorDataAttempt = () => ({
+  type: Types.HOME_GET_VENDOR_DATA_ATTEMPT,
+});
+
+const homeGetVendorDataSuccess = (vendorData) => ({
+  type: Types.HOME_GET_VENDOR_DATA_SUCCESS,
+  vendorData
+});
+
+const homeGetVendorDataFailure = (error) => ({
+  type: Types.HOME_GET_VENDOR_DATA_FAILURE,
+  error
+});
+
 
 export default {
   homeSetSearchCategory,
@@ -53,5 +68,9 @@ export default {
   homeGetAllServicesAttempt,
   homeGetAllServicesSuccess,
   homeGetAllServicesFailure,
+
+  homeGetVendorDataAttempt,
+  homeGetVendorDataSuccess,
+  homeGetVendorDataFailure,
 
 };
