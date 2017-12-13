@@ -23,6 +23,7 @@ const setSearchSubcategory = (state = INITIAL_STATE, action) => {
   };
 };
 
+//Get Vendor List Section
 const getVendorListAttempt = (state = INITIAL_STATE) => {
   return { ...state,
     loading: true,
@@ -46,6 +47,7 @@ const getVendorListFailure = (state = INITIAL_STATE, action) => {
   };
 };
 
+//Get All Services Section
 const getAllServicesAttempt = (state = INITIAL_STATE) => {
   return { ...state,
     loading: true,
@@ -69,6 +71,30 @@ const getAllServicesFailure = (state = INITIAL_STATE, action) => {
   };
 };
 
+//Get Vendor Data Section
+const getVendorDataAttempt = (state = INITIAL_STATE) => {
+  return { ...state,
+    loading: true,
+    errorMessage: ''
+    };
+};
+
+const getVendorDataSuccess = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    loading: false,
+    vendorData: action.vendorData
+  };
+};
+
+const getVendorDataFailure = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    loading: false,
+    errorMessage: action.error
+  };
+};
+
 
 export default {
   INITIAL_STATE,
@@ -82,5 +108,9 @@ export default {
 
   getAllServicesAttempt,
   getAllServicesSuccess,
-  getAllServicesFailure
+  getAllServicesFailure,
+
+  getVendorDataAttempt,
+  getVendorDataSuccess,
+  getVendorDataFailure,
 };

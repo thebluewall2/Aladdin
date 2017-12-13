@@ -14,5 +14,9 @@ export default {
     [Types.HOME_GET_ALL_SERVICES_ATTEMPT]: Reducers.getAllServicesAttempt,
     [Types.HOME_GET_ALL_SERVICES_SUCCESS]: Reducers.getAllServicesSuccess,
     [Types.HOME_GET_ALL_SERVICES_FAILURE]: Reducers.getAllServicesFailure,
+
+    [Types.HOME_GET_VENDOR_DATA_ATTEMPT]: Reducers.getVendorDataAttempt,
+    [Types.HOME_GET_VENDOR_DATA_SUCCESS]: Reducers.getVendorDataSuccess,
+    [Types.HOME_GET_VENDOR_DATA_FAILURE]: Reducers.getVendorDataFailure,
   })
 };
