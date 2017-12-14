@@ -41,7 +41,7 @@ const homeGetAllServicesFailure = (error) => ({
   error
 });
 
-//Get Vendor Data
+//Get Vendor Data Section
 const homeGetVendorDataAttempt = () => ({
   type: Types.HOME_GET_VENDOR_DATA_ATTEMPT,
 });
@@ -53,6 +53,21 @@ const homeGetVendorDataSuccess = (vendorData) => ({
 
 const homeGetVendorDataFailure = (error) => ({
   type: Types.HOME_GET_VENDOR_DATA_FAILURE,
+  error
+});
+
+//Create or Update Transaction Section
+const homeCreateOrUpdateTransactionAttempt = () => ({
+  type: Types.HOME_CREATE_OR_UPDATE_TRANSACTION_ATTEMPT,
+});
+
+const homeCreateOrUpdateTransactionSuccess = (vendorData) => ({
+  type: Types.HOME_CREATE_OR_UPDATE_TRANSACTION_SUCCESS,
+  vendorData
+});
+
+const homeCreateOrUpdateTransactionFailure = (error) => ({
+  type: Types.HOME_CREATE_OR_UPDATE_TRANSACTION_FAILURE,
   error
 });
 
@@ -72,5 +87,9 @@ export default {
   homeGetVendorDataAttempt,
   homeGetVendorDataSuccess,
   homeGetVendorDataFailure,
+
+  homeCreateOrUpdateTransactionAttempt,
+  homeCreateOrUpdateTransactionSuccess,
+  homeCreateOrUpdateTransactionFailure,
 
 };

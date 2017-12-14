@@ -95,6 +95,29 @@ const getVendorDataFailure = (state = INITIAL_STATE, action) => {
   };
 };
 
+//Create or Update Transaction Section
+const createOrUpdateTransactionAttempt = (state = INITIAL_STATE) => {
+  return { ...state,
+    loading: true,
+    errorMessage: ''
+    };
+};
+
+const createOrUpdateTransactionSuccess = (state = INITIAL_STATE) => {
+  return {
+    ...state,
+    loading: false
+  };
+};
+
+const createOrUpdateTransactionFailure = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    loading: false,
+    errorMessage: action.error
+  };
+};
+
 
 export default {
   INITIAL_STATE,
@@ -113,4 +136,8 @@ export default {
   getVendorDataAttempt,
   getVendorDataSuccess,
   getVendorDataFailure,
+
+  createOrUpdateTransactionAttempt,
+  createOrUpdateTransactionSuccess,
+  createOrUpdateTransactionFailure,
 };

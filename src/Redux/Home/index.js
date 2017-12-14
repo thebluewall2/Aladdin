@@ -18,5 +18,9 @@ export default {
     [Types.HOME_GET_VENDOR_DATA_ATTEMPT]: Reducers.getVendorDataAttempt,
     [Types.HOME_GET_VENDOR_DATA_SUCCESS]: Reducers.getVendorDataSuccess,
     [Types.HOME_GET_VENDOR_DATA_FAILURE]: Reducers.getVendorDataFailure,
+
+    [Types.HOME_CREATE_OR_UPDATE_TRANSACTION_ATTEMPT]: Reducers.createOrUpdateTransactionAttempt,
+    [Types.HOME_CREATE_OR_UPDATE_TRANSACTION_SUCCESS]: Reducers.createOrUpdateTransactionSuccess,
+    [Types.HOME_CREATE_OR_UPDATE_TRANSACTION_FAILURE]: Reducers.createOrUpdateTransactionFailure,
   })
 };
