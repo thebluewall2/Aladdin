@@ -57,8 +57,19 @@ const homeGetVendorDataFailure = (error) => ({
 });
 
 //Create or Update Transaction Section
-const homeCreateOrUpdateTransactionAttempt = () => ({
+const homeCreateOrUpdateTransactionAttempt = (trxCode, trxID, vendorUID, customerUID,
+  customerName, price, timeslots, confirmedTime,
+  status) => ({
   type: Types.HOME_CREATE_OR_UPDATE_TRANSACTION_ATTEMPT,
+  trxCode,
+  trxID,
+  vendorUID,
+  customerUID,
+  customerName,
+  price,
+  timeslots,
+  confirmedTime,
+  status,
 });
 
 const homeCreateOrUpdateTransactionSuccess = (vendorData) => ({
