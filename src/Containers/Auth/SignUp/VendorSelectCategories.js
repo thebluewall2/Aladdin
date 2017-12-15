@@ -4,19 +4,11 @@ import { connect } from 'react-redux';
 import CustomMultiPicker from "react-native-multiple-select-list";
 import { Actions } from 'react-native-router-flux';
 
-import serviceCategories from '../../../../assets/data/ServiceCategories.json';
 import styles from '../Styles';
 import ReduxActions from '../../../Redux/Actions';
+import { LoadingSpinner } from '../../../Components/common';
 
 class VendorSelectCategories extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedCategories: []
-    };
-  }
 
   _handleSelectSubcategories = () => {
     const { selectedCategories } = this.state;
@@ -27,7 +19,12 @@ class VendorSelectCategories extends Component {
   }
 
   render() {
-    const allServiceCategories = serviceCategories;
+    if (this.props.loading) {
+      return <LoadingSpinner />;
+    }
+
+    const allServiceCategories = this.props.serviceCategories;
+
     let categories = [];
 
     for (let i = 0; i < allServiceCategories.length; i++) {
@@ -36,7 +33,7 @@ class VendorSelectCategories extends Component {
 
     return (
       <View style={{ flexGrow: 1 }}>
-        <ScrollView style={{ paddingTop: 70 }}>
+        <ScrollView style={{ paddingTop: 10 }}>
           <CustomMultiPicker
             options={categories}
             search
@@ -68,8 +65,13 @@ class VendorSelectCategories extends Component {
 }
 
 
-const mapStateToProps = () => {
-  return {};
+const mapStateToProps = (state) => {
+  const { serviceCategories, loading } = state.home;
+
+  return {
+    serviceCategories,
+    loading
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
