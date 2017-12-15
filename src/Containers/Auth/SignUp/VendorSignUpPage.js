@@ -38,6 +38,11 @@ class VendorSignUpPage extends Component {
     };
   }
 
+  componentDidMount() {
+    //get service categories from firebase while user fills up the sign up form
+    this.props.getServiceCategories();
+  }
+
   getYearsOfExperienceData = () => {
     let index = 0;
 
@@ -253,6 +258,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setVendorData: (vendorData) =>
       dispatch(ReduxActions.authVendorSetData(vendorData)),
+    getServiceCategories: () =>
+      dispatch(ReduxActions.homeGetAllServicesAttempt()),
   };
 };
 

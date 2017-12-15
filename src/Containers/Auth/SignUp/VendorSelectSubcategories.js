@@ -3,39 +3,33 @@ import { View, TouchableOpacity, Text, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import CustomMultiPicker from "react-native-multiple-select-list";
 
-import serviceCategories from '../../../../assets/data/ServiceCategories.json';
 import { LoadingSpinner } from '../../../Components/common';
 import styles from '../Styles';
 import ReduxActions from '../../../Redux/Actions';
 
 class VendorSelectCategories extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      subcategories: [],
-    };
-  }
-
   handleSignUp = () => {
-    const { subcategories } = this.state;
-
-    this.props.setVendorSubcategories(subcategories);
     this.props.vendorSignUp(this.props.vendorData);
   }
 
-  handleSelectSubcategory = (category, subcategories) => {
-    const { vendorData, setVendorSubcategories } = this.props;
+  _handleSelectSubcategories = (category, thisSubcategory, subcategories) => {
+    const { vendorSubcategories, setVendorSubcategories } = this.props;
+    let newSubcategories = [];
 
-    setVendorSubcategories({
-      ...vendorData.subcategories,
-      [category]: subcategories
+    subcategories.map(sub => {
+      newSubcategories.push(thisSubcategory[sub]);
     });
+
+    const newSubcatToState = {
+      ...vendorSubcategories,
+      [category]: newSubcategories
+    };
+
+    setVendorSubcategories(newSubcatToState);
   }
 
   _renderSubmitBtn = () => {
-    console.log(this.props.loading);
     if (this.props.loading) {
       return <LoadingSpinner />;
     }
@@ -51,13 +45,19 @@ class VendorSelectCategories extends Component {
 
   renderSelectSubcategory = (category) => {
     let thisSubcategory = [];
-    const categories = serviceCategories;
+    let subcategoriesToDisplay = [];
+
+    const categories = this.props.serviceCategories;
 
     for (let i = 0; i < categories.length; i++) {
       if (categories[i].category === category) {
         thisSubcategory = categories[i].subcategories;
       }
     }
+
+    thisSubcategory.map(sub => {
+      subcategoriesToDisplay = subcategoriesToDisplay.concat(sub.name);
+    });
 
     return (
       <View key={category}>
@@ -66,11 +66,10 @@ class VendorSelectCategories extends Component {
         </Text>
 
         <CustomMultiPicker
-          options={thisSubcategory}
+          options={subcategoriesToDisplay}
           search
           multiple
-          returnValue={"label"}
-          callback={(result) => this.handleSelectSubcategory(category, result)}
+          callback={(result) => this._handleSelectSubcategories(category, thisSubcategory, result)}
           placeholder={"Search"}
           placeholderTextColor={'#47525E'}
           iconColor={"#00BCD4"}
@@ -104,13 +103,16 @@ class VendorSelectCategories extends Component {
 }
 
 
-const mapStateToProps = ({ auth }) => {
-  const { categories } = auth.vendorData;
+const mapStateToProps = ({ auth, home }) => {
+  const { categories, subcategories } = auth.vendorData;
+  const { serviceCategories } = home;
 
   return {
     categories,
     loading: auth.loading,
-    vendorData: auth.vendorData
+    vendorData: auth.vendorData,
+    serviceCategories,
+    vendorSubcategories: subcategories
   };
 };
 
