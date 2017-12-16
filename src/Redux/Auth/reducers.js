@@ -129,6 +129,17 @@ const setResetPasswordFail = (state = INITIAL_STATE, action) => {
   };
 };
 
+const addNewAddress = (state = INITIAL_STATE, action) => {
+  const addressInState = state.userData.address;
+
+  return { ...state,
+    userData: {
+      ...state.userData,
+      address: addressInState.concat(action.address)
+    }
+  };
+};
+
 const logout = () => {
   //reset state on logout
   return INITIAL_STATE;
@@ -157,6 +168,8 @@ export default {
   setResetPasswordAttempt,
   setResetPasswordSuccess,
   setResetPasswordFail,
+
+  addNewAddress,
 
   logout,
 };

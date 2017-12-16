@@ -23,7 +23,7 @@ export function* handleLoginUser(userType, email, password) {
     const userData = yield call(firebaseAuth, email, password);
     const userInfo = yield call(get, `Users/${userType}`, userData.uid);
 
-    const response = cleanResponse(email, userData.uid, userInfo.name, userInfo.address);
+    const response = cleanResponse(email, userData.uid, userInfo);
 
     //save password so that we can autologin next time user opens app
     setGenericPassword(email, password);
@@ -51,11 +51,20 @@ async function saveUserType(userType) {
   await AsyncStorage.setItem('userType', userType);
 }
 
-export function cleanResponse(email, uid, fullName, address) {
+export function cleanResponse(email, uid, userInfo) {
+  //in the future, we might we returning array of addresses
+  //so convert address to array for now
+  const { name, address, city, postcode, state } = userInfo;
+
   return {
     email,
     uid,
-    fullName,
-    address
+    fullName: name,
+    address: [{
+      address,
+      postcode,
+      state,
+      city
+    }]
   };
 }
