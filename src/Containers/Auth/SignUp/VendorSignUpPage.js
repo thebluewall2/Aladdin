@@ -31,6 +31,7 @@ class VendorSignUpPage extends Component {
       addressTwo: '',
       postcode: '',
       city: '',
+      state: '',
       yearsOfExp: 0,
       yearsOfCompany: 0,
       noOfStaff: 0,
@@ -113,6 +114,7 @@ class VendorSignUpPage extends Component {
                 this._handleTextChanged(text, 'companyName');
               }}
               value={this.state.companyName}
+              autoCorrect={false}
             />
 
             <TextFieldComponent
@@ -121,6 +123,7 @@ class VendorSignUpPage extends Component {
                 this._handleTextChanged(text, 'name');
               }}
               value={this.state.name}
+              autoCorrect={false}
             />
 
             <TextFieldComponent
@@ -130,6 +133,7 @@ class VendorSignUpPage extends Component {
               }}
               value={this.state.email}
               keyboardType={'email-address'}
+              autoCorrect={false}
             />
 
             <TextFieldComponent
@@ -165,6 +169,7 @@ class VendorSignUpPage extends Component {
                 this._handleTextChanged(text, 'addressOne');
               }}
               value={this.state.addressOne}
+              autoCorrect={false}
             />
 
             <TextFieldComponent
@@ -173,6 +178,7 @@ class VendorSignUpPage extends Component {
                 this._handleTextChanged(text, 'addressTwo');
               }}
               value={this.state.addressTwo}
+              autoCorrect={false}
             />
 
             <TextFieldComponent
@@ -190,6 +196,16 @@ class VendorSignUpPage extends Component {
                 this._handleTextChanged(text, 'city');
               }}
               value={this.state.city}
+              autoCorrect={false}
+            />
+
+            <TextFieldComponent
+              label={"State"}
+              onChangeText={(text) => {
+                this._handleTextChanged(text, 'state');
+              }}
+              value={this.state.state}
+              autoCorrect={false}
             />
 
             <TextFieldComponent
@@ -198,6 +214,7 @@ class VendorSignUpPage extends Component {
                 this._handleTextChanged(text, 'awards');
               }}
               value={this.state.awards}
+              autoCorrect={false}
             />
 
             <ModalPicker
