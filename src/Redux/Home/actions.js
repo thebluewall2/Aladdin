@@ -15,10 +15,11 @@ const homeSetSearchAddress = (address) => ({
   address
 });
 
-const homeGetVendorListAttempt = (category, subcategory) => ({
+const homeGetVendorListAttempt = (category, subcategory, userAddress) => ({
   type: Types.HOME_GET_VENDOR_LIST_ATTEMPT,
   category,
-  subcategory
+  subcategory,
+  userAddress
 });
 
 const homeGetVendorListSuccess = (vendorList) => ({

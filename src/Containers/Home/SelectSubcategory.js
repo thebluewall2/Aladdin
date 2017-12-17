@@ -10,8 +10,10 @@ import styles from './Styles';
 
 class SelectSubcategory extends Component {
 
-  _handleSubcategoryPressed = (subcategory) => {
-    this.props.setSearchSubcategory(subcategory[0]);
+  _handleSubcategoryPressed = (subcategoryIndex) => {
+    const { subcategories } = this.props.category;
+
+    this.props.setSearchSubcategory(subcategories[subcategoryIndex]);
 
     Actions.selectAddress();
   }
@@ -28,7 +30,6 @@ class SelectSubcategory extends Component {
       <CustomMultiPicker
         options={subCategoriesToRender}
         search
-        returnValue={"label"}
         callback={(result) => this._handleSubcategoryPressed(result)}
         placeholder={"Search"}
         placeholderTextColor={'#47525E'}

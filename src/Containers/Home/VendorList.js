@@ -17,9 +17,9 @@ class VendorList extends PureComponent {
   }
 
   componentWillMount() {
-    const { category, subcategory } = this.props;
+    const { category, subcategory, userAddress } = this.props;
 
-    this.props.getVendorList(category, subcategory);
+    this.props.getVendorList(category, subcategory, userAddress);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -71,10 +71,11 @@ class VendorList extends PureComponent {
 
 const mapStateToProps = ({ home }) => {
   const { search, loading } = home;
-
+  console.log(search);
   return {
     category: search.category.category,
-    subcategory: search.subcategory[0],
+    subcategory: search.subcategory,
+    userAddress: search.userAddress,
     vendorList: home.vendorList,
     loading
   };
@@ -82,8 +83,8 @@ const mapStateToProps = ({ home }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getVendorList: (category, subcategory) =>
-      dispatch(ReduxActions.homeGetVendorListAttempt(category, subcategory)),
+    getVendorList: (category, subcategory, userAddress) =>
+      dispatch(ReduxActions.homeGetVendorListAttempt(category, subcategory, userAddress)),
   };
 };
 
