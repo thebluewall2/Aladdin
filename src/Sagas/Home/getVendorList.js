@@ -14,25 +14,31 @@ export function* watchGetVendorList() {
 
 export function* handleGetVendorList(category, subcategory, userAddress) {
   try {
-    console.log(category);
-    console.log(subcategory);
-    console.log(userAddress);
     const listOfVendorsFromFirebase = yield call(get, `Services/${category}`, subcategory.id);
     let listOfVendor = [];
-    console.log(listOfVendorsFromFirebase);
     Object.keys(listOfVendorsFromFirebase.vendors)
       .map(vendorUID => {
           listOfVendor.push({
             vendorUID,
             name: listOfVendorsFromFirebase.vendors[vendorUID].name,
             coordinates: listOfVendorsFromFirebase.vendors[vendorUID].coordinates,
+            reviewScore: { totalReviews: 0, avgReviews: 0 },
           });
       });
+
+      for (let count = 0; count < listOfVendor.length; count++) {
+        const reviewScoreFromFirebase = yield call(get, `Users/vendor/${listOfVendor[count].vendorUID}/reviews`, 'reviewScore');
+        if (reviewScoreFromFirebase !== null) {
+          listOfVendor[count].reviewScore =
+            { totalReviews: reviewScoreFromFirebase.totalReviews,
+              avgReviews: ((reviewScoreFromFirebase.totalScores / (reviewScoreFromFirebase.totalReviews)))
+            };
+        }
+      }
       console.log(listOfVendor);
-    // ReduxActions.homeGetVendorListSuccess(listOfVendor);
+    ReduxActions.homeGetVendorListSuccess(listOfVendor);
   } catch (error) {
       const err = new Error("No Vendor Found!");
-
       ReduxActions.homeGetVendorListFailure(err);
   }
 }
