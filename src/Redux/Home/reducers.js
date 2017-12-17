@@ -23,6 +23,15 @@ const setSearchSubcategory = (state = INITIAL_STATE, action) => {
   };
 };
 
+const setSearchAddress = (state = INITIAL_STATE, action) => {
+  return { ...state,
+    search: {
+      ...state.search,
+      userAddress: action.address
+    }
+  };
+};
+
 //Get Vendor List Section
 const getVendorListAttempt = (state = INITIAL_STATE) => {
   return { ...state,
@@ -124,6 +133,7 @@ export default {
 
   setSearchCategory,
   setSearchSubcategory,
+  setSearchAddress,
 
   getVendorListAttempt,
   getVendorListSuccess,
