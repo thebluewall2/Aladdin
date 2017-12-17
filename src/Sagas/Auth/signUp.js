@@ -46,16 +46,15 @@ export function* CheckPhoneNumber(data) {
 
 export function* SignUp(data) {
   console.log(data);
+  const userData = yield call(firebaseSignUp, data);
   if (data.userType === 'customer') {
-    const userData = yield call(CustomerSignUp, data);
     yield call(CustomerInfo, data, userData);
   } else if (data.userType === 'vendor') {
-    const userData = yield call(VendorSignUp, data);
     yield call(VendorInfo, data, userData);
   }
 }
 
-export function CustomerSignUp(data) {
+export function firebaseSignUp(data) {
   const userData = firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
   .catch((error) => {
     console.log(error.message);
@@ -84,6 +83,7 @@ export function* CustomerInfo(data, userData) {
 
 export function* VendorInfo(data, userData) {
   try {
+    console.log(data);
   yield call(create, `Users/${data.userType}/${userData.uid}`, () => ({
       [`Users/${data.userType}/${userData.uid}`]:
         {
@@ -93,6 +93,7 @@ export function* VendorInfo(data, userData) {
           officeNo: data.officeNo,
           address: `${data.addressOne} ${data.addressTwo}`,
           postcode: data.postcode,
+          services: data.subcategories,
           city: data.city,
           state: data.state,
           yearsOfExp: data.yearsOfExp,
@@ -102,23 +103,19 @@ export function* VendorInfo(data, userData) {
         }
     })
   );
-  // yield call(create, `Services/${data.categories}/${userData.uid}`, () => ({
-  //     [`Users/${data.userType}/${userData.uid}`]:
-  //       {
-  //         companyName: data.companyName,
-  //         name: data.name,
-  //         phoneNo: data.phoneNo,
-  //         officeNo: data.officeNo,
-  //         address: `${data.addressOne} ${data.addressTwo}`,
-  //         postcode: data.postcode,
-  //         city: data.city,
-  //         yearsOfExp: data.yearsOfExp,
-  //         yearsOfCompany: data.yearsOfCompany,
-  //         noOfStaff: data.noOfStaff,
-  //         awards: data.awards
-  //       }
-  //   })
-  // );
+  console.log(data.subcategories.length);
+  for (let count = 0; count < data.subcategories.length; count++) {
+    console.log(data.subcategories[count].categoryName);
+    console.log(data.subcategories[count].subcategory);
+    yield call(create, `Services/${data.subcategories[count].categoryName}/${data.subcategories[count].subcategory}`, () => ({
+        [`Services/${data.subcategories[count].categoryName}/${data.subcategories[count].subcategory}/vendors/${userData.uid}`]:
+          {
+            address: `${data.addressOne} ${data.addressTwo}`,
+            name: data.name
+          }
+      })
+    );
+  }
 
   yield put(ReduxActions.authUserSignUpSuccess());
   Actions.loginPage();
@@ -127,9 +124,17 @@ export function* VendorInfo(data, userData) {
   }
 }
 
-export function VendorSignUp(data) {
-  return firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
-  .catch((error) => {
-    throw error;//If fail dispatch error msg
-  });
+export function* setVendorServices(category, subcategory, data, userData) {
+  console.log(category);
+  console.log(subcategory);
+  console.log(data);
+  console.log(userData);
+  yield call(create, `Services/${category}/${subcategory}`, () => ({
+      [`Services/${category}/${subcategory}/vendors/${userData.uid}`]:
+        {
+          address: data.address,
+          name: data.name
+        }
+    })
+  );
 }
