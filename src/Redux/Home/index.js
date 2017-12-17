@@ -6,6 +6,7 @@ export default {
   reducer: createReducer(Reducers.INITIAL_STATE, {
     [Types.HOME_SET_SEARCH_CATEGORY]: Reducers.setSearchCategory,
     [Types.HOME_SET_SEARCH_SUBCATEGORY]: Reducers.setSearchSubcategory,
+    [Types.HOME_SET_SEARCH_ADDRESS]: Reducers.setSearchAddress,
 
     [Types.HOME_GET_VENDOR_LIST_ATTEMPT]: Reducers.getVendorListAttempt,
     [Types.HOME_GET_VENDOR_LIST_SUCCESS]: Reducers.getVendorListSuccess,

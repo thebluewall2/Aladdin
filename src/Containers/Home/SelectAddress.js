@@ -5,6 +5,8 @@ import { Actions } from 'react-native-router-flux';
 
 import ModalDropdown from 'react-native-modal-dropdown';
 
+import ReduxActions from '../../Redux/Actions';
+
 class SelectAddress extends React.PureComponent {
 
   constructor(props) {
@@ -79,7 +81,10 @@ class SelectAddress extends React.PureComponent {
   }
 
   handleOnNext = () => {
-    
+    const { addressSelected } = this.state;
+
+    this.props.setUserAddress(addressSelected);
+    Actions.vendorList();
   }
 
   render() {
@@ -101,7 +106,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    setUserAddress: (address) =>
+      dispatch(ReduxActions.homeSetSearchAddress(address)),
   };
 };
 

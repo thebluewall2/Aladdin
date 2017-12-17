@@ -10,6 +10,11 @@ const homeSetSearchSubcategory = (subcategory) => ({
   subcategory
 });
 
+const homeSetSearchAddress = (address) => ({
+  type: Types.HOME_SET_SEARCH_ADDRESS,
+  address
+});
+
 const homeGetVendorListAttempt = (category, subcategory) => ({
   type: Types.HOME_GET_VENDOR_LIST_ATTEMPT,
   category,
@@ -86,6 +91,7 @@ const homeCreateOrUpdateTransactionFailure = (error) => ({
 export default {
   homeSetSearchCategory,
   homeSetSearchSubcategory,
+  homeSetSearchAddress,
 
   homeGetVendorListAttempt,
   homeGetVendorListSuccess,
