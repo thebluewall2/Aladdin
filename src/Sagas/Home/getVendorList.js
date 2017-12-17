@@ -7,16 +7,19 @@ import Types from '../../Redux/Home/types';
 
 export function* watchGetVendorList() {
   while (true) {
-    const { category, subcategory } = yield take(Types.HOME_GET_VENDOR_LIST_ATTEMPT);
-    yield call(handleGetVendorList, category, subcategory);
+    const { category, subcategory, userAddress } = yield take(Types.HOME_GET_VENDOR_LIST_ATTEMPT);
+    yield call(handleGetVendorList, category, subcategory, userAddress);
   }
 }
 
-export function* handleGetVendorList(category, subcategory) {
+export function* handleGetVendorList(category, subcategory, userAddress) {
   try {
-    const listOfVendorsFromFirebase = yield call(get, `Services/${category}`, subcategory);
+    console.log(category);
+    console.log(subcategory);
+    console.log(userAddress);
+    const listOfVendorsFromFirebase = yield call(get, `Services/${category}`, subcategory.id);
     let listOfVendor = [];
-
+    console.log(listOfVendorsFromFirebase);
     Object.keys(listOfVendorsFromFirebase.vendors)
       .map(vendorUID => {
           listOfVendor.push({
@@ -25,8 +28,8 @@ export function* handleGetVendorList(category, subcategory) {
             coordinates: listOfVendorsFromFirebase.vendors[vendorUID].coordinates,
           });
       });
-      
-    ReduxActions.homeGetVendorListSuccess(listOfVendor);
+      console.log(listOfVendor);
+    // ReduxActions.homeGetVendorListSuccess(listOfVendor);
   } catch (error) {
       const err = new Error("No Vendor Found!");
 
