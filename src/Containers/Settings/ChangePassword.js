@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import styles from './Styles';
 
 import { TextFieldComponent } from '../../Components/common';
 
@@ -75,8 +76,7 @@ class ChangePassword extends Component {
 
   render() {
     return (
-      <View style={{ paddingTop: 80 }}>
-
+      <View style={styles.changePasswordContainer}>
         <TextFieldComponent
           label={"Old password"}
           secureTextEntry
@@ -104,12 +104,19 @@ class ChangePassword extends Component {
           value={this.state.confirmPassword}
         />
 
-        <Text>{this.state.errorMsg}</Text>
-        <Text>{this.state.successMsg}</Text>
+        <Text style={styles.errorMessageStyle}>
+          {this.state.errorMsg}
+        </Text>
 
-        <TouchableOpacity onPress={this._onSubmit}>
-          <Text>Change password</Text>
-        </TouchableOpacity>
+        <Text style={styles.successMessageStyle}>
+          {this.state.successMsg}
+        </Text>
+
+        <View>
+          <TouchableOpacity style={styles.buttonStyle} onPress={this._onSubmit} >
+            <Text style={styles.buttonTextStyle}>Change Password</Text>
+          </TouchableOpacity>
+        </View>
 
       </View>
     );
