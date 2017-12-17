@@ -1,20 +1,102 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
+
+import ModalDropdown from 'react-native-modal-dropdown';
 
 class SelectAddress extends React.PureComponent {
+
+  constructor(props) {
+    super(props);
+
+    const { address } = props;
+
+    this.state = {
+      address,
+      addressSelected: "",
+      showNextButton: false
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.address !== nextProps.address) {
+      this.setState({
+        address: nextProps.address
+      });
+    }
+  }
+
+  _handleAddressSelected = (addressIndex) => {
+    const addressSelected = this.state.address[addressIndex];
+
+    this.setState({
+      showNextButton: true,
+      addressSelected
+    });
+  }
+
+  _handleAddNewAddress = () => {
+    Actions.addNewAddress();
+  }
+
+  _renderContent = () => {
+    const addressToDisplay = this.state.address.map(add => {
+      return add.address;
+    });
+
+    return (
+      <View style={{ paddingLeft: 5 }}>
+        <Text>Please select an address to be serviced</Text>
+
+        <ModalDropdown
+          options={addressToDisplay}
+          style={{ alignSelf: 'center', paddingTop: 15 }}
+          onSelect={(addressIndex) => this._handleAddressSelected(addressIndex)}
+        />
+
+        <TouchableOpacity onPress={this._handleAddNewAddress}>
+          <Text>Add new address</Text>
+        </TouchableOpacity>
+
+        {this._renderNextButton()}
+      </View>
+    );
+  }
+
+  _renderNextButton = () => {
+    if (this.state.showNextButton) {
+      return (
+        <View style={{ paddingTop: 50 }}>
+          <TouchableOpacity onPress={this.handleOnNext}>
+            <Text>Next</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+
+    return false;
+  }
+
+  handleOnNext = () => {
+    
+  }
+
   render() {
     return (
       <View style={{ paddingTop: 70 }} >
-        <Text>Hi</Text>
+        {this._renderContent()}
       </View>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
-  return {};
+  const { address } = state.auth.userData;
+
+  return {
+    address,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {

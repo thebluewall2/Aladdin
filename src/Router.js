@@ -21,6 +21,7 @@ import HomePage from './Containers/Home/HomePage';
 import VendorList from './Containers/Home/VendorList';
 import SelectSubcategory from './Containers/Home/SelectSubcategory';
 import SelectAddress from './Containers/Home/SelectAddress';
+import AddNewAddress from './Containers/Home/AddNewAddress';
 
 import Settings from './Containers/Settings/Settings';
 import ChangePassword from './Containers/Settings/ChangePassword';
@@ -77,11 +78,12 @@ const RouterComponent = () => {
         />
       </Scene>
 
-      <Scene key="home" tabs>
+      <Scene key="home" tabs >
         <Scene key="homePage" title="Home" icon={TabIcon} >
-          <Scene key="homeTab" component={HomePage} panHandlers={null} renderBackButton={() => (null)} />
-          <Scene key="selectSubcategory" component={SelectSubcategory} />
+          <Scene key="homeTab" component={HomePage} panHandlers={null} hideNavBar enderBackButton={() => (null)} />
+          <Scene key="selectSubcategory" component={SelectSubcategory} hideNavBar={false} />
           <Scene key="selectAddress" component={SelectAddress} title={'Select address'} />
+          <Scene key="addNewAddress" component={AddNewAddress} title={'Add New Address'} />
           <Scene key="vendorList" component={VendorList} />
         </Scene>
         <Scene key="requests" title="Request" icon={TabIcon} >

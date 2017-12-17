@@ -38,7 +38,7 @@ class HomePage extends Component {
       <View style={styles.homePageContainer}>
         <View style={styles.homePageWelcomeTextContainer}>
           <Text style={styles.homePageWelcomeText}>
-            Welcome, {this.props.email}
+            Welcome, {this.props.fullName}
           </Text>
         </View>
 
@@ -49,11 +49,11 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { email } = state.auth;
+  const { fullName } = state.auth.userData;
   const { loading, serviceCategories } = state.home;
 
   return {
-    email,
+    fullName,
     loading,
     serviceCategories,
   };

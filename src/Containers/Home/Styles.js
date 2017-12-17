@@ -9,7 +9,8 @@ export default StyleSheet.create({
 
   homePageCategoriesContainer: {
     flex: 1,
-    paddingBottom: 50
+    paddingBottom: 50,
+    paddingTop: 20
   },
 
   homePageCategoriesViewStyle: {
@@ -34,7 +35,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     color: '#FFFFFF',
     fontSize: 15,
-    paddingTop: 70,
+    paddingTop: 30,
 
   },
 
@@ -57,5 +58,11 @@ export default StyleSheet.create({
     fontSize: 20,
     paddingLeft: 5,
     paddingTop: 20
-  }
+  },
+
+  addAddressTextFieldStyle: {
+    height: 30,
+    width: 330,
+    fontFamily: 'Quicksand-light'
+  },
 });

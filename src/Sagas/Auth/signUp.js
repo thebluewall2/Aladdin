@@ -14,8 +14,6 @@ export function* watchUserSignUp() {
 }
 
 export function* handleSignUp(data) {
-  console.log(data);
-
   try {
     yield call(CheckPhoneNumber, data);
     console.log("checked phone no");
@@ -74,6 +72,9 @@ export function* CustomerInfo(data, userData) {
           userType: data.userType,
           phoneNo: data.phoneNo,
           address: data.address,
+          postcode: data.postcode,
+          city: data.city,
+          state: data.state,
           email: data.email
         }
     })
@@ -93,6 +94,7 @@ export function* VendorInfo(data, userData) {
           address: `${data.addressOne} ${data.addressTwo}`,
           postcode: data.postcode,
           city: data.city,
+          state: data.state,
           yearsOfExp: data.yearsOfExp,
           yearsOfCompany: data.yearsOfCompany,
           noOfStaff: data.noOfStaff,

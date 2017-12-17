@@ -20,6 +20,8 @@ class CustomerSignUpPage extends Component {
         address1: '',
         address2: '',
         postcode: '',
+        city: '',
+        state: '',
         email: '',
         error: '',
       };
@@ -40,7 +42,7 @@ class CustomerSignUpPage extends Component {
   }
 
   _handleSubmitSignUp = () => {
-    const { name, password, phoneNo, address1, address2, postcode, email } = this.state;
+    const { name, password, phoneNo, address1, address2, city, postcode, state, email } = this.state;
     const { userType } = this.props;
 
     const newSignUp = {
@@ -49,7 +51,9 @@ class CustomerSignUpPage extends Component {
       userType,
       phoneNo,
       address: address1.concat(" ").concat(address2),
+      city,
       postcode,
+      state,
       email
     };
     this.props.signUpUser(newSignUp);
@@ -73,6 +77,7 @@ class CustomerSignUpPage extends Component {
           }}
           value={this.state.name}
           componentStyle={styles.signUpTextFieldStyle}
+          autoCorrect={false}
         />
 
         <TextFieldComponent
@@ -102,6 +107,7 @@ class CustomerSignUpPage extends Component {
           }}
           value={this.state.address1}
           componentStyle={styles.signUpTextFieldStyle}
+          autoCorrect={false}
         />
 
         <TextFieldComponent
@@ -111,6 +117,7 @@ class CustomerSignUpPage extends Component {
           }}
           value={this.state.address2}
           componentStyle={styles.signUpTextFieldStyle}
+          autoCorrect={false}
         />
 
         <TextFieldComponent
@@ -120,6 +127,7 @@ class CustomerSignUpPage extends Component {
           }}
           value={this.state.city}
           componentStyle={styles.signUpTextFieldStyle}
+          autoCorrect={false}
         />
 
         <TextFieldComponent
@@ -133,6 +141,16 @@ class CustomerSignUpPage extends Component {
         />
 
         <TextFieldComponent
+          label={"State"}
+          onChangeText={(text) => {
+            this._handleTextChanged(text, 'state');
+          }}
+          value={this.state.state}
+          componentStyle={styles.signUpTextFieldStyle}
+          autoCorrect={false}
+        />
+
+        <TextFieldComponent
           label={"Email"}
           onChangeText={(text) => {
             this._handleTextChanged(text, 'email');
@@ -140,6 +158,7 @@ class CustomerSignUpPage extends Component {
           value={this.state.email}
           componentStyle={styles.signUpTextFieldStyle}
           keyboardType={"email-address"}
+          autoCorrect={false}
         />
 
           <Text style={styles.tAndCStyle}>

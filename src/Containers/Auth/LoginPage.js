@@ -69,6 +69,7 @@ class UserLoginPage extends Component {
           value={this.props.email}
           autoCapitalize={"none"}
           keyboardType={"email-address"}
+          autoCorrect={false}
         />
 
         <TextFieldComponent
