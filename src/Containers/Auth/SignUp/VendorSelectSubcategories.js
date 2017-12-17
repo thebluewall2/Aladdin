@@ -15,16 +15,16 @@ class VendorSelectCategories extends Component {
 
   _handleSelectSubcategories = (category, thisSubcategory, subcategories) => {
     const { vendorSubcategories, setVendorSubcategories } = this.props;
-    let newSubcategories = [];
+    const subcategoriesInRedux = vendorSubcategories ? vendorSubcategories : [];
 
-    subcategories.map(sub => {
-      newSubcategories.push(thisSubcategory[sub]);
-    });
+    const subcategoryToAddToState = thisSubcategory[subcategories[subcategories.length - 1]].id;
 
-    const newSubcatToState = {
-      ...vendorSubcategories,
-      [category]: newSubcategories
+    const newSubcatObject = {
+      categoryName: category,
+      subcategory: subcategoryToAddToState
     };
+
+    const newSubcatToState = subcategoriesInRedux.concat(newSubcatObject);
 
     setVendorSubcategories(newSubcatToState);
   }
