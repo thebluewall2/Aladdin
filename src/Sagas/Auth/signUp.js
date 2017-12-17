@@ -103,10 +103,7 @@ export function* VendorInfo(data, userData) {
         }
     })
   );
-  console.log(data.subcategories.length);
   for (let count = 0; count < data.subcategories.length; count++) {
-    console.log(data.subcategories[count].categoryName);
-    console.log(data.subcategories[count].subcategory);
     yield call(create, `Services/${data.subcategories[count].categoryName}/${data.subcategories[count].subcategory}`, () => ({
         [`Services/${data.subcategories[count].categoryName}/${data.subcategories[count].subcategory}/vendors/${userData.uid}`]:
           {
@@ -122,19 +119,4 @@ export function* VendorInfo(data, userData) {
   } catch (error) {
     yield put(ReduxActions.authUserSignUpFail(error));
   }
-}
-
-export function* setVendorServices(category, subcategory, data, userData) {
-  console.log(category);
-  console.log(subcategory);
-  console.log(data);
-  console.log(userData);
-  yield call(create, `Services/${category}/${subcategory}`, () => ({
-      [`Services/${category}/${subcategory}/vendors/${userData.uid}`]:
-        {
-          address: data.address,
-          name: data.name
-        }
-    })
-  );
 }
