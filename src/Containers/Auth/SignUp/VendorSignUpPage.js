@@ -25,6 +25,7 @@ class VendorSignUpPage extends Component {
       name: '',
       email: '',
       password: '',
+      confirmPassword: '',
       phoneNo: '',
       officeNo: '',
       addressOne: '',
@@ -36,6 +37,7 @@ class VendorSignUpPage extends Component {
       yearsOfCompany: 0,
       noOfStaff: 0,
       awards: '',
+      error: '',
     };
   }
 
@@ -86,11 +88,24 @@ class VendorSignUpPage extends Component {
     });
   }
 
+  _setErrorMessage = (error) => {
+    this.setState({
+      error
+    });
+  }
+
   _handleSelectCategories = () => {
     const data = this.state;
-    this.props.setVendorData(data);
 
-    Actions.selectCategories();
+    this._setErrorMessage('');
+
+    if (data.password !== data.confirmPassword) {
+      this._setErrorMessage('Passwords do not match');
+    } else {
+      this.props.setVendorData(data);
+
+      Actions.selectCategories();
+    }
   }
 
   render() {
@@ -143,6 +158,15 @@ class VendorSignUpPage extends Component {
                 this._handleTextChanged(text, 'password');
               }}
               value={this.state.password}
+            />
+
+            <TextFieldComponent
+              label={"Confirm password"}
+              secureTextEntry
+              onChangeText={(text) => {
+                this._handleTextChanged(text, 'confirmPassword');
+              }}
+              value={this.state.confirmPassword}
             />
 
             <TextFieldComponent
@@ -249,6 +273,10 @@ class VendorSignUpPage extends Component {
               onChange={(option) => this._handleTextChanged(option.label, 'noOfStaff')}
               cancelText={'Cancel'}
             />
+
+            <Text style={[styles.errorMessageStyle, { paddingTop: 5 }]}>
+                {this.state.error}
+            </Text>
 
             <View style={styles.signUpButtonStyle}>
               <TouchableOpacity style={styles.buttonStyle} onPress={this._handleSelectCategories}>

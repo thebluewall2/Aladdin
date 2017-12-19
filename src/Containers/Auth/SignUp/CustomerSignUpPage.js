@@ -16,6 +16,7 @@ class CustomerSignUpPage extends Component {
       this.state = {
         name: '',
         password: '',
+        confirmPassword: '',
         phoneNo: '',
         address1: '',
         address2: '',
@@ -41,22 +42,37 @@ class CustomerSignUpPage extends Component {
     });
   }
 
+  _setErrorMessage = (error) => {
+    this.setState({
+      error
+    });
+  }
+
   _handleSubmitSignUp = () => {
-    const { name, password, phoneNo, address1, address2, city, postcode, state, email } = this.state;
+    const { name, password, confirmPassword, phoneNo, address1, address2, city, postcode, state, email } = this.state;
     const { userType } = this.props;
 
-    const newSignUp = {
-      name,
-      password,
-      userType,
-      phoneNo,
-      address: address1.concat(" ").concat(address2),
-      city,
-      postcode,
-      state,
-      email
-    };
-    this.props.signUpUser(newSignUp);
+    //resets error msg if any
+    this._setErrorMessage('');
+
+    if (password !== confirmPassword) {
+      this._setErrorMessage('Passwords do not match');
+    } else {
+      //only if password matches, then sign up
+      const newSignUp = {
+        name,
+        password,
+        userType,
+        phoneNo,
+        address: address1.concat(" ").concat(address2),
+        city,
+        postcode,
+        state,
+        email
+      };
+      
+      this.props.signUpUser(newSignUp);
+    }
   }
 
   render() {
@@ -87,6 +103,16 @@ class CustomerSignUpPage extends Component {
             this._handleTextChanged(text, 'password');
           }}
           value={this.state.password}
+          componentStyle={styles.signUpTextFieldStyle}
+        />
+
+        <TextFieldComponent
+          label={"Confirm password"}
+          secureTextEntry
+          onChangeText={(text) => {
+            this._handleTextChanged(text, 'confirmPassword');
+          }}
+          value={this.state.confirmPassword}
           componentStyle={styles.signUpTextFieldStyle}
         />
 
@@ -162,7 +188,11 @@ class CustomerSignUpPage extends Component {
         />
 
           <Text style={styles.tAndCStyle}>
-            By clicking the button below, you agree to our  and Privacy Policy.
+            By clicking the button below, you agree to our Terms of Use and Privacy Policy.
+          </Text>
+
+          <Text style={[styles.errorMessageStyle, { paddingTop: 5 }]}>
+              {this.state.error}
           </Text>
 
         <View style={styles.signUpButtonStyle}>

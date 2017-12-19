@@ -2,6 +2,7 @@ import { take, call, put } from 'redux-saga/effects';
 import { Actions } from 'react-native-router-flux';
 import firebase from 'firebase';
 import { get, create } from 'firebase-saga';
+import Geocoder from 'react-native-geocoding';
 
 import ReduxActions from '../../Redux/Actions';
 import Types from '../../Redux/Auth/types';
@@ -16,37 +17,35 @@ export function* watchUserSignUp() {
 export function* handleSignUp(data) {
   try {
     yield call(CheckPhoneNumber, data);
-    console.log("checked phone no");
+
     yield call(SignUp, data);
     yield put(ReduxActions.authUserSignUpSuccess());
 
     Actions.loginPage();
   } catch (error) {
+    console.error(error);
     yield put(ReduxActions.authUserSignUpFail(error));
   }
 }
 
 export function* CheckPhoneNumber(data) {
-  console.log("checking phone no");
   const phoneNo = yield call(get, `PhoneNumbers/${data.userType}`, data.phoneNo);
-  console.log(phoneNo);
+
   if (phoneNo === null) {
-    console.log('Go ahead');
     yield call(create, `PhoneNumbers/${data.userType}/${data.phoneNo}`, () => ({
                 [`PhoneNumbers/${data.userType}/${data.phoneNo}`]: { email: data.email }
               })
             );
   } else {
-    console.log('Phone number in use!');
     const err = new Error("Phone number in use!");
-    console.log(err);
+
     throw err;
   }
 }
 
 export function* SignUp(data) {
-  console.log(data);
   const userData = yield call(firebaseSignUp, data);
+
   if (data.userType === 'customer') {
     yield call(CustomerInfo, data, userData);
   } else if (data.userType === 'vendor') {
@@ -64,6 +63,15 @@ export function firebaseSignUp(data) {
 }
 
 export function* CustomerInfo(data, userData) {
+  const userAddress = {
+    streetName: data.address,
+    city: data.city,
+    state: data.state,
+    postcode: data.postcode
+  };
+
+  const coordinates = yield call(getCoordinatesFromAddress, userAddress);
+
   yield call(create, `Users/${data.userType}/${userData.uid}`, () => ({
       [`Users/${data.userType}/${userData.uid}`]:
         {
@@ -74,6 +82,7 @@ export function* CustomerInfo(data, userData) {
           postcode: data.postcode,
           city: data.city,
           state: data.state,
+          coordinates,
           email: data.email
         }
     })
@@ -83,8 +92,16 @@ export function* CustomerInfo(data, userData) {
 
 export function* VendorInfo(data, userData) {
   try {
-    console.log(data);
-  yield call(create, `Users/${data.userType}/${userData.uid}`, () => ({
+    const userAddress = {
+      streetName: `${data.addressOne} ${data.addressTwo}`,
+      city: data.city,
+      state: data.state,
+      postcode: data.postcode
+    };
+
+    const coordinates = yield call(getCoordinatesFromAddress, userAddress);
+
+    yield call(create, `Users/${data.userType}/${userData.uid}`, () => ({
       [`Users/${data.userType}/${userData.uid}`]:
         {
           companyName: data.companyName,
@@ -95,6 +112,7 @@ export function* VendorInfo(data, userData) {
           postcode: data.postcode,
           services: data.subcategories,
           city: data.city,
+          coordinates,
           state: data.state,
           yearsOfExp: data.yearsOfExp,
           yearsOfCompany: data.yearsOfCompany,
@@ -107,7 +125,7 @@ export function* VendorInfo(data, userData) {
     yield call(create, `Services/${data.subcategories[count].categoryName}/${data.subcategories[count].subcategory}`, () => ({
         [`Services/${data.subcategories[count].categoryName}/${data.subcategories[count].subcategory}/vendors/${userData.uid}`]:
           {
-            address: `${data.addressOne} ${data.addressTwo}`,
+            coordinates,
             name: data.name
           }
       })
@@ -119,4 +137,15 @@ export function* VendorInfo(data, userData) {
   } catch (error) {
     yield put(ReduxActions.authUserSignUpFail(error));
   }
+}
+
+export function getCoordinatesFromAddress(address) {
+  Geocoder.setApiKey('AIzaSyDiQJNqCwJXrP4yp8MB-5xnxbCEV4oyRt0');
+  const addressToString = `${address.streetName} ${address.city} ${address.postcode} ${address.state}`;
+
+  const location = Geocoder.getFromLocation(addressToString)
+    .then(json => json.results[0].geometry.location)
+    .catch((error) => console.log(error));
+
+  return location;
 }
