@@ -18,7 +18,7 @@ class VendorList extends PureComponent {
 
   componentWillMount() {
     const { category, subcategory, userAddress } = this.props;
-
+    console.log(this.props);
     this.props.getVendorList(category, subcategory, userAddress);
   }
 

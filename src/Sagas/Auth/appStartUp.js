@@ -35,7 +35,7 @@ export function* getAllSettings() {
 
   yield put(ReduxActions.settingsSetSettings(settings));
   yield put(ReduxActions.authSetUserType(userType));
-
+  
   return userType;
 }
 

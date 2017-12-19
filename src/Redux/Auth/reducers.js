@@ -42,10 +42,11 @@ const setUserStartLogin = (state = INITIAL_STATE) => {
 };
 
 const setUserLoginSuccess = (state = INITIAL_STATE, action) => {
-  return { ...state,
-    ...INITIAL_STATE,
+  return {
+    ...state,
     email: action.userData.email,
-    userData: action.userData
+    userData: action.userData,
+    password: '',
   };
 };
 
