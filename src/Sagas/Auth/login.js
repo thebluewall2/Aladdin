@@ -2,18 +2,16 @@ import { take, call, put } from 'redux-saga/effects';
 
 import { AsyncStorage } from 'react-native';
 import firebase from 'firebase';
-import { get } from 'firebase-saga';
+import { get, push, update } from 'firebase-saga';
 import { Actions } from 'react-native-router-flux';
 import { setGenericPassword } from 'react-native-keychain';
 
 import ReduxActions from '../../Redux/Actions';
 import Types from '../../Redux/Auth/types';
 
-
 export function* watchLoginUser() {
   while (true) {
     const { userType, email, password } = yield take(Types.AUTH_LOGIN_USER);
-
     yield call(handleLoginUser, userType, email, password);
   }
 }
