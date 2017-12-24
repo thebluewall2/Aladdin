@@ -22,7 +22,7 @@ export function* handleGetVendorList(category, subcategory, userAddress) {
             vendorUID,
             name: listOfVendorsFromFirebase.vendors[vendorUID].name,
             coordinates: listOfVendorsFromFirebase.vendors[vendorUID].coordinates,
-            reviewScore: { totalReviews: 0, avgReviews: 0 },
+            reviewScore: null
           });
       });
 
@@ -32,6 +32,11 @@ export function* handleGetVendorList(category, subcategory, userAddress) {
           listOfVendor[count].reviewScore =
             { totalReviews: reviewScoreFromFirebase.totalReviews,
               avgReviews: ((reviewScoreFromFirebase.totalScores / (reviewScoreFromFirebase.totalReviews)))
+            };
+        } else {
+          listOfVendor[count].reviewScore =
+            { totalReviews: 0,
+              avgReviews: 0
             };
         }
       }
