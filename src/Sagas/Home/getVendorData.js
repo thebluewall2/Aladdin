@@ -17,6 +17,7 @@ export function* watchVendorData() {
 export function* handleGetVendorData(vendorUID) {
   try {
    const vendorData = yield call(get, 'Users/vendor/', vendorUID);
+   vendorData.vendorUID = vendorUID;
    if (vendorData === null) {
      throw new Error('Vendor does not exist!');
    }
