@@ -18,10 +18,13 @@ import VendorSelectSubcategories from './Containers/Auth/SignUp/VendorSelectSubc
 import ForgotPassword from './Containers/Auth/ForgotPassword';
 
 import HomePage from './Containers/Home/HomePage';
-import VendorList from './Containers/Home/VendorList';
 import SelectSubcategory from './Containers/Home/SelectSubcategory';
 import SelectAddress from './Containers/Home/SelectAddress';
 import AddNewAddress from './Containers/Home/AddNewAddress';
+import ChooseTimeForService from './Containers/Home/ChooseTimeForService';
+
+import VendorList from './Containers/Home/VendorList';
+import VendorData from './Containers/Home/VendorData';
 
 import Settings from './Containers/Settings/Settings';
 import ChangePassword from './Containers/Settings/ChangePassword';
@@ -85,6 +88,8 @@ const RouterComponent = () => {
           <Scene key="selectAddress" component={SelectAddress} title={'Select address'} />
           <Scene key="addNewAddress" component={AddNewAddress} title={'Add New Address'} />
           <Scene key="vendorList" component={VendorList} />
+          <Scene key="vendorDataPage" component={VendorData} />
+          <Scene key="chooseTime" component={ChooseTimeForService} />
         </Scene>
         <Scene key="requests" title="Request" icon={TabIcon} >
           <Scene key="requestPage" component={LandingPage} />

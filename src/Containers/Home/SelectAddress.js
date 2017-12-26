@@ -98,7 +98,7 @@ class SelectAddress extends React.PureComponent {
 
 const mapStateToProps = (state) => {
   const { address } = state.auth.userData;
-  console.log(state.auth);
+
   return {
     address,
   };
