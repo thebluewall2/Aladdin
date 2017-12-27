@@ -33,9 +33,7 @@ export function* handleCreateOrUpdateTransaction(transactionInfo) {
   try {
       if (transactionInfo.trxCode === 1) {
         yield call(createTransaction, transactionInfo, dateNow);
-      } else if (transactionInfo.trxCode === 2 ||
-                transactionInfo.trxCode === 3 ||
-                  transactionInfo.trxCode === 4) {
+      } else if (transactionInfo.trxCode >= 2) {
         yield call(updateTransaction, transactionInfo, dateNow);
       } else {
         throw new Error('Action is not valid');
@@ -56,6 +54,7 @@ export function* createTransaction(transactionInfo, dateNow) {
     price: transactionInfo.price,
     timeslots: transactionInfo.timeslots,
     confirmedTime: transactionInfo.confirmedTime,
+    orderByDate: -transactionInfo.confirmedTime,
     status: transactionInfo.status,
     createdDate: dateNow,
   })
@@ -69,6 +68,7 @@ export function* createTransaction(transactionInfo, dateNow) {
     price: transactionInfo.price,
     timeslots: transactionInfo.timeslots,
     confirmedTime: transactionInfo.confirmedTime,
+    orderByDate: -transactionInfo.confirmedTime,
     status: transactionInfo.status,
     createdDate: dateNow,
   })
@@ -82,6 +82,7 @@ export function* updateTransaction(transactionInfo, dateNow) {
       trxCode: transactionInfo.trxCode,
       timeslots: transactionInfo.timeslots,
       confirmedTime: transactionInfo.confirmedTime,
+      orderByDate: -transactionInfo.confirmedTime,
       status: transactionInfo.status,
       updatedDate: dateNow,
     });
@@ -92,6 +93,7 @@ export function* updateTransaction(transactionInfo, dateNow) {
        trxCode: transactionInfo.trxCode,
        timeslots: transactionInfo.timeslots,
        confirmedTime: transactionInfo.confirmedTime,
+       orderByDate: -transactionInfo.confirmedTime,
        status: transactionInfo.status,
        updatedDate: dateNow,
       });
