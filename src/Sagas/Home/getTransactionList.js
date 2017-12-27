@@ -14,14 +14,15 @@ export function* watchGetTransactionList() {
 
 export function* handleGetTransactionList(userType, userUID, previousDate) {
   try {
+    let transactionList;
     if (previousDate === null) {
-      yield call(getTransactionList, userType, userUID);
+      transactionList = yield call(getTransactionList, userType, userUID);
     } else {
-      yield call(getAppendedTransactionList, userType, userUID, previousDate);
+      transactionList = yield call(getAppendedTransactionList, userType, userUID, previousDate);
     }
-    ReduxActions.failllllllll(new Error("Error while getting transactions"));
+    ReduxActions.getTransactionListSuccess(transactionList);
   } catch (error) {
-    ReduxActions.failllllllll(new Error("Error while getting transactions"));
+    ReduxActions.getTransactionListFailure(new Error("Error while getting transactions"));
   }
 }
 
@@ -33,6 +34,7 @@ export function getTransactionList(userType, userUID) {
     trx.transactionUID = transaction.key;
     transactionList.push(trx);
   }));
+  return transactionList;
 }
 
 export function getAppendedTransactionList(userType, userUID, previousDate) {
@@ -43,4 +45,5 @@ export function getAppendedTransactionList(userType, userUID, previousDate) {
     trx.transactionUID = transaction.key;
     transactionList.push(trx);
   }));
+  return transactionList;
 }
