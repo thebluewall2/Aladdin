@@ -52,6 +52,7 @@ export function* createTransaction(transactionInfo, dateNow) {
     price: transactionInfo.price,
     timeslots: transactionInfo.timeslots,
     confirmedTime: transactionInfo.confirmedTime,
+    orderByDate: -transactionInfo.confirmedTime,
     status: transactionInfo.status,
     createdDate: dateNow,
   }));
@@ -65,6 +66,7 @@ export function* createTransaction(transactionInfo, dateNow) {
     price: transactionInfo.price,
     timeslots: transactionInfo.timeslots,
     confirmedTime: transactionInfo.confirmedTime,
+    orderByDate: -transactionInfo.confirmedTime,
     status: transactionInfo.status,
     createdDate: dateNow,
   }));
@@ -77,6 +79,7 @@ export function* updateTransaction(transactionInfo, dateNow) {
       trxCode: transactionInfo.trxCode,
       timeslots: transactionInfo.timeslots,
       confirmedTime: transactionInfo.confirmedTime,
+      orderByDate: -transactionInfo.confirmedTime,
       status: transactionInfo.status,
       updatedDate: dateNow,
     });
@@ -87,6 +90,7 @@ export function* updateTransaction(transactionInfo, dateNow) {
        trxCode: transactionInfo.trxCode,
        timeslots: transactionInfo.timeslots,
        confirmedTime: transactionInfo.confirmedTime,
+       orderByDate: -transactionInfo.confirmedTime,
        status: transactionInfo.status,
        updatedDate: dateNow,
       });
