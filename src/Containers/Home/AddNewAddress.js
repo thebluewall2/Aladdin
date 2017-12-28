@@ -43,7 +43,7 @@ class AddNewAddress extends React.PureComponent {
         state,
       };
 
-      this.props.addNewAddress(addressToAdd);
+      this.props.getCoordinatesForAddress(addressToAdd);
 
       Actions.pop();
     }
@@ -139,8 +139,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addNewAddress: (address) =>
-      dispatch(ReduxActions.homeAddNewAddress(address)),
+    getCoordinatesForAddress: (address) =>
+      dispatch(ReduxActions.homeGetCoordinates(address)),
   };
 };
 

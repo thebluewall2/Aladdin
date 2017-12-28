@@ -26,8 +26,8 @@ export default {
     [Types.AUTH_VENDOR_SET_CATEGORIES]: Reducers.setVendorCategories,
     [Types.AUTH_VENDOR_SET_SUBCATEGORIES]: Reducers.setVendorSubcategories,
 
-    [Types.HOME_ADD_NEW_ADDRESS]: Reducers.addNewAddress,
-    
+    [Types.AUTH_ADD_NEW_ADDRESS]: Reducers.addNewAddress,
+
     [Types.AUTH_LOG_OUT]: Reducers.logout,
   })
 };
