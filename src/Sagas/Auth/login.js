@@ -53,7 +53,7 @@ export function cleanResponse(email, uid, userInfo) {
   //in the future, we might we returning array of addresses
   //so convert address to array for now
   const { name, address, city, postcode, state } = userInfo;
-
+  
   return {
     email,
     uid,
@@ -62,7 +62,8 @@ export function cleanResponse(email, uid, userInfo) {
       address,
       postcode,
       state,
-      city
-    }]
+      city,
+      coordinates: userInfo.coordinates
+    }],
   };
 }

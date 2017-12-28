@@ -65,4 +65,8 @@ export default StyleSheet.create({
     width: 330,
     fontFamily: 'Quicksand-light'
   },
+
+  errorTextStyle: {
+    color: 'red',
+  }
 });

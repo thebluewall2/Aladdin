@@ -1,7 +1,6 @@
 const INITIAL_STATE = {
   search: {},
   loading: false,
-  vendorList: [],
   errorMsg: '',
 };
 
@@ -37,7 +36,6 @@ const getVendorListAttempt = (state = INITIAL_STATE) => {
   return { ...state,
     loading: true,
     errorMsg: '',
-    vendorList: [],
   };
 };
 
@@ -45,7 +43,10 @@ const getVendorListSuccess = (state = INITIAL_STATE, action) => {
   return { ...state,
     loading: false,
     errorMsg: '',
-    vendorList: action.vendorList,
+    search: {
+      ...state.search,
+      vendorList: action.vendorList
+    }
   };
 };
 
@@ -60,7 +61,7 @@ const getVendorListFailure = (state = INITIAL_STATE, action) => {
 const getAllServicesAttempt = (state = INITIAL_STATE) => {
   return { ...state,
     loading: true,
-    errorMessage: ''
+    errorMsg: ''
     };
 };
 
@@ -76,7 +77,7 @@ const getAllServicesFailure = (state = INITIAL_STATE, action) => {
   return {
     ...state,
     loading: false,
-    errorMessage: action.error
+    errorMsg: action.error
   };
 };
 
@@ -84,7 +85,7 @@ const getAllServicesFailure = (state = INITIAL_STATE, action) => {
 const getVendorDataAttempt = (state = INITIAL_STATE) => {
   return { ...state,
     loading: true,
-    errorMessage: ''
+    errorMsg: ''
     };
 };
 
@@ -92,7 +93,10 @@ const getVendorDataSuccess = (state = INITIAL_STATE, action) => {
   return {
     ...state,
     loading: false,
-    vendorData: action.vendorData
+    search: {
+      ...state.search,
+      vendorData: action.vendorData
+    }
   };
 };
 
@@ -100,7 +104,7 @@ const getVendorDataFailure = (state = INITIAL_STATE, action) => {
   return {
     ...state,
     loading: false,
-    errorMessage: action.error
+    errorMsg: action.error
   };
 };
 
@@ -108,7 +112,7 @@ const getVendorDataFailure = (state = INITIAL_STATE, action) => {
 const createOrUpdateTransactionAttempt = (state = INITIAL_STATE) => {
   return { ...state,
     loading: true,
-    errorMessage: ''
+    errorMsg: ''
     };
 };
 
@@ -123,7 +127,7 @@ const createOrUpdateTransactionFailure = (state = INITIAL_STATE, action) => {
   return {
     ...state,
     loading: false,
-    errorMessage: action.error
+    errorMsg: action.error
   };
 };
 

@@ -48,8 +48,9 @@ const homeGetAllServicesFailure = (error) => ({
 });
 
 //Get Vendor Data Section
-const homeGetVendorDataAttempt = () => ({
+const homeGetVendorDataAttempt = (vendorID) => ({
   type: Types.HOME_GET_VENDOR_DATA_ATTEMPT,
+  vendorID,
 });
 
 const homeGetVendorDataSuccess = (vendorData) => ({
@@ -63,24 +64,13 @@ const homeGetVendorDataFailure = (error) => ({
 });
 
 //Create or Update Transaction Section
-const homeCreateOrUpdateTransactionAttempt = (trxCode, trxID, vendorUID, customerUID,
-  customerName, price, timeslots, confirmedTime,
-  status) => ({
+const homeCreateOrUpdateTransactionAttempt = (serviceBooking) => ({
   type: Types.HOME_CREATE_OR_UPDATE_TRANSACTION_ATTEMPT,
-  trxCode,
-  trxID,
-  vendorUID,
-  customerUID,
-  customerName,
-  price,
-  timeslots,
-  confirmedTime,
-  status,
+  serviceBooking,
 });
 
-const homeCreateOrUpdateTransactionSuccess = (vendorData) => ({
+const homeCreateOrUpdateTransactionSuccess = () => ({
   type: Types.HOME_CREATE_OR_UPDATE_TRANSACTION_SUCCESS,
-  vendorData
 });
 
 const homeCreateOrUpdateTransactionFailure = (error) => ({

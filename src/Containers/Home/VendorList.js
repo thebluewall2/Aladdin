@@ -1,39 +1,24 @@
 import React, { PureComponent } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 
 import ReduxActions from '../../Redux/Actions';
 
 import { LoadingSpinner } from '../../Components/common';
+import VendorCard from '../../Components/VendorCard';
 
 class VendorList extends PureComponent {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      vendorList: []
-    };
-  }
-
   componentWillMount() {
     const { category, subcategory, userAddress } = this.props;
 
     this.props.getVendorList(category, subcategory, userAddress);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.vendorList !== this.state.vendorList) {
-      this.setState({
-        vendorList: nextProps.vendorList
-      });
-    }
-  }
-
-  _keyExtractor = (item) => item.vendorId;
+  _keyExtractor = (item) => item.vendorUID;
 
   _renderContent = () => {
-    const { loading } = this.props;
+    const { loading, vendorList } = this.props;
 
     if (loading) {
       return (
@@ -43,19 +28,28 @@ class VendorList extends PureComponent {
 
     return (
       <FlatList
-        data={this.state.vendorList}
+        data={vendorList}
         renderItem={this._renderItem}
         keyExtractor={this._keyExtractor}
       />
     );
   }
 
-  _renderItem = (item) => {
-    const { vendorName } = item.item;
+  _renderItem = (vendor) => {
+    const { vendorUID, name, distance } = vendor.item;
 
     return (
-      <Text>{vendorName}</Text>
+      <VendorCard
+        vendorUID={vendorUID}
+        vendorName={name}
+        distance={distance}
+        onPress={(vendorID) => this._handleVendorPressed(vendorID)}
+      />
     );
+  }
+
+  _handleVendorPressed = (vendorID) => {
+    Actions.vendorDataPage({ vendorID });
   }
 
   render() {
@@ -71,12 +65,12 @@ class VendorList extends PureComponent {
 
 const mapStateToProps = ({ home }) => {
   const { search, loading } = home;
-  console.log(search);
+
   return {
     category: search.category.category,
     subcategory: search.subcategory,
     userAddress: search.userAddress,
-    vendorList: home.vendorList,
+    vendorList: search.vendorList,
     loading
   };
 };

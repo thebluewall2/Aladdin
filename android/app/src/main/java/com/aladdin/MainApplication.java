@@ -3,6 +3,7 @@ package com.aladdin;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.toast.RCTToastPackage;
 import com.rnfs.RNFSPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.oblador.keychain.KeychainPackage;
@@ -26,6 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RCTToastPackage(),
             new RNFSPackage(),
             new VectorIconsPackage(),
             new KeychainPackage()
