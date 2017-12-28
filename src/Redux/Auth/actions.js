@@ -83,8 +83,8 @@ const authResetPasswordFail = (error) => ({
   error
 });
 
-const homeAddNewAddress = (address) => ({
-  type: Types.HOME_ADD_NEW_ADDRESS,
+const authAddNewAddress = (address) => ({
+  type: Types.AUTH_ADD_NEW_ADDRESS,
   address
 });
 
@@ -116,7 +116,7 @@ export default {
   authResetPasswordSuccess,
   authResetPasswordFail,
 
-  homeAddNewAddress,
+  authAddNewAddress,
 
   authLogout,
 };

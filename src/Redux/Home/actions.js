@@ -15,6 +15,11 @@ const homeSetSearchAddress = (address) => ({
   address
 });
 
+const homeGetCoordinates = (address) => ({
+  type: Types.HOME_GET_COORDINATES,
+  address
+});
+
 const homeGetVendorListAttempt = (category, subcategory, userAddress) => ({
   type: Types.HOME_GET_VENDOR_LIST_ATTEMPT,
   category,
@@ -83,6 +88,7 @@ export default {
   homeSetSearchCategory,
   homeSetSearchSubcategory,
   homeSetSearchAddress,
+  homeGetCoordinates,
 
   homeGetVendorListAttempt,
   homeGetVendorListSuccess,
@@ -99,5 +105,4 @@ export default {
   homeCreateOrUpdateTransactionAttempt,
   homeCreateOrUpdateTransactionSuccess,
   homeCreateOrUpdateTransactionFailure,
-
 };
