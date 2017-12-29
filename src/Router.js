@@ -1,5 +1,6 @@
 import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
+import { connect } from 'react-redux';
 
 //importing screens
 import LoadingScreen from './Containers/Auth/LoadingScreen';
@@ -32,80 +33,91 @@ import ChangePassword from './Containers/Settings/ChangePassword';
 
 import TabIcon from './Components/TabIcon';
 
-const RouterComponent = () => {
-  return (
-    <Router>
-      <Scene key="auth" initial navigationBarStyle={styles.authNavBarStyle} >
-        <Scene
-          key="loadingPage"
-          component={LoadingScreen}
-          initial
-          hideNavBar
-        />
-        <Scene
-          key="landingPage"
-          component={LandingPage}
-          hideNavBar
-          panHandlers={null}
-        />
-        <Scene
-          key="loginPage"
-          component={LoginPage}
-          hideNavBar={false}
-          titleStyle={styles.titleStyle} title={'E - R E N O'}
-        />
-        <Scene
-          key="customerSignUpPage"
-          component={CustomerSignUpPage}
-          titleStyle={styles.titleStyle} title={'Sign up'}
-        />
-        <Scene
-          key="vendorSignUpPage"
-          component={VendorSignUpPage}
-          titleStyle={styles.titleStyle} title={'Sign up'}
-        />
-        <Scene
-          key="forgotPassword"
-          component={ForgotPassword}
-          titleStyle={styles.titleStyle} title={'Reset password'}
-        />
-        <Scene
-          key="selectCategories"
-          component={VendorSelectCategories}
-          title={'Select categories'}
-        />
-        <Scene
-          key="selectSubcategories"
-          component={VendorSelectSubcategories}
-          title={'Select subcategories'}
-        />
+class RouterComponent extends React.Component {
+  _renderHomeTab = () => {
+    console.log("rendering home");
+    return (
+      <Scene key="homePage" title="Home" icon={TabIcon} >
+        <Scene key="homeTab" component={HomePage} panHandlers={null} hideNavBar />
+        <Scene key="selectSubcategory" component={SelectSubcategory} hideNavBar={false} />
+        <Scene key="selectAddress" component={SelectAddress} title={'Select address'} />
+        <Scene key="addNewAddress" component={AddNewAddress} title={'Add New Address'} />
+        <Scene key="vendorList" component={VendorList} />
+        <Scene key="vendorDataPage" component={VendorData} />
+        <Scene key="chooseTime" component={ChooseTimeForService} />
       </Scene>
+    );
+  };
 
-      <Scene key="home" tabs >
-        <Scene key="homePage" title="Home" icon={TabIcon} >
-          <Scene key="homeTab" component={HomePage} panHandlers={null} hideNavBar enderBackButton={() => (null)} />
-          <Scene key="selectSubcategory" component={SelectSubcategory} hideNavBar={false} />
-          <Scene key="selectAddress" component={SelectAddress} title={'Select address'} />
-          <Scene key="addNewAddress" component={AddNewAddress} title={'Add New Address'} />
-          <Scene key="vendorList" component={VendorList} />
-          <Scene key="vendorDataPage" component={VendorData} />
-          <Scene key="chooseTime" component={ChooseTimeForService} />
-        </Scene>
-        <Scene key="requests" title="Request" icon={TabIcon} >
-          <Scene key="requestPage" component={LandingPage} />
+
+  render() {
+    return (
+      <Router>
+        <Scene key="auth" initial navigationBarStyle={styles.authNavBarStyle} >
+          <Scene
+            key="loadingPage"
+            component={LoadingScreen}
+            initial
+            hideNavBar
+          />
+          <Scene
+            key="landingPage"
+            component={LandingPage}
+            hideNavBar
+            panHandlers={null}
+          />
+          <Scene
+            key="loginPage"
+            component={LoginPage}
+            hideNavBar={false}
+            titleStyle={styles.titleStyle} title={'E - R E N O'}
+          />
+          <Scene
+            key="customerSignUpPage"
+            component={CustomerSignUpPage}
+            titleStyle={styles.titleStyle} title={'Sign up'}
+          />
+          <Scene
+            key="vendorSignUpPage"
+            component={VendorSignUpPage}
+            titleStyle={styles.titleStyle} title={'Sign up'}
+          />
+          <Scene
+            key="forgotPassword"
+            component={ForgotPassword}
+            titleStyle={styles.titleStyle} title={'Reset password'}
+          />
+          <Scene
+            key="selectCategories"
+            component={VendorSelectCategories}
+            title={'Select categories'}
+          />
+          <Scene
+            key="selectSubcategories"
+            component={VendorSelectSubcategories}
+            title={'Select subcategories'}
+          />
         </Scene>
 
-        <Scene key="settings" title="Settings" icon={TabIcon} >
-          <Scene key="settingsPage" component={Settings} renderBackButton={() => (null)} />
-          <Scene key="changePasswordPage" component={ChangePassword} />
-          <Scene key="termsOfUse" component={TermsOfUse} />
-          <Scene key="privacyPolicy" component={PrivacyPolicy} />
-        </Scene>
-      </Scene>
+        <Scene key="home" tabs >
+          {this.props.userType === 'customer' ?
+            this._renderHomeTab() : false}
+          <Scene key="requests" title="Request" icon={TabIcon} >
+            <Scene key="requestPage" component={LandingPage} renderBackButton={() => (null)} />
+          </Scene>
 
-    </Router>
-  );
-};
+          <Scene key="settings" title="Settings" icon={TabIcon} >
+            <Scene key="settingsPage" component={Settings} renderBackButton={() => (null)} />
+            <Scene key="changePasswordPage" component={ChangePassword} />
+            <Scene key="termsOfUse" component={TermsOfUse} />
+            <Scene key="privacyPolicy" component={PrivacyPolicy} />
+          </Scene>
+        </Scene>
+
+      </Router>
+    );
+  }
+}
 
 const styles = {
   authNavBarStyle: {
@@ -116,4 +128,12 @@ const styles = {
   }
 };
 
-export default RouterComponent;
+const mapStateToProps = (state) => {
+  const { userType } = state.auth;
+
+  return {
+    userType,
+  };
+};
+
+export default connect(mapStateToProps)(RouterComponent);

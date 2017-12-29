@@ -69,7 +69,7 @@ class AddNewAddress extends React.PureComponent {
 
   render() {
     return (
-      <View style={{ paddingTop: 70 }}>
+      <View style={styles.addNewAddressContainer}>
         <TextFieldComponent
           label={"Address 1"}
           onChangeText={(text) => {
@@ -122,9 +122,12 @@ class AddNewAddress extends React.PureComponent {
 
         {this._renderErrorMsg()}
 
-        <TouchableOpacity onPress={this._handleSubmit} >
-          <Text>Add address</Text>
-        </TouchableOpacity>
+        <View style={{ paddingTop: 20 }} >
+          <TouchableOpacity style={styles.buttonStyle} onPress={this._handleSubmit} >
+            <Text style={styles.buttonTextStyle}>Add Address</Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
     );
   }
