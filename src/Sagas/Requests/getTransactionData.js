@@ -4,12 +4,12 @@ import firebase from 'firebase';
 import { get } from 'firebase-saga';
 
 import ReduxActions from '../../Redux/Actions';
-import Types from '../../Redux/Home/types';
+import Types from '../../Redux/Requests/types';
 
 
-export function* watchVendorData() {
+export function* watchGetTransactionData() {
   while (true) {
-    const { userType, transactionUID } = yield take(Types.HOME_GET_TRANSACTION_DATA_ATTEMPT);
+    const { userType, transactionUID } = yield take(Types.REQ_GET_TRANSACTION_DATA_ATTEMPT);
       yield call(handleGetTransactionData, userType, transactionUID);
     }
 }

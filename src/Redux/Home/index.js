@@ -23,13 +23,5 @@ export default {
     [Types.HOME_CREATE_OR_UPDATE_TRANSACTION_ATTEMPT]: Reducers.createOrUpdateTransactionAttempt,
     [Types.HOME_CREATE_OR_UPDATE_TRANSACTION_SUCCESS]: Reducers.createOrUpdateTransactionSuccess,
     [Types.HOME_CREATE_OR_UPDATE_TRANSACTION_FAILURE]: Reducers.createOrUpdateTransactionFailure,
-
-    [Types.HOME_GET_TRANSACTION_DATA_ATTEMPT]: Reducers.getTransactionDataAttempt,
-    [Types.HOME_GET_TRANSACTION_DATA_SUCCESS]: Reducers.getTransactionDataSuccess,
-    [Types.HOME_GET_TRANSACTION_DATA_FAILURE]: Reducers.getTransactionDataFailure,
-
-    [Types.HOME_GET_TRANSACTION_LIST_ATTEMPT]: Reducers.getTransactionListAttempt,
-    [Types.HOME_GET_TRANSACTION_LIST_SUCCESS]: Reducers.getTransactionListSuccess,
-    [Types.HOME_GET_TRANSACTION_LIST_FAILURE]: Reducers.getTransactionListFailure,
   })
 };
