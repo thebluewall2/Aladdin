@@ -85,8 +85,10 @@ const homeCreateOrUpdateTransactionFailure = (error) => ({
 
 
 //Get Transaction Data Section
-const homeGetTransactionDataAttempt = () => ({
+const homeGetTransactionDataAttempt = (userType, transactionUID) => ({
   type: Types.HOME_GET_TRANSACTION_DATA_ATTEMPT,
+  userType, 
+  transactionUID,
 });
 
 const homeGetTransactionDataSuccess = (transactionData) => ({
@@ -101,8 +103,11 @@ const homeGetTransactionDataFailure = (error) => ({
 
 
 //Get Transaction List Section
-const homeGetTransactionListAttempt = () => ({
+const homeGetTransactionListAttempt = (userType, userUID, previousConfirmDate) => ({
   type: Types.HOME_GET_TRANSACTION_LIST_ATTEMPT,
+  userType,
+  userUID,
+  previousConfirmDate
 });
 
 const homeGetTransactionListSuccess = (transactionList) => ({

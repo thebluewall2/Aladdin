@@ -169,7 +169,7 @@ const getTransactionListSuccess = (state = INITIAL_STATE, action) => {
   return {
     ...state,
     loading: false,
-    transactionData: action.transactionData
+    listOfTransaction: action.listOfTransaction
   };
 };
 
