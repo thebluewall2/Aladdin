@@ -68,5 +68,51 @@ export default StyleSheet.create({
 
   errorTextStyle: {
     color: 'red',
-  }
+  },
+
+  selectAddressContainerStyle: {
+    flex: 1,
+    justifyContent: 'space-between',
+    paddingTop: 20,
+    paddingLeft: 10,
+    paddingRight: 10
+  },
+
+  selectAddressTitleStyle: {
+    fontFamily: 'quicksand-Regular',
+    fontSize: 20
+  },
+
+  selectAddressSubTitleStyle: {
+    fontFamily: 'quicksand',
+    fontSize: 15
+  },
+
+  buttonContainerStyle: {
+    flex: 1,
+    paddingTop: 140,
+    justifyContent: 'space-between'
+  },
+
+  buttonTextStyle: {
+    color: '#FFFFFF',
+    fontFamily: 'Quicksand-Regular',
+    fontSize: 15
+  },
+  buttonStyle: {
+    backgroundColor: '#37474F',
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 270,
+    borderRadius: 10,
+  },
+
+  addNewAddressContainer: {
+    alignItems: 'center',
+    flexDirection: 'column',
+    paddingTop: 90,
+    flex: 1,
+    paddingBottom: 10,
+  },
 });

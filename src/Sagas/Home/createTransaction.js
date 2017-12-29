@@ -6,36 +6,38 @@ import { push, update } from 'firebase-saga';
 import ReduxActions from '../../Redux/Actions';
 import Types from '../../Redux/Home/types';
 
-import { showToast } from '../../Services/helpers';
-
 
 export function* watchCreateOrUpdateTransaction() {
   while (true) {
     //trxCode: 1=create, 2=update, 3=confirm, 4=reject
-    const { serviceBooking } = yield take(Types.HOME_CREATE_OR_UPDATE_TRANSACTION_ATTEMPT);
+    const { trxCode, trxID, vendorUID, customerUID,
+      customerName, price, timeslots, confirmedTime,
+      status } = yield take(Types.HOME_CREATE_OR_UPDATE_TRANSACTION_ATTEMPT);
 
-      yield call(handleCreateOrUpdateTransaction, serviceBooking);
+      const transactionInfo = {
+                  trxCode,
+                  trxID,
+                  vendorUID,
+                  customerUID,
+                  customerName,
+                  price,
+                  timeslots,
+                  confirmedTime,
+                  status };
+      yield call(handleCreateOrUpdateTransaction, transactionInfo);
     }
 }
 
 export function* handleCreateOrUpdateTransaction(transactionInfo) {
-  const dateNow = firebase.database.ServerValue.TIMESTAMP;
-
+  let dateNow = firebase.database.ServerValue.TIMESTAMP;
   try {
-    switch (transactionInfo.trxCode) {
-      case 1:
+      if (transactionInfo.trxCode === 1) {
         yield call(createTransaction, transactionInfo, dateNow);
-        break;
-      case 2:
-      case 3:
-      case 4:
+      } else if (transactionInfo.trxCode >= 2) {
         yield call(updateTransaction, transactionInfo, dateNow);
-        break;
-      default:
+      } else {
         throw new Error('Action is not valid');
-    }
-
-    showToast('Booking requested!');
+      }
     yield put(ReduxActions.homeCreateOrUpdateTransactionSuccess());
   } catch (error) {
     yield put(ReduxActions.homeCreateOrUpdateTransactionFailure(error));
@@ -55,8 +57,8 @@ export function* createTransaction(transactionInfo, dateNow) {
     orderByDate: -transactionInfo.confirmedTime,
     status: transactionInfo.status,
     createdDate: dateNow,
-  }));
-
+  })
+  );
   //store vendor
   yield call(push, `Users/vendor/${transactionInfo.vendorUID}/transactions/`, () => ({
     trxCode: transactionInfo.trxCode,
@@ -69,7 +71,8 @@ export function* createTransaction(transactionInfo, dateNow) {
     orderByDate: -transactionInfo.confirmedTime,
     status: transactionInfo.status,
     createdDate: dateNow,
-  }));
+  })
+  );
 }
 
 export function* updateTransaction(transactionInfo, dateNow) {

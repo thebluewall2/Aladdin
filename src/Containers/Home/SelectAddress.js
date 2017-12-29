@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
 import ModalDropdown from 'react-native-modal-dropdown';
+import styles from './Styles';
 
 import ReduxActions from '../../Redux/Actions';
 
@@ -42,36 +43,72 @@ class SelectAddress extends React.PureComponent {
     Actions.addNewAddress();
   }
 
+  _showAddressDropdown = () => {
+    this.addressDropdown.show();
+  }
+
   _renderContent = () => {
     const addressToDisplay = this.state.address.map(add => {
       return add.address;
     });
 
     return (
-      <View style={{ paddingLeft: 5 }}>
-        <Text>Please select an address to be serviced</Text>
+      <View style={styles.selectAddressContainerStyle}>
+      <View style={{ flex: 1, paddingBottom: 70 }}>
+        <Text style={styles.selectAddressTitleStyle}>
+          Select Service address {"\n"}
+        </Text>
+
+        <Text style={styles.selectAddressSubTitleStyle}>
+          Please select an address to be serviced
+        </Text>
+        </View>
+
+        <View style={{ flex: 1, justifyContent: 'space-between', paddingTop: 10 }}>
+        <TouchableOpacity style={{ height: 35, width: 350, borderWidth: 0.5 }} onPress={this._showAddressDropdown} >
+          <Text style={styles.buttonTextStyle}>Add New Address</Text>
+        </TouchableOpacity>
+        </View>
 
         <ModalDropdown
+          ref={c => this.addressDropdown = c}
           options={addressToDisplay}
-          style={{ alignSelf: 'center', paddingTop: 15 }}
-          onSelect={(addressIndex) => this._handleAddressSelected(addressIndex)}
+          style={{ paddingTop: 20, padding: 15 }}
+          onSelect={addressIndex => this._handleAddressSelected(addressIndex)}
+          textStyle={{ fontFamily: 'Quicksand-regular', fontSize: 15, justifyContent: 'flex-start' }}
+          dropdownStyle={{ alignSelf: 'center' }}
+          dropdownTextStyle={{ fontFamily: 'Quicksand-regular', fontSize: 12 }}
+          adjustFrame={(options) => this._handleFrameAdjust(options)}
         />
 
-        <TouchableOpacity onPress={this._handleAddNewAddress}>
-          <Text>Add new address</Text>
-        </TouchableOpacity>
+        <View style={styles.buttonContainerStyle}>
+          <TouchableOpacity style={styles.buttonStyle} onPress={this._handleAddNewAddress} >
+            <Text style={styles.buttonTextStyle}>Add New Address</Text>
+          </TouchableOpacity>
+        </View>
 
         {this._renderNextButton()}
       </View>
     );
   }
 
+  _handleFrameAdjust = (options) => {
+    return {
+      ...options,
+      height: 100,
+      width: 300,
+      top: 200,
+      right: 10,
+      left: 10
+    };
+  }
+
   _renderNextButton = () => {
     if (this.state.showNextButton) {
       return (
-        <View style={{ paddingTop: 50 }}>
-          <TouchableOpacity onPress={this.handleOnNext}>
-            <Text>Next</Text>
+        <View style={{ flex: 1, paddingTop: 50, justifyContent: 'space-between' }}>
+          <TouchableOpacity style={styles.buttonStyle} onPress={this.handleOnNext} >
+            <Text style={styles.buttonTextStyle}>Next</Text>
           </TouchableOpacity>
         </View>
       );
