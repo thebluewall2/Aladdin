@@ -13,23 +13,18 @@ export function* watchGetTransactionList() {
 }
 
 export function* handleGetTransactionList(userType, userUID, previousConfirmDate) {
-  console.log(userType);
-  console.log(userUID);
-  console.log(previousConfirmDate);
   try {
     let listOfTransaction;
 
-    if (!previousConfirmDate) {
+    if (previousConfirmDate === undefined) {
       listOfTransaction = yield call(getTransactionList, userType, userUID);
     } else {
       listOfTransaction = yield call(getAppendedTransactionList, userType, userUID, previousConfirmDate);
     }
-
     console.log(listOfTransaction);
     // ReduxActions.getTransactionListSuccess(listOfTransaction);
   } catch (error) {
-    console.log(error);
-    // ReduxActions.getTransactionListFailure(new Error("Error while getting transactions"));
+    ReduxActions.getTransactionListFailure(new Error("Error while getting transactions"));
   }
 }
 
@@ -39,7 +34,6 @@ export function* getTransactionList(userType, userUID) {
   let listOfTransaction = [];
   const transactions =
   yield call([ref.orderByChild(`orderByDate`).limitToFirst(10), ref.once], 'value');
-
   if (transactions.val() === null) {
     return null;
   }
