@@ -132,56 +132,6 @@ const createOrUpdateTransactionFailure = (state = INITIAL_STATE, action) => {
 };
 
 
-//Get Transaction Data Section
-const getTransactionDataAttempt = (state = INITIAL_STATE) => {
-  return { ...state,
-    loading: true,
-    errorMessage: ''
-    };
-};
-
-const getTransactionDataSuccess = (state = INITIAL_STATE, action) => {
-  return {
-    ...state,
-    loading: false,
-    transactionData: action.transactionData
-  };
-};
-
-const getTransactionDataFailure = (state = INITIAL_STATE, action) => {
-  return {
-    ...state,
-    loading: false,
-    errorMessage: action.error
-  };
-};
-
-
-//Get Transaction List Section
-const getTransactionListAttempt = (state = INITIAL_STATE) => {
-  return { ...state,
-    loading: true,
-    errorMessage: ''
-    };
-};
-
-const getTransactionListSuccess = (state = INITIAL_STATE, action) => {
-  return {
-    ...state,
-    loading: false,
-    transactionData: action.transactionData
-  };
-};
-
-const getTransactionListFailure = (state = INITIAL_STATE, action) => {
-  return {
-    ...state,
-    loading: false,
-    errorMessage: action.error
-  };
-};
-
-
 export default {
   INITIAL_STATE,
 
@@ -204,12 +154,4 @@ export default {
   createOrUpdateTransactionAttempt,
   createOrUpdateTransactionSuccess,
   createOrUpdateTransactionFailure,
-
-  getTransactionDataAttempt,
-  getTransactionDataSuccess,
-  getTransactionDataFailure,
-
-  getTransactionListAttempt,
-  getTransactionListSuccess,
-  getTransactionListFailure,
 };

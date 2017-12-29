@@ -3,37 +3,45 @@ import { take, call, put } from 'redux-saga/effects';
 import firebase from 'firebase';
 
 import ReduxActions from '../../Redux/Actions';
-import Types from '../../Redux/Home/types';
+import Types from '../../Redux/Requests/types';
 
 export function* watchGetTransactionList() {
   while (true) {
-    const { userType, userUID, previousConfirmDate } = yield take(Types.HOME_GET_TRANSACTION_LIST_ATTEMPT);
+    const { userType, userUID, previousConfirmDate } = yield take(Types.REQ_GET_TRANSACTION_LIST_ATTEMPT);
     yield call(handleGetTransactionList, userType, userUID, previousConfirmDate);
   }
 }
 
 export function* handleGetTransactionList(userType, userUID, previousConfirmDate) {
+  console.log(userType);
+  console.log(userUID);
+  console.log(previousConfirmDate);
   try {
     let listOfTransaction;
-    if (previousConfirmDate === null) {
+
+    if (!previousConfirmDate) {
       listOfTransaction = yield call(getTransactionList, userType, userUID);
     } else {
       listOfTransaction = yield call(getAppendedTransactionList, userType, userUID, previousConfirmDate);
     }
-    ReduxActions.getTransactionListSuccess(listOfTransaction);
+
+    console.log(listOfTransaction);
+    // ReduxActions.getTransactionListSuccess(listOfTransaction);
   } catch (error) {
-    ReduxActions.getTransactionListFailure(new Error("Error while getting transactions"));
+    console.log(error);
+    // ReduxActions.getTransactionListFailure(new Error("Error while getting transactions"));
   }
 }
 
 export function* getTransactionList(userType, userUID) {
   const ref = firebase.database().ref(`Users/${userType}/${userUID}/transactions`);
+
   let listOfTransaction = [];
   const transactions =
   yield call([ref.orderByChild(`orderByDate`).limitToFirst(10), ref.once], 'value');
 
   if (transactions.val() === null) {
-    throw new Error('No Transactions Found');
+    return null;
   }
 
   Object.keys(transactions.val())
