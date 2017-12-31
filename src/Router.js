@@ -23,6 +23,8 @@ import SelectAddress from './Containers/Home/SelectAddress';
 import AddNewAddress from './Containers/Home/AddNewAddress';
 import ChooseTimeForService from './Containers/Home/ChooseTimeForService';
 
+import RequestsHome from './Containers/Requests/RequestsHome';
+
 import VendorList from './Containers/Home/VendorList';
 import VendorData from './Containers/Home/VendorData';
 
@@ -83,7 +85,7 @@ const RouterComponent = () => {
 
       <Scene key="home" tabs >
         <Scene key="homePage" title="Home" icon={TabIcon} >
-          <Scene key="homeTab" component={HomePage} panHandlers={null} hideNavBar enderBackButton={() => (null)} />
+          <Scene key="homeTab" component={HomePage} panHandlers={null} hideNavBar />
           <Scene key="selectSubcategory" component={SelectSubcategory} hideNavBar={false} />
           <Scene key="selectAddress" component={SelectAddress} title={'Select address'} />
           <Scene key="addNewAddress" component={AddNewAddress} title={'Add New Address'} />
@@ -92,7 +94,7 @@ const RouterComponent = () => {
           <Scene key="chooseTime" component={ChooseTimeForService} />
         </Scene>
         <Scene key="requests" title="Request" icon={TabIcon} >
-          <Scene key="requestPage" component={LandingPage} />
+          <Scene key="requestPage" component={RequestsHome} renderBackButton={() => (null)} />
         </Scene>
 
         <Scene key="settings" title="Settings" icon={TabIcon} >

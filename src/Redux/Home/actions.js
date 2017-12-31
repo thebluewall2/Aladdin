@@ -83,39 +83,6 @@ const homeCreateOrUpdateTransactionFailure = (error) => ({
   error
 });
 
-
-//Get Transaction Data Section
-const homeGetTransactionDataAttempt = () => ({
-  type: Types.HOME_GET_TRANSACTION_DATA_ATTEMPT,
-});
-
-const homeGetTransactionDataSuccess = (transactionData) => ({
-  type: Types.HOME_GET_TRANSACTION_DATA_SUCCESS,
-  transactionData
-});
-
-const homeGetTransactionDataFailure = (error) => ({
-  type: Types.HOME_GET_TRANSACTION_DATA_FAILURE,
-  error
-});
-
-
-//Get Transaction List Section
-const homeGetTransactionListAttempt = () => ({
-  type: Types.HOME_GET_TRANSACTION_LIST_ATTEMPT,
-});
-
-const homeGetTransactionListSuccess = (transactionList) => ({
-  type: Types.HOME_GET_TRANSACTION_LIST_SUCCESS,
-  transactionList
-});
-
-const homeGetTransactionListFailure = (error) => ({
-  type: Types.HOME_GET_TRANSACTION_LIST_FAILURE,
-  error
-});
-
-
 export default {
   homeSetSearchCategory,
   homeSetSearchSubcategory,
@@ -137,13 +104,4 @@ export default {
   homeCreateOrUpdateTransactionAttempt,
   homeCreateOrUpdateTransactionSuccess,
   homeCreateOrUpdateTransactionFailure,
-
-  homeGetTransactionDataAttempt,
-  homeGetTransactionDataSuccess,
-  homeGetTransactionDataFailure,
-
-  homeGetTransactionListAttempt,
-  homeGetTransactionListSuccess,
-  homeGetTransactionListFailure,
-
 };
