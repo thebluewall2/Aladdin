@@ -76,8 +76,8 @@ class SelectAddress extends React.PureComponent {
           style={{ paddingTop: 20, padding: 15 }}
           onSelect={addressIndex => this._handleAddressSelected(addressIndex)}
           textStyle={{ fontFamily: 'Quicksand-regular', fontSize: 15, justifyContent: 'flex-start' }}
-          dropdownStyle={{ alignSelf: 'center' }}
-          dropdownTextStyle={{ fontFamily: 'Quicksand-regular', fontSize: 12 }}
+          dropdownStyle={{ alignSelf: 'center', borderColor: '#000000' }}
+          dropdownTextStyle={{ fontFamily: 'Quicksand-regular', fontSize: 12, color: '#000000' }}
           adjustFrame={(options) => this._handleFrameAdjust(options)}
         />
 
@@ -96,9 +96,9 @@ class SelectAddress extends React.PureComponent {
     return {
       ...options,
       height: 100,
-      width: 300,
-      top: 200,
-      right: 10,
+      width: 350,
+      top: 205,
+      right: 20,
       left: 10
     };
   }

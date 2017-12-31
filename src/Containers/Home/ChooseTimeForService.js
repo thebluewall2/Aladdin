@@ -6,6 +6,7 @@ import { Actions } from 'react-native-router-flux';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 
+import styles from './Styles';
 import ReduxActions from '../../Redux/Actions';
 import { LoadingSpinner } from '../../Components/common';
 
@@ -52,7 +53,7 @@ class ChooseTimeForService extends React.PureComponent {
     if (date) {
       stringToDisplay = moment(date).format("Do MMM YYYY h mm a");
     } else {
-      stringToDisplay = "Select date";
+      stringToDisplay = "Select Date";
     }
 
     return (
@@ -146,18 +147,22 @@ class ChooseTimeForService extends React.PureComponent {
   _renderContent = (dateNumber, number) => {
     return (
       <View>
-        <Text style={{ paddingTop: 10, alignSelf: 'center' }}>Time {number}</Text>
+          <Text style={{ fontFamily: "quicksand-regular", fontSize: 15 }}> Time {number} </Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'stretch' }}>
 
-        <View style={{ flexDirection: 'row', alignSelf: 'center', justifyContent: 'space-between' }}>
-          <TouchableOpacity onPress={() => this._showDatePicker(dateNumber)}>
-            {this._renderDate(dateNumber)}
-          </TouchableOpacity>
+              <View>
+                <TouchableOpacity style={{ backgroundColor: '#002b7a', height: 35, alignItems: 'center', justifyContent: 'center', width: 200, borderRadius: 5 }} onPress={() => this._showDatePicker(dateNumber)} >
+                  <Text style={styles.buttonTextStyle}> {this._renderDate(dateNumber)}</Text>
+                </TouchableOpacity>
+              </View>
 
-          <TouchableOpacity onPress={() => this._onClearDateTime(dateNumber)}>
-            <Text>Clear</Text>
-          </TouchableOpacity>
+              <View>
+                <TouchableOpacity style={{ backgroundColor: '#37474F', height: 35, alignItems: 'center', justifyContent: 'center', width: 140, borderRadius: 5 }} onPress={() => this._onClearDateTime(dateNumber)} >
+                  <Text style={styles.buttonTextStyle}>Clear</Text>
+                </TouchableOpacity>
+              </View>
 
-        </View>
+          </View>
       </View>
     );
   }
@@ -170,21 +175,31 @@ class ChooseTimeForService extends React.PureComponent {
     }
 
     return (
-      <TouchableOpacity onPress={this._handleSubmit}>
-        <Text>Confirm booking</Text>
-      </TouchableOpacity>
+      <View style={{ paddingTop: 30 }}>
+        <TouchableOpacity style={{ backgroundColor: '#228B22', height: 35, alignItems: 'center', justifyContent: 'center', width: 160, borderRadius: 5 }} onPress={this._handleSubmit} >
+          <Text style={styles.buttonTextStyle}>Confirm Booking</Text>
+        </TouchableOpacity>
+      </View>
     );
   }
 
   render() {
     return (
-      <View style={{ paddingTop: 60 }}>
-        <Text>Please choose up to 3 time which would be convenient for the service.</Text>
-        <Text>At least one time must be selected</Text>
+      <View style={{ flex: 1, justifyContent: 'flex-start', paddingTop: 80, padding: 15 }}>
+        <Text style={styles.selectAddressTitleStyle}>
+        Make an Appointment{"\n"}
+        </Text>
+        <Text style={styles.selectAddressSubTitleStyle}>
+        Please choose up to 3 time which would be convenient for the service.
+        </Text>
+          <Text style={{ fontFamily: 'Quicksand-bold', fontSize: 13 }}>
+          At least one time must be selected{"\n"}
+          </Text>
 
         {this._renderContent("date1", 1)}
         {this._renderContent("date2", 2)}
         {this._renderContent("date3", 3)}
+
 
         {this._renderErrorMsg()}
         {this._renderSubmitButton()}

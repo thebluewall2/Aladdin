@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, Text, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
+import styles from './Styles';
 import ReduxActions from '../../Redux/Actions';
 
 import { LoadingSpinner } from '../../Components/common';
@@ -54,10 +55,17 @@ class VendorList extends PureComponent {
 
   render() {
     return (
-      <View style={{ paddingTop: 100, paddingLeft: 15 }}>
-        <View>
-          {this._renderContent()}
-        </View>
+      <View style={styles.vendorListViewContainer}>
+        <View style={styles.vendorListTitleContainer}>
+          <Text style={styles.vendorListTitleStyle}>
+            Nearest Vendors
+          </Text>
+          </View>
+          <ScrollView>
+              <View style={styles.vendorListContentContainer}>
+                {this._renderContent()}
+              </View>
+            </ScrollView>
       </View>
     );
   }

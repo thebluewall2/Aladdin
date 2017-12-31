@@ -24,22 +24,26 @@ const VendorCard = (props) => {
 const styles = {
   cardStyle: {
     borderBottomWidth: 1,
-    borderColor: "#ddd",
+    borderColor: "#002b7a",
     padding: 5,
     justifyContent: "space-between",
     flexDirection: "row",
   },
 
   contentStyle: {
-
+    paddingLeft: 10
   },
 
   nameStyle: {
-    fontSize: 15
+    fontSize: 15,
+    fontFamily: 'Quicksand-bold',
+    paddingBottom: 5
   },
 
   distanceStyle: {
-    fontSize: 12
+    fontSize: 12,
+    fontFamily: 'Quicksand-regular',
+
   }
 };
 

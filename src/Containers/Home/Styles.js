@@ -115,4 +115,47 @@ export default StyleSheet.create({
     flex: 1,
     paddingBottom: 10,
   },
+
+  vendorListViewContainer: {
+    flex: 1
+  },
+
+  vendorListTitleStyle: {
+    fontFamily: 'quicksand-Regular',
+    fontSize: 20,
+    paddingLeft: 10,
+    color: '#FFFFFF'
+  },
+
+  vendorListContentContainer: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    paddingTop: 10
+  },
+
+  vendorListTitleContainer: {
+    backgroundColor: '#002b7a',
+    justifyContent: "flex-start",
+    paddingTop: 80,
+    paddingBottom: 15
+  },
+
+  vendorDataContainerViewStyle: {
+    flex: 1,
+    alignSelf: 'flex-start',
+    justifyContent: 'flex-start',
+    padding: 20,
+    paddingTop: 20
+  },
+
+  vendorDataTitleTextStyle: {
+    fontFamily: 'Quicksand-bold',
+    fontSize: 18,
+    color: "#002b7a"
+  },
+
+  vendorDataContentTextStyle: {
+    fontFamily: 'Quicksand-regular',
+    fontSize: 15
+  }
 });

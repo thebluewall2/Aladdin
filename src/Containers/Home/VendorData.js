@@ -34,17 +34,37 @@ class VendorData extends React.PureComponent {
       const { companyName, address, city, name, officeNo, yearsOfCompany, yearsOfExp } = vendorData;
 
       return (
-        <View style={{ alignSelf: 'center', justifyContent: 'space-between' }}>
-          <Text>{companyName}</Text>
-          <Text>{address}</Text>
-          <Text>{city}</Text>
-          <Text style={{ paddingTop: 10 }}>{name}</Text>
-          <Text>{officeNo}</Text>
-          <Text>Established for {yearsOfCompany} years</Text>
-          <Text>Years of experience: {yearsOfExp}</Text>
-          <TouchableOpacity onPress={this._handleBookNow} >
-            <Text>Book now</Text>
-          </TouchableOpacity>
+        <View style={styles.vendorDataContainerViewStyle}>
+          <Text style={styles.vendorDataTitleTextStyle}>
+            {companyName}{"\n"}
+          </Text>
+          <Text style={styles.vendorDataContentTextStyle}>
+          {address}
+          </Text>
+          <Text style={styles.vendorDataContentTextStyle}>
+          {city}
+          </Text>
+          <Text style={styles.vendorDataTitleTextStyle}>
+          {"\n"}Contact Details{"\n"}
+          </Text>
+          <Text style={styles.vendorDataContentTextStyle}>
+          Contact person: {"\n"}{name}{"\n"}
+          </Text>
+          <Text style={styles.vendorDataContentTextStyle}>
+          Office Number: {"\n"}{officeNo}{"\n"}
+          </Text>
+          <Text style={styles.vendorDataContentTextStyle}>
+          Years of Company Establish: {"\n"}{yearsOfCompany} years{"\n"}
+          </Text>
+          <Text style={styles.vendorDataContentTextStyle}>
+          Years of experience: {"\n"}{yearsOfExp}
+          </Text>
+
+          <View style={{ paddingTop: 20 }}>
+            <TouchableOpacity style={styles.buttonStyle} onPress={this._handleBookNow} >
+              <Text style={styles.buttonTextStyle}>Book Now</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       );
     }
