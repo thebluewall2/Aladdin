@@ -38,26 +38,33 @@ class VendorData extends React.PureComponent {
           <Text style={styles.vendorDataTitleTextStyle}>
             {companyName}{"\n"}
           </Text>
+
           <Text style={styles.vendorDataContentTextStyle}>
-          {address}
+            {address}
           </Text>
+
           <Text style={styles.vendorDataContentTextStyle}>
-          {city}
+            {city}
           </Text>
+
           <Text style={styles.vendorDataTitleTextStyle}>
-          {"\n"}Contact Details{"\n"}
+            {"\n"}Contact Details{"\n"}
           </Text>
+
           <Text style={styles.vendorDataContentTextStyle}>
-          Contact person: {"\n"}{name}{"\n"}
+            Contact person: {"\n"}{name}{"\n"}
           </Text>
+
           <Text style={styles.vendorDataContentTextStyle}>
-          Office Number: {"\n"}{officeNo}{"\n"}
+            Office Number: {"\n"}{officeNo}{"\n"}
           </Text>
+
           <Text style={styles.vendorDataContentTextStyle}>
-          Years of Company Establish: {"\n"}{yearsOfCompany} years{"\n"}
+            Years of Company Establish: {"\n"}{yearsOfCompany} years{"\n"}
           </Text>
+
           <Text style={styles.vendorDataContentTextStyle}>
-          Years of experience: {"\n"}{yearsOfExp}
+            Years of experience: {"\n"}{yearsOfExp}
           </Text>
 
           <View style={{ paddingTop: 20 }}>
