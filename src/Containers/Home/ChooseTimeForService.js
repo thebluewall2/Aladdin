@@ -119,14 +119,26 @@ class ChooseTimeForService extends React.PureComponent {
       });
 
       const timeslot = this._compileTimeSlots();
-      const { vendorUID, customerUID, customerName } = this.props;
+      const {
+        vendorUID,
+        vendorName,
+        customerUID,
+        customerName,
+        selectedAddress,
+        selectedCategory,
+        selectedSubcategory
+      } = this.props;
 
       const serviceBooking = {
         trxCode: 1, //1 for create new trx
         trxID: null, //null means new trx
         vendorUID,
+        vendorName,
         customerUID,
         customerName,
+        selectedAddress,
+        selectedCategory,
+        selectedSubcategory,
         price: 0,
         timeslots: timeslot,
         confirmedTime: null, //no confirmed time yet
@@ -212,13 +224,18 @@ class ChooseTimeForService extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  const { search, loading } = state.home;
+  const { loading, search } = state.home;
+  const { vendorData, category, subcategory } = search;
   const { userData } = state.auth;
 
   return {
-    vendorUID: search.vendorData.vendorUID,
+    vendorUID: vendorData.vendorUID,
+    vendorName: vendorData.name,
     customerUID: userData.uid,
     customerName: userData.fullName,
+    selectedAddress: search.userAddress,
+    selectedCategory: category.category,
+    selectedSubcategory: subcategory.name,
     loading,
   };
 };

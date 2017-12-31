@@ -24,7 +24,7 @@ export function* handleGetTransactionList(userType, userUID, previousConfirmDate
     console.log(listOfTransaction);
     // ReduxActions.getTransactionListSuccess(listOfTransaction);
   } catch (error) {
-    ReduxActions.getTransactionListFailure(new Error("Error while getting transactions"));
+    yield put(ReduxActions.getTransactionListFailure(new Error("Error while getting transactions")));
   }
 }
 
