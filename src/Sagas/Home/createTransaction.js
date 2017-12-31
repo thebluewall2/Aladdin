@@ -16,18 +16,18 @@ export function* watchCreateOrUpdateTransaction() {
   }
 }
 
-export function* handleCreateOrUpdateTransaction(transactionInfo) {
+export function* handleCreateOrUpdateTransaction(serviceBooking) {
   const dateNow = firebase.database.ServerValue.TIMESTAMP;
 
   try {
-    switch (transactionInfo.trxCode) {
+    switch (serviceBooking.trxCode) {
       case 1:
-        yield call(createTransaction, transactionInfo, dateNow);
+        yield call(createTransaction, serviceBooking, dateNow);
         break;
       case 2:
       case 3:
       case 4:
-        yield call(updateTransaction, transactionInfo, dateNow);
+        yield call(updateTransaction, serviceBooking, dateNow);
         break;
       default:
         throw new Error('Action is not valid');
@@ -40,57 +40,65 @@ export function* handleCreateOrUpdateTransaction(transactionInfo) {
   }
 }
 
-export function* createTransaction(transactionInfo, dateNow) {
+export function* createTransaction(serviceBooking, dateNow) {
   //store customer
-  yield call(push, `Users/customer/${transactionInfo.customerUID}/transactions/`, () => ({
-    trxCode: transactionInfo.trxCode,
-    vendorUID: transactionInfo.vendorUID,
-    customerUID: transactionInfo.customerUID,
-    customerName: transactionInfo.customerName,
-    price: transactionInfo.price,
-    timeslots: transactionInfo.timeslots,
-    confirmedTime: transactionInfo.confirmedTime,
-    orderByDate: -transactionInfo.confirmedTime,
-    status: transactionInfo.status,
+  yield call(push, `Users/customer/${serviceBooking.customerUID}/transactions/`, () => ({
+    trxCode: serviceBooking.trxCode,
+    vendorUID: serviceBooking.vendorUID,
+    customerUID: serviceBooking.customerUID,
+    vendorName: serviceBooking.vendorName,
+    customerName: serviceBooking.customerName,
+    selectedAddress: serviceBooking.selectedAddress,
+    selectedCategory: serviceBooking.selectedCategory,
+    selectedSubcategory: serviceBooking.selectedSubcategory,
+    price: serviceBooking.price,
+    timeslots: serviceBooking.timeslots,
+    confirmedTime: serviceBooking.confirmedTime,
+    orderByDate: -serviceBooking.confirmedTime,
+    status: serviceBooking.status,
     createdDate: dateNow,
   })
   );
   //store vendor
-  yield call(push, `Users/vendor/${transactionInfo.vendorUID}/transactions/`, () => ({
-    trxCode: transactionInfo.trxCode,
-    vendorUID: transactionInfo.vendorUID,
-    customerUID: transactionInfo.customerUID,
-    customerName: transactionInfo.customerName,
-    price: transactionInfo.price,
-    timeslots: transactionInfo.timeslots,
-    confirmedTime: transactionInfo.confirmedTime,
-    orderByDate: -transactionInfo.confirmedTime,
-    status: transactionInfo.status,
+  yield call(push, `Users/vendor/${serviceBooking.vendorUID}/transactions/`, () => ({
+    trxCode: serviceBooking.trxCode,
+    vendorUID: serviceBooking.vendorUID,
+    customerUID: serviceBooking.customerUID,
+    vendorName: serviceBooking.vendorName,
+    customerName: serviceBooking.customerName,
+    selectedAddress: serviceBooking.selectedAddress,
+    selectedCategory: serviceBooking.selectedCategory,
+    selectedSubcategory: serviceBooking.selectedSubcategory,
+    price: serviceBooking.price,
+    timeslots: serviceBooking.timeslots,
+    confirmedTime: serviceBooking.confirmedTime,
+    orderByDate: -serviceBooking.confirmedTime,
+    status: serviceBooking.status,
     createdDate: dateNow,
   })
   );
 }
 
-export function* updateTransaction(transactionInfo, dateNow) {
+export function* updateTransaction(serviceBooking, dateNow) {
   //store cutomer
-  yield call(update, `Users/customer/${transactionInfo.trxID}/transactions/`,
-    `${transactionInfo.trxID}`, {
-      trxCode: transactionInfo.trxCode,
-      timeslots: transactionInfo.timeslots,
-      confirmedTime: transactionInfo.confirmedTime,
-      orderByDate: -transactionInfo.confirmedTime,
-      status: transactionInfo.status,
+  yield call(update, `Users/customer/${serviceBooking.trxID}/transactions/`,
+    `${serviceBooking.trxID}`, {
+      trxCode: serviceBooking.trxCode,
+      timeslots: serviceBooking.timeslots,
+      confirmedTime: serviceBooking.confirmedTime,
+      orderByDate: -serviceBooking.confirmedTime,
+      status: serviceBooking.status,
       updatedDate: dateNow,
     });
 
   //store vendor
-   yield call(update, `Users/vendor/${transactionInfo.trxID}/transactions/`,
-     `${transactionInfo.trxID}`, {
-       trxCode: transactionInfo.trxCode,
-       timeslots: transactionInfo.timeslots,
-       confirmedTime: transactionInfo.confirmedTime,
-       orderByDate: -transactionInfo.confirmedTime,
-       status: transactionInfo.status,
+   yield call(update, `Users/vendor/${serviceBooking.trxID}/transactions/`,
+     `${serviceBooking.trxID}`, {
+       trxCode: serviceBooking.trxCode,
+       timeslots: serviceBooking.timeslots,
+       confirmedTime: serviceBooking.confirmedTime,
+       orderByDate: -serviceBooking.confirmedTime,
+       status: serviceBooking.status,
        updatedDate: dateNow,
       });
 }
