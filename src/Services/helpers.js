@@ -2,9 +2,15 @@ import Toast from 'react-native-toast-native';
 
 export function showToast(message) {
   Toast.show(message, Toast.LONG, Toast.BOTTOM, {
-    width: 100,
-    height: 30,
-    backgroundColor: '#4ADDFB',
-    color: 'blue',
+    backgroundColor: "#198c8c",
+    width: 350,
+    height: 60,
+    color: "#ffffff",
+    fontSize: 20,
+    lineHeight: 3,
+    lines: 5,
+    borderRadius: 10,
+    yOffset: 40,
+    fontWeight: 'bold'
   });
 }
