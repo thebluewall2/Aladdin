@@ -80,7 +80,7 @@ class ChooseTimeForService extends React.PureComponent {
     const { errorMsg } = this.state;
 
     if (errorMsg) {
-      return <Text>{errorMsg}</Text>;
+      return <Text style={styles.errorTextStyle}>{errorMsg}</Text>;
     }
 
     return false;
@@ -159,17 +159,16 @@ class ChooseTimeForService extends React.PureComponent {
   _renderContent = (dateNumber, number) => {
     return (
       <View>
-          <Text style={{ fontFamily: "quicksand-regular", fontSize: 15 }}> Time {number} </Text>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'stretch' }}>
-
+          <Text style={styles.timeTitleTextStyle}> Time {number} </Text>
+            <View style={styles.chooseTimeButtonViewContainer}>
               <View>
-                <TouchableOpacity style={{ backgroundColor: '#002b7a', height: 35, alignItems: 'center', justifyContent: 'center', width: 200, borderRadius: 5 }} onPress={() => this._showDatePicker(dateNumber)} >
+                <TouchableOpacity style={styles.chooseTimeButtonStyle} onPress={() => this._showDatePicker(dateNumber)} >
                   <Text style={styles.buttonTextStyle}> {this._renderDate(dateNumber)}</Text>
                 </TouchableOpacity>
               </View>
 
               <View>
-                <TouchableOpacity style={{ backgroundColor: '#37474F', height: 35, alignItems: 'center', justifyContent: 'center', width: 140, borderRadius: 5 }} onPress={() => this._onClearDateTime(dateNumber)} >
+                <TouchableOpacity style={styles.chooseClearButtonStyle} onPress={() => this._onClearDateTime(dateNumber)} >
                   <Text style={styles.buttonTextStyle}>Clear</Text>
                 </TouchableOpacity>
               </View>
@@ -188,7 +187,7 @@ class ChooseTimeForService extends React.PureComponent {
 
     return (
       <View style={{ paddingTop: 30 }}>
-        <TouchableOpacity style={{ backgroundColor: '#228B22', height: 35, alignItems: 'center', justifyContent: 'center', width: 160, borderRadius: 5 }} onPress={this._handleSubmit} >
+        <TouchableOpacity style={styles.chooseConfirmButtonStyle} onPress={this._handleSubmit} >
           <Text style={styles.buttonTextStyle}>Confirm Booking</Text>
         </TouchableOpacity>
       </View>

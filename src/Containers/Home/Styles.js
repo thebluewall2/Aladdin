@@ -68,6 +68,9 @@ export default StyleSheet.create({
 
   errorTextStyle: {
     color: 'red',
+    fontFamily: 'quicksand-bold',
+    fontSize: 15,
+    paddingTop: 10
   },
 
   selectAddressContainerStyle: {
@@ -106,6 +109,33 @@ export default StyleSheet.create({
     justifyContent: 'center',
     width: 270,
     borderRadius: 10,
+  },
+
+  addressNextButtonStyle: {
+    backgroundColor: '#198c8c',
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 270,
+    borderRadius: 10,
+  },
+
+  addressNextButtonContainerStyle: {
+     flex: 1,
+     paddingTop: 50,
+     justifyContent: 'space-between'
+  },
+
+  addressButtonViewContainer: {
+    flex: 1,
+    justifyContent: 'space-between',
+    paddingTop: 10
+  },
+
+  addressDropdownBoxStyle: {
+    height: 35,
+    width: 350,
+    borderWidth: 0.5
   },
 
   addNewAddressContainer: {
@@ -157,5 +187,46 @@ export default StyleSheet.create({
   vendorDataContentTextStyle: {
     fontFamily: 'Quicksand-regular',
     fontSize: 15
-  }
+  },
+
+  timeTitleTextStyle: {
+    fontFamily: "quicksand-regular",
+    fontSize: 15,
+    paddingBottom: 10,
+    paddingTop: 10
+  },
+
+  chooseTimeButtonViewContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'stretch'
+  },
+
+  chooseTimeButtonStyle: {
+    backgroundColor: '#0d1d56',
+    height: 35,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 200,
+    borderRadius: 5
+  },
+
+  chooseClearButtonStyle: {
+    backgroundColor: '#59687d',
+    height: 35,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 140,
+    borderRadius: 5
+  },
+
+  chooseConfirmButtonStyle: {
+    backgroundColor: '#198c8c',
+    height: 35,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 160,
+    borderRadius: 5
+  },
+
 });

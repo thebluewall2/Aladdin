@@ -64,10 +64,10 @@ class SelectAddress extends React.PureComponent {
         </Text>
         </View>
 
-        <View style={{ flex: 1, justifyContent: 'space-between', paddingTop: 10 }}>
-        <TouchableOpacity style={{ height: 35, width: 350, borderWidth: 0.5 }} onPress={this._showAddressDropdown} >
-          <Text style={styles.buttonTextStyle}>Add New Address</Text>
-        </TouchableOpacity>
+        <View style={styles.addressButtonViewContainer}>
+          <TouchableOpacity style={styles.addressDropdownBoxStyle} onPress={this._showAddressDropdown} >
+            <Text style={styles.buttonTextStyle}>Add New Address</Text>
+          </TouchableOpacity>
         </View>
 
         <ModalDropdown
@@ -107,8 +107,8 @@ class SelectAddress extends React.PureComponent {
   _renderNextButton = () => {
     if (this.state.showNextButton) {
       return (
-        <View style={{ flex: 1, paddingTop: 50, justifyContent: 'space-between' }}>
-          <TouchableOpacity style={styles.buttonStyle} onPress={this.handleOnNext} >
+        <View style={styles.addressNextButtonContainerStyle}>
+          <TouchableOpacity style={styles.addressNextButtonStyle} onPress={this.handleOnNext} >
             <Text style={styles.buttonTextStyle}>Next</Text>
           </TouchableOpacity>
         </View>
