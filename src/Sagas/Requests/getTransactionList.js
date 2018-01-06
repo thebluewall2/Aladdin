@@ -15,9 +15,10 @@ export function* watchGetTransactionList() {
 export function* handleGetTransactionList(userType, userUID) {
   try {
     const transactionList = yield call(getTransactionList, userType, userUID);
-    ReduxActions.getTransactionListSuccess(transactionList);
+
+    yield put(ReduxActions.requestsGetTransactionListSuccess(transactionList));
   } catch (error) {
-    yield put(ReduxActions.getTransactionListFailure(new Error("Error while getting transactions")));
+    yield put(ReduxActions.requestsGetTransactionListFailure(new Error("Error while getting transactions")));
   }
 }
 
@@ -25,8 +26,8 @@ export function* getTransactionList(userType, userUID) {
   const ref = firebase.database().ref(`Users/${userType}/${userUID}/transactions`);
 
   let transactionList = [];
-  const transactions =
-  yield call([ref.orderByChild(`orderByDate`).limitToFirst(45), ref.once], 'value');
+  const transactions = yield call([ref.orderByChild(`orderByDate`).limitToFirst(45), ref.once], 'value');
+
   if (transactions.val() === null) {
     return null;
   }
@@ -51,6 +52,7 @@ export function* getTransactionList(userType, userUID) {
           createdDate: transactions.val()[transactionUID].createdDate,
         });
     });
+
     transactionList.sort((a, b) => a.orderByDate - b.orderByDate);
     return transactionList;
 }

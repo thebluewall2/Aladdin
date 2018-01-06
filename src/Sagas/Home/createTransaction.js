@@ -41,6 +41,7 @@ export function* handleCreateOrUpdateTransaction(serviceBooking) {
 }
 
 export function* createTransaction(serviceBooking, dateNow) {
+  console.log(serviceBooking);
   //store customer
   yield call(push, `Users/customer/${serviceBooking.customerUID}/transactions/`, () => ({
     trxCode: serviceBooking.trxCode,
