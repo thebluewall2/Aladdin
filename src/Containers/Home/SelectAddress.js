@@ -85,9 +85,10 @@ class SelectAddress extends React.PureComponent {
           <TouchableOpacity style={styles.buttonStyle} onPress={this._handleAddNewAddress} >
             <Text style={styles.buttonTextStyle}>Add New Address</Text>
           </TouchableOpacity>
-        </View>
 
         {this._renderNextButton()}
+        </View>
+
       </View>
     );
   }

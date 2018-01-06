@@ -17,11 +17,10 @@ const requestsGetTransactionDataFailure = (error) => ({
 
 
 //Get Transaction List Section
-const requestsGetTransactionListAttempt = (userType, userUID, previousConfirmDate) => ({
+const requestsGetTransactionListAttempt = (userType, userUID) => ({
   type: Types.REQ_GET_TRANSACTION_LIST_ATTEMPT,
-  userUID,
   userType,
-  previousConfirmDate
+  userUID,
 });
 
 const requestsGetTransactionListSuccess = (transactionList) => ({

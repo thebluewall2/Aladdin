@@ -5,6 +5,30 @@ const INITIAL_STATE = {
   transactionList: [],
 };
 
+//Get Transaction List Section
+const getTransactionListAttempt = (state = INITIAL_STATE) => {
+  return { ...state,
+    loading: true,
+    errorMessage: ''
+    };
+};
+
+const getTransactionListSuccess = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    loading: false,
+    transactionList: action.transactionList
+  };
+};
+
+const getTransactionListFailure = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    loading: false,
+    errorMessage: action.error
+  };
+};
+
 //Get Transaction Data Section
 const getTransactionDataAttempt = (state = INITIAL_STATE) => {
   return { ...state,
@@ -29,40 +53,14 @@ const getTransactionDataFailure = (state = INITIAL_STATE, action) => {
   };
 };
 
-
-//Get Transaction List Section
-const getTransactionListAttempt = (state = INITIAL_STATE) => {
-  return { ...state,
-    loading: true,
-    errorMessage: ''
-    };
-};
-
-const getTransactionListSuccess = (state = INITIAL_STATE, action) => {
-  return {
-    ...state,
-    loading: false,
-    transactionData: action.transactionData
-  };
-};
-
-const getTransactionListFailure = (state = INITIAL_STATE, action) => {
-  return {
-    ...state,
-    loading: false,
-    errorMessage: action.error
-  };
-};
-
 export default {
   INITIAL_STATE,
-
-
-  getTransactionDataAttempt,
-  getTransactionDataSuccess,
-  getTransactionDataFailure,
 
   getTransactionListAttempt,
   getTransactionListSuccess,
   getTransactionListFailure,
+
+  getTransactionDataAttempt,
+  getTransactionDataSuccess,
+  getTransactionDataFailure,
 };
