@@ -12,17 +12,17 @@ const RequestsCard = (props) => {
 
   return (
     <TouchableOpacity style={styles.cardStyle} onPress={() => onPress(transaction)}>
-      <View style={{ padding: 5, flex: 1 }}>
+      <View style={{ padding: 10, flex: 1 }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', flex: 1 }} >
-          <Text>{nameToDisplay}</Text>
+          <Text style={styles.nameTextStyle}>{nameToDisplay}</Text>
           <Text style={statusStyle}>{status}</Text>
         </View>
 
         <Text style={styles.selectedCategory}>{selectedCategory}</Text>
 
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', flex: 1 }}>
-          <Text>{selectedSubcategory}</Text>
-          <Text>{dateToDisplay}</Text>
+          <Text style={styles.descriptionTextStyle}>{selectedSubcategory}</Text>
+          <Text style={styles.descriptionTextStyle}>{dateToDisplay}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -39,24 +39,45 @@ const styles = {
   },
 
   pendingStatusStyle: {
-    color: 'yellow'
+    color: '#fad049',
+    fontFamily: "quicksand-bold",
+    fontSize: 17,
   },
 
   confirmedStatusStyle: {
-    color: 'blue'
+    color: '#19528c',
+    fontFamily: "quicksand-bold",
+    fontSize: 17,
   },
 
   completedStatusStyle: {
-    color: 'green',
+    color: '#198c8c',
+    fontFamily: "quicksand-bold",
+    fontSize: 17,
   },
 
   rejectedStatusStyle: {
-    color: 'red',
+    color: '#C00000',
+    fontFamily: "quicksand-bold",
+    fontSize: 17,
   },
 
   selectedCategory: {
-    paddingTop: 5
-  }
+    paddingTop: 5,
+    fontFamily: "quicksand",
+    fontSize: 13
+  },
+
+  nameTextStyle: {
+    fontFamily: "quicksand-bold",
+    fontSize: 15
+    },
+
+    descriptionTextStyle: {
+      fontFamily: "quicksand",
+      fontSize: 13,
+      paddingTop: 5
+    }
 };
 
 export default RequestsCard;

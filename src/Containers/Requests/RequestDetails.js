@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import { View, Text } from 'react-native';
 import moment from 'moment';
 
+import styles from './Styles';
+
 class RequestDetails extends PureComponent {
   render() {
     const { transaction } = this.props.navigationState;
@@ -29,24 +31,25 @@ class RequestDetails extends PureComponent {
 
     console.log(transaction);
     return (
-      <View style={{ paddingTop: 70 }}>
-        <Text>Status: {status}</Text>
-        <Text>Date created: {dateToDisplay}</Text>
+      <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-around", paddingTop: 70 }}>
+          <Text style={styles.orderDetailsTitleTextStyle}>Status: {status}</Text>
+          <Text style={styles.orderDetailsTitleTextStyle}>{nameToDisplay}</Text>
+        </View>
 
-        <Text style={{ paddingTop: 10 }}>{nameToDisplay}</Text>
+      <View style={styles.orderDetailsContainerViewStyle}>
+        <Text style={styles.orderSectionTextStyle}>Order Details:</Text>
+        <Text style={styles.orderContentTextStyle}>{selectedCategory} {"- "}{selectedSubcategory}</Text>
 
-        <Text style={{ paddingTop: 10 }}>Service category: {selectedCategory}</Text>
-        <Text>Service subcategory: {selectedSubcategory}</Text>
+        <Text style={styles.orderSectionTextStyle}>Service address</Text>
+        <Text style={styles.orderContentTextStyle}>{selectedAddress.address}</Text>
+        <Text style={styles.orderContentTextStyle}>{selectedAddress.city}</Text>
 
-        <Text style={{ paddingTop: 10 }}>Service address</Text>
-        <Text>{selectedAddress.address}</Text>
-        <Text>{selectedAddress.city}</Text>
-
-        <Text style={{ paddingTop: 10 }}>Dates suggested</Text>
+        <Text style={styles.orderSectionTextStyle}>Dates suggested</Text>
         {timeslots.map(time => (
-          <Text key={time}>{moment(time).format('lll')}</Text>
+          <Text style={styles.orderContentTextStyle} key={time}>{moment(time).format('lll')}</Text>
         ))}
-
+        </View>
       </View>
     );
   }
