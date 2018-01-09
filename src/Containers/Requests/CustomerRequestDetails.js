@@ -4,10 +4,33 @@ import moment from 'moment';
 
 import styles from './Styles';
 
-class RequestDetails extends PureComponent {
+class CustomerRequestDetails extends PureComponent {
+  _renderSuggestedDates = () => {
+    const { timeslots } = this.props.navigationState.transaction;
+
+    return (
+      <View>
+        <Text style={styles.orderSectionTextStyle}>Dates suggested</Text>
+          {timeslots.map(time => (
+            <Text style={styles.orderContentTextStyle} key={time}>{moment(time).format('lll')}</Text>
+          ))}
+      </View>
+    );
+  }
+
+  _renderConfirmedDate = (time) => {
+    const dateToDisplay = moment(time).format('lll');
+
+    return (
+      <View>
+        <Text style={styles.orderSectionTextStyle}>Confirmed date</Text>
+        <Text style={styles.orderContentTextStyle}>{dateToDisplay}</Text>
+      </View>
+    );
+  }
+
   render() {
     const { transaction } = this.props.navigationState;
-    const { userType } = this.props;
 
     const {
       selectedCategory,
@@ -15,21 +38,13 @@ class RequestDetails extends PureComponent {
       selectedAddress,
       status,
       createdDate,
-      timeslots,
+      confirmedTime,
       vendorName,
-      customerName,
     } = transaction;
 
-    let nameToDisplay = '';
+    const nameToDisplay = `Vendor name: ${vendorName}`;
     const dateToDisplay = moment(createdDate).format('lll');
 
-    if (userType === 'customer') {
-      nameToDisplay = `Vendor name: ${vendorName}`;
-    } else {
-      nameToDisplay = `Customer name: ${customerName}`;
-    }
-
-    console.log(transaction);
     return (
       <View style={{ flex: 1 }}>
         <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-around", paddingTop: 70 }}>
@@ -45,14 +60,12 @@ class RequestDetails extends PureComponent {
         <Text style={styles.orderContentTextStyle}>{selectedAddress.address}</Text>
         <Text style={styles.orderContentTextStyle}>{selectedAddress.city}</Text>
 
-        <Text style={styles.orderSectionTextStyle}>Dates suggested</Text>
-        {timeslots.map(time => (
-          <Text style={styles.orderContentTextStyle} key={time}>{moment(time).format('lll')}</Text>
-        ))}
+        {confirmedTime ? this._renderConfirmedDate(confirmedTime) : this._renderSuggestedDates()}
+
         </View>
       </View>
     );
   }
 }
 
-export default RequestDetails;
+export default CustomerRequestDetails;

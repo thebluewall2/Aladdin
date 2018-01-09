@@ -24,7 +24,9 @@ import AddNewAddress from './Containers/Home/AddNewAddress';
 import ChooseTimeForService from './Containers/Home/ChooseTimeForService';
 
 import RequestsHome from './Containers/Requests/RequestsHome';
-import RequestDetails from './Containers/Requests/RequestDetails';
+import CustomerRequestDetails from './Containers/Requests/CustomerRequestDetails';
+import VendorRequestDetails from './Containers/Requests/VendorRequestDetails';
+import VendorSelectTime from './Containers/Requests/VendorSelectTime';
 
 import VendorList from './Containers/Home/VendorList';
 import VendorData from './Containers/Home/VendorData';
@@ -96,7 +98,9 @@ const RouterComponent = () => {
         </Scene>
         <Scene key="requests" title="Request" icon={TabIcon} >
           <Scene key="requestPage" component={RequestsHome} renderBackButton={() => (null)} />
-          <Scene key="requestDetails" component={RequestDetails} />
+          <Scene key="customerRequestDetails" component={CustomerRequestDetails} />
+          <Scene key="vendorRequestDetails" component={VendorRequestDetails} />
+          <Scene key="vendorSelectTime" component={VendorSelectTime} />
         </Scene>
 
         <Scene key="settings" title="Settings" icon={TabIcon} >
