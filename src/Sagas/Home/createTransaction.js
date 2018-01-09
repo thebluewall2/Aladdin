@@ -39,7 +39,7 @@ export function* handleCreateOrUpdateTransaction(serviceBooking) {
 
 export function* createTransaction(serviceBooking, dateNow) {
   //store customer
-  let ref = firebase.database().ref(`Users/customer/${serviceBooking.customerUID}/`);
+  let ref = firebase.database().ref(`Users/customer/${serviceBooking.customerUID}/transactions/`);
   const transactionUID = yield call(createTransactionForCustomer, ref, serviceBooking, dateNow);
 
   //store vendor
@@ -50,8 +50,7 @@ export function* createTransaction(serviceBooking, dateNow) {
 }
 
 export function createTransactionForCustomer(ref, serviceBooking, dateNow) {
-  const transactionRef = ref.child("transactions");
-  const customerTransactionRef = transactionRef.push();
+  const customerTransactionRef = ref.push();
   customerTransactionRef.set({
     ...serviceBooking,
     createdDate: dateNow,
