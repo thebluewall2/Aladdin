@@ -31,7 +31,6 @@ export function* handleCreateOrUpdateTransaction(serviceBooking) {
       default:
         throw new Error('Action is not valid');
     }
-
     yield put(ReduxActions.homeCreateOrUpdateTransactionSuccess());
   } catch (error) {
     yield put(ReduxActions.homeCreateOrUpdateTransactionFailure(error));
@@ -40,42 +39,32 @@ export function* handleCreateOrUpdateTransaction(serviceBooking) {
 
 export function* createTransaction(serviceBooking, dateNow) {
   //store customer
-  yield call(push, `Users/customer/${serviceBooking.customerUID}/transactions/`, () => ({
-    trxCode: serviceBooking.trxCode,
-    vendorUID: serviceBooking.vendorUID,
-    customerUID: serviceBooking.customerUID,
-    vendorName: serviceBooking.vendorName,
-    customerName: serviceBooking.customerName,
-    selectedAddress: serviceBooking.selectedAddress,
-    selectedCategory: serviceBooking.selectedCategory,
-    selectedSubcategory: serviceBooking.selectedSubcategory,
-    price: serviceBooking.price,
-    timeslots: serviceBooking.timeslots,
-    confirmedTime: serviceBooking.confirmedTime,
-    orderByDate: -serviceBooking.confirmedTime,
-    status: serviceBooking.status,
-    createdDate: dateNow,
-  }));
+  let ref = firebase.database().ref(`Users/customer/${serviceBooking.customerUID}/`);
+  const transactionUID = yield call(createTransactionForCustomer, ref, serviceBooking, dateNow);
 
   //store vendor
-  yield call(push, `Users/vendor/${serviceBooking.vendorUID}/transactions/`, () => ({
-    trxCode: serviceBooking.trxCode,
-    vendorUID: serviceBooking.vendorUID,
-    customerUID: serviceBooking.customerUID,
-    vendorName: serviceBooking.vendorName,
-    customerName: serviceBooking.customerName,
-    selectedAddress: serviceBooking.selectedAddress,
-    selectedCategory: serviceBooking.selectedCategory,
-    selectedSubcategory: serviceBooking.selectedSubcategory,
-    price: serviceBooking.price,
-    timeslots: serviceBooking.timeslots,
-    confirmedTime: serviceBooking.confirmedTime,
-    orderByDate: -serviceBooking.confirmedTime,
-    status: serviceBooking.status,
-    createdDate: dateNow,
-  }));
+  ref = firebase.database().ref(`Users/vendor/${serviceBooking.vendorUID}/transactions/`);
+  yield call(createTransactionForVendor, ref, serviceBooking, dateNow, transactionUID);
 
   showToast('Booking requested!');
+}
+
+export function createTransactionForCustomer(ref, serviceBooking, dateNow) {
+  const transactionRef = ref.child("transactions");
+  const customerTransactionRef = transactionRef.push();
+  customerTransactionRef.set({
+    ...serviceBooking,
+    createdDate: dateNow,
+  });
+
+  return customerTransactionRef.key;
+}
+
+export function createTransactionForVendor(ref, serviceBooking, dateNow, transactionUID) {
+  ref.child(`${transactionUID}`).set({
+      ...serviceBooking,
+      createdDate: dateNow,
+  });
 }
 
 export function* updateTransaction(serviceBooking, dateNow) {
