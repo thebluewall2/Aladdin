@@ -1,8 +1,11 @@
 import React, { PureComponent } from 'react';
-import { View, Text } from 'react-native';
+import { FlatList } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 
 import ReduxActions from '../../Redux/Actions';
+import { LoadingSpinner } from '../../Components/common';
+import RequestsCard from '../../Components/RequestsCard';
 
 class RequestsHome extends PureComponent {
   componentWillMount() {
@@ -11,28 +14,62 @@ class RequestsHome extends PureComponent {
     this.props.getTransactionList(userType, userUID);
   }
 
-  render() {
+  _keyExtractor = (item) => item.transactionUID;
+
+  _handleCardPress = (transaction) => {
+    const { userType } = this.props;
+
+    if (userType === 'customer') {
+      Actions.customerRequestDetails({ transaction });
+    } else {
+      Actions.vendorRequestDetails({ transaction });
+    }
+  }
+
+  _renderItem = (flatListItem) => {
     return (
-      <View style={{ paddingTop: 70 }}>
-        <Text>INCOMPLETE PAGE</Text>
-      </View>
+      <RequestsCard
+        transaction={flatListItem.item}
+        userType={this.props.userType}
+        onPress={this._handleCardPress}
+      />
+    );
+  }
+
+  render() {
+    const { loading, transactionList } = this.props;
+
+    if (loading) {
+      return <LoadingSpinner />;
+    }
+
+    return (
+      <FlatList
+        data={transactionList}
+        keyExtractor={this._keyExtractor}
+        renderItem={this._renderItem}
+        style={{ paddingTop: 70 }}
+      />
     );
   }
 }
 
 const mapStateToProps = (state) => {
+  const { transactionList, loading } = state.requests;
   const { userData, userType } = state.auth;
 
   return {
     userType,
     userUID: userData.uid,
+    transactionList,
+    loading
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getTransactionList: (userType, userUID, previousConfirmDate) =>
-      dispatch(ReduxActions.requestsGetTransactionListAttempt(userType, userUID, previousConfirmDate)),
+    getTransactionList: (userType, userUID) =>
+      dispatch(ReduxActions.requestsGetTransactionListAttempt(userType, userUID)),
   };
 };
 

@@ -92,15 +92,15 @@ class ChooseTimeForService extends React.PureComponent {
     let timeslot = [];
 
     if (date1) {
-      timeslot = timeslot.concat(moment(date1).format("x"));
+      timeslot = timeslot.concat(parseInt(moment(date1).format("x"), 10));
     }
 
     if (date2) {
-      timeslot = timeslot.concat(moment(date2).format("x"));
+      timeslot = timeslot.concat(parseInt(moment(date2).format("x"), 10));
     }
 
     if (date3) {
-      timeslot = timeslot.concat(moment(date3).format("x"));
+      timeslot = timeslot.concat(parseInt(moment(date3).format("x"), 10));
     }
 
     return timeslot;

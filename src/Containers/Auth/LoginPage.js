@@ -56,11 +56,11 @@ class UserLoginPage extends Component {
       <View style={styles.loginPageMainContainer}>
         <Image
           source={require('../../../assets/pictures/ERenoLogo.png')}
-          style={styles.buttonImage}
+          style={styles.iconStyle}
         />
 
         <Text style={styles.quicksandTextSlogan}>
-          Find the best service here in Aladdin
+          Find the best service here in e Reno
         </Text>
 
         <TextFieldComponent
@@ -79,7 +79,6 @@ class UserLoginPage extends Component {
           value={this.props.password}
         />
 
-        {/**LOUISA: error message goes here**/}
         {this.props.errorMessage !== "" ? (
           <View>
             <Text style={styles.errorMessageStyle}>{this.props.errorMessage.message}</Text>

@@ -36,15 +36,15 @@ export default StyleSheet.create({
   },
 
   quicksandTextSlogan: {
-    paddingTop: 20,
-    paddingBottom: 25,
+    paddingTop: 15,
+    paddingBottom: 20,
     fontFamily: 'Quicksand',
-    fontSize: 13,
+    fontSize: 15,
     color: '#47525E'
   },
   quicksandTextDescription: {
-    paddingTop: 20,
-    paddingBottom: 25,
+    paddingTop: 15,
+    // paddingBottom: 25,
     fontFamily: 'Quicksand',
     fontSize: 15,
     color: '#47525E',
@@ -204,8 +204,9 @@ export default StyleSheet.create({
   },
 
   iconStyle: {
-    width: 100,
-    height: 100,
+    width: 250,
+    height: 120,
+    paddingTop: 20
   }
 
 });
