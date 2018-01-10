@@ -25,11 +25,24 @@ class ChooseTimeForService extends React.PureComponent {
   }
 
   _handleDatePicked = (dateNumber, date) => {
-    this.setState({
-      [dateNumber]: date
-    });
+    const { date1, date2, date3 } = this.state;
+
+    if (date1 === date || date2 === date || date3 === date) {
+      this._setErrorMsg("Cannot pick same date");
+    } else {
+      this.setState({
+        [dateNumber]: date,
+        errorMsg: ''
+      });
+    }
 
     this._hideDatePicker();
+  }
+
+  _setErrorMsg = (errorMsg) => {
+    this.setState({
+      errorMsg
+    });
   }
 
   _showDatePicker = (dateNumber) => {
