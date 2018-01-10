@@ -31,6 +31,7 @@ export function* handleCreateOrUpdateTransaction(serviceBooking) {
       default:
         throw new Error('Action is not valid');
     }
+
     yield put(ReduxActions.homeCreateOrUpdateTransactionSuccess());
   } catch (error) {
     yield put(ReduxActions.homeCreateOrUpdateTransactionFailure(error));
@@ -67,8 +68,7 @@ export function createTransactionForVendor(ref, serviceBooking, dateNow, transac
 }
 
 export function* updateTransaction(serviceBooking, dateNow) {
-  console.log(serviceBooking);
-  //store customer
+  // store customer
   yield call(update, `Users/customer/${serviceBooking.customerUID}/transactions/`,
     `${serviceBooking.transactionUID}`, {
       ...serviceBooking,
@@ -84,5 +84,7 @@ export function* updateTransaction(serviceBooking, dateNow) {
 
     showToast("Status updated!");
 
-    Actions.pop({ popNum: 2 });
+    Actions.requests();
+
+    // Actions.pop({ popNum: 2, refresh: {} });
 }

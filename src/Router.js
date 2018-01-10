@@ -51,7 +51,6 @@ const RouterComponent = () => {
           key="landingPage"
           component={LandingPage}
           hideNavBar
-          panHandlers={null}
         />
         <Scene
           key="loginPage"
@@ -88,7 +87,7 @@ const RouterComponent = () => {
 
       <Scene key="home" tabs >
         <Scene key="homePage" title="Home" icon={TabIcon} >
-          <Scene key="homeTab" component={HomePage} panHandlers={null} hideNavBar />
+          <Scene key="homeTab" component={HomePage} hideNavBar />
           <Scene key="selectSubcategory" component={SelectSubcategory} hideNavBar={false} />
           <Scene key="selectAddress" component={SelectAddress} title={'Select address'} />
           <Scene key="addNewAddress" component={AddNewAddress} title={'Add New Address'} />

@@ -30,7 +30,7 @@ export function* handleLoginUser(userType, email, password) {
     yield put(ReduxActions.authUserLoginSuccess(response));
     yield put(ReduxActions.authAppStartUp(false));
 
-    Actions.home();
+    Actions.home({ type: 'replace' });
   } catch (error) {
     if (error.code === 'auth/user-not-found') {
       error.message = "User Not Found";
@@ -53,7 +53,7 @@ export function cleanResponse(email, uid, userInfo) {
   //in the future, we might we returning array of addresses
   //so convert address to array for now
   const { name, address, city, postcode, state } = userInfo;
-  
+
   return {
     email,
     uid,

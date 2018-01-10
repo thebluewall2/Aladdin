@@ -16,7 +16,9 @@ class VendorRequestDetails extends PureComponent {
       <View>
         <Text style={styles.orderSectionTextStyle}>Dates suggested</Text>
           {timeslots.map(time => (
-            <Text style={styles.orderContentTextStyle} key={time}>{moment(time).format('lll')}</Text>
+            <Text style={styles.orderContentTextStyle} key={time}>
+              {moment(time).format('lll')}
+            </Text>
           ))}
       </View>
     );
