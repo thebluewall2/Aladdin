@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
@@ -44,12 +44,13 @@ class RequestsHome extends PureComponent {
     }
 
     return (
-      <FlatList
-        data={transactionList}
-        keyExtractor={this._keyExtractor}
-        renderItem={this._renderItem}
-        style={{ paddingTop: 70 }}
-      />
+      <View style={{ paddingTop: 70, paddingBottom: 50 }}>
+        <FlatList
+          data={transactionList}
+          keyExtractor={this._keyExtractor}
+          renderItem={this._renderItem}
+        />
+      </View>
     );
   }
 }
