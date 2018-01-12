@@ -65,6 +65,14 @@ class VendorRequestDetails extends PureComponent {
     this.props.cancelRequest(transactionToUpdate);
   }
 
+  _renderQRScanner = () => {
+    return (
+      <TouchableOpacity onPress={() => Actions.qrScannerPage()}>
+        <Text>Complete service request</Text>
+      </TouchableOpacity>
+    );
+  }
+
   render() {
     const { transaction } = this.props.navigationState;
 
@@ -99,6 +107,8 @@ class VendorRequestDetails extends PureComponent {
           {confirmedTime ? this._renderConfirmedDate(confirmedTime) : this._renderSuggestedDates()}
 
           {status === 'Pending' && this._renderVendorResponse()}
+          {this._renderQRScanner()}
+          {/*{status === 'Confirmed' && this._renderQRScanner()}*/}
         </View>
 
       </View>
