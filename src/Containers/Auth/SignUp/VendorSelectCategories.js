@@ -33,7 +33,7 @@ class VendorSelectCategories extends Component {
 
     return (
       <View style={{ flexGrow: 1 }}>
-        <ScrollView style={{ paddingTop: 10 }}>
+        <ScrollView style={{ paddingTop: 70 }}>
           <CustomMultiPicker
             options={categories}
             search
@@ -42,7 +42,7 @@ class VendorSelectCategories extends Component {
             callback={(result) => this.setState({ selectedCategories: result })}
             placeholder={"Search"}
             placeholderTextColor={'#47525E'}
-            iconColor={"#00BCD4"}
+            iconColor={"#589fd6"}
             rowBackgroundColor={"#EEEEEE"}
             iconSize={20}
             rowHeight={50}

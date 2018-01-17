@@ -1,11 +1,13 @@
 import React, { PureComponent } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
 import ReduxActions from '../../Redux/Actions';
 import { LoadingSpinner } from '../../Components/common';
 import RequestsCard from '../../Components/RequestsCard';
+
+import styles from './Styles';
 
 class RequestsHome extends PureComponent {
   componentWillMount() {
@@ -44,12 +46,16 @@ class RequestsHome extends PureComponent {
     }
 
     return (
-      <FlatList
-        data={transactionList}
-        keyExtractor={this._keyExtractor}
-        renderItem={this._renderItem}
-        style={{ paddingTop: 70 }}
-      />
+      <View style={styles.requestHomeContainerViewStyle}>
+        <ScrollView>
+          <FlatList
+            data={transactionList}
+            keyExtractor={this._keyExtractor}
+            renderItem={this._renderItem}
+            style={{ paddingTop: 70 }}
+          />
+        </ScrollView>
+      </View>
     );
   }
 }
