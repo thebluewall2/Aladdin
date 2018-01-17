@@ -1,6 +1,12 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+
+  requestHomeContainerViewStyle: {
+    flex: 1,
+    paddingBottom: 50
+  },
+  
   orderDetailsContainerViewStyle: {
     flex: 20,
     padding: 20,

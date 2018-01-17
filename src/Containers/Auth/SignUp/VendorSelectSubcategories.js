@@ -72,7 +72,7 @@ class VendorSelectCategories extends Component {
           callback={(result) => this._handleSelectSubcategories(category, thisSubcategory, result)}
           placeholder={"Search"}
           placeholderTextColor={'#47525E'}
-          iconColor={"#00BCD4"}
+          iconColor={"#589fd6"}
           rowBackgroundColor={"#EEEEEE"}
           iconSize={20}
           rowHeight={50}

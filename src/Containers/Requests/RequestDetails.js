@@ -31,13 +31,10 @@ class RequestDetails extends PureComponent {
 
     console.log(transaction);
     return (
-      <View style={{ flex: 1 }}>
-        <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-around", paddingTop: 70 }}>
+        <View style={{ flex: 1, paddingTop: 70, padding: 15 }}>
           <Text style={styles.orderDetailsTitleTextStyle}>Status: {status}</Text>
-          <Text style={styles.orderDetailsTitleTextStyle}>{nameToDisplay}</Text>
-        </View>
+          <Text style={styles.orderSectionTextStyle}>{nameToDisplay}</Text>
 
-      <View style={styles.orderDetailsContainerViewStyle}>
         <Text style={styles.orderSectionTextStyle}>Order Details:</Text>
         <Text style={styles.orderContentTextStyle}>{selectedCategory} {"- "}{selectedSubcategory}</Text>
 
@@ -49,7 +46,6 @@ class RequestDetails extends PureComponent {
         {timeslots.map(time => (
           <Text style={styles.orderContentTextStyle} key={time}>{moment(time).format('lll')}</Text>
         ))}
-        </View>
       </View>
     );
   }
