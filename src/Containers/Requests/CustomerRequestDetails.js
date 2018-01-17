@@ -52,6 +52,12 @@ class CustomerRequestDetails extends PureComponent {
     );
   }
 
+  _renderCompletedRequest = () => {
+    return (
+      <Text>Service request completed</Text>
+    );
+  }
+
   render() {
     const { transaction } = this.props.navigationState;
 
@@ -87,9 +93,10 @@ class CustomerRequestDetails extends PureComponent {
         {confirmedTime ? this._renderConfirmedDate(confirmedTime) : this._renderSuggestedDates()}
 
         {status === 'Awaiting payment' && this._renderMakePayment()}
-        {this._renderShowQR(transactionUID)}
 
-        {/*{status === 'Confirmed' && this._renderShowQR(transactionUID)}*/}
+        {status === 'Confirmed' && this._renderShowQR(transactionUID)}
+
+        {status === 'Completed' && this._renderCompletedRequest()}
 
         </View>
       </View>
