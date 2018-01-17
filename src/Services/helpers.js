@@ -14,3 +14,18 @@ export function showToast(message) {
     fontWeight: 'bold'
   });
 }
+
+export function showErrorToast(message) {
+  Toast.show(message, Toast.LONG, Toast.BOTTOM, {
+    backgroundColor: "white",
+    color: "red",
+    width: 350,
+    height: 60,
+    fontSize: 20,
+    lineHeight: 3,
+    lines: 5,
+    borderRadius: 10,
+    yOffset: 40,
+    fontWeight: 'bold'
+  });
+}

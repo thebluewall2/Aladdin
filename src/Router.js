@@ -25,8 +25,10 @@ import ChooseTimeForService from './Containers/Home/ChooseTimeForService';
 
 import RequestsHome from './Containers/Requests/RequestsHome';
 import CustomerRequestDetails from './Containers/Requests/CustomerRequestDetails';
+import QRCodePage from './Containers/Requests/QRCodePage';
 import VendorRequestDetails from './Containers/Requests/VendorRequestDetails';
 import VendorSelectTime from './Containers/Requests/VendorSelectTime';
+import QRScanner from './Containers/Requests/QRScanner';
 
 import VendorList from './Containers/Home/VendorList';
 import VendorData from './Containers/Home/VendorData';
@@ -98,8 +100,10 @@ const RouterComponent = () => {
         <Scene key="requests" title="Request" icon={TabIcon} >
           <Scene key="requestPage" component={RequestsHome} renderBackButton={() => (null)} />
           <Scene key="customerRequestDetails" component={CustomerRequestDetails} />
+          <Scene key="qrCodePage" component={QRCodePage} />
           <Scene key="vendorRequestDetails" component={VendorRequestDetails} />
           <Scene key="vendorSelectTime" component={VendorSelectTime} />
+          <Scene key="qrScannerPage" component={QRScanner} />
         </Scene>
 
         <Scene key="settings" title="Settings" icon={TabIcon} >

@@ -64,7 +64,23 @@ class VendorRequestDetails extends PureComponent {
       vendorUID: transaction.vendorUID
     };
 
-    this.props.cancelRequest(transactionToUpdate);
+      this.props.cancelRequest(transactionToUpdate);
+  }
+
+  _renderQRScanner = () => {
+    const { transaction } = this.props.navigationState;
+
+    return (
+      <TouchableOpacity onPress={() => Actions.qrScannerPage(transaction)}>
+        <Text>Complete service request</Text>
+      </TouchableOpacity>
+    );
+  }
+
+  _renderCompletedRequest = () => {
+    return (
+      <Text>Service request completed</Text>
+    );
   }
 
   render() {
@@ -81,7 +97,6 @@ class VendorRequestDetails extends PureComponent {
     } = transaction;
 
     const nameToDisplay = `Customer name: ${customerName}`;
-    const dateToDisplay = moment(createdDate).format('lll');
 
     return (
       <View style={{ flex: 1 }}>
@@ -101,6 +116,10 @@ class VendorRequestDetails extends PureComponent {
           {confirmedTime ? this._renderConfirmedDate(confirmedTime) : this._renderSuggestedDates()}
 
           {status === 'Pending' && this._renderVendorResponse()}
+
+          {status === 'Confirmed' && this._renderQRScanner()}
+
+          {status === 'Completed' && this._renderCompletedRequest()}
         </View>
 
       </View>

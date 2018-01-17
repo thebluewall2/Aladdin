@@ -2,6 +2,7 @@
 import { connect } from 'react-redux';
 import { Text, View, TouchableOpacity, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { TextFieldComponent, LoadingSpinner } from '../../Components/common';
 import ReduxActions from '../../Redux/Actions';
@@ -54,57 +55,61 @@ class UserLoginPage extends Component {
   render() {
     return (
       <View style={styles.loginPageMainContainer}>
-        <Image
-          source={require('../../../assets/pictures/ERenoLogo.png')}
-          style={styles.iconStyle}
-        />
+        <KeyboardAwareScrollView
+          enableResetScrollToCoords={false}
+          showsVerticalScrollIndicator={false}
+        >
+          <Image
+            source={require('../../../assets/pictures/ERenoLogo.png')}
+            style={styles.iconStyle}
+          />
 
-        <Text style={styles.quicksandTextSlogan}>
-          Find the best service here in e Reno
-        </Text>
+          <Text style={styles.quicksandTextSlogan}>
+            Find the best service here in e Reno
+          </Text>
 
-        <TextFieldComponent
-          label={'Email'}
-          onChangeText={this._handleEmailChanged}
-          value={this.props.email}
-          autoCapitalize={"none"}
-          keyboardType={"email-address"}
-          autoCorrect={false}
-        />
+          <TextFieldComponent
+            label={'Email'}
+            onChangeText={this._handleEmailChanged}
+            value={this.props.email}
+            autoCapitalize={"none"}
+            keyboardType={"email-address"}
+            autoCorrect={false}
+          />
 
-        <TextFieldComponent
-          label={"Password"}
-          secureTextEntry
-          onChangeText={this._handlePasswordChanged}
-          value={this.props.password}
-        />
+          <TextFieldComponent
+            label={"Password"}
+            secureTextEntry
+            onChangeText={this._handlePasswordChanged}
+            value={this.props.password}
+          />
 
-        {this.props.errorMessage !== "" ? (
-          <View>
-            <Text style={styles.errorMessageStyle}>{this.props.errorMessage.message}</Text>
-          </View>
-        ) :
-          false
-        }
+          {this.props.errorMessage !== "" ? (
+            <View>
+              <Text style={styles.errorMessageStyle}>{this.props.errorMessage.message}</Text>
+            </View>
+          ) :
+            false
+          }
 
-        {this._renderLoginBtn()}
+          {this._renderLoginBtn()}
 
-        <TouchableOpacity onPress={this._navToForgetPassword}>
-          <View>
-            <Text style={styles.linkStyleForgetPassword}>
-              Forget Password?
-            </Text>
-          </View>
-        </TouchableOpacity>
+          <TouchableOpacity onPress={this._navToForgetPassword}>
+            <View>
+              <Text style={styles.linkStyleForgetPassword}>
+                Forget Password?
+              </Text>
+            </View>
+          </TouchableOpacity>
 
-        <TouchableOpacity onPress={this._navToSignUp}>
-          <View>
-            <Text style={styles.linkStyleSignUpNow}>
-              New User? Sign Up now!
-            </Text>
-          </View>
-        </TouchableOpacity>
-
+          <TouchableOpacity onPress={this._navToSignUp}>
+            <View>
+              <Text style={styles.linkStyleSignUpNow}>
+                New User? Sign Up now!
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </KeyboardAwareScrollView>
       </View>
     );
   }

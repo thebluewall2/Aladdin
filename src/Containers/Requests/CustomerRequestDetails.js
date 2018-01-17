@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import moment from 'moment';
+import { Actions } from 'react-native-router-flux';
 
 import styles from './Styles';
 
@@ -29,6 +30,34 @@ class CustomerRequestDetails extends PureComponent {
     );
   }
 
+  _renderMakePayment = () => {
+    return (
+      <TouchableOpacity onPress={this._makePayment}>
+        <Text>Make Payment</Text>
+      </TouchableOpacity>
+    );
+  }
+
+  _makePayment = () => {
+    const { transaction } = this.props.navigationState;
+
+    console.log("make payment");
+  }
+
+  _renderShowQR = (transactionUID) => {
+    return (
+      <TouchableOpacity onPress={() => Actions.qrCodePage({ transactionUID })}>
+        <Text>Complete request</Text>
+      </TouchableOpacity>
+    );
+  }
+
+  _renderCompletedRequest = () => {
+    return (
+      <Text>Service request completed</Text>
+    );
+  }
+
   render() {
     const { transaction } = this.props.navigationState;
 
@@ -39,6 +68,7 @@ class CustomerRequestDetails extends PureComponent {
       status,
       confirmedTime,
       vendorName,
+      transactionUID
     } = transaction;
 
     const nameToDisplay = `Vendor name: ${vendorName}`;
@@ -56,6 +86,12 @@ class CustomerRequestDetails extends PureComponent {
           <Text style={styles.orderContentTextStyle}>{selectedAddress.city}</Text>
 
           {confirmedTime ? this._renderConfirmedDate(confirmedTime) : this._renderSuggestedDates()}
+
+        {status === 'Awaiting payment' && this._renderMakePayment()}
+
+        {status === 'Confirmed' && this._renderShowQR(transactionUID)}
+
+        {status === 'Completed' && this._renderCompletedRequest()}
 
         </View>
     );
