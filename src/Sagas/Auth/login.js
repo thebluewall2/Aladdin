@@ -32,8 +32,34 @@ export function* handleLoginUser(userType, email, password) {
 
     Actions.home({ type: 'replace' });
   } catch (error) {
-    if (error.code === 'auth/user-not-found') {
-      error.message = "User Not Found";
+    console.log(error);
+
+    switch (error.code) {
+      case 'auth/user-not-found': {
+        error.message = "Email not found";
+        break;
+      }
+      case 'auth/invalid-email': {
+        error.message = "Invalid email";
+        break;
+      }
+      case 'auth/wrong-password': {
+        error.message = "Invalid password";
+        break;
+      }
+      case 'auth/network-request-failed': {
+        error.message = "No Internet connection detected";
+        break;
+      }
+      case 'User not found in database': {
+        error.message = "User not found. Make sure you're logging into the correct user category (Vendor or Customer)";
+        firebase.auth().signOut();
+        break;
+      }
+      default: {
+        error.message = "Error signing in, please try again later";
+        break;
+      }
     }
 
     yield put(ReduxActions.authUserLoginFail(error));
@@ -52,6 +78,11 @@ async function saveUserType(userType) {
 export function cleanResponse(email, uid, userInfo) {
   //in the future, we might we returning array of addresses
   //so convert address to array for now
+  if (!userInfo) {
+    //following firebase's error throwing convention
+    throw { code: 'User not found in database' };
+  }
+
   const { name, address, city, postcode, state } = userInfo;
 
   return {
