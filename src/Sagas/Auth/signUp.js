@@ -6,6 +6,7 @@ import Geocoder from 'react-native-geocoding';
 
 import ReduxActions from '../../Redux/Actions';
 import Types from '../../Redux/Auth/types';
+import { showToast } from '../../Services/helpers';
 
 export function* watchUserSignUp() {
   while (true) {
@@ -21,10 +22,32 @@ export function* handleSignUp(data) {
     yield call(SignUp, data);
     yield put(ReduxActions.authUserSignUpSuccess());
 
-    Actions.loginPage();
+    showToast("Sign up successful!");
+    Actions.loginPage({ type: 'reset' });
   } catch (error) {
-    console.error(error);
-    yield put(ReduxActions.authUserSignUpFail(error));
+    console.log(error);
+    let errorMsg;
+
+    switch (error.code) {
+      case 'Phone number in use': {
+        errorMsg = 'Phone number already in use';
+        break;
+      }
+      case 'auth/email-already-in-use': {
+        errorMsg = 'Email already in use';
+        break;
+      }
+      case 'auth/weak-password': {
+        errorMsg = 'Password requires 6 characters and above';
+        break;
+      }
+      default: {
+        errorMsg = 'Something went wrong, please try again later';
+        break;
+      }
+    }
+
+    yield put(ReduxActions.authUserSignUpFail(errorMsg));
   }
 }
 
@@ -37,9 +60,7 @@ export function* CheckPhoneNumber(data) {
               })
             );
   } else {
-    const err = new Error("Phone number in use!");
-
-    throw err;
+    throw { code: 'Phone number in use' };
   }
 }
 
