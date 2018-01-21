@@ -1,7 +1,7 @@
 import { take, call, put } from 'redux-saga/effects';
 
 import firebase from 'firebase';
-import { push, update } from 'firebase-saga';
+import { update } from 'firebase-saga';
 import { Actions } from 'react-native-router-flux';
 
 import ReduxActions from '../../Redux/Actions';
@@ -23,7 +23,7 @@ export function* handleCreateOrUpdateTransaction(serviceBooking) {
   try {
     switch (serviceBooking.trxCode) {
       case 1:
-        yield call(createTransaction, serviceBooking, dateNow);
+        yield call(handleCreateTransaction, serviceBooking, dateNow);
         break;
       case 2:
         yield call(updateTransaction, serviceBooking, dateNow);
@@ -38,19 +38,23 @@ export function* handleCreateOrUpdateTransaction(serviceBooking) {
   }
 }
 
-export function* createTransaction(serviceBooking, dateNow) {
-  //store customer
-  let ref = firebase.database().ref(`Users/customer/${serviceBooking.customerUID}/transactions/`);
-  const transactionUID = yield call(createTransactionForCustomer, ref, serviceBooking, dateNow);
+export function* handleCreateTransaction(serviceBooking, dateNow) {
+  //store in transactions
+  const ref = firebase.database().ref(`Transactions/`);
+  const transactionUID = yield call(createTransaction, ref, serviceBooking, dateNow);
 
-  //store vendor
-  ref = firebase.database().ref(`Users/vendor/${serviceBooking.vendorUID}/transactions/`);
-  yield call(createTransactionForVendor, ref, serviceBooking, dateNow, transactionUID);
+  //store transaction reference in customer
+  yield call(update, `Users/vendor/${serviceBooking.customerUID}/`, 'transactions',
+  { [`${transactionUID}`]: dateNow });
+
+  //store transaction reference in vendor
+  yield call(update, `Users/vendor/${serviceBooking.vendorUID}/`, 'transactions',
+  { [`${transactionUID}`]: dateNow });
 
   showToast('Booking requested!');
 }
 
-export function createTransactionForCustomer(ref, serviceBooking, dateNow) {
+export function createTransaction(ref, serviceBooking, dateNow) {
   const customerTransactionRef = ref.push();
   customerTransactionRef.set({
     ...serviceBooking,
@@ -58,13 +62,6 @@ export function createTransactionForCustomer(ref, serviceBooking, dateNow) {
   });
 
   return customerTransactionRef.key;
-}
-
-export function createTransactionForVendor(ref, serviceBooking, dateNow, transactionUID) {
-  ref.child(`${transactionUID}`).set({
-      ...serviceBooking,
-      createdDate: dateNow,
-  });
 }
 
 export function* updateTransaction(serviceBooking, dateNow) {
