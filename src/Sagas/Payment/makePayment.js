@@ -1,5 +1,5 @@
 import { take, call, put } from 'redux-saga/effects';
-import { getConfig } from '../../Services/config';
+import Config from '../../Services/config';
 
 import ReduxActions from '../../Redux/Actions';
 import Types from '../../Redux/Requests/types';
@@ -34,8 +34,8 @@ export function* handleMakePayment(PaymentInfo) {
 }
 
 export function sendRequestForProcessing(PaymentInfo) {
-  const config = getConfig();
-  fetch(config.paymentRequestDomain, {
+  const config = Config.paymentRequestDomain;
+  fetch(config, {
     method: 'POST',
     headers: {
     'Content-Type': 'application/json',
