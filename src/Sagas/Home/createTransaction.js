@@ -44,7 +44,7 @@ export function* handleCreateTransaction(serviceBooking, dateNow) {
   const transactionUID = yield call(createTransaction, ref, serviceBooking, dateNow);
 
   //store transaction reference in customer
-  yield call(update, `Users/vendor/${serviceBooking.customerUID}/`, 'transactions',
+  yield call(update, `Users/customer/${serviceBooking.customerUID}/`, 'transactions',
   { [`${transactionUID}`]: dateNow });
 
   //store transaction reference in vendor
