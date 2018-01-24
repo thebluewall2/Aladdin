@@ -7,7 +7,33 @@ const RequestsCard = (props) => {
 
   const { status, selectedCategory, selectedSubcategory, createdDate } = transaction;
   const nameToDisplay = userType === 'customer' ? transaction.vendorName : transaction.customerName;
-  const statusStyle = status === 'Pending' ? styles.pendingStatusStyle : {};
+  let statusStyle;
+
+  switch (status) {
+    case 'Pending': {
+      statusStyle = styles.pendingStatusStyle;
+      break;
+    }
+    case 'Confirmed': {
+      statusStyle = styles.confirmedStatusStyle;
+      break;
+    }
+    case 'Completed': {
+      statusStyle = styles.completedStatusStyle;
+      break;
+    }
+    case 'Rejected': {
+      statusStyle = styles.rejectedStatusStyle;
+      break;
+    }
+    case 'Awaiting payment': {
+      statusStyle = styles.awaitingPaymentStatusStyle;
+      break;
+    }
+    default: {
+      statusStyle = {};
+    }
+  }
   const dateToDisplay = moment(createdDate).format('ll');
 
   return (
@@ -58,6 +84,12 @@ const styles = {
 
   rejectedStatusStyle: {
     color: '#C00000',
+    fontFamily: "quicksand-bold",
+    fontSize: 17,
+  },
+
+  awaitingPaymentStatusStyle: {
+    color: '#800080',
     fontFamily: "quicksand-bold",
     fontSize: 17,
   },
