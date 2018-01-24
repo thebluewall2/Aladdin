@@ -19,7 +19,13 @@ class RequestsHome extends PureComponent {
   _keyExtractor = (item) => item.transactionUID;
 
   _handleCardPress = (transaction) => {
-    Actions.requestDetails({ transaction, userType: this.props.userType });
+    const { userType } = this.props;
+
+    if (userType === 'customer') {
+      Actions.customerRequestDetails({ transaction });
+    } else {
+      Actions.vendorRequestDetails({ transaction });
+    }
   }
 
   _renderItem = (flatListItem) => {

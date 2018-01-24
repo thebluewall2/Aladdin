@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import { TextFieldComponent } from '../../../Components/common';
+import { TextFieldComponent, LoadingSpinner } from '../../../Components/common';
 import ReduxActions from '../../../Redux/Actions';
 import styles from '../Styles';
 
@@ -28,6 +28,12 @@ class CustomerSignUpPage extends Component {
       };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errorMessage !== this.state.error) {
+      this._setErrorMessage(nextProps.errorMessage);
+    }
+  }
+
   _navToTermsOfUse = () => {
     Actions.termsOfUse();
   }
@@ -48,12 +54,45 @@ class CustomerSignUpPage extends Component {
     });
   }
 
+  _renderSignUpBtn = () => {
+    const { loading } = this.props;
+
+    if (loading) {
+      return <LoadingSpinner />;
+    }
+
+    return (
+      <View style={styles.signUpButtonStyle}>
+        <TouchableOpacity style={styles.buttonStyle} onPress={this._handleSubmitSignUp}>
+          <Text style={styles.buttonTextStyle}> Create Account</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
   _handleSubmitSignUp = () => {
-    const { name, password, confirmPassword, phoneNo, address1, address2, city, postcode, state, email } = this.state;
+    const {
+      name,
+      password,
+      confirmPassword,
+      phoneNo,
+      address1,
+      address2,
+      city,
+      postcode,
+      state,
+      email
+    } = this.state;
+
     const { userType } = this.props;
 
     //resets error msg if any
     this._setErrorMessage('');
+
+    if (!name || !password || !confirmPassword || !phoneNo || !address1 || !address2 || !city || !postcode || !state || !email) {
+      this._setErrorMessage('Please fill up all fields');
+      return;
+    }
 
     if (password !== confirmPassword) {
       this._setErrorMessage('Passwords do not match');
@@ -70,7 +109,7 @@ class CustomerSignUpPage extends Component {
         state,
         email
       };
-      
+
       this.props.signUpUser(newSignUp);
     }
   }
@@ -191,15 +230,11 @@ class CustomerSignUpPage extends Component {
             By clicking the button below, you agree to our Terms of Use and Privacy Policy.
           </Text>
 
-          <Text style={[styles.errorMessageStyle, { paddingTop: 5 }]}>
+          <Text style={[styles.errorMessageStyle, { paddingTop: 10 }]}>
               {this.state.error}
           </Text>
 
-        <View style={styles.signUpButtonStyle}>
-          <TouchableOpacity style={styles.buttonStyle} onPress={this._handleSubmitSignUp}>
-            <Text style={styles.buttonTextStyle}> Create Account</Text>
-          </TouchableOpacity>
-        </View>
+          {this._renderSignUpBtn()}
 
         <View style={{ flexDirection: 'row', flex: 2, justifyContent: 'space-between', paddingTop: 15 }}>
           <View style={{ bottom: 0, left: 10, right: 10, flexDirection: 'row' }} >
@@ -221,10 +256,12 @@ class CustomerSignUpPage extends Component {
 }
 
 const mapStateToProps = ({ auth }) => {
-  const { userType } = auth;
+  const { userType, loading, errorMessage } = auth;
 
   return {
     userType,
+    loading,
+    errorMessage,
   };
 };
 

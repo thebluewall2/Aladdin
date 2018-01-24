@@ -2,6 +2,7 @@
 import { connect } from 'react-redux';
 import { Text, View, TouchableOpacity, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { TextFieldComponent, LoadingSpinner } from '../../Components/common';
 import ReduxActions from '../../Redux/Actions';
@@ -53,7 +54,11 @@ class UserLoginPage extends Component {
 
   render() {
     return (
-      <View style={styles.loginPageMainContainer}>
+      <KeyboardAwareScrollView
+        contentContainerStyle={styles.loginPageMainContainer}
+        enableResetScrollToCoords={false}
+        showsVerticalScrollIndicator={false}
+      >
         <Image
           source={require('../../../assets/pictures/ERenoLogo.png')}
           style={styles.iconStyle}
@@ -77,6 +82,7 @@ class UserLoginPage extends Component {
           secureTextEntry
           onChangeText={this._handlePasswordChanged}
           value={this.props.password}
+          onSubmitEditing={this._handleLoginUser}
         />
 
         {this.props.errorMessage !== "" ? (
@@ -104,8 +110,7 @@ class UserLoginPage extends Component {
             </Text>
           </View>
         </TouchableOpacity>
-
-      </View>
+      </KeyboardAwareScrollView>
     );
   }
 }

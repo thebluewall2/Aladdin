@@ -25,7 +25,7 @@ export function* handleStartUp() {
     //if user has logged out, we would have deleted his userType from asyncstorage
     yield call(autoLoginUser, userType);
   } else {
-    Actions.landingPage();
+    Actions.landingPage({ type: 'replace' });
   }
 }
 
@@ -35,7 +35,7 @@ export function* getAllSettings() {
 
   yield put(ReduxActions.settingsSetSettings(settings));
   yield put(ReduxActions.authSetUserType(userType));
-  
+
   return userType;
 }
 

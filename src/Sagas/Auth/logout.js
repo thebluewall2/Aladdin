@@ -24,10 +24,7 @@ export function handleLogout() {
   resetGenericPassword();
   resetAsyncStorage();
 
-  Actions.pop();
-  setTimeout(() =>
-    Actions.landingPage()
-  );
+  Actions.auth({ type: 'reset' });
 }
 
 export function resetAsyncStorage() {

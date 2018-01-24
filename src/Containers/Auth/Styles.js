@@ -14,9 +14,8 @@ export default StyleSheet.create({
   loginPageMainContainer: {
     alignItems: 'center',
     flexDirection: 'column',
-    paddingTop: 90,
+    paddingTop: 70,
     flex: 1,
-    paddingBottom: 80,
     backgroundColor: 'white'
   },
 
