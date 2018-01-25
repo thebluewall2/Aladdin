@@ -2,7 +2,9 @@ import React, { PureComponent } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import moment from 'moment';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
 
+import ReduxActions from '../../Redux/Actions';
 import styles from './Styles';
 
 class CustomerRequestDetails extends PureComponent {
@@ -41,7 +43,8 @@ class CustomerRequestDetails extends PureComponent {
   _makePayment = () => {
     const { transaction } = this.props.navigationState;
 
-    console.log("make payment");
+    //for now just send to saga
+    this.props.makePayment(transaction);
   }
 
   _renderShowQR = (transactionUID) => {
@@ -98,4 +101,11 @@ class CustomerRequestDetails extends PureComponent {
   }
 }
 
-export default CustomerRequestDetails;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    makePayment: (transaction) =>
+      dispatch(ReduxActions.requestsMakePaymentAttempt(transaction))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CustomerRequestDetails);

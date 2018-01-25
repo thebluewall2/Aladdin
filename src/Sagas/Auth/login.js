@@ -26,7 +26,7 @@ export function* handleLoginUser(userType, email, password) {
     //save password so that we can autologin next time user opens app
     setGenericPassword(email, password);
     saveUserType(userType);
-
+    
     yield put(ReduxActions.authUserLoginSuccess(response));
     yield put(ReduxActions.authAppStartUp(false));
 
@@ -83,12 +83,13 @@ export function cleanResponse(email, uid, userInfo) {
     throw { code: 'User not found in database' };
   }
 
-  const { name, address, city, postcode, state } = userInfo;
+  const { name, address, city, postcode, state, phoneNo } = userInfo;
 
   return {
     email,
     uid,
     fullName: name,
+    phoneNo,
     address: [{
       address,
       postcode,

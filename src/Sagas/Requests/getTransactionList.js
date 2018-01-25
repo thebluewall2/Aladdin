@@ -29,7 +29,7 @@ export function* getTransactionList(userType, userUID) {
   const transactions = yield call([ref.orderByChild(`orderByDate`).limitToFirst(45), ref.once], 'value');
 
   if (transactions.val() === null) {
-    return null;
+    return [];
   }
 
   Object.keys(transactions.val())

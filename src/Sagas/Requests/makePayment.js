@@ -13,7 +13,8 @@ export function* watchMakePayment() {
     // TransactonType, PymtMethod, ServiceID, PaymentID, OrderNumber, PaymentDesc
     // MerchantReturnURL(for return to the page), Amount, CurrencyCode, HashValue, CustIP, CustName, CustEmail
     // CustPhone, MerchantName, MerchantCallbackURL(for confirm api request to firebase api)
-    let { PaymentInfo } = yield take(Types.PAY_MAKE_PAYMENT);
+    let { paymentInfo } = yield take(Types.REQ_MAKE_PAYMENT_ATTEMPT);
+    console.log(paymentInfo);
     PaymentInfo = {
       TransactionType: 'SALE',
       PymtMethod: 'CC',
@@ -29,7 +30,7 @@ export function* watchMakePayment() {
       CustEmail: 'ollie@gmail.com',
       CustPhone: '0198273645',
     };
-      yield call(handleMakePayment, PaymentInfo);
+      yield call(handleMakePayment, paymentInfo);
     }
 }
 
