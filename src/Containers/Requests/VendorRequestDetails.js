@@ -39,14 +39,18 @@ class VendorRequestDetails extends PureComponent {
     const { transaction } = this.props.navigationState;
 
     return (
-      <View style={{ paddingTop: 15, flexDirection: 'row', justifyContent: 'space-between' }}>
-        <TouchableOpacity onPress={() => this._selectTimeslot(transaction)}>
-          <Text>Select a time</Text>
-        </TouchableOpacity>
+      <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingTop: 15 }}>
+        <View>
+          <TouchableOpacity style={styles.selectTimeButtonStyle} onPress={() => this._selectTimeslot(transaction)}>
+            <Text style={styles.buttonTextStyle}>Select a time</Text>
+          </TouchableOpacity>
+        </View>
 
-        <TouchableOpacity onPress={() => this._handleRejectTime(transaction)}>
-          <Text>Reject service request</Text>
-        </TouchableOpacity>
+        <View>
+          <TouchableOpacity style={styles.rejectServiceButtonStyle} onPress={() => this._handleRejectTime(transaction)}>
+            <Text style={styles.buttonTextStyle}>Reject service request</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -99,13 +103,10 @@ class VendorRequestDetails extends PureComponent {
     const nameToDisplay = `Customer name: ${customerName}`;
 
     return (
-      <View style={{ flex: 1 }}>
-        <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-around", paddingTop: 70 }}>
+      <View style={{ flex: 1, paddingTop: 70, padding: 15 }}>
           <Text style={styles.orderDetailsTitleTextStyle}>Status: {status}</Text>
-          <Text style={styles.orderDetailsTitleTextStyle}>{nameToDisplay}</Text>
-        </View>
+          <Text style={styles.orderSectionTextStyle}>{nameToDisplay}</Text>
 
-        <View style={styles.orderDetailsContainerViewStyle}>
           <Text style={styles.orderSectionTextStyle}>Order Details:</Text>
           <Text style={styles.orderContentTextStyle}>{selectedCategory} {"- "}{selectedSubcategory}</Text>
 
@@ -120,8 +121,6 @@ class VendorRequestDetails extends PureComponent {
           {status === 'Confirmed' && this._renderQRScanner()}
 
           {status === 'Completed' && this._renderCompletedRequest()}
-        </View>
-
       </View>
     );
   }
