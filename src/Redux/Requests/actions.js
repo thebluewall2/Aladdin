@@ -33,6 +33,20 @@ const requestsGetTransactionListFailure = (error) => ({
   error
 });
 
+const requestsMakePaymentAttempt = (paymentInfo) => ({
+  type: Types.REQ_MAKE_PAYMENT_ATTEMPT,
+  paymentInfo
+});
+
+const requestsMakePaymentSuccess = () => ({
+  type: Types.REQ_MAKE_PAYMENT_SUCCESS,
+});
+
+const requestsMakePaymentFailure = (error) => ({
+  type: Types.REQ_MAKE_PAYMENT_FAILURE,
+  error
+});
+
 export default {
   requestsGetTransactionDataAttempt,
   requestsGetTransactionDataSuccess,
@@ -41,4 +55,8 @@ export default {
   requestsGetTransactionListAttempt,
   requestsGetTransactionListSuccess,
   requestsGetTransactionListFailure,
+
+  requestsMakePaymentAttempt,
+  requestsMakePaymentSuccess,
+  requestsMakePaymentFailure,
 };
