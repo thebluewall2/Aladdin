@@ -65,19 +65,11 @@ export function createTransaction(ref, serviceBooking, dateNow) {
 }
 
 export function* updateTransaction(serviceBooking, dateNow) {
-  // store customer
-  yield call(update, `Users/customer/${serviceBooking.customerUID}/transactions/`,
+  yield call(update, `Transactions/`,
     `${serviceBooking.transactionUID}`, {
       ...serviceBooking,
       updatedDate: dateNow
     });
-
-  //store vendor
-   yield call(update, `Users/vendor/${serviceBooking.vendorUID}/transactions/`,
-     `${serviceBooking.transactionUID}`, {
-       ...serviceBooking,
-       updatedDate: dateNow
-      });
 
     showToast("Status updated!");
 
