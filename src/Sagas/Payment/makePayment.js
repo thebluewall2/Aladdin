@@ -1,6 +1,9 @@
 import { take, call, put } from 'redux-saga/effects';
-import Config from '../../Services/config';
 
+import firebase from 'firebase';
+import { update } from 'firebase-saga';
+
+import Config from '../../Services/config';
 import ReduxActions from '../../Redux/Actions';
 import Types from '../../Redux/Requests/types';
 
@@ -15,11 +18,12 @@ export function* watchMakePayment() {
       TransactionType: 'SALE',
       PymtMethod: 'CC',
       ServiceID: 'sit',
-      PaymentID: 'trxID-1',
       OrderNumber: 'trxID-1',
       PaymentDesc: 'cat + subcat + time + vendor + customer',
       Amount: '100.00',
       CurrencyCode: 'MYR',
+      vendorUID: 'vendorUID-2gy78i87',
+      customerUID: 'customerUID-890plk8t9',
       CustIP: '192.168.1.1',
       CustName: 'Ollie',
       CustEmail: 'ollie@gmail.com',
@@ -30,10 +34,49 @@ export function* watchMakePayment() {
 }
 
 export function* handleMakePayment(PaymentInfo) {
-  yield call(sendRequestForProcessing, PaymentInfo);
+  const dateNow = firebase.database.ServerValue.TIMESTAMP;
+  const ref = firebase.database().ref(`Payments/`);
+  const paymentRequest = yield call(createPaymentRecord, ref, PaymentInfo, dateNow);
+
+  yield call(createPaymentReference, PaymentInfo, paymentRequest, dateNow);
+  yield call(sendRequestForProcessing, paymentRequest);
 }
 
-export function sendRequestForProcessing(PaymentInfo) {
+export function* createPaymentReference(PaymentInfo, paymentRequest, dateNow) {
+  //store payment reference in customer
+  yield call(update, `Users/customer/${PaymentInfo.customerUID}/`, 'payments',
+  { [`${paymentRequest.PaymentID}`]: dateNow });
+  //store payment reference in vendor
+  yield call(update, `Users/vendor/${PaymentInfo.vendorUID}/`, 'payments',
+  { [`${paymentRequest.PaymentID}`]: dateNow });
+}
+
+export function createPaymentRecord(ref, PaymentInfo, dateNow) {
+  const PaymentInfoRef = ref.push();
+  PaymentInfoRef.set({
+    ...PaymentInfo,
+    TxnStatus: 'Pending',
+    createdDate: dateNow,
+  });
+  //Clean PaymentInfo for request to Payment Gateway
+  const paymentRequest = {
+      TransactionType: PaymentInfo.TransactionType,
+      PymtMethod: PaymentInfo.PymtMethod,
+      ServiceID: PaymentInfo.ServiceID,
+      OrderNumber: PaymentInfo.OrderNumber,
+      PaymentDesc: PaymentInfo.PaymentDesc,
+      Amount: PaymentInfo.Amount,
+      CurrencyCode: PaymentInfo.CurrencyCode,
+      CustIP: PaymentInfo.CustIP,
+      CustName: PaymentInfo.CustName,
+      CustEmail: PaymentInfo.CustEmail,
+      CustPhone: PaymentInfo.CustPhone,
+      PaymentID: PaymentInfoRef.key,
+  };
+  return paymentRequest;
+}
+
+export function sendRequestForProcessing(PaymentInfoWithID) {
   const config = Config.paymentRequestDomain;
   fetch(config, {
     method: 'POST',
@@ -41,7 +84,7 @@ export function sendRequestForProcessing(PaymentInfo) {
     'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      PaymentInfo,
+      PaymentInfoWithID,
   })
 
   })
