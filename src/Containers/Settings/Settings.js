@@ -14,6 +14,16 @@ class Settings extends Component {
     this.props.setPushNotifications(!pushNotifications);
   }
 
+  _handleChangeProfile = () => {
+    const { userType } = this.props;
+
+    if (userType === 'customer') {
+      Actions.editCustomerProfile();
+    } else {
+      Actions.editVendorProfile();
+    }
+  }
+
   _navToChangePassword = () => {
     Actions.changePasswordPage();
   }
@@ -46,6 +56,7 @@ class Settings extends Component {
         <SettingsCard
           title={"Profile"}
           icon={"ios-contact"}
+          onPress={this._handleChangeProfile}
         />
 
         <SettingsCard
@@ -80,9 +91,12 @@ class Settings extends Component {
   }
 }
 
-const mapStateToProps = ({ settings }) => {
+const mapStateToProps = (state) => {
+  const { auth, settings } = state;
+
   return {
     settings: settings.settings,
+    userType: auth.userType
   };
 };
 

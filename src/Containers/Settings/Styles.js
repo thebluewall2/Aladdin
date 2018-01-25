@@ -32,22 +32,51 @@ export default StyleSheet.create({
     fontSize: 18
   },
 
-changePasswordContainer: {
-  flex: 1,
-  alignItems: 'center',
-  paddingTop: 80,
-},
+  saveButtonStyle: {
+    paddingTop: 20,
+    paddingBottom: 10,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
 
-errorMessageStyle: {
-  color: 'red',
-  fontFamily: 'Quicksand',
-  textAlign: 'center'
-},
+  changePasswordContainer: {
+    flex: 1,
+    alignItems: 'center',
+    paddingTop: 80,
+  },
 
-successMessageStyle: {
-  color: '#4BB543',
-  fontFamily: 'Quicksand',
-  textAlign: 'center'
-},
+  errorMessageStyle: {
+    color: 'red',
+    fontFamily: 'Quicksand',
+    textAlign: 'center'
+  },
+
+  successMessageStyle: {
+    color: '#4BB543',
+    fontFamily: 'Quicksand',
+    textAlign: 'center'
+  },
+
+  editProfileContainerStyle: {
+    alignItems: 'center',
+    flexDirection: 'column',
+    paddingTop: 70,
+    flex: 1,
+    paddingBottom: 50,
+    backgroundColor: 'white'
+  },
+
+  disabledTextInputStyle: {
+    color: '#C0C0C0',
+    height: 30,
+    width: 330,
+    fontFamily: 'Quicksand-light'
+  },
+
+  textInputStyle: {
+    height: 30,
+    width: 330,
+    fontFamily: 'Quicksand-light'
+  },
 
 });

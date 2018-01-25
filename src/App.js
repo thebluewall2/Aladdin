@@ -7,6 +7,7 @@ import createSagaMiddleware from 'redux-saga';
 import Router from './Router';
 import reducers from './Redux/';
 import Sagas from './Sagas';
+import Config from './Services/config';
 
 class App extends Component {
   componentWillMount() {
@@ -23,9 +24,17 @@ class App extends Component {
   }
 
   render() {
+    let middleware = [];
     const sagaMiddleware = createSagaMiddleware();
+    middleware = [...middleware, sagaMiddleware];
 
-    const store = createStore(reducers, {}, applyMiddleware(sagaMiddleware));
+    if (Config.reduxLoggerEnabled) {
+      const { logger } = require('redux-logger');
+
+      middleware.push(logger);
+    }
+
+    const store = createStore(reducers, {}, applyMiddleware(...middleware));
     sagaMiddleware.run(Sagas);
 
     return (

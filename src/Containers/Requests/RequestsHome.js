@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { FlatList, ScrollView, View } from 'react-native';
+import { FlatList, ScrollView, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
@@ -38,13 +38,7 @@ class RequestsHome extends PureComponent {
     );
   }
 
-  render() {
-    const { loading, transactionList } = this.props;
-
-    if (loading) {
-      return <LoadingSpinner />;
-    }
-
+  _renderList = (transactionList) => {
     return (
       <View style={styles.requestHomeContainerViewStyle}>
         <ScrollView>
@@ -55,6 +49,32 @@ class RequestsHome extends PureComponent {
             style={{ paddingTop: 70 }}
           />
         </ScrollView>
+      </View>
+    );
+  }
+
+  _renderEmptyList = () => {
+    return (
+      <Text style={{ paddingTop: 120, alignSelf: 'center' }}>
+        No ongoing requests.
+      </Text>
+    );
+  }
+
+  render() {
+    const { loading, transactionList } = this.props;
+
+    if (loading) {
+      return <LoadingSpinner />;
+    }
+
+    return (
+      <View style={styles.requestHomeContainerViewStyle}>
+        {transactionList.length ?
+          this._renderList(transactionList)
+          :
+          this._renderEmptyList()
+        }
       </View>
     );
   }

@@ -35,6 +35,8 @@ import VendorData from './Containers/Home/VendorData';
 
 import Settings from './Containers/Settings/Settings';
 import ChangePassword from './Containers/Settings/ChangePassword';
+import EditCustomerProfile from './Containers/Settings/EditCustomerProfile';
+import EditVendorProfile from './Containers/Settings/EditVendorProfile';
 //end importing screens
 
 import TabIcon from './Components/TabIcon';
@@ -108,6 +110,8 @@ const RouterComponent = () => {
 
         <Scene key="settings" title="Settings" icon={TabIcon} >
           <Scene key="settingsPage" component={Settings} renderBackButton={() => (null)} />
+          <Scene key="editCustomerProfile" component={EditCustomerProfile} />
+          <Scene key="editVendorProfile" component={EditVendorProfile} />
           <Scene key="changePasswordPage" component={ChangePassword} />
           <Scene key="termsOfUse" component={TermsOfUse} />
           <Scene key="privacyPolicy" component={PrivacyPolicy} />
