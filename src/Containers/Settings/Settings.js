@@ -6,6 +6,9 @@ import { Actions } from 'react-native-router-flux';
 import SettingsCard from '../../Components/SettingsCard';
 import ReduxActions from '../../Redux/Actions';
 
+import styles from './Styles';
+
+
 class Settings extends Component {
 
   _handleTogglePushNotifications = () => {
@@ -71,7 +74,7 @@ class Settings extends Component {
           onPress={this._handleLogOut}
         />
 
-        <Text style={{ paddingTop: 30, fontWeight: '500', paddingLeft: 8, paddingBottom: 5, fontSize: 15 }}>
+        <Text style={styles.legalTextStyle}>
           Legal
         </Text>
 

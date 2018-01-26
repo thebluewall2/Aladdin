@@ -2,9 +2,7 @@ import React, { PureComponent } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import moment from 'moment';
 import { Actions } from 'react-native-router-flux';
-import { connect } from 'react-redux';
 
-import ReduxActions from '../../Redux/Actions';
 import styles from './Styles';
 
 class CustomerRequestDetails extends PureComponent {
@@ -34,17 +32,18 @@ class CustomerRequestDetails extends PureComponent {
 
   _renderMakePayment = () => {
     return (
-      <TouchableOpacity onPress={this._makePayment}>
-        <Text>Make Payment</Text>
-      </TouchableOpacity>
+      <View style={{ paddingTop: 15 }}>
+        <TouchableOpacity style={styles.selectTimeButtonStyle} onPress={this._makePayment}>
+          <Text style={styles.buttonTextStyle}>Make Payment</Text>
+        </TouchableOpacity>
+      </View>
     );
   }
 
   _makePayment = () => {
     const { transaction } = this.props.navigationState;
 
-    //for now just send to saga
-    this.props.makePayment(transaction);
+    console.log("make payment");
   }
 
   _renderShowQR = (transactionUID) => {
@@ -57,7 +56,13 @@ class CustomerRequestDetails extends PureComponent {
 
   _renderCompletedRequest = () => {
     return (
-      <Text>Service request completed</Text>
+      <View style={{ paddingTop: 20 }}>
+        <View style={styles.serviceCompletedBackgroundViewStyle}>
+          <Text style={styles.serviceCompletedTextStyle}>
+            Service request completed
+          </Text>
+        </View>
+      </View>
     );
   }
 
@@ -101,11 +106,4 @@ class CustomerRequestDetails extends PureComponent {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    makePayment: (transaction) =>
-      dispatch(ReduxActions.requestsMakePaymentAttempt(transaction))
-  };
-};
-
-export default connect(null, mapDispatchToProps)(CustomerRequestDetails);
+export default CustomerRequestDetails;

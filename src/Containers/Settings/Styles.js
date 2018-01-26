@@ -7,6 +7,15 @@ export default StyleSheet.create({
     paddingBottom: 40
   },
 
+  legalTextStyle: {
+    paddingTop: 30,
+    fontFamily: "quicksand-bold",
+    fontWeight: '500',
+    paddingLeft: 8,
+    paddingBottom: 5,
+    fontSize: 18
+  },
+
   titleStyle: {
     paddingTop: 80,
     paddingLeft: 15
@@ -67,16 +76,43 @@ export default StyleSheet.create({
   },
 
   disabledTextInputStyle: {
-    color: '#C0C0C0',
+    color: '#6E6E6E',
     height: 30,
     width: 330,
     fontFamily: 'Quicksand-light'
   },
 
+  titleSignUpStyle: {
+    fontFamily: 'Quicksand',
+    fontSize: 22,
+    paddingTop: 15
+  },
+
   textInputStyle: {
     height: 30,
     width: 330,
-    fontFamily: 'Quicksand-light'
+    fontFamily: 'Quicksand-regular'
+  },
+
+  modalPickerStyle: {
+    paddingTop: 15,
+    paddingBottom: 15,
+  },
+
+  modalPickerSelectTextStyle: {
+    fontFamily: 'Quicksand',
+    textAlign: 'left',
+    color: '#47525E'
+  },
+
+  modalPickerOptionTextStyle: {
+  fontFamily: 'Quicksand',
+  color: '#000000'
+  },
+
+  modalPickerCancelTextStyle: {
+  fontFamily: 'Quicksand',
+  color: '#000000'
   },
 
   modalPickerStyle: {

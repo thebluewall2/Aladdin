@@ -18,7 +18,7 @@ export function showToast(message) {
 export function showErrorToast(message) {
   Toast.show(message, Toast.LONG, Toast.BOTTOM, {
     backgroundColor: "white",
-    color: "red",
+    color: "bd202e",
     width: 350,
     height: 60,
     fontSize: 20,

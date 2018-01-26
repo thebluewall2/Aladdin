@@ -7,6 +7,9 @@ import moment from 'moment';
 import ReduxActions from '../../Redux/Actions';
 import { showToast } from '../../Services/helpers';
 
+import styles from './Styles';
+
+
 class VendorSelectTime extends PureComponent {
   _keyExtractor = (item) => item;
 
@@ -14,9 +17,11 @@ class VendorSelectTime extends PureComponent {
     const timeToDisplay = moment(item).format('lll');
 
     return (
-      <TouchableOpacity onPress={() => this._selectTimeslot(item)}>
-        <Text>{timeToDisplay}</Text>
-      </TouchableOpacity>
+      <View style={{ paddingTop: 20, paddingBottom: 10 }}>
+        <TouchableOpacity style={styles.timeButtonStyle} onPress={() => this._selectTimeslot(item)}>
+          <Text style={styles.orderContentTextStyle}>{timeToDisplay}</Text>
+        </TouchableOpacity>
+      </View>
     );
   }
 
@@ -38,8 +43,8 @@ class VendorSelectTime extends PureComponent {
 
   render() {
     return (
-      <View style={{ paddingTop: 70 }}>
-        <Text>Select a time</Text>
+      <View style={{ flex: 1, paddingTop: 100, padding: 20 }}>
+        <Text style={styles.orderDetailsTitleTextStyle}>Select a time</Text>
 
         <FlatList
           data={this.props.navigationState.timeslots}
