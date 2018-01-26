@@ -34,9 +34,11 @@ class CustomerRequestDetails extends PureComponent {
 
   _renderMakePayment = () => {
     return (
-      <TouchableOpacity onPress={this._makePayment}>
-        <Text>Make Payment</Text>
-      </TouchableOpacity>
+      <View style={{ paddingTop: 15 }}>
+        <TouchableOpacity style={styles.selectTimeButtonStyle} onPress={this._makePayment}>
+          <Text style={styles.buttonTextStyle}>Make Payment</Text>
+        </TouchableOpacity>
+      </View>
     );
   }
 
@@ -57,7 +59,13 @@ class CustomerRequestDetails extends PureComponent {
 
   _renderCompletedRequest = () => {
     return (
-      <Text>Service request completed</Text>
+      <View style={{ paddingTop: 20 }}>
+        <View style={styles.serviceCompletedBackgroundViewStyle}>
+          <Text style={styles.serviceCompletedTextStyle}>
+            Service request completed
+          </Text>
+        </View>
+      </View>
     );
   }
 
