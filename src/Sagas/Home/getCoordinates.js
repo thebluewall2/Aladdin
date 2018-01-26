@@ -3,6 +3,7 @@ import Geocoder from 'react-native-geocoding';
 
 import ReduxActions from '../../Redux/Actions';
 import Types from '../../Redux/Home/types';
+import Config from '../../Services/config';
 
 export function* watchGetCoordinates() {
   while (true) {
@@ -31,7 +32,7 @@ export function* handleGetCoordinates(addressAttempt) {
 }
 
 export function getCoordinates(address) {
-  Geocoder.setApiKey('AIzaSyDiQJNqCwJXrP4yp8MB-5xnxbCEV4oyRt0');
+  Geocoder.setApiKey(Config.googleGeocoderAPI);
 
   const location = Geocoder.getFromLocation(address)
     .then(json => json.results[0].geometry.location)
