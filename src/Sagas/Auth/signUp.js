@@ -7,6 +7,7 @@ import Geocoder from 'react-native-geocoding';
 import ReduxActions from '../../Redux/Actions';
 import Types from '../../Redux/Auth/types';
 import { showToast } from '../../Services/helpers';
+import Config from '../../Services/config';
 
 export function* watchUserSignUp() {
   while (true) {
@@ -161,7 +162,7 @@ export function* VendorInfo(data, userData) {
 }
 
 export function getCoordinatesFromAddress(address) {
-  Geocoder.setApiKey('AIzaSyDiQJNqCwJXrP4yp8MB-5xnxbCEV4oyRt0');
+  Geocoder.setApiKey(Config.googleGeocoderAPI);
   const addressToString = `${address.streetName} ${address.city} ${address.postcode} ${address.state}`;
 
   const location = Geocoder.getFromLocation(addressToString)
