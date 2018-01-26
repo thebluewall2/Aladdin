@@ -55,7 +55,7 @@ class RequestsHome extends PureComponent {
 
   _renderEmptyList = () => {
     return (
-      <Text style={{ paddingTop: 120, alignSelf: 'center' }}>
+      <Text style={{ flex: 1, alignSelf: 'center', fontFamily: "quicksand-regular", fontSize: 15, paddingTop: 120 }}>
         No ongoing requests.
       </Text>
     );

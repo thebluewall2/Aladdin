@@ -13,9 +13,13 @@ const SettingsCard = (props) => {
 
   return (
     <TouchableOpacity style={styles.cardStyle} onPress={onPress}>
-      <View style={styles.iconTitleStyle} >
-        <Icon name={icon} size={30} style={{ paddingRight: 10, paddingLeft: 5 }} />
-        <Text style={styles.textStyle}>{title}</Text>
+      <View style={styles.settingCardContainterViewStyle} >
+      <View style={styles.iconContainerViewStyle}>
+        <Icon name={icon} size={30} style={{ padding: 5, paddingRight: 20, paddingLeft: 5 }} />
+      </View>
+        <View style={styles.textContainerViewStyle}>
+          <Text style={styles.textStyle}>{title}</Text>
+        </View>
       </View>
       {renderToggle(hasSwitch, toggleValue, onPress)}
     </TouchableOpacity>
@@ -40,12 +44,27 @@ const styles = {
     justifyContent: "space-between",
     flexDirection: "row",
   },
-  iconTitleStyle: {
+  settingCardContainterViewStyle: {
+    flex: 8,
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "center"
   },
+
+  iconContainerViewStyle: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-start"
+  },
+
+  textContainerViewStyle: {
+    flex: 7,
+    flexDirection: "row",
+    justifyContent: "flex-start"
+  },
+
   textStyle: {
-    fontSize: 15
+    fontSize: 15,
+    fontFamily: 'quicksand-regular'
   }
 };
 
