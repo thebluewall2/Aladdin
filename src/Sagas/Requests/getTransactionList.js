@@ -1,4 +1,5 @@
 import { take, call, put } from 'redux-saga/effects';
+import { getAll, get } from 'firebase-saga';
 
 import firebase from 'firebase';
 
@@ -23,70 +24,22 @@ export function* handleGetTransactionList(userType, userUID) {
 }
 
 export function* getTransactionList(userType, userUID) {
-  const ref = firebase.database().ref(`Users/${userType}/${userUID}/transactions`);
+  const listOfTransactionUIDFromFirebase = yield call(getAll, `Users/${userType}/${userUID}/transactions`);
+  let listOfTransactionUID = [];
+  let listOfTransactions = [];
 
-  let transactionList = [];
-  const transactions = yield call([ref.orderByChild(`orderByDate`).limitToFirst(45), ref.once], 'value');
+  Object.keys(listOfTransactionUIDFromFirebase)
+    .map(transactionUID => {
+      listOfTransactionUID.push(transactionUID);
+    });
 
-  if (transactions.val() === null) {
+  for (let i = 0; i < listOfTransactionUID.length; i++) {
+    listOfTransactions.push(yield call(get, 'Transactions/', listOfTransactionUID[i]));
+  }
+  if (listOfTransactions === null) {
     return [];
   }
 
-  Object.keys(transactions.val())
-    .map(transactionUID => {
-        transactionList.push({
-          transactionUID,
-          trxCode: transactions.val()[transactionUID].trxCode,
-          vendorUID: transactions.val()[transactionUID].vendorUID,
-          customerUID: transactions.val()[transactionUID].customerUID,
-          vendorName: transactions.val()[transactionUID].vendorName,
-          customerName: transactions.val()[transactionUID].customerName,
-          selectedAddress: transactions.val()[transactionUID].selectedAddress,
-          selectedCategory: transactions.val()[transactionUID].selectedCategory,
-          selectedSubcategory: transactions.val()[transactionUID].selectedSubcategory,
-          price: transactions.val()[transactionUID].price,
-          timeslots: transactions.val()[transactionUID].timeslots,
-          confirmedTime: transactions.val()[transactionUID].confirmedTime,
-          orderByDate: transactions.val()[transactionUID].orderByDate,
-          status: transactions.val()[transactionUID].status,
-          createdDate: transactions.val()[transactionUID].createdDate,
-        });
-    });
-
-    transactionList.sort((a, b) => a.orderByDate - b.orderByDate);
-    return transactionList;
+  listOfTransactions.sort((a, b) => a.orderByDate - b.orderByDate);
+  return listOfTransactions;
 }
-
-// export function* getAppendedTransactionList(userType, userUID, previousConfirmDate) {
-//   const ref = firebase.database().ref(`Users/${userType}/${userUID}/transactions`);
-//   let transactionList = [];
-//   const transactions =
-//   yield call([ref.orderByChild(`orderByDate`).startAt(-previousConfirmDate).limitToFirst(10), ref.once], 'value');
-//
-//   if (transactions.val() === null) {
-//     throw new Error('No Transactions Found');
-//   }
-//
-//   Object.keys(transactions.val())
-//     .map(transactionUID => {
-//         transactionList.push({
-//           transactionUID,
-//           trxCode: transactions.val()[transactionUID].trxCode,
-//           vendorUID: transactions.val()[transactionUID].vendorUID,
-//           customerUID: transactions.val()[transactionUID].customerUID,
-//           vendorName: transactions.val()[transactionUID].vendorName,
-//           customerName: transactions.val()[transactionUID].customerName,
-//           selectedAddress: transactions.val()[transactionUID].selectedAddress,
-//           selectedCategory: transactions.val()[transactionUID].selectedCategory,
-//           selectedSubcategory: transactions.val()[transactionUID].selectedSubcategory,
-//           price: transactions.val()[transactionUID].price,
-//           timeslots: transactions.val()[transactionUID].timeslots,
-//           confirmedTime: transactions.val()[transactionUID].confirmedTime,
-//           orderByDate: transactions.val()[transactionUID].orderByDate,
-//           status: transactions.val()[transactionUID].status,
-//           createdDate: transactions.val()[transactionUID].createdDate,
-//         });
-//     });
-//     transactionList.sort((a, b) => a.orderByDate - b.orderByDate);
-//     return transactionList;
-// }

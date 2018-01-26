@@ -16,6 +16,7 @@ class EditCustomerProfile extends React.PureComponent {
         postcode: props.address[0].postcode || '',
         city: props.address[0].city || '',
         state: props.address[0].state || '',
+        error: '',
       };
   }
 
@@ -42,7 +43,20 @@ class EditCustomerProfile extends React.PureComponent {
   }
 
   _handleSubmit = () => {
-    console.log(this.state);
+    const { phoneNo, address1, postcode, city, state } = this.state;
+
+    if (!phoneNo || !address1 || !postcode || !city || !state) {
+      this._setErrorMessage("Field must not be blank!");
+    } else {
+      this._setErrorMessage("");
+      console.log("Off to saga!");
+    }
+  }
+
+  _setErrorMessage = (error) => {
+    this.setState({
+      error
+    });
   }
 
   render() {
@@ -118,6 +132,8 @@ class EditCustomerProfile extends React.PureComponent {
             componentStyle={styles.textInputStyle}
             autoCorrect={false}
           />
+
+          <Text>{this.state.error}</Text>
 
           {this._renderSignUpBtn()}
         </KeyboardAwareScrollView>

@@ -16,7 +16,7 @@ export function* watchGetTransactionData() {
 
 export function* handleGetTransactionData(userType, transactionUID) {
   try {
-    const TransactionData = yield call(get, `Users/${userType}/transactions`, transactionUID);
+    const TransactionData = yield call(get, `Transactions/`, transactionUID);
     TransactionData.transactionUID = transactionUID;
     if (TransactionData === null) {
       throw new Error('Cannot find transaction!');

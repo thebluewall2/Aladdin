@@ -13,20 +13,21 @@ export function* watchCreateOrUpdateTransaction() {
   while (true) {
     //trxCode: 1 = create, 2 = update
     const { serviceBooking } = yield take(Types.HOME_CREATE_OR_UPDATE_TRANSACTION_ATTEMPT);
+    const dateNow = firebase.database.ServerValue.TIMESTAMP;
+    serviceBooking.createdDate = dateNow;
+    serviceBooking.orderByDate = -dateNow;
     yield call(handleCreateOrUpdateTransaction, serviceBooking);
   }
 }
 
 export function* handleCreateOrUpdateTransaction(serviceBooking) {
-  const dateNow = firebase.database.ServerValue.TIMESTAMP;
-
   try {
     switch (serviceBooking.trxCode) {
       case 1:
-        yield call(handleCreateTransaction, serviceBooking, dateNow);
+        yield call(handleCreateTransaction, serviceBooking);
         break;
       case 2:
-        yield call(updateTransaction, serviceBooking, dateNow);
+        yield call(updateTransaction, serviceBooking);
         break;
       default:
         throw new Error('Action is not valid');
@@ -38,50 +39,37 @@ export function* handleCreateOrUpdateTransaction(serviceBooking) {
   }
 }
 
-export function* handleCreateTransaction(serviceBooking, dateNow) {
+export function* handleCreateTransaction(serviceBooking) {
   //store in transactions
   const ref = firebase.database().ref(`Transactions/`);
-  const transactionUID = yield call(createTransaction, ref, serviceBooking, dateNow);
+  const transactionUID = yield call(createTransaction, ref, serviceBooking);
 
   //store transaction reference in customer
   yield call(update, `Users/customer/${serviceBooking.customerUID}/`, 'transactions',
-  { [`${transactionUID}`]: dateNow });
+  { [`${transactionUID}`]: serviceBooking.createdDate });
 
   //store transaction reference in vendor
   yield call(update, `Users/vendor/${serviceBooking.vendorUID}/`, 'transactions',
-  { [`${transactionUID}`]: dateNow });
+  { [`${transactionUID}`]: serviceBooking.createdDate });
 
   showToast('Booking requested!');
 }
 
-export function createTransaction(ref, serviceBooking, dateNow) {
+export function createTransaction(ref, serviceBooking) {
   const customerTransactionRef = ref.push();
   customerTransactionRef.set({
     ...serviceBooking,
-    createdDate: dateNow,
   });
-
   return customerTransactionRef.key;
 }
 
-export function* updateTransaction(serviceBooking, dateNow) {
-  // store customer
-  yield call(update, `Users/customer/${serviceBooking.customerUID}/transactions/`,
+export function* updateTransaction(serviceBooking) {
+  yield call(update, `Transactions/`,
     `${serviceBooking.transactionUID}`, {
       ...serviceBooking,
-      updatedDate: dateNow
     });
 
-  //store vendor
-   yield call(update, `Users/vendor/${serviceBooking.vendorUID}/transactions/`,
-     `${serviceBooking.transactionUID}`, {
-       ...serviceBooking,
-       updatedDate: dateNow
-      });
-
     showToast("Status updated!");
-
     Actions.requests();
-
     // Actions.pop({ popNum: 2, refresh: {} });
 }
