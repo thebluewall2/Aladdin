@@ -21,12 +21,12 @@ export function* handleLoginUser(userType, email, password) {
     const userData = yield call(firebaseAuth, email, password);
     const userInfo = yield call(get, `Users/${userType}`, userData.uid);
 
-    const response = cleanResponse(email, userData.uid, userInfo);
+    const response = cleanResponse(email, userData.uid, userInfo, userType);
 
     //save password so that we can autologin next time user opens app
     setGenericPassword(email, password);
     saveUserType(userType);
-    
+
     yield put(ReduxActions.authUserLoginSuccess(response));
     yield put(ReduxActions.authAppStartUp(false));
 
@@ -75,7 +75,7 @@ async function saveUserType(userType) {
   await AsyncStorage.setItem('userType', userType);
 }
 
-export function cleanResponse(email, uid, userInfo) {
+export function cleanResponse(email, uid, userInfo, userType) {
   //in the future, we might we returning array of addresses
   //so convert address to array for now
   if (!userInfo) {
@@ -85,7 +85,7 @@ export function cleanResponse(email, uid, userInfo) {
 
   const { name, address, city, postcode, state, phoneNo } = userInfo;
 
-  return {
+  const userDataToReturn = {
     email,
     uid,
     fullName: name,
@@ -98,4 +98,20 @@ export function cleanResponse(email, uid, userInfo) {
       coordinates: userInfo.coordinates
     }],
   };
+
+  if (userType === 'vendor') {
+    const { awards, companyName, yearsOfExp, yearsOfCompany, noOfStaff, officeNo } = userInfo;
+
+    return {
+      ...userDataToReturn,
+      awards,
+      companyName,
+      yearsOfExp,
+      yearsOfCompany,
+      noOfStaff,
+      officeNo
+    }
+  }
+
+  return userDataToReturn;
 }
