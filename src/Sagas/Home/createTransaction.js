@@ -35,7 +35,9 @@ export function* handleCreateOrUpdateTransaction(serviceBooking) {
 
     yield put(ReduxActions.homeCreateOrUpdateTransactionSuccess());
   } catch (error) {
-    yield put(ReduxActions.homeCreateOrUpdateTransactionFailure(error));
+    const errorMsg = "Something went wrong. Please try again later";
+    
+    yield put(ReduxActions.homeCreateOrUpdateTransactionFailure(errorMsg));
   }
 }
 
