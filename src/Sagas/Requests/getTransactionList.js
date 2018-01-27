@@ -40,6 +40,6 @@ export function* getTransactionList(userType, userUID) {
     return [];
   }
 
-  listOfTransactions.sort((a, b) => a.orderByDate - b.orderByDate);
+  listOfTransactions.sort((a, b) => a.createdDate - b.createdDate);
   return listOfTransactions;
 }
