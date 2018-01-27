@@ -15,10 +15,9 @@ export function* watchMakePayment() {
     // CustPhone, MerchantName, MerchantCallbackURL(for confirm api request to firebase api)
     let { paymentInfo } = yield take(Types.REQ_MAKE_PAYMENT_ATTEMPT);
     console.log(paymentInfo);
-    PaymentInfo = {
+    paymentInfo = {
       TransactionType: 'SALE',
       PymtMethod: 'CC',
-      ServiceID: 'sit',
       OrderNumber: 'trxID-1',
       PaymentDesc: 'cat + subcat + time + vendor + customer',
       Amount: '100.00',
@@ -61,38 +60,36 @@ export function createPaymentRecord(ref, PaymentInfo, dateNow) {
   });
   //Clean PaymentInfo for request to Payment Gateway
   const paymentRequest = {
-      TransactionType: PaymentInfo.TransactionType,
-      PymtMethod: PaymentInfo.PymtMethod,
-      ServiceID: PaymentInfo.ServiceID,
-      OrderNumber: PaymentInfo.OrderNumber,
-      PaymentDesc: PaymentInfo.PaymentDesc,
-      Amount: PaymentInfo.Amount,
-      CurrencyCode: PaymentInfo.CurrencyCode,
-      CustIP: PaymentInfo.CustIP,
-      CustName: PaymentInfo.CustName,
-      CustEmail: PaymentInfo.CustEmail,
-      CustPhone: PaymentInfo.CustPhone,
-      PaymentID: PaymentInfoRef.key,
+    TransactionType: PaymentInfo.TransactionType,
+    PymtMethod: PaymentInfo.PymtMethod,
+    OrderNumber: PaymentInfo.OrderNumber,
+    PaymentDesc: PaymentInfo.PaymentDesc,
+    Amount: PaymentInfo.Amount,
+    CurrencyCode: PaymentInfo.CurrencyCode,
+    CustIP: PaymentInfo.CustIP,
+    CustName: PaymentInfo.CustName,
+    CustEmail: PaymentInfo.CustEmail,
+    CustPhone: PaymentInfo.CustPhone,
+    PaymentID: PaymentInfoRef.key,
   };
   return paymentRequest;
 }
 
 export function sendRequestForProcessing(PaymentInfoWithID) {
-  const config = Config.paymentRequestDomain;
-  fetch(config, {
+  const endpoint = Config.getFullParametersDomain;
+  fetch(endpoint, {
     method: 'POST',
     headers: {
-    'Content-Type': 'application/json',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       PaymentInfoWithID,
-  })
-
+    })
   })
   .then((response) => {
     console.log(response); //success response redux
   })
   .catch((error) => {
-        console.error(error); //failed redux
+    console.error(error); //failed redux
   });
 }
