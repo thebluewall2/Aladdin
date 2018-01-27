@@ -1,10 +1,9 @@
 import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 
 import ReduxActions from '../../Redux/Actions';
-import { TextFieldComponent } from '../../Components/common';
+import { TextFieldComponent, LoadingSpinner } from '../../Components/common';
 import styles from './Styles';
 
 class AddNewAddress extends React.PureComponent {
@@ -44,8 +43,6 @@ class AddNewAddress extends React.PureComponent {
       };
 
       this.props.getCoordinatesForAddress(addressToAdd);
-
-      Actions.pop();
     }
   }
 
@@ -65,6 +62,20 @@ class AddNewAddress extends React.PureComponent {
     }
 
     return false;
+  }
+
+  _renderSubmitBtn = () => {
+    if (this.props.loading) {
+      return <LoadingSpinner />;
+    }
+
+    return (
+      <View style={{ paddingTop: 20 }} >
+        <TouchableOpacity style={styles.buttonStyle} onPress={this._handleSubmit} >
+          <Text style={styles.buttonTextStyle}>Add Address</Text>
+        </TouchableOpacity>
+      </View>
+    );
   }
 
   render() {
@@ -122,25 +133,24 @@ class AddNewAddress extends React.PureComponent {
 
         {this._renderErrorMsg()}
 
-        <View style={{ paddingTop: 20 }} >
-          <TouchableOpacity style={styles.buttonStyle} onPress={this._handleSubmit} >
-            <Text style={styles.buttonTextStyle}>Add Address</Text>
-          </TouchableOpacity>
-        </View>
+        {this._renderSubmitBtn()}
 
       </View>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {};
+const mapStateToProps = ({ home }) => {
+  return {
+    loading: home.loading,
+    errorMsg: home.errorMsg
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getCoordinatesForAddress: (address) =>
-      dispatch(ReduxActions.homeGetCoordinates(address)),
+      dispatch(ReduxActions.homeGetCoordinatesAttempt(address)),
   };
 };
 

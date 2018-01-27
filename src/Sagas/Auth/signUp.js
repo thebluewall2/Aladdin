@@ -42,6 +42,10 @@ export function* handleSignUp(data) {
         errorMsg = 'Password requires 6 characters and above';
         break;
       }
+      case 'Location not found': {
+        errorMsg = 'Location not found. Please try again';
+        break;
+      }
       default: {
         errorMsg = 'Something went wrong, please try again later';
         break;
@@ -55,23 +59,39 @@ export function* handleSignUp(data) {
 export function* CheckPhoneNumber(data) {
   const phoneNo = yield call(get, `PhoneNumbers/${data.userType}`, data.phoneNo);
 
-  if (phoneNo === null) {
-    yield call(create, `PhoneNumbers/${data.userType}/${data.phoneNo}`, () => ({
-                [`PhoneNumbers/${data.userType}/${data.phoneNo}`]: { email: data.email }
-              })
-            );
-  } else {
+  if (phoneNo) {
     throw { code: 'Phone number in use' };
   }
 }
 
-export function* SignUp(data) {
-  const userData = yield call(firebaseSignUp, data);
+export function* addPhoneNumber(data) {
+  yield call(create, `PhoneNumbers/${data.userType}/${data.phoneNo}`, () => ({
+              [`PhoneNumbers/${data.userType}/${data.phoneNo}`]: { email: data.email }
+            })
+  );
+}
 
-  if (data.userType === 'customer') {
-    yield call(CustomerInfo, data, userData);
-  } else if (data.userType === 'vendor') {
-    yield call(VendorInfo, data, userData);
+export function* SignUp(data) {
+  //before signing up, let's check if address is valid
+  let userAddressToString = `${data.address} ${data.city} ${data.postcode} ${data.state}`;
+  let coordinates = yield call(getCoordinatesFromAddress, userAddressToString);
+
+  if (!coordinates) {
+    userAddressToString = `${data.city} ${data.postcode} ${data.state}`;
+    coordinates = yield call(getCoordinatesFromAddress, userAddressToString);
+  }
+
+  if (!coordinates) {
+    throw { code: 'Location not found' };
+  } else {
+    const userData = yield call(firebaseSignUp, data);
+    yield call(addPhoneNumber, data);
+
+    if (data.userType === 'customer') {
+      yield call(CustomerInfo, data, userData, coordinates);
+    } else if (data.userType === 'vendor') {
+      yield call(VendorInfo, data, userData, coordinates);
+    }
   }
 }
 
@@ -84,16 +104,7 @@ export function firebaseSignUp(data) {
   return userData;
 }
 
-export function* CustomerInfo(data, userData) {
-  const userAddress = {
-    streetName: data.address,
-    city: data.city,
-    state: data.state,
-    postcode: data.postcode
-  };
-
-  const coordinates = yield call(getCoordinatesFromAddress, userAddress);
-
+export function* CustomerInfo(data, userData, coordinates) {
   yield call(create, `Users/${data.userType}/${userData.uid}`, () => ({
       [`Users/${data.userType}/${userData.uid}`]:
         {
@@ -112,17 +123,8 @@ export function* CustomerInfo(data, userData) {
 }
 
 
-export function* VendorInfo(data, userData) {
+export function* VendorInfo(data, userData, coordinates) {
   try {
-    const userAddress = {
-      streetName: `${data.addressOne} ${data.addressTwo}`,
-      city: data.city,
-      state: data.state,
-      postcode: data.postcode
-    };
-
-    const coordinates = yield call(getCoordinatesFromAddress, userAddress);
-
     yield call(create, `Users/${data.userType}/${userData.uid}`, () => ({
       [`Users/${data.userType}/${userData.uid}`]:
         {
@@ -163,9 +165,8 @@ export function* VendorInfo(data, userData) {
 
 export function getCoordinatesFromAddress(address) {
   Geocoder.setApiKey(Config.googleGeocoderAPI);
-  const addressToString = `${address.streetName} ${address.city} ${address.postcode} ${address.state}`;
 
-  const location = Geocoder.getFromLocation(addressToString)
+  const location = Geocoder.getFromLocation(address)
     .then(json => json.results[0].geometry.location)
     .catch((error) => console.log(error));
 

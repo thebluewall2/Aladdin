@@ -1,5 +1,6 @@
 import { call, take, put } from 'redux-saga/effects';
 import Geocoder from 'react-native-geocoding';
+import { Actions } from 'react-native-router-flux'
 
 import ReduxActions from '../../Redux/Actions';
 import Types from '../../Redux/Home/types';
@@ -7,7 +8,7 @@ import Config from '../../Services/config';
 
 export function* watchGetCoordinates() {
   while (true) {
-    const { address } = yield take(Types.HOME_GET_COORDINATES);
+    const { address } = yield take(Types.HOME_GET_COORDINATES_ATTEMPT);
     yield call(handleGetCoordinates, address);
   }
 }
@@ -20,15 +21,24 @@ export function* handleGetCoordinates(addressAttempt) {
 
   if (!coordinates) {
     //if no coordinates found, try with city
-    coordinates = yield call(getCoordinates, `${city} ${state}`);
+    coordinates = yield call(getCoordinates, `${city} ${postcode} ${state}`);
   }
 
-  const addressToReturn = {
-    ...addressAttempt,
-    coordinates,
-  };
+  if (!coordinates) {
+    const errorMsg = "Location not found. Please try again.";
 
-  yield put(ReduxActions.authAddNewAddress(addressToReturn));
+    yield put(ReduxActions.homeGetCoordinatesFailure(errorMsg));
+  } else {
+      const addressToReturn = {
+        ...addressAttempt,
+        coordinates,
+      };
+
+      yield put(ReduxActions.authAddNewAddress(addressToReturn));
+      yield put(ReduxActions.homeGetCoordinatesSuccess());
+
+      Actions.pop();
+  }
 }
 
 export function getCoordinates(address) {
