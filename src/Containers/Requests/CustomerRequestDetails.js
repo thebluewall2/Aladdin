@@ -2,8 +2,10 @@ import React, { PureComponent } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import moment from 'moment';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
 
 import styles from './Styles';
+import ReduxActions from '../../Redux/Actions';
 
 class CustomerRequestDetails extends PureComponent {
   _renderSuggestedDates = () => {
@@ -42,8 +44,8 @@ class CustomerRequestDetails extends PureComponent {
 
   _makePayment = () => {
     const { transaction } = this.props.navigationState;
-
-    console.log("make payment");
+    
+    this.props.makePayment(transaction);
   }
 
   _renderShowQR = (transactionUID) => {
@@ -106,4 +108,11 @@ class CustomerRequestDetails extends PureComponent {
   }
 }
 
-export default CustomerRequestDetails;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    makePayment: (paymentInfo) =>
+      dispatch(ReduxActions.requestsMakePaymentAttempt(paymentInfo)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CustomerRequestDetails);
