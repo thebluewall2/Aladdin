@@ -40,7 +40,11 @@ class UserLoginPage extends Component {
 
   _renderLoginBtn() {
     if (this.props.loading) {
-      return <LoadingSpinner />;
+      return (
+        <View style={{ height: 40, width: 40, paddingTop: 20, paddingBottom: 20 }}>
+          <LoadingSpinner />
+        </View>
+      );
     }
 
     return (

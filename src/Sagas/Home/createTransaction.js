@@ -15,7 +15,6 @@ export function* watchCreateOrUpdateTransaction() {
     const { serviceBooking } = yield take(Types.HOME_CREATE_OR_UPDATE_TRANSACTION_ATTEMPT);
     const dateNow = firebase.database.ServerValue.TIMESTAMP;
     serviceBooking.createdDate = dateNow;
-    serviceBooking.orderByDate = -dateNow;
     yield call(handleCreateOrUpdateTransaction, serviceBooking);
   }
 }
@@ -36,7 +35,7 @@ export function* handleCreateOrUpdateTransaction(serviceBooking) {
     yield put(ReduxActions.homeCreateOrUpdateTransactionSuccess());
   } catch (error) {
     const errorMsg = "Something went wrong. Please try again later";
-    
+
     yield put(ReduxActions.homeCreateOrUpdateTransactionFailure(errorMsg));
   }
 }

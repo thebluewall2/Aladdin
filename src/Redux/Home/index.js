@@ -8,6 +8,10 @@ export default {
     [Types.HOME_SET_SEARCH_SUBCATEGORY]: Reducers.setSearchSubcategory,
     [Types.HOME_SET_SEARCH_ADDRESS]: Reducers.setSearchAddress,
 
+    [Types.HOME_GET_COORDINATES_ATTEMPT]: Reducers.getCoordinatesAttempt,
+    [Types.HOME_GET_COORDINATES_SUCCESS]: Reducers.getCoordinatesSuccess,
+    [Types.HOME_GET_COORDINATES_FAILURE]: Reducers.getCoordinatesFailure,
+
     [Types.HOME_GET_VENDOR_LIST_ATTEMPT]: Reducers.getVendorListAttempt,
     [Types.HOME_GET_VENDOR_LIST_SUCCESS]: Reducers.getVendorListSuccess,
     [Types.HOME_GET_VENDOR_LIST_FAILURE]: Reducers.getVendorListFailure,

@@ -29,7 +29,7 @@ export function* watchMakePayment() {
       CustEmail: 'ollie@gmail.com',
       CustPhone: '0198273645',
     };
-      yield call(handleMakePayment, paymentInfo);
+      // yield call(handleMakePayment, paymentInfo);
     }
 }
 
