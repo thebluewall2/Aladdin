@@ -20,7 +20,11 @@ class App extends Component {
       messagingSenderId: '617243251381'
     };
 
-    firebase.initializeApp(config);
+    if (!firebase.apps.length) {
+      firebase.initializeApp(config);
+    } else {
+      firebase.app();
+    }
   }
 
   render() {
