@@ -137,6 +137,10 @@ export function* VendorInfo(data, userData, coordinates) {
           services: data.subcategories,
           city: data.city,
           coordinates,
+          reviews: {
+            totalReviews: 0,
+            totalScores: 0
+          },
           state: data.state,
           yearsOfExp: data.yearsOfExp,
           yearsOfCompany: data.yearsOfCompany,
