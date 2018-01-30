@@ -63,7 +63,7 @@ class RequestsHome extends PureComponent {
 
   render() {
     const { loading, transactionList } = this.props;
-
+    
     if (loading) {
       return <LoadingSpinner />;
     }

@@ -11,5 +11,9 @@ export default {
     [Types.REQ_GET_TRANSACTION_LIST_ATTEMPT]: Reducers.getTransactionListAttempt,
     [Types.REQ_GET_TRANSACTION_LIST_SUCCESS]: Reducers.getTransactionListSuccess,
     [Types.REQ_GET_TRANSACTION_LIST_FAILURE]: Reducers.getTransactionListFailure,
+
+    [Types.REQ_MAKE_PAYMENT_ATTEMPT]: Reducers.makePaymentAttempt,
+    [Types.REQ_MAKE_PAYMENT_SUCCESS]: Reducers.makePaymentSuccess,
+    [Types.REQ_MAKE_PAYMENT_FAILURE]: Reducers.makePaymentFailure,
   })
 };

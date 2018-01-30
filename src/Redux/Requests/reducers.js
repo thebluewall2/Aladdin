@@ -53,6 +53,29 @@ const getTransactionDataFailure = (state = INITIAL_STATE, action) => {
   };
 };
 
+const makePaymentAttempt = (state = INITIAL_STATE) => {
+  return {
+    ...state,
+    loading: true,
+    errorMessage: ''
+  };
+};
+
+const makePaymentSuccess = (state = INITIAL_STATE) => {
+  return {
+    ...state,
+    loading: false,
+  };
+};
+
+const makePaymentFailure = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    loading: false,
+    errorMessage: action.errorMsg
+  };
+};
+
 export default {
   INITIAL_STATE,
 
@@ -63,4 +86,8 @@ export default {
   getTransactionDataAttempt,
   getTransactionDataSuccess,
   getTransactionDataFailure,
+
+  makePaymentAttempt,
+  makePaymentSuccess,
+  makePaymentFailure,
 };

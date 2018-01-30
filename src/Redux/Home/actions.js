@@ -15,10 +15,19 @@ const homeSetSearchAddress = (address) => ({
   address
 });
 
-const homeGetCoordinates = (address) => ({
-  type: Types.HOME_GET_COORDINATES,
+const homeGetCoordinatesAttempt = (address) => ({
+  type: Types.HOME_GET_COORDINATES_ATTEMPT,
   address
 });
+
+const homeGetCoordinatesSuccess = () => ({
+  type: Types.HOME_GET_COORDINATES_SUCCESS
+});
+
+const homeGetCoordinatesFailure = (errorMsg) => ({
+  type: Types.HOME_GET_COORDINATES_FAILURE,
+  errorMsg,
+})
 
 const homeGetVendorListAttempt = (category, subcategory, userAddress) => ({
   type: Types.HOME_GET_VENDOR_LIST_ATTEMPT,
@@ -87,7 +96,10 @@ export default {
   homeSetSearchCategory,
   homeSetSearchSubcategory,
   homeSetSearchAddress,
-  homeGetCoordinates,
+
+  homeGetCoordinatesAttempt,
+  homeGetCoordinatesSuccess,
+  homeGetCoordinatesFailure,
 
   homeGetVendorListAttempt,
   homeGetVendorListSuccess,

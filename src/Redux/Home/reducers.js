@@ -31,6 +31,29 @@ const setSearchAddress = (state = INITIAL_STATE, action) => {
   };
 };
 
+const getCoordinatesAttempt = (state = INITIAL_STATE) => {
+  return {
+    ...state,
+    loading: true,
+    errorMsg: '',
+  };
+};
+
+const getCoordinatesSuccess = (state = INITIAL_STATE) => {
+  return {
+    ...state,
+    loading: false,
+  };
+};
+
+const getCoordinatesFailure = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    loading: false,
+    errorMsg: action.errorMsg
+  };
+};
+
 //Get Vendor List Section
 const getVendorListAttempt = (state = INITIAL_STATE) => {
   return { ...state,
@@ -138,6 +161,10 @@ export default {
   setSearchCategory,
   setSearchSubcategory,
   setSearchAddress,
+
+  getCoordinatesAttempt,
+  getCoordinatesSuccess,
+  getCoordinatesFailure,
 
   getVendorListAttempt,
   getVendorListSuccess,

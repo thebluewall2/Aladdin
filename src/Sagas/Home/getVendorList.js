@@ -19,12 +19,21 @@ export function* handleGetVendorList(category, subcategory, userAddress) {
     let listOfVendor = yield call(convertToArray, listOfVendorsFromFirebase);
     listOfVendor = yield call(getVendorReviews, listOfVendor);
     listOfVendor = yield call(getDistanceFromVendorList, userAddress, listOfVendor);
+    listOfVendor = yield call(sortByDistance, listOfVendor);
 
     yield put(ReduxActions.homeGetVendorListSuccess(listOfVendor));
   } catch (error) {
       const err = new Error("No Vendor Found!");
       yield put(ReduxActions.homeGetVendorListFailure(err));
   }
+}
+
+export function sortByDistance(listOfVendor) {
+  listOfVendor.sort((a, b) => {
+    return a.distance - b.distance;
+  });
+
+  return listOfVendor;
 }
 
 export function* getVendorReviews(listOfVendor) {

@@ -11,7 +11,9 @@ import { LoadingSpinner } from '../../Components/common';
 class HomePage extends Component {
 
   componentWillMount() {
-    this.props.getServiceCategories();
+    if (this.props.userType === 'customer') {
+        this.props.getServiceCategories();
+    }
   }
 
   _categoryPressed = (category) => {
@@ -23,6 +25,12 @@ class HomePage extends Component {
   _renderList = () => {
     if (this.props.loading) {
       return <LoadingSpinner />;
+    }
+
+    if (this.props.userType === 'vendor') {
+      return (
+        <Text>Sorry, this feature is only available for customers.</Text>
+      );
     }
 
     return (
@@ -49,6 +57,7 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const { userType } = state.auth;
   const { fullName } = state.auth.userData;
   const { loading, serviceCategories } = state.home;
 
@@ -56,6 +65,7 @@ const mapStateToProps = (state) => {
     fullName,
     loading,
     serviceCategories,
+    userType,
   };
 };
 

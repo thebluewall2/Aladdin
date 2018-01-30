@@ -34,12 +34,17 @@ export function* getTransactionList(userType, userUID) {
     });
 
   for (let i = 0; i < listOfTransactionUID.length; i++) {
-    listOfTransactions.push(yield call(get, 'Transactions/', listOfTransactionUID[i]));
+    const transaction = yield call(get, 'Transactions/', listOfTransactionUID[i]);
+    listOfTransactions.push({
+      ...transaction,
+      transactionUID: listOfTransactionUID[i],
+    });
   }
   if (listOfTransactions === null) {
     return [];
   }
 
-  listOfTransactions.sort((a, b) => a.orderByDate - b.orderByDate);
+  listOfTransactions.sort((a, b) => a.createdDate - b.createdDate);
+  console.log(listOfTransactions);
   return listOfTransactions;
 }
