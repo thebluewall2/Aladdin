@@ -43,9 +43,16 @@ class CustomerRequestDetails extends PureComponent {
   }
 
   _makePayment = () => {
+    const { userPhone, userEmail } = this.props;
     const { transaction } = this.props.navigationState;
 
-    this.props.makePayment(transaction);
+    const paymentInfo = {
+      ...transaction,
+      userPhone,
+      userEmail
+    };
+
+    this.props.makePayment(paymentInfo);
   }
 
   _renderShowQR = (transactionUID) => {
@@ -109,6 +116,13 @@ class CustomerRequestDetails extends PureComponent {
   }
 }
 
+const mapStateToProps = ({ auth }) => {
+  return {
+    userEmail: auth.userData.email,
+    userPhone: auth.userData.phoneNo,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     makePayment: (paymentInfo) =>
@@ -116,4 +130,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(CustomerRequestDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(CustomerRequestDetails);
