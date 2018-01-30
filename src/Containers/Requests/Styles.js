@@ -86,4 +86,40 @@ export default StyleSheet.create({
     backgroundColor: '#d1e8e8'
   },
 
+  completeRequestButtonStyle: {
+    backgroundColor: '#198c8c',
+    height: 35,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 300,
+    borderRadius: 5,
+    padding: 5
+  },
+
+  completeRequestButtonViewStyle: {
+    paddingTop: 15,
+    alignItems: 'center',
+    flex: 1
+  },
+
+  qrCodeContainerViewStyle: {
+    flex: 1,
+    padding: 15,
+    justifyContent: 'flex-start',
+    paddingTop: 80
+  },
+
+  qrCodeTextStyle: {
+    fontFamily: 'quicksand-regular',
+    fontSize: 15,
+    textAlign: 'center',
+    paddingBottom: 30
+  },
+
+  qrCodeViewStyle: {
+    flex: 1,
+    flexDirection: 'column', 
+    alignItems: 'center'
+  },
+
 });

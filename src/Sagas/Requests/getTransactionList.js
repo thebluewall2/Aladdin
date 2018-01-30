@@ -45,6 +45,6 @@ export function* getTransactionList(userType, userUID) {
   }
 
   listOfTransactions.sort((a, b) => a.createdDate - b.createdDate);
-  console.log(listOfTransactions);
+  
   return listOfTransactions;
 }

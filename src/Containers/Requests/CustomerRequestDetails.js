@@ -44,27 +44,28 @@ class CustomerRequestDetails extends PureComponent {
 
   _makePayment = () => {
     const { transaction } = this.props.navigationState;
-    
+
     this.props.makePayment(transaction);
   }
 
   _renderShowQR = (transactionUID) => {
     return (
-      <TouchableOpacity onPress={() => Actions.qrCodePage({ transactionUID })}>
-        <Text>Complete request</Text>
-      </TouchableOpacity>
+
+      <View style={styles.completeRequestButtonViewStyle}>
+        <TouchableOpacity style={styles.completeRequestButtonStyle} onPress={() => Actions.qrCodePage({ transactionUID })}>
+          <Text style={styles.buttonTextStyle}>Complete Request</Text>
+        </TouchableOpacity>
+      </View>
     );
   }
 
   _renderCompletedRequest = () => {
     return (
-      <View style={{ paddingTop: 20 }}>
         <View style={styles.serviceCompletedBackgroundViewStyle}>
           <Text style={styles.serviceCompletedTextStyle}>
             Service request completed
           </Text>
         </View>
-      </View>
     );
   }
 

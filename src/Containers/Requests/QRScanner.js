@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { connect } from 'react-redux';
 import Camera from 'react-native-camera';
 import { Actions } from 'react-native-router-flux';
@@ -35,6 +35,10 @@ class QRScanner extends PureComponent {
 
   render() {
     return (
+      <View style={{ paddingTop: 90, flex: 1 }}>
+      <Text style={styles.qrCodeTextStyle}>
+        Please capture the QR code that displayed on customers phone
+      </Text>
       <View style={styles.containerStyle}>
         <Camera
           onBarCodeRead={this.onBarCodeRead}
@@ -43,13 +47,14 @@ class QRScanner extends PureComponent {
           orientation="portrait"
         />
       </View>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   containerStyle: {
-    paddingTop: 65,
+    paddingTop: 10,
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
@@ -57,9 +62,16 @@ const styles = StyleSheet.create({
   preview: {
     flex: 1,
     alignItems: 'center',
-    height: 600,
+    height: 500,
     justifyContent: 'flex-end',
-  }
+  },
+
+  qrCodeTextStyle: {
+    fontFamily: 'quicksand-regular',
+    fontSize: 15,
+    textAlign: 'center',
+    paddingBottom: 10
+  },
 });
 
 const mapDispatchToProps = (dispatch) => {
