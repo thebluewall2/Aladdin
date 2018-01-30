@@ -13,23 +13,24 @@ export function* watchMakePayment() {
     // TransactonType, PymtMethod, ServiceID, PaymentID, OrderNumber, PaymentDesc
     // MerchantReturnURL(for return to the page), Amount, CurrencyCode, HashValue, CustIP, CustName, CustEmail
     // CustPhone, MerchantName, MerchantCallbackURL(for confirm api request to firebase api)
-    let { paymentInfo } = yield take(Types.REQ_MAKE_PAYMENT_ATTEMPT);
-    console.log(paymentInfo);
-    paymentInfo = {
-      TransactionType: 'SALE',
-      PymtMethod: 'CC',
-      OrderNumber: 'trxID-1',
-      PaymentDesc: 'cat + subcat + time + vendor + customer',
-      Amount: '100.00',
+    const { paymentInfo } = yield take(Types.REQ_MAKE_PAYMENT_ATTEMPT);
+
+    const paymentToMake = {
+      TransactonType: 'SALE',
+      PymtMethod: 'ANY',
+      OrderNumber: paymentInfo.transactionUID,
+      PaymentDesc: `E-Reno payment: ${paymentInfo.selectedSubcategory} by ${paymentInfo.vendorName}`,
+      Amount: '1.00',
       CurrencyCode: 'MYR',
-      vendorUID: 'vendorUID-2gy78i87',
-      customerUID: 'customerUID-890plk8t9',
-      CustIP: '192.168.1.1',
-      CustName: 'Ollie',
-      CustEmail: 'ollie@gmail.com',
-      CustPhone: '0198273645',
+      vendorUID: paymentInfo.vendorUID,
+      customerUID: paymentInfo.customerUID,
+      CustIP: '113.210.205.140',
+      CustName: paymentInfo.customerName,
+      CustEmail: paymentInfo.userEmail,
+      CustPhone: paymentInfo.userPhone,
     };
-      // yield call(handleMakePayment, paymentInfo);
+    console.log(paymentToMake);
+      yield call(handleMakePayment, paymentToMake);
     }
 }
 
@@ -38,7 +39,7 @@ export function* handleMakePayment(PaymentInfo) {
   const ref = firebase.database().ref(`Payments/`);
   const paymentRequest = yield call(createPaymentRecord, ref, PaymentInfo, dateNow);
 
-  yield call(createPaymentReference, PaymentInfo, paymentRequest, dateNow);
+  // yield call(createPaymentReference, PaymentInfo, paymentRequest, dateNow);
   yield call(sendRequestForProcessing, paymentRequest);
 }
 

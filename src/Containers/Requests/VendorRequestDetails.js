@@ -75,9 +75,12 @@ class VendorRequestDetails extends PureComponent {
     const { transaction } = this.props.navigationState;
 
     return (
-      <TouchableOpacity onPress={() => Actions.qrScannerPage(transaction)}>
-        <Text>Complete service request</Text>
-      </TouchableOpacity>
+
+      <View style={styles.completeRequestButtonViewStyle}>
+        <TouchableOpacity style={styles.completeRequestButtonStyle} onPress={() => Actions.qrScannerPage(transaction)}>
+          <Text style={styles.buttonTextStyle}>Complete Service Request</Text>
+        </TouchableOpacity>
+      </View>
     );
   }
 

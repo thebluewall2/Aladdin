@@ -43,28 +43,36 @@ class CustomerRequestDetails extends PureComponent {
   }
 
   _makePayment = () => {
+    const { userPhone, userEmail } = this.props;
     const { transaction } = this.props.navigationState;
-    
-    this.props.makePayment(transaction);
+
+    const paymentInfo = {
+      ...transaction,
+      userPhone,
+      userEmail
+    };
+
+    this.props.makePayment(paymentInfo);
   }
 
   _renderShowQR = (transactionUID) => {
     return (
-      <TouchableOpacity onPress={() => Actions.qrCodePage({ transactionUID })}>
-        <Text>Complete request</Text>
-      </TouchableOpacity>
+
+      <View style={styles.completeRequestButtonViewStyle}>
+        <TouchableOpacity style={styles.completeRequestButtonStyle} onPress={() => Actions.qrCodePage({ transactionUID })}>
+          <Text style={styles.buttonTextStyle}>Complete Request</Text>
+        </TouchableOpacity>
+      </View>
     );
   }
 
   _renderCompletedRequest = () => {
     return (
-      <View style={{ paddingTop: 20 }}>
         <View style={styles.serviceCompletedBackgroundViewStyle}>
           <Text style={styles.serviceCompletedTextStyle}>
             Service request completed
           </Text>
         </View>
-      </View>
     );
   }
 
@@ -108,6 +116,13 @@ class CustomerRequestDetails extends PureComponent {
   }
 }
 
+const mapStateToProps = ({ auth }) => {
+  return {
+    userEmail: auth.userData.email,
+    userPhone: auth.userData.phoneNo,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     makePayment: (paymentInfo) =>
@@ -115,4 +130,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(CustomerRequestDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(CustomerRequestDetails);

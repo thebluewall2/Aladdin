@@ -29,7 +29,13 @@ class HomePage extends Component {
 
     if (this.props.userType === 'vendor') {
       return (
-        <Text>Sorry, this feature is only available for customers.</Text>
+        <View style={{ flex: 1, justifyContent: 'center', alignContent: 'center' }}>
+          <View style={{ backgroundColor: '#e3f1f1', height: 70, padding: 15 }}>
+            <Text style={{ textAlign: 'center', fontFamily: 'quicksand-regular', fontSize: 20 }}>
+              Sorry, this feature is only available for customers.
+            </Text>
+          </View>
+        </View>
       );
     }
 
