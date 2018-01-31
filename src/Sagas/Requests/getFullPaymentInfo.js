@@ -47,7 +47,7 @@ async function getIP() {
   return response._bodyText;
 }
 
-async function sendRequestForProcessing(PaymentInfoWithID) {
+async function sendRequestForProcessing(paymentInfoWithID) {
   const endpoint = Config.getFullParametersDomain;
 
   let paymentDetails;
@@ -58,7 +58,7 @@ async function sendRequestForProcessing(PaymentInfoWithID) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      PaymentInfoWithID,
+      paymentInfoWithID,
     })
   })
   .then(response => {

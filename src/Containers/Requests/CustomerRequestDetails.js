@@ -6,8 +6,15 @@ import { connect } from 'react-redux';
 
 import styles from './Styles';
 import ReduxActions from '../../Redux/Actions';
+import { LoadingSpinner } from '../../Components/common';
 
 class CustomerRequestDetails extends PureComponent {
+  componentWillReceiveProps(nextProps) {
+    if (this.props.transaction.transactionUID !== nextProps.transaction.transactionUID) {
+      this.props.clearError();
+    }
+  }
+
   _renderSuggestedDates = () => {
     const { timeslots } = this.props.navigationState.transaction;
 
@@ -33,6 +40,18 @@ class CustomerRequestDetails extends PureComponent {
   }
 
   _renderMakePayment = () => {
+    const { loading } = this.props;
+
+    if (loading) {
+      return (
+        <View style={{ paddingTop: 15 }}>
+          <TouchableOpacity style={styles.selectTimeButtonStyle}>
+            <LoadingSpinner size={"small"} />
+          </TouchableOpacity>
+        </View>
+      );
+    }
+
     return (
       <View style={{ paddingTop: 15 }}>
         <TouchableOpacity style={styles.selectTimeButtonStyle} onPress={this._makePayment}>
@@ -57,7 +76,6 @@ class CustomerRequestDetails extends PureComponent {
 
   _renderShowQR = (transactionUID) => {
     return (
-
       <View style={styles.completeRequestButtonViewStyle}>
         <TouchableOpacity style={styles.completeRequestButtonStyle} onPress={() => Actions.qrCodePage({ transactionUID })}>
           <Text style={styles.buttonTextStyle}>Complete Request</Text>
@@ -74,6 +92,16 @@ class CustomerRequestDetails extends PureComponent {
           </Text>
         </View>
     );
+  }
+
+  _renderErrorMessage = () => {
+    const { errorMessage } = this.props;
+
+    if (errorMessage) {
+      return <Text style={styles.errorTextStyle}>{this.props.errorMessage}</Text>;
+    }
+
+    return false;
   }
 
   render() {
@@ -105,28 +133,36 @@ class CustomerRequestDetails extends PureComponent {
 
           {confirmedTime ? this._renderConfirmedDate(confirmedTime) : this._renderSuggestedDates()}
 
-        {status === 'Awaiting payment' && this._renderMakePayment()}
+          {this._renderErrorMessage()}
 
-        {status === 'Confirmed' && this._renderShowQR(transactionUID)}
+          {status === 'Awaiting payment' && this._renderMakePayment()}
 
-        {status === 'Completed' && this._renderCompletedRequest()}
+          {status === 'Confirmed' && this._renderShowQR(transactionUID)}
+
+          {status === 'Completed' && this._renderCompletedRequest()}
 
         </View>
     );
   }
 }
 
-const mapStateToProps = ({ auth }) => {
+const mapStateToProps = (state) => {
+  const { auth, requests } = state;
+
   return {
     userEmail: auth.userData.email,
     userPhone: auth.userData.phoneNo,
+    loading: requests.loading,
+    errorMessage: requests.errorMessage
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     makePayment: (paymentInfo) =>
-      dispatch(ReduxActions.requestsMakePaymentAttempt(paymentInfo)),
+      dispatch(ReduxActions.requestsGetPaymentConfirmationAttempt(paymentInfo)),
+    clearError: () =>
+      dispatch(ReduxActions.requestsClearErrorMessage()),
   };
 };
 
