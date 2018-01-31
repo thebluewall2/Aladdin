@@ -47,6 +47,21 @@ const requestsMakePaymentFailure = (error) => ({
   error
 });
 
+const requestsCreateReviewAttempt = (reviewInfo, stars) => ({
+  type: Types.REQ_CREATE_REVIEW_ATTEMPT,
+  reviewInfo,
+  stars
+});
+
+const requestsCreateReviewSuccess = () => ({
+  type: Types.REQ_CREATE_REVIEW_SUCCESS
+});
+
+const requestsCreateReviewFailure = (error) => ({
+  type: Types.REQ_CREATE_REVIEW_FAILURE,
+  error,
+});
+
 export default {
   requestsGetTransactionDataAttempt,
   requestsGetTransactionDataSuccess,
@@ -59,4 +74,8 @@ export default {
   requestsMakePaymentAttempt,
   requestsMakePaymentSuccess,
   requestsMakePaymentFailure,
+
+  requestsCreateReviewAttempt,
+  requestsCreateReviewSuccess,
+  requestsCreateReviewFailure,
 };

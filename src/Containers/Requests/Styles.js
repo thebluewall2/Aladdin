@@ -118,8 +118,29 @@ export default StyleSheet.create({
 
   qrCodeViewStyle: {
     flex: 1,
-    flexDirection: 'column', 
+    flexDirection: 'column',
     alignItems: 'center'
   },
+
+  reviewContainerStyle: {
+    flex: 1,
+    paddingTop: 70,
+  },
+
+  reviewListStyle: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 10,
+  },
+
+  reviewEmptyIconStyle: {
+    fontSize: 40,
+  },
+
+  reviewFullIconStyle: {
+    fontSize: 40,
+    color: 'yellow',
+  }
 
 });
