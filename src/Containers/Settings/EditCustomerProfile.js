@@ -73,13 +73,13 @@ class EditCustomerProfile extends React.PureComponent {
           <TextFieldComponent
             label={"Name"}
             editable={false}
-            value={"Sample name need to change"}
+            value={this.props.name}
             componentStyle={styles.disabledTextInputStyle}
           />
 
           <TextFieldComponent
             label={"Email"}
-            value={"sampleEmail@domain.com"}
+            value={this.props.email}
             editable={false}
             componentStyle={styles.disabledTextInputStyle}
           />
