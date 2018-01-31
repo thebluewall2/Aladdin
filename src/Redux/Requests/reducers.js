@@ -76,6 +76,29 @@ const makePaymentFailure = (state = INITIAL_STATE, action) => {
   };
 };
 
+const createReviewAttempt = (state = INITIAL_STATE) => {
+  return {
+    ...state,
+    loading: true,
+    errorMessage: '',
+  };
+};
+
+const createReviewSuccess = (state = INITIAL_STATE) => {
+  return {
+    ...state,
+    loading: false,
+  };
+};
+
+const createReviewFailure = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    loading: false,
+    errorMsg: action.error
+  };
+};
+
 export default {
   INITIAL_STATE,
 
@@ -90,4 +113,8 @@ export default {
   makePaymentAttempt,
   makePaymentSuccess,
   makePaymentFailure,
+
+  createReviewAttempt,
+  createReviewSuccess,
+  createReviewFailure,
 };

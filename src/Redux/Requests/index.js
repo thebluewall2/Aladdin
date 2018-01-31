@@ -15,5 +15,9 @@ export default {
     [Types.REQ_MAKE_PAYMENT_ATTEMPT]: Reducers.makePaymentAttempt,
     [Types.REQ_MAKE_PAYMENT_SUCCESS]: Reducers.makePaymentSuccess,
     [Types.REQ_MAKE_PAYMENT_FAILURE]: Reducers.makePaymentFailure,
+
+    [Types.REQ_CREATE_REVIEW_ATTEMPT]: Reducers.createReviewAttempt,
+    [Types.REQ_CREATE_REVIEW_SUCCESS]: Reducers.createReviewSuccess,
+    [Types.REQ_CREATE_REVIEW_FAILURE]: Reducers.createReviewFailure,
   })
 };
