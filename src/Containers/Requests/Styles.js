@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
+import Config from '../../Services/config';
 
 export default StyleSheet.create({
 
   requestHomeContainerViewStyle: {
     flex: 1,
-    paddingBottom: 50
+    paddingBottom: Config.tabBarHeight
   },
 
   orderDetailsContainerViewStyle: {
@@ -141,6 +142,20 @@ export default StyleSheet.create({
   reviewFullIconStyle: {
     fontSize: 40,
     color: 'yellow',
+  },
+
+  errorTextStyle: {
+    color: 'red',
+    fontFamily: 'quicksand-bold',
+    fontSize: 15,
+    paddingTop: 10
+  },
+
+  buttonListStyle: {
+    paddingTop: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   }
 
 });

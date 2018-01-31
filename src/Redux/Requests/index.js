@@ -12,6 +12,10 @@ export default {
     [Types.REQ_GET_TRANSACTION_LIST_SUCCESS]: Reducers.getTransactionListSuccess,
     [Types.REQ_GET_TRANSACTION_LIST_FAILURE]: Reducers.getTransactionListFailure,
 
+    [Types.REQ_GET_PAYMENT_CONFIRMATION_ATTEMPT]: Reducers.getPaymentInfoAttempt,
+    [Types.REQ_GET_PAYMENT_CONFIRMATION_SUCCESS]: Reducers.getPaymentInfoSuccess,
+    [Types.REQ_GET_PAYMENT_CONFIRMATION_FAILURE]: Reducers.getPaymentInfoFailure,
+
     [Types.REQ_MAKE_PAYMENT_ATTEMPT]: Reducers.makePaymentAttempt,
     [Types.REQ_MAKE_PAYMENT_SUCCESS]: Reducers.makePaymentSuccess,
     [Types.REQ_MAKE_PAYMENT_FAILURE]: Reducers.makePaymentFailure,
@@ -19,5 +23,7 @@ export default {
     [Types.REQ_CREATE_REVIEW_ATTEMPT]: Reducers.createReviewAttempt,
     [Types.REQ_CREATE_REVIEW_SUCCESS]: Reducers.createReviewSuccess,
     [Types.REQ_CREATE_REVIEW_FAILURE]: Reducers.createReviewFailure,
+
+    [Types.REQ_CLEAR_ERROR]: Reducers.clearError,
   })
 };

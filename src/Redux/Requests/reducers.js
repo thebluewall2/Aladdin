@@ -1,7 +1,6 @@
 const INITIAL_STATE = {
   loading: false,
   errorMessage: '',
-  transactionData: '',
   transactionList: [],
 };
 
@@ -53,6 +52,30 @@ const getTransactionDataFailure = (state = INITIAL_STATE, action) => {
   };
 };
 
+const getPaymentInfoAttempt = (state = INITIAL_STATE) => {
+  return {
+    ...state,
+    loading: true,
+    errorMessage: '',
+  };
+};
+
+const getPaymentInfoSuccess = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    loading: false,
+    paymentInfo: action.paymentInfo
+  };
+};
+
+const getPaymentInfoFailure = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    loading: false,
+    errorMessage: action.error,
+  };
+};
+
 const makePaymentAttempt = (state = INITIAL_STATE) => {
   return {
     ...state,
@@ -95,7 +118,14 @@ const createReviewFailure = (state = INITIAL_STATE, action) => {
   return {
     ...state,
     loading: false,
-    errorMsg: action.error
+    errorMessage: action.error
+  };
+};
+
+const clearError = (state = INITIAL_STATE) => {
+  return {
+    ...state,
+    errorMessage: '',
   };
 };
 
@@ -110,6 +140,10 @@ export default {
   getTransactionDataSuccess,
   getTransactionDataFailure,
 
+  getPaymentInfoAttempt,
+  getPaymentInfoSuccess,
+  getPaymentInfoFailure,
+
   makePaymentAttempt,
   makePaymentSuccess,
   makePaymentFailure,
@@ -117,4 +151,6 @@ export default {
   createReviewAttempt,
   createReviewSuccess,
   createReviewFailure,
+
+  clearError,
 };

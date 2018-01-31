@@ -1,21 +1,5 @@
 import Types from './types';
 
-//Get Transaction Data Section
-const requestsGetTransactionDataAttempt = () => ({
-  type: Types.REQ_GET_TRANSACTION_DATA_ATTEMPT,
-});
-
-const requestsGetTransactionDataSuccess = (transactionData) => ({
-  type: Types.REQ_GET_TRANSACTION_DATA_SUCCESS,
-  transactionData
-});
-
-const requestsGetTransactionDataFailure = (error) => ({
-  type: Types.REQ_GET_TRANSACTION_DATA_FAILURE,
-  error
-});
-
-
 //Get Transaction List Section
 const requestsGetTransactionListAttempt = (userType, userUID) => ({
   type: Types.REQ_GET_TRANSACTION_LIST_ATTEMPT,
@@ -32,6 +16,22 @@ const requestsGetTransactionListFailure = (error) => ({
   type: Types.REQ_GET_TRANSACTION_LIST_FAILURE,
   error
 });
+
+const requestsGetPaymentConfirmationAttempt = (paymentInfo) => ({
+  type: Types.REQ_GET_PAYMENT_CONFIRMATION_ATTEMPT,
+  paymentInfo
+});
+
+const requestsGetPaymentConfirmationSuccess = (paymentInfo) => ({
+  type: Types.REQ_GET_PAYMENT_CONFIRMATION_SUCCESS,
+  paymentInfo
+});
+
+const requestsGetPaymentConfirmationFailure = (error) => ({
+  type: Types.REQ_GET_PAYMENT_CONFIRMATION_FAILURE,
+  error
+});
+
 
 const requestsMakePaymentAttempt = (paymentInfo) => ({
   type: Types.REQ_MAKE_PAYMENT_ATTEMPT,
@@ -62,14 +62,18 @@ const requestsCreateReviewFailure = (error) => ({
   error,
 });
 
-export default {
-  requestsGetTransactionDataAttempt,
-  requestsGetTransactionDataSuccess,
-  requestsGetTransactionDataFailure,
+const requestsClearErrorMessage = () => ({
+  type: Types.REQ_CLEAR_ERROR,
+});
 
+export default {
   requestsGetTransactionListAttempt,
   requestsGetTransactionListSuccess,
   requestsGetTransactionListFailure,
+
+  requestsGetPaymentConfirmationAttempt,
+  requestsGetPaymentConfirmationSuccess,
+  requestsGetPaymentConfirmationFailure,
 
   requestsMakePaymentAttempt,
   requestsMakePaymentSuccess,
@@ -78,4 +82,6 @@ export default {
   requestsCreateReviewAttempt,
   requestsCreateReviewSuccess,
   requestsCreateReviewFailure,
+
+  requestsClearErrorMessage,
 };
