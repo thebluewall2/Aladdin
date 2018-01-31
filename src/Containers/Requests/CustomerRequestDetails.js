@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
 import styles from './Styles';
+import Config from '../../Services/config';
 import ReduxActions from '../../Redux/Actions';
 import { LoadingSpinner } from '../../Components/common';
 
@@ -120,7 +121,7 @@ class CustomerRequestDetails extends PureComponent {
     const nameToDisplay = `Vendor name: ${vendorName}`;
 
     return (
-        <View style={{ flex: 1, paddingTop: 70, padding: 15 }}>
+        <View style={{ flex: 1, paddingTop: Config.navBarHeight, padding: 15 }}>
           <Text style={styles.orderDetailsTitleTextStyle}>Status: {status}</Text>
           <Text style={styles.orderSectionTextStyle}>{nameToDisplay}</Text>
 

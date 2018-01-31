@@ -151,4 +151,11 @@ export default StyleSheet.create({
     paddingTop: 10
   },
 
+  buttonListStyle: {
+    paddingTop: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  }
+
 });

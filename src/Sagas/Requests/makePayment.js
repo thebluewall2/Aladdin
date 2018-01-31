@@ -15,23 +15,9 @@ export function* watchMakePayment() {
     // CustPhone, MerchantName, MerchantCallbackURL(for confirm api request to firebase api)
     const { paymentInfo } = yield take(Types.REQ_MAKE_PAYMENT_ATTEMPT);
 
-    const paymentToMake = {
-      TransactonType: 'SALE',
-      PymtMethod: 'ANY',
-      OrderNumber: paymentInfo.transactionUID,
-      PaymentDesc: `E-Reno payment: ${paymentInfo.selectedSubcategory} by ${paymentInfo.vendorName}`,
-      Amount: '1.00',
-      CurrencyCode: 'MYR',
-      vendorUID: paymentInfo.vendorUID,
-      customerUID: paymentInfo.customerUID,
-      CustIP: '113.210.205.140',
-      CustName: paymentInfo.customerName,
-      CustEmail: paymentInfo.userEmail,
-      CustPhone: paymentInfo.userPhone,
-    };
-    console.log(paymentToMake);
-      yield call(handleMakePayment, paymentToMake);
-    }
+    console.log(paymentInfo);
+    yield call(handleMakePayment, paymentInfo);
+  }
 }
 
 export function* handleMakePayment(PaymentInfo) {
@@ -71,6 +57,7 @@ export function createPaymentRecord(ref, PaymentInfo, dateNow) {
     CustName: PaymentInfo.CustName,
     CustEmail: PaymentInfo.CustEmail,
     CustPhone: PaymentInfo.CustPhone,
+    ServiceID: PaymentInfo.ServiceID,
     PaymentID: PaymentInfoRef.key,
   };
   return paymentRequest;

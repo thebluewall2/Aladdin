@@ -1,6 +1,7 @@
 import { take, call, put } from 'redux-saga/effects';
 
 import uuid from 'uuid-v4';
+import { Actions } from 'react-native-router-flux';
 
 import Config from '../../Services/config';
 import ReduxActions from '../../Redux/Actions';
@@ -35,6 +36,7 @@ export function* watchGetPaymentInfo() {
 
     if (paymentDetails) {
       yield put(ReduxActions.requestsGetPaymentConfirmationSuccess(paymentDetails));
+      Actions.makePayment();
     } else {
       const errorMsg = "Payment failed. Please try again";
       yield put(ReduxActions.requestsGetPaymentConfirmationFailure(errorMsg));

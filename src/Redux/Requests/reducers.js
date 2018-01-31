@@ -1,7 +1,6 @@
 const INITIAL_STATE = {
   loading: false,
   errorMessage: '',
-  transactionData: '',
   transactionList: [],
 };
 
