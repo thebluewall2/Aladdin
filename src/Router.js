@@ -60,61 +60,179 @@ const RouterComponent = () => {
           key="loginPage"
           component={LoginPage}
           hideNavBar={false}
+          navigationBarStyle={styles.authNavBarStyle}
           titleStyle={styles.titleStyle} title={'E - R E N O'}
         />
         <Scene
           key="customerSignUpPage"
           component={CustomerSignUpPage}
+          navigationBarStyle={styles.authNavBarStyle}
           titleStyle={styles.titleStyle} title={'Sign up'}
         />
         <Scene
           key="vendorSignUpPage"
           component={VendorSignUpPage}
+          navigationBarStyle={styles.authNavBarStyle}
           titleStyle={styles.titleStyle} title={'Sign up'}
         />
         <Scene
           key="forgotPassword"
           component={ForgotPassword}
+          navigationBarStyle={styles.authNavBarStyle}
           titleStyle={styles.titleStyle} title={'Reset password'}
         />
         <Scene
           key="selectCategories"
           component={VendorSelectCategories}
-          title={'Select categories'}
+          navigationBarStyle={styles.authNavBarStyle}
+          titleStyle={styles.titleStyle} title={'Select categories'}
         />
         <Scene
           key="selectSubcategories"
           component={VendorSelectSubcategories}
-          title={'Select subcategories'}
+          navigationBarStyle={styles.authNavBarStyle}
+          titleStyle={styles.titleStyle} title={'Select subcategories'}
         />
       </Scene>
 
       <Scene key="home" tabs >
         <Scene key="homePage" title="Home" icon={TabIcon} >
           <Scene key="homeTab" component={HomePage} hideNavBar />
-          <Scene key="selectSubcategory" component={SelectSubcategory} hideNavBar={false} />
-          <Scene key="selectAddress" component={SelectAddress} title={'Select address'} />
-          <Scene key="addNewAddress" component={AddNewAddress} title={'Add New Address'} />
-          <Scene key="vendorList" component={VendorList} />
-          <Scene key="vendorDataPage" component={VendorData} />
-          <Scene key="chooseTime" component={ChooseTimeForService} />
+          <Scene
+            key="selectSubcategory"
+            component={SelectSubcategory}
+            hideNavBar={false}
+            navigationBarStyle={styles.authNavBarStyle}
+            titleStyle={styles.titleStyle}
+            title={'Select subcategories'}
+          />
+          <Scene
+            key="selectAddress"
+            component={SelectAddress}
+            navigationBarStyle={styles.authNavBarStyle}
+            titleStyle={styles.titleStyle}
+            title={'Select address'}
+          />
+          <Scene
+            key="addNewAddress"
+            component={AddNewAddress}
+            navigationBarStyle={styles.authNavBarStyle}
+            titleStyle={styles.titleStyle}
+            title={'Add New Address'}
+          />
+          <Scene
+            key="vendorList"
+            component={VendorList}
+            navigationBarStyle={styles.authNavBarStyle}
+            titleStyle={styles.titleStyle}
+            title={'Choose a Vendor'}
+          />
+          <Scene
+            key="vendorDataPage"
+            component={VendorData}
+            navigationBarStyle={styles.authNavBarStyle}
+            titleStyle={styles.titleStyle}
+            title={'Vendor Details'}
+          />
+          <Scene
+            key="chooseTime"
+            component={ChooseTimeForService}
+            navigationBarStyle={styles.authNavBarStyle}
+            titleStyle={styles.titleStyle}
+            title={'Choose Time'}
+          />
         </Scene>
+
         <Scene key="requests" title="Request" icon={TabIcon} >
-          <Scene key="requestPage" component={RequestsHome} renderBackButton={() => (null)} />
-          <Scene key="customerRequestDetails" component={CustomerRequestDetails} />
-          <Scene key="qrCodePage" component={QRCodePage} />
-          <Scene key="vendorRequestDetails" component={VendorRequestDetails} />
-          <Scene key="vendorSelectTime" component={VendorSelectTime} />
-          <Scene key="qrScannerPage" component={QRScanner} />
+          <Scene
+            key="requestPage"
+            component={RequestsHome}
+            renderBackButton={() => (null)}
+            navigationBarStyle={styles.authNavBarStyle}
+            titleStyle={styles.titleStyle}
+            title={'Requests'}
+          />
+          <Scene
+            key="customerRequestDetails"
+            component={CustomerRequestDetails}
+            navigationBarStyle={styles.authNavBarStyle}
+            titleStyle={styles.titleStyle}
+            title={'Request Details'}
+          />
+          <Scene
+            key="qrCodePage"
+            component={QRCodePage}
+            navigationBarStyle={styles.authNavBarStyle}
+            titleStyle={styles.titleStyle}
+            title={'Complete Service'}
+          />
+          <Scene
+            key="vendorRequestDetails"
+            component={VendorRequestDetails}
+            navigationBarStyle={styles.authNavBarStyle}
+            titleStyle={styles.titleStyle}
+            title={'Request Details'}
+          />
+          <Scene
+            key="vendorSelectTime"
+            component={VendorSelectTime}
+            navigationBarStyle={styles.authNavBarStyle}
+            titleStyle={styles.titleStyle}
+            title={'Select Time'}
+          />
+          <Scene
+            key="qrScannerPage" 
+            component={QRScanner}
+            navigationBarStyle={styles.authNavBarStyle}
+            titleStyle={styles.titleStyle}
+            title={'Complete Service'}
+          />
         </Scene>
 
         <Scene key="settings" title="Settings" icon={TabIcon} >
-          <Scene key="settingsPage" component={Settings} renderBackButton={() => (null)} />
-          <Scene key="editCustomerProfile" component={EditCustomerProfile} />
-          <Scene key="editVendorProfile" component={EditVendorProfile} />
-          <Scene key="changePasswordPage" component={ChangePassword} />
-          <Scene key="termsOfUse" component={TermsOfUse} />
-          <Scene key="privacyPolicy" component={PrivacyPolicy} />
+          <Scene
+            key="settingsPage"
+            component={Settings}
+            renderBackButton={() => (null)}
+            navigationBarStyle={styles.authNavBarStyle}
+            titleStyle={styles.titleStyle}
+            title={'Settings'}
+          />
+          <Scene
+            key="editCustomerProfile"
+            component={EditCustomerProfile}
+            navigationBarStyle={styles.authNavBarStyle}
+            titleStyle={styles.titleStyle}
+            title={'Edit Profile'}
+          />
+          <Scene
+            key="editVendorProfile"
+            component={EditVendorProfile}
+            navigationBarStyle={styles.authNavBarStyle}
+            titleStyle={styles.titleStyle}
+            title={'Edit Profile'}
+          />
+          <Scene
+            key="changePasswordPage"
+            component={ChangePassword}
+            navigationBarStyle={styles.authNavBarStyle}
+            titleStyle={styles.titleStyle}
+            title={'Change Password'}
+          />
+          <Scene
+            key="termsOfUse"
+            component={TermsOfUse}
+            navigationBarStyle={styles.authNavBarStyle}
+            titleStyle={styles.titleStyle}
+            title={'Terms of Use'}
+          />
+          <Scene
+            key="privacyPolicy"
+            component={PrivacyPolicy}
+            navigationBarStyle={styles.authNavBarStyle}
+            titleStyle={styles.titleStyle}
+            title={'Privacy Policy'}
+          />
         </Scene>
       </Scene>
 
@@ -127,7 +245,7 @@ const styles = {
     backgroundColor: '#01579B',
   },
   titleStyle: {
-    color: '#FFFFFF'
+    color: '#FFFFFF',
   }
 };
 

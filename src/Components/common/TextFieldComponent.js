@@ -1,5 +1,6 @@
 import React from 'react';
 import TextField from 'react-native-md-textinput';
+import Platform from 'react-native';
 
 const TextFieldComponent = (props) => {
   const {
@@ -17,9 +18,10 @@ const TextFieldComponent = (props) => {
 
 const styles = {
   textFieldStyle: {
-    height: 30,
     width: 300,
     fontFamily: 'Quicksand',
+    height: Platform.OS === 'ios' ? 30 : 50,
+
   },
   labelStyle: {
     fontFamily: 'Quicksand',

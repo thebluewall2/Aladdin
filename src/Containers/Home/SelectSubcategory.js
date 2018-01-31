@@ -38,7 +38,7 @@ class SelectSubcategory extends Component {
         iconSize={20}
         rowHeight={50}
         rowRadius={6}
-        scrollViewHeight={450}
+        scrollViewHeight={400}
         fontFamily={'Quicksand'}
         selectedIconName={"ios-arrow-dropright-circle"}
         unselectedIconName={"ios-arrow-dropright"}
@@ -53,10 +53,12 @@ class SelectSubcategory extends Component {
       <View style={styles.selectSubcategoryViewStyle} >
         <View>
           <Text style={styles.selectSubcategoryTextStyle} > {category.category}</Text>
-          <ScrollView>
-            {this._renderSubcategories()}
-          </ScrollView>
         </View>
+          <View style={{ paddingBottom: 50 }}>
+            <ScrollView>
+              {this._renderSubcategories()}
+            </ScrollView>
+          </View>
       </View>
     );
   }

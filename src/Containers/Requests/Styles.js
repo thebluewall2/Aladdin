@@ -118,7 +118,7 @@ export default StyleSheet.create({
 
   qrCodeViewStyle: {
     flex: 1,
-    flexDirection: 'column', 
+    flexDirection: 'column',
     alignItems: 'center'
   },
 

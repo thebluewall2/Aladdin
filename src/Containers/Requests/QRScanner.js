@@ -35,7 +35,7 @@ class QRScanner extends PureComponent {
 
   render() {
     return (
-      <View style={{ paddingTop: 90, flex: 1 }}>
+      <View style={{ paddingTop: 90, flex: 1, backgroundColor: '#000000' }}>
       <Text style={styles.qrCodeTextStyle}>
         Please capture the QR code that displayed on customers phone
       </Text>
@@ -55,19 +55,21 @@ class QRScanner extends PureComponent {
 const styles = StyleSheet.create({
   containerStyle: {
     paddingTop: 10,
-    flex: 1,
     flexDirection: 'row',
+    backgroundColor: '#000000',
     alignItems: 'center',
   },
   preview: {
-    flex: 1,
-    alignItems: 'center',
-    height: 500,
-    justifyContent: 'flex-end',
+    flexDirection: 'row',
+    flex: 4,
+    alignItems: 'stretch',
+    height: 430,
+    width: 700,
   },
 
   qrCodeTextStyle: {
     fontFamily: 'quicksand-regular',
+    color: '#FFFFFF',
     fontSize: 15,
     textAlign: 'center',
     paddingBottom: 10

@@ -57,7 +57,7 @@ class AddNewAddress extends React.PureComponent {
 
     if (errorMsg) {
       return (
-        <Text style={{ color: 'red' }}>{errorMsg}</Text>
+        <Text style={styles.errorTextStyle}>{errorMsg}</Text>
       );
     }
 
