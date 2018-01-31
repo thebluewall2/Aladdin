@@ -1,53 +1,58 @@
 import { take, call, put } from 'redux-saga/effects';
 
-import uuid from 'uuid-v4'
+import uuid from 'uuid-v4';
 
 import Config from '../../Services/config';
 import ReduxActions from '../../Redux/Actions';
 import Types from '../../Redux/Requests/types';
 
-
-export function* watchMakePayment() {
+export function* watchGetPaymentInfo() {
   while (true) {
     // TransactonType, PymtMethod, ServiceID, PaymentID, OrderNumber, PaymentDesc
     // MerchantReturnURL(for return to the page), Amount, CurrencyCode, HashValue, CustIP, CustName, CustEmail
     // CustPhone, MerchantName, MerchantCallbackURL(for confirm api request to firebase api)
-    const { paymentInfo } = yield take(Types.REQ_GET_FULL_PAYMENT_INFO);
+    const { paymentInfo } = yield take(Types.REQ_GET_PAYMENT_CONFIRMATION_ATTEMPT);
+    const userIP = yield call(getIP);
 
-    const PaymentInfoWithID = {
-      ...paymentInfo,
+    const paymentToMake = {
+      TransactionType: 'SALE',
+      PymtMethod: 'ANY',
+      OrderNumber: paymentInfo.transactionUID,
+      PaymentDesc: `E-Reno payment: ${paymentInfo.selectedSubcategory} by ${paymentInfo.vendorName}`,
+      Amount: '1.00',
+      CurrencyCode: 'MYR',
+      vendorUID: paymentInfo.vendorUID,
+      customerUID: paymentInfo.customerUID,
+      CustIP: userIP,
+      CustName: paymentInfo.customerName,
+      CustEmail: paymentInfo.userEmail,
+      CustPhone: paymentInfo.userPhone,
       PaymentID: uuid(),
+      ServiceID: '',
     };
-    // const paymentToMake = {
-    //   TransactonType: 'SALE',
-    //   PymtMethod: 'ANY',
-    //   OrderNumber: paymentInfo.transactionUID,
-    //   PaymentDesc: `E-Reno payment: ${paymentInfo.selectedSubcategory} by ${paymentInfo.vendorName}`,
-    //   Amount: '1.00',
-    //   CurrencyCode: 'MYR',
-    //   vendorUID: paymentInfo.vendorUID, //dont need this one
-    //   customerUID: paymentInfo.customerUID, //dont need this one
-    //   CustIP: '113.210.205.140',
-    //   CustName: paymentInfo.customerName,
-    //   CustEmail: paymentInfo.userEmail,
-    //   CustPhone: paymentInfo.userPhone,
-    // };
-    yield call(handleMakePayment, PaymentInfoWithID);
-    }
-}
 
-export function* handleMakePayment(PaymentInfoWithID) {
-  try {
-    yield call(sendRequestForProcessing, PaymentInfoWithID);
-    //ReduxActions
-  } catch (error) {
-    //ReduxActions
+    const paymentDetails = yield call(sendRequestForProcessing, paymentToMake);
+
+    if (paymentDetails) {
+      yield put(ReduxActions.requestsGetPaymentConfirmationSuccess(paymentDetails));
+    } else {
+      const errorMsg = "Payment failed. Please try again";
+      yield put(ReduxActions.requestsGetPaymentConfirmationFailure(errorMsg));
+    }
   }
 }
 
-export function sendRequestForProcessing(PaymentInfoWithID) {
+async function getIP() {
+  const response = await fetch(Config.ipifyLink);
+  return response._bodyText;
+}
+
+async function sendRequestForProcessing(PaymentInfoWithID) {
   const endpoint = Config.getFullParametersDomain;
-  fetch(endpoint, {
+
+  let paymentDetails;
+
+  await fetch(endpoint, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -56,10 +61,16 @@ export function sendRequestForProcessing(PaymentInfoWithID) {
       PaymentInfoWithID,
     })
   })
-  .then((response) => {
-    console.log(response); //success response redux
+  .then(response => {
+    if (response.ok) {
+      paymentDetails = JSON.parse(response._bodyText);
+    } else {
+      console.log(response);
+    }
   })
   .catch((error) => {
-    console.error(error); //failed redux
+    console.log(error);
   });
+
+  return paymentDetails;
 }
