@@ -7,7 +7,7 @@ export default {
 
   ipifyLink: 'https://api.ipify.org',
 
-  tabBarHeight: 25,
+  tabBarHeight: 50,
 
   navBarHeight: 70,
 };

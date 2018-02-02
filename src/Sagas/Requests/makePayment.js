@@ -3,28 +3,29 @@ import { take, call, put } from 'redux-saga/effects';
 import firebase from 'firebase';
 import { create, update } from 'firebase-saga';
 
-import Config from '../../Services/config';
 import ReduxActions from '../../Redux/Actions';
 import Types from '../../Redux/Requests/types';
 
 
 export function* watchMakePayment() {
   while (true) {
-    // TransactonType, PymtMethod, ServiceID, PaymentID, OrderNumber, PaymentDesc
-    // MerchantReturnURL(for return to the page), Amount, CurrencyCode, HashValue, CustIP, CustName, CustEmail
-    // CustPhone, MerchantName, MerchantCallbackURL(for confirm api request to firebase api)
     const { paymentInfo } = yield take(Types.REQ_MAKE_PAYMENT_ATTEMPT);
-    //please help filter out
-    //1. ServiceID
-    //2. MerchantName
-    //3. MerchantURLs ***
-    //4. HashValue
-    yield call(handleMakePayment, paymentInfo);
+
+    const editedPaymentInfo = {
+      ...paymentInfo,
+      ServiceID: null,
+      MerchantReturnURL: null,
+      HashValue: null,
+    };
+
+    yield call(handleMakePayment, editedPaymentInfo);
     }
 }
 
 export function* handleMakePayment(paymentInfo) {
   try {
+    const dateNow = firebase.database.ServerValue.TIMESTAMP;
+
     yield call(create, 'Payments', () => ({
         [`Payments/${paymentInfo.PaymentID}`]: {
           ...paymentInfo,
@@ -34,11 +35,14 @@ export function* handleMakePayment(paymentInfo) {
       })
     );
     yield call(createPaymentReference, paymentInfo, dateNow);
-    //success
+
+    yield put(ReduxActions.requestsMakePaymentSuccess());
   } catch (error) {
-    //failed
+    console.log(error);
+    const errorMessage = "Payment failed, please try again later.";
+
+    yield put(ReduxActions.requestsMakePaymentFailure(errorMessage));
   }
-  const dateNow = firebase.database.ServerValue.TIMESTAMP;
 }
 
 export function* createPaymentReference(paymentInfo, dateNow) {
