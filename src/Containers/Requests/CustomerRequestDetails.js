@@ -56,7 +56,7 @@ class CustomerRequestDetails extends PureComponent {
     return (
       <View style={{ paddingTop: 15 }}>
         <TouchableOpacity style={styles.selectTimeButtonStyle} onPress={this._makePayment}>
-          <Text style={styles.buttonTextStyle}>Make Payment</Text>
+          <Text style={styles.buttonTextStyle}>Confirm Payment</Text>
         </TouchableOpacity>
       </View>
     );
