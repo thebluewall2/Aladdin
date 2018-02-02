@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
@@ -51,6 +51,7 @@ class SelectAddress extends React.PureComponent {
     const addressToDisplay = this.state.address.map(add => {
       return add.address;
     });
+    const selectedAddress = this.state.addressSelected.address || 'Please select..';
 
     return (
       <View style={styles.selectAddressContainerStyle}>
@@ -65,8 +66,13 @@ class SelectAddress extends React.PureComponent {
         </View>
 
         <View style={styles.addressButtonViewContainer}>
-          <TouchableOpacity style={styles.addressDropdownBoxStyle} onPress={this._showAddressDropdown} >
-            <Text style={styles.buttonTextStyle}>Add New Address</Text>
+          <TouchableOpacity style={styles.addressDropdownBoxStyle} onPress={this._showAddressDropdown}>
+            {
+              Platform.OS !== 'ios' ?
+                <Text style={{ fontFamily: 'Quicksand-regular', paddingLeft: 10, fontSize: 15 }}>{selectedAddress}</Text>
+                 :
+                false
+            }
           </TouchableOpacity>
         </View>
 

@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 export default StyleSheet.create({
 
@@ -77,9 +77,9 @@ export default StyleSheet.create({
 
   disabledTextInputStyle: {
     color: '#6E6E6E',
-    height: 30,
+    height: Platform.OS === 'ios' ? 30 : 50,
     width: 330,
-    fontFamily: 'Quicksand-light'
+    fontFamily: 'Quicksand-light',
   },
 
   titleSignUpStyle: {
@@ -89,7 +89,7 @@ export default StyleSheet.create({
   },
 
   textInputStyle: {
-    height: 30,
+    height: Platform.OS === 'ios' ? 30 : 50,
     width: 330,
     fontFamily: 'Quicksand-regular'
   },
@@ -115,25 +115,13 @@ export default StyleSheet.create({
   color: '#000000'
   },
 
-  modalPickerStyle: {
-    paddingTop: 15,
-    paddingBottom: 15,
+  editProfileTextStyle: {
+    fontFamily: 'quicksand',
+    fontSize: 13,
   },
 
-  modalPickerSelectTextStyle: {
-    fontFamily: 'Quicksand',
-    textAlign: 'left',
-    color: '#47525E'
-  },
-
-  modalPickerOptionTextStyle: {
-  fontFamily: 'Quicksand',
-  color: '#000000'
-  },
-
-  modalPickerCancelTextStyle: {
-  fontFamily: 'Quicksand',
-  color: '#000000'
-  },
+  modalPickerViewStyle: {
+    paddingTop: Platform.OS === 'ios' ? 0 : 15
+  }
 
 });

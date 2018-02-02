@@ -216,45 +216,54 @@ class EditVendorProfile extends React.PureComponent {
             autoCorrect={false}
           />
 
-          <Text>Years of experience</Text>
-          <ModalPicker
-            style={styles.modalPickerStyle}
-            selectTextStyle={styles.modalPickerSelectTextStyle}
-            optionTextStyle={styles.modalPickerOptionTextStyle}
-            cancelTextStyle={styles.modalPickerCancelTextStyle}
-            data={yearsOfExpData}
-            initValue={this.state.yearsOfExp}
-            onChange={(option) => this._handleTextChanged(option.label, 'yearsOfExp')}
-            cancelText={'Cancel'}
-          />
+          <View style={styles.modalPickerViewStyle}>
+            <Text style={styles.editProfileTextStyle}>
+              Years of experience
+            </Text>
+            <ModalPicker
+              style={styles.modalPickerStyle}
+              selectTextStyle={styles.modalPickerSelectTextStyle}
+              optionTextStyle={styles.modalPickerOptionTextStyle}
+              cancelTextStyle={styles.modalPickerCancelTextStyle}
+              data={yearsOfExpData}
+              initValue={this.state.yearsOfExp}
+              onChange={(option) => this._handleTextChanged(option.label, 'yearsOfExp')}
+              cancelText={'Cancel'}
+            />
 
-          <Text>Years of company established</Text>
-          <ModalPicker
-            style={styles.modalPickerStyle}
-            selectTextStyle={styles.modalPickerSelectTextStyle}
-            optionTextStyle={styles.modalPickerOptionTextStyle}
-            cancelTextStyle={styles.modalPickerCancelTextStyle}
-            data={yearsOfCompanyData}
-            initValue={this.state.yearsOfCompany}
-            onChange={(option) => this._handleTextChanged(option.label, 'yearsOfCompany')}
-            cancelText={'Cancel'}
-          />
+            <Text style={styles.editProfileTextStyle}>
+              Years of company established
+            </Text>
+            <ModalPicker
+              style={styles.modalPickerStyle}
+              selectTextStyle={styles.modalPickerSelectTextStyle}
+              optionTextStyle={styles.modalPickerOptionTextStyle}
+              cancelTextStyle={styles.modalPickerCancelTextStyle}
+              data={yearsOfCompanyData}
+              initValue={this.state.yearsOfCompany}
+              onChange={(option) => this._handleTextChanged(option.label, 'yearsOfCompany')}
+              cancelText={'Cancel'}
+            />
 
-          <Text>Number of staff</Text>
-          <ModalPicker
-            style={styles.modalPickerStyle}
-            selectTextStyle={styles.modalPickerSelectTextStyle}
-            optionTextStyle={styles.modalPickerOptionTextStyle}
-            cancelTextStyle={styles.modalPickerCancelTextStyle}
-            data={noOfStaffData}
-            initValue={this.state.noOfStaff}
-            onChange={(option) => this._handleTextChanged(option.label, 'noOfStaff')}
-            cancelText={'Cancel'}
-          />
+            <Text style={styles.editProfileTextStyle}>
+              Number of staff
+            </Text>
+            <ModalPicker
+              style={styles.modalPickerStyle}
+              selectTextStyle={styles.modalPickerSelectTextStyle}
+              optionTextStyle={styles.modalPickerOptionTextStyle}
+              cancelTextStyle={styles.modalPickerCancelTextStyle}
+              data={noOfStaffData}
+              initValue={this.state.noOfStaff}
+              onChange={(option) => this._handleTextChanged(option.label, 'noOfStaff')}
+              cancelText={'Cancel'}
+            />
 
-          <Text>{this.state.error}</Text>
-          
+            <Text>{this.state.error}</Text>
+
+          </View>
           {this._renderSignUpBtn()}
+
         </KeyboardAwareScrollView>
       </View>
     );

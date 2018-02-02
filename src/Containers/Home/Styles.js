@@ -135,7 +135,8 @@ export default StyleSheet.create({
   addressDropdownBoxStyle: {
     height: 35,
     width: 350,
-    borderWidth: 0.5
+    borderWidth: 0.5,
+    justifyContent: 'center',
   },
 
   addNewAddressContainer: {
