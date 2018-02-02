@@ -122,4 +122,25 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
 
+  reviewContainerStyle: {
+    flex: 1,
+    paddingTop: 70,
+  },
+
+  reviewListStyle: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 10,
+  },
+
+  reviewEmptyIconStyle: {
+    fontSize: 40,
+  },
+
+  reviewFullIconStyle: {
+    fontSize: 40,
+    color: 'yellow',
+  }
+
 });

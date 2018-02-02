@@ -29,6 +29,7 @@ import QRCodePage from './Containers/Requests/QRCodePage';
 import VendorRequestDetails from './Containers/Requests/VendorRequestDetails';
 import VendorSelectTime from './Containers/Requests/VendorSelectTime';
 import QRScanner from './Containers/Requests/QRScanner';
+import CreateReview from './Containers/Requests/CreateReview';
 
 import VendorList from './Containers/Home/VendorList';
 import VendorData from './Containers/Home/VendorData';
@@ -144,6 +145,15 @@ const RouterComponent = () => {
         </Scene>
 
         <Scene key="requests" title="Request" icon={TabIcon} >
+<<<<<<< .merge_file_96wU2I
+          <Scene key="requestPage" component={RequestsHome} renderBackButton={() => (null)} />
+          <Scene key="customerRequestDetails" component={CustomerRequestDetails} />
+          <Scene key="qrCodePage" component={QRCodePage} />
+          <Scene key="vendorRequestDetails" component={VendorRequestDetails} />
+          <Scene key="vendorSelectTime" component={VendorSelectTime} />
+          <Scene key="qrScannerPage" component={QRScanner} />
+          <Scene key="createReview" component={CreateReview} />
+=======
           <Scene
             key="requestPage"
             component={RequestsHome}
@@ -187,6 +197,7 @@ const RouterComponent = () => {
             titleStyle={styles.titleStyle}
             title={'Complete Service'}
           />
+>>>>>>> .merge_file_a4z3x7
         </Scene>
 
         <Scene key="settings" title="Settings" icon={TabIcon} >
