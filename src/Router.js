@@ -145,7 +145,6 @@ const RouterComponent = () => {
         </Scene>
 
         <Scene key="requests" title="Request" icon={TabIcon} >
-<<<<<<< .merge_file_96wU2I
           <Scene key="requestPage" component={RequestsHome} renderBackButton={() => (null)} />
           <Scene key="customerRequestDetails" component={CustomerRequestDetails} />
           <Scene key="qrCodePage" component={QRCodePage} />
@@ -153,7 +152,7 @@ const RouterComponent = () => {
           <Scene key="vendorSelectTime" component={VendorSelectTime} />
           <Scene key="qrScannerPage" component={QRScanner} />
           <Scene key="createReview" component={CreateReview} />
-=======
+
           <Scene
             key="requestPage"
             component={RequestsHome}
@@ -191,13 +190,12 @@ const RouterComponent = () => {
             title={'Select Time'}
           />
           <Scene
-            key="qrScannerPage" 
+            key="qrScannerPage"
             component={QRScanner}
             navigationBarStyle={styles.authNavBarStyle}
             titleStyle={styles.titleStyle}
             title={'Complete Service'}
           />
->>>>>>> .merge_file_a4z3x7
         </Scene>
 
         <Scene key="settings" title="Settings" icon={TabIcon} >
