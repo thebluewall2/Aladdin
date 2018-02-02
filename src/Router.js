@@ -1,5 +1,7 @@
 import React from 'react';
-import { Scene, Router } from 'react-native-router-flux';
+import { TouchableOpacity } from 'react-native';
+import { Scene, Router, Actions } from 'react-native-router-flux';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 //importing screens
 import LoadingScreen from './Containers/Auth/LoadingScreen';
@@ -43,6 +45,28 @@ import EditVendorProfile from './Containers/Settings/EditVendorProfile';
 
 import TabIcon from './Components/TabIcon';
 
+const backButton = () => {
+  return (
+    <TouchableOpacity
+      style={{
+        paddingTop: 2,
+        paddingLeft: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+      onPress={() => Actions.pop()}
+    >
+    <Icon
+      name='ios-arrow-back'
+      style={{
+        fontSize: 30,
+        color: 'white',
+      }}
+    />
+    </TouchableOpacity>
+  );
+};
+
 const RouterComponent = () => {
   return (
     <Router>
@@ -62,38 +86,38 @@ const RouterComponent = () => {
           key="loginPage"
           component={LoginPage}
           hideNavBar={false}
-          navigationBarStyle={styles.authNavBarStyle}
-          titleStyle={styles.titleStyle} title={'E - R E N O'}
+          title={'E - R E N O'}
+          {...navigatorProps}
         />
         <Scene
           key="customerSignUpPage"
           component={CustomerSignUpPage}
-          navigationBarStyle={styles.authNavBarStyle}
-          titleStyle={styles.titleStyle} title={'Sign up'}
+          title={'Sign up'}
+          {...navigatorProps}
         />
         <Scene
           key="vendorSignUpPage"
           component={VendorSignUpPage}
-          navigationBarStyle={styles.authNavBarStyle}
-          titleStyle={styles.titleStyle} title={'Sign up'}
+          title={'Sign up'}
+          {...navigatorProps}
         />
         <Scene
           key="forgotPassword"
           component={ForgotPassword}
-          navigationBarStyle={styles.authNavBarStyle}
-          titleStyle={styles.titleStyle} title={'Reset password'}
+          title={'Reset password'}
+          {...navigatorProps}
         />
         <Scene
           key="selectCategories"
           component={VendorSelectCategories}
-          navigationBarStyle={styles.authNavBarStyle}
-          titleStyle={styles.titleStyle} title={'Select categories'}
+          title={'Select categories'}
+          {...navigatorProps}
         />
         <Scene
           key="selectSubcategories"
           component={VendorSelectSubcategories}
-          navigationBarStyle={styles.authNavBarStyle}
-          titleStyle={styles.titleStyle} title={'Select subcategories'}
+          title={'Select subcategories'}
+          {...navigatorProps}
         />
       </Scene>
 
@@ -104,147 +128,130 @@ const RouterComponent = () => {
             key="selectSubcategory"
             component={SelectSubcategory}
             hideNavBar={false}
-            navigationBarStyle={styles.authNavBarStyle}
-            titleStyle={styles.titleStyle}
             title={'Select subcategories'}
+            {...navigatorProps}
           />
           <Scene
             key="selectAddress"
             component={SelectAddress}
-            navigationBarStyle={styles.authNavBarStyle}
-            titleStyle={styles.titleStyle}
             title={'Select address'}
+            {...navigatorProps}
           />
           <Scene
             key="addNewAddress"
             component={AddNewAddress}
-            navigationBarStyle={styles.authNavBarStyle}
-            titleStyle={styles.titleStyle}
             title={'Add New Address'}
+            {...navigatorProps}
           />
           <Scene
             key="vendorList"
             component={VendorList}
-            navigationBarStyle={styles.authNavBarStyle}
-            titleStyle={styles.titleStyle}
             title={'Choose a Vendor'}
+            {...navigatorProps}
           />
           <Scene
             key="vendorDataPage"
             component={VendorData}
-            navigationBarStyle={styles.authNavBarStyle}
-            titleStyle={styles.titleStyle}
             title={'Vendor Details'}
+            {...navigatorProps}
           />
           <Scene
             key="chooseTime"
             component={ChooseTimeForService}
-            navigationBarStyle={styles.authNavBarStyle}
-            titleStyle={styles.titleStyle}
             title={'Choose Time'}
+            {...navigatorProps}
           />
         </Scene>
 
         <Scene key="requests" title="Request" icon={TabIcon} >
-<<<<<<< .merge_file_96wU2I
-          <Scene key="requestPage" component={RequestsHome} renderBackButton={() => (null)} />
-          <Scene key="customerRequestDetails" component={CustomerRequestDetails} />
-          <Scene key="makePayment" component={MakePayment} />
-          <Scene key="qrCodePage" component={QRCodePage} />
-          <Scene key="vendorRequestDetails" component={VendorRequestDetails} />
-          <Scene key="vendorSelectTime" component={VendorSelectTime} />
-          <Scene key="qrScannerPage" component={QRScanner} />
-          <Scene key="createReview" component={CreateReview} />
-=======
           <Scene
             key="requestPage"
             component={RequestsHome}
-            renderBackButton={() => (null)}
-            navigationBarStyle={styles.authNavBarStyle}
-            titleStyle={styles.titleStyle}
             title={'Requests'}
+            {...navigatorProps}
+            renderBackButton={() => (null)}
           />
           <Scene
             key="customerRequestDetails"
             component={CustomerRequestDetails}
-            navigationBarStyle={styles.authNavBarStyle}
-            titleStyle={styles.titleStyle}
             title={'Request Details'}
+            {...navigatorProps}
+          />
+          <Scene
+            key="makePayment"
+            component={MakePayment}
+            title={'Complete Service'}
+            {...navigatorProps}
           />
           <Scene
             key="qrCodePage"
             component={QRCodePage}
-            navigationBarStyle={styles.authNavBarStyle}
-            titleStyle={styles.titleStyle}
             title={'Complete Service'}
+            {...navigatorProps}
           />
           <Scene
             key="vendorRequestDetails"
             component={VendorRequestDetails}
-            navigationBarStyle={styles.authNavBarStyle}
-            titleStyle={styles.titleStyle}
             title={'Request Details'}
+            {...navigatorProps}
           />
           <Scene
             key="vendorSelectTime"
             component={VendorSelectTime}
-            navigationBarStyle={styles.authNavBarStyle}
-            titleStyle={styles.titleStyle}
             title={'Select Time'}
+            {...navigatorProps}
           />
           <Scene
-            key="qrScannerPage" 
+            key="qrScannerPage"
             component={QRScanner}
-            navigationBarStyle={styles.authNavBarStyle}
-            titleStyle={styles.titleStyle}
             title={'Complete Service'}
+            {...navigatorProps}
           />
->>>>>>> .merge_file_a4z3x7
+          <Scene
+            key="createReview"
+            component={CreateReview}
+            title={'Complete Service'}
+            {...navigatorProps}
+          />
         </Scene>
 
         <Scene key="settings" title="Settings" icon={TabIcon} >
           <Scene
             key="settingsPage"
             component={Settings}
-            renderBackButton={() => (null)}
-            navigationBarStyle={styles.authNavBarStyle}
-            titleStyle={styles.titleStyle}
             title={'Settings'}
+            {...navigatorProps}
+            renderBackButton={() => null}
           />
           <Scene
             key="editCustomerProfile"
             component={EditCustomerProfile}
-            navigationBarStyle={styles.authNavBarStyle}
-            titleStyle={styles.titleStyle}
             title={'Edit Profile'}
+            {...navigatorProps}
           />
           <Scene
             key="editVendorProfile"
             component={EditVendorProfile}
-            navigationBarStyle={styles.authNavBarStyle}
-            titleStyle={styles.titleStyle}
             title={'Edit Profile'}
+            {...navigatorProps}
           />
           <Scene
             key="changePasswordPage"
             component={ChangePassword}
-            navigationBarStyle={styles.authNavBarStyle}
-            titleStyle={styles.titleStyle}
             title={'Change Password'}
+            {...navigatorProps}
           />
           <Scene
             key="termsOfUse"
             component={TermsOfUse}
-            navigationBarStyle={styles.authNavBarStyle}
-            titleStyle={styles.titleStyle}
             title={'Terms of Use'}
+            {...navigatorProps}
           />
           <Scene
             key="privacyPolicy"
             component={PrivacyPolicy}
-            navigationBarStyle={styles.authNavBarStyle}
-            titleStyle={styles.titleStyle}
             title={'Privacy Policy'}
+            {...navigatorProps}
           />
         </Scene>
       </Scene>
@@ -260,6 +267,12 @@ const styles = {
   titleStyle: {
     color: '#FFFFFF',
   }
+};
+
+const navigatorProps = {
+  renderBackButton: backButton,
+  navigationBarStyle: styles.authNavBarStyle,
+  titleStyle: styles.titleStyle
 };
 
 export default RouterComponent;
