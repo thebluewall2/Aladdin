@@ -20,7 +20,7 @@ const styles = {
   textFieldStyle: {
     width: 300,
     fontFamily: 'Quicksand',
-    height: Platform.OS === 'ios' ? 30 : 50,
+    height: Platform.OS === 'ios' ? 30 : 40,
 
   },
   labelStyle: {
