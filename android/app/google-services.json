@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "617243251381",
+    "firebase_url": "https://aladdinapp-942fe.firebaseio.com",
+    "project_id": "aladdinapp-942fe",
+    "storage_bucket": "aladdinapp-942fe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617243251381:android:42a04cb2758f25f3",
+        "android_client_info": {
+          "package_name": "com.ereno"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "617243251381-31qfgofh4mk22r7a2dt3vl5cf8phqpr7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxEVwHPwmLvKJu-aF80iJyGmzQ0e0BZVI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
