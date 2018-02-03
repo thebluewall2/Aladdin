@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import Config from '../../Services/config';
 
 export default StyleSheet.create({
   homePageContainer: {
@@ -41,7 +42,7 @@ export default StyleSheet.create({
 
   selectSubcategoryViewStyle: {
     flex: 1,
-    paddingTop: 80,
+    paddingTop: Config.navBarHeight,
     paddingLeft: 5,
     paddingRight: 5,
   },
@@ -142,7 +143,7 @@ export default StyleSheet.create({
   addNewAddressContainer: {
     alignItems: 'center',
     flexDirection: 'column',
-    paddingTop: 90,
+    paddingTop: Config.navBarHeight,
     flex: 1,
     paddingBottom: 10,
   },
