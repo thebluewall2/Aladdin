@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+
 export default {
   getFullParametersDomain: 'https://us-central1-aladdinapp-942fe.cloudfunctions.net/getFullParameters',
   getPaymentGatewayDomain: 'https://test2pay.ghl.com/IPGSG/Payment.aspx',
@@ -9,5 +11,5 @@ export default {
 
   tabBarHeight: 25,
 
-  navBarHeight: 70,
+  navBarHeight: Platform.OS === 'ios' ? 70 : 50,
 };
