@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ModalPicker from 'react-native-modal-picker';
 
+import ReduxActions from '../../Redux/Actions';
 import { TextFieldComponent, LoadingSpinner } from '../../Components/common';
 import styles from './Styles';
 
@@ -13,7 +14,7 @@ class EditVendorProfile extends React.PureComponent {
 
       this.state = {
         phoneNo: props.phoneNo || '',
-        address1: props.address[0].address || '',
+        address: props.address[0].address || '',
         postcode: props.address[0].postcode || '',
         city: props.address[0].city || '',
         state: props.address[0].state || '',
@@ -24,6 +25,14 @@ class EditVendorProfile extends React.PureComponent {
         yearsOfCompany: props.yearsOfCompany || '',
         error: '',
       };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { error } = nextProps;
+
+    if (error) {
+      this._setErrorMessage(error);
+    }
   }
 
   getYearsOfExperienceData = () => {
@@ -86,17 +95,18 @@ class EditVendorProfile extends React.PureComponent {
 
   _handleSubmit = () => {
     const {
-      phoneNo, address1, awards, city, companyName, noOfStaff, postcode, state, yearsOfCompany, yearsOfExp
+      phoneNo, address, awards, city, companyName, noOfStaff, postcode, state, yearsOfCompany, yearsOfExp
     } = this.state;
+    const { userType, uid } = this.props;
 
-    if (!phoneNo || !address1 || !awards || !city || !companyName || !noOfStaff || !postcode || !state) {
+    if (!phoneNo || !address || !awards || !city || !companyName || !noOfStaff || !postcode || !state) {
       this._setErrorMessage("Field must not be blank!");
     } else {
       this._setErrorMessage("");
 
       const dataToUpdate = {
         phoneNo,
-        address1,
+        address,
         awards,
         city,
         companyName,
@@ -107,8 +117,7 @@ class EditVendorProfile extends React.PureComponent {
         yearsOfExp,
       };
 
-      console.log("off to saga!");
-      console.log(dataToUpdate);
+      this.props.editProfile(userType, uid, dataToUpdate);
     }
   }
 
@@ -122,7 +131,7 @@ class EditVendorProfile extends React.PureComponent {
     const yearsOfExpData = this.getYearsOfExperienceData();
     const yearsOfCompanyData = this.getYearsOfCompanyData();
     const noOfStaffData = this.getNoOfStaffData();
-    
+
     return (
       <View style={styles.editProfileContainerStyle}>
         <KeyboardAwareScrollView
@@ -169,9 +178,9 @@ class EditVendorProfile extends React.PureComponent {
           <TextFieldComponent
             label={"Address 1"}
             onChangeText={(text) => {
-              this._handleTextChanged(text, 'address1');
+              this._handleTextChanged(text, 'address');
             }}
-            value={this.state.address1}
+            value={this.state.address}
             componentStyle={styles.textInputStyle}
             autoCorrect={false}
           />
@@ -259,7 +268,7 @@ class EditVendorProfile extends React.PureComponent {
               cancelText={'Cancel'}
             />
 
-            <Text>{this.state.error}</Text>
+            <Text style={styles.errorMessageStyle}>{this.state.error}</Text>
 
           </View>
           {this._renderSignUpBtn()}
@@ -270,11 +279,11 @@ class EditVendorProfile extends React.PureComponent {
   }
 }
 
-const mapStateToProps = ({ auth }) => {
-  console.log(auth);
-  const { userData } = auth;
+const mapStateToProps = (state) => {
+  const { userData } = state.auth;
 
   return {
+    userType: state.auth.userType,
     phoneNo: userData.phoneNo,
     name: userData.fullName,
     uid: userData.uid,
@@ -285,12 +294,15 @@ const mapStateToProps = ({ auth }) => {
     noOfStaff: userData.noOfStaff,
     yearsOfExp: userData.yearsOfExp,
     yearsOfCompany: userData.yearsOfCompany,
+    loading: state.settings.attempting,
+    error: state.settings.errorMsg,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    editProfile: (userType, userUID, profileInfo) =>
+      dispatch(ReduxActions.settingsEditProfileAttempt(userType, userUID, profileInfo)),
   };
 };
 

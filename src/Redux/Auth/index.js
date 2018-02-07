@@ -28,6 +28,8 @@ export default {
 
     [Types.AUTH_ADD_NEW_ADDRESS]: Reducers.addNewAddress,
 
+    [Types.AUTH_UPDATE_PROFILE]: Reducers.updateProfile,
+
     [Types.AUTH_LOG_OUT]: Reducers.logout,
   })
 };

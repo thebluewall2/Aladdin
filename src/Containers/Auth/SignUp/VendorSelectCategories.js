@@ -7,6 +7,7 @@ import { Actions } from 'react-native-router-flux';
 import styles from '../Styles';
 import ReduxActions from '../../../Redux/Actions';
 import { LoadingSpinner } from '../../../Components/common';
+import Config from '../../../Services/config';
 
 class VendorSelectCategories extends Component {
 
@@ -32,8 +33,8 @@ class VendorSelectCategories extends Component {
     }
 
     return (
-      <View style={{ flexGrow: 1 }}>
-        <ScrollView style={{ paddingTop: 70 }}>
+      <View style={{ flex: 1, marginTop: Config.navBarHeight }}>
+        <ScrollView>
           <CustomMultiPicker
             options={categories}
             search

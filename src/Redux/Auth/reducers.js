@@ -141,6 +141,35 @@ const addNewAddress = (state = INITIAL_STATE, action) => {
   };
 };
 
+const updateProfile = (state = INITIAL_STATE, action) => {
+  const { userInfo } = action;
+
+  const newProfile = {
+    address: [{
+      address: userInfo.address,
+      city: userInfo.city,
+      postcode: userInfo.postcode,
+      state: userInfo.state,
+      coordinates: userInfo.coordinates,
+    }],
+    awards: userInfo.awards,
+    companyName: userInfo.companyName,
+    noOfStaff: userInfo.noOfStaff,
+    officeNo: userInfo.officeNo,
+    phoneNo: userInfo.phoneNo,
+    yearsOfCompany: userInfo.yearsOfCompany,
+    yearsOfExp: userInfo.yearsOfExp,
+  };
+
+  return {
+    ...state,
+    userData: {
+      ...state.userData,
+      ...newProfile
+    }
+  };
+};
+
 const logout = () => {
   //reset state on logout
   return INITIAL_STATE;
@@ -171,6 +200,8 @@ export default {
   setResetPasswordFail,
 
   addNewAddress,
+
+  updateProfile,
 
   logout,
 };

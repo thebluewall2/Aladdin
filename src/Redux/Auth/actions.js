@@ -88,6 +88,11 @@ const authAddNewAddress = (address) => ({
   address
 });
 
+const authUpdateProfile = (userInfo) => ({
+  type: Types.AUTH_UPDATE_PROFILE,
+  userInfo
+});
+
 const authLogout = () => ({
   type: Types.AUTH_LOG_OUT,
 });
@@ -117,6 +122,8 @@ export default {
   authResetPasswordFail,
 
   authAddNewAddress,
+
+  authUpdateProfile,
 
   authLogout,
 };
