@@ -122,7 +122,7 @@ class EditVendorProfile extends React.PureComponent {
     const yearsOfExpData = this.getYearsOfExperienceData();
     const yearsOfCompanyData = this.getYearsOfCompanyData();
     const noOfStaffData = this.getNoOfStaffData();
-
+    
     return (
       <View style={styles.editProfileContainerStyle}>
         <KeyboardAwareScrollView
@@ -136,7 +136,7 @@ class EditVendorProfile extends React.PureComponent {
           <TextFieldComponent
             label={"Name"}
             editable={false}
-            value={this.props.fullName}
+            value={this.props.name}
             componentStyle={styles.disabledTextInputStyle}
           />
 
