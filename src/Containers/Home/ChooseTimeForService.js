@@ -29,7 +29,7 @@ class ChooseTimeForService extends React.PureComponent {
 
     if (Date.now() > date) {
       //date selected is before the current time
-      this._setErrorMsg("Cannot pick date that is in the past");
+      this._setErrorMsg("Cannot pick date that is in the past or right now");
     } else if (date1 === date || date2 === date || date3 === date) {
       this._setErrorMsg("Cannot pick same date");
     } else {

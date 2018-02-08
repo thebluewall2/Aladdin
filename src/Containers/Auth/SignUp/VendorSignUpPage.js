@@ -97,14 +97,21 @@ class VendorSignUpPage extends Component {
   _handleSelectCategories = () => {
     const data = this.state;
 
-    this._setErrorMessage('');
-
-    if (data.password !== data.confirmPassword) {
-      this._setErrorMessage('Passwords do not match');
+    if (!data.addressOne || !data.addressTwo || !data.awards || !data.city || !data.companyName
+      || !data.confirmPassword || !data.email || !data.name || !data.noOfStaff || !data.officeNo
+      || !data.password || !data.phoneNo || !data.postcode || !data.state || !data.yearsOfCompany
+      || !data.yearsOfExp) {
+        this._setErrorMessage('Please fill up all fields');
     } else {
-      this.props.setVendorData(data);
+      this._setErrorMessage('');
 
-      Actions.selectCategories();
+      if (data.password !== data.confirmPassword) {
+        this._setErrorMessage('Passwords do not match');
+      } else {
+        this.props.setVendorData(data);
+
+        Actions.selectCategories();
+      }
     }
   }
 
