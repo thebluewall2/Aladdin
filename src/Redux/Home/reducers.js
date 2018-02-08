@@ -1,7 +1,15 @@
 const INITIAL_STATE = {
+  isOnline: true,
   search: {},
   loading: false,
   errorMsg: '',
+};
+
+const setIsOnline = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    isOnline: action.isOnline,
+  };
 };
 
 const setSearchCategory = (state = INITIAL_STATE, action) => {
@@ -157,6 +165,8 @@ const createOrUpdateTransactionFailure = (state = INITIAL_STATE, action) => {
 
 export default {
   INITIAL_STATE,
+
+  setIsOnline,
 
   setSearchCategory,
   setSearchSubcategory,

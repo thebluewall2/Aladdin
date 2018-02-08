@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, NetInfo, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
@@ -11,8 +11,29 @@ import { LoadingSpinner } from '../../Components/common';
 class HomePage extends Component {
 
   componentWillMount() {
+    this._addInternetListener();
+
     if (this.props.userType === 'customer') {
         this.props.getServiceCategories();
+    }
+  }
+
+  _addInternetListener = () => {
+      NetInfo.isConnected.addEventListener('connectionChange', this.handleInternetChange);
+  }
+
+  handleInternetChange = (isConnected) => {
+    this.props.setIsOnline(isConnected);
+
+    if (!isConnected) {
+      Alert.alert(
+        'App is offline',
+        'Please check your Internet settings',
+        [
+          { text: 'OK' }
+        ],
+        { cancelable: false }
+      );
     }
   }
 
@@ -77,6 +98,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    setIsOnline: (isOnline) =>
+      dispatch(ReduxActions.homeSetIsOnline(isOnline)),
     setSearchCategory: (category) =>
       dispatch(ReduxActions.homeSetSearchCategory(category)),
     getServiceCategories: () =>
