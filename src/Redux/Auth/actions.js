@@ -62,11 +62,6 @@ const authVendorSetCategories = (categories) => ({
   categories
 });
 
-const authVendorSetSubcategories = (subcategories) => ({
-  type: Types.AUTH_VENDOR_SET_SUBCATEGORIES,
-  subcategories
-});
-
 //Reset Password section
 const authResetPasswordAttempt = (email, userType) => ({
   type: Types.AUTH_RESET_PASSWORD_ATTEMPT,
@@ -114,7 +109,6 @@ export default {
   authUserSignUpFail,
   authVendorSetData,
   authVendorSetCategories,
-  authVendorSetSubcategories,
 
   //Reset Password section
   authResetPasswordAttempt,

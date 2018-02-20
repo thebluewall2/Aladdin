@@ -96,16 +96,6 @@ const setVendorCategories = (state = INITIAL_STATE, action) => {
   };
 };
 
-const setVendorSubcategories = (state = INITIAL_STATE, action) => {
-  return {
-    ...state,
-    vendorData: {
-      ...state.vendorData,
-      subcategories: action.subcategories
-    }
-  };
-};
-
 //Reset Password Section
 const setResetPasswordAttempt = (state = INITIAL_STATE) => {
   return { ...state,
@@ -193,7 +183,6 @@ export default {
 
   setVendorData,
   setVendorCategories,
-  setVendorSubcategories,
 
   setResetPasswordAttempt,
   setResetPasswordSuccess,
