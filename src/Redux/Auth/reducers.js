@@ -54,6 +54,7 @@ const setUserLoginFail = (state = INITIAL_STATE, action) => {
   return {
     ...state,
     loading: false,
+    password: '',
     errorMessage: action.error
   };
 };
