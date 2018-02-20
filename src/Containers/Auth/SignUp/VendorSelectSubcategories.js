@@ -120,7 +120,7 @@ class VendorSelectCategories extends Component {
           callback={(result) => {
             let subcategoriesSelected = [];
 
-            result.map(index => subcategoriesSelected = subcategoriesSelected.concat(subcategoriesInThisCategory[index]));
+            result.map(index => subcategoriesSelected = subcategoriesSelected.concat(subcategoriesInThisCategory[index].id));
             this._handleSelectSubcategories(category, subcategoriesSelected);
           }}
           placeholder={"Search"}
