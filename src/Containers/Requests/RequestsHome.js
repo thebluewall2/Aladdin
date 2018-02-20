@@ -40,7 +40,7 @@ class RequestsHome extends PureComponent {
 
   _renderList = (transactionList) => {
     return (
-      <View style={styles.requestHomeContainerViewStyle}>
+      <View style={styles.requestHomeListContainerStyle}>
         <ScrollView>
           <FlatList
             data={transactionList}

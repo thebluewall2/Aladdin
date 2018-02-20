@@ -54,6 +54,7 @@ const setUserLoginFail = (state = INITIAL_STATE, action) => {
   return {
     ...state,
     loading: false,
+    password: '',
     errorMessage: action.error
   };
 };
@@ -92,16 +93,6 @@ const setVendorCategories = (state = INITIAL_STATE, action) => {
     vendorData: {
       ...state.vendorData,
       categories: action.categories,
-    }
-  };
-};
-
-const setVendorSubcategories = (state = INITIAL_STATE, action) => {
-  return {
-    ...state,
-    vendorData: {
-      ...state.vendorData,
-      subcategories: action.subcategories
     }
   };
 };
@@ -193,7 +184,6 @@ export default {
 
   setVendorData,
   setVendorCategories,
-  setVendorSubcategories,
 
   setResetPasswordAttempt,
   setResetPasswordSuccess,

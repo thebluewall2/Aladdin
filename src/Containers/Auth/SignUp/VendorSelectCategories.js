@@ -10,13 +10,32 @@ import { LoadingSpinner } from '../../../Components/common';
 import Config from '../../../Services/config';
 
 class VendorSelectCategories extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selectedCategories: [],
+      error: ''
+    };
+  }
 
   _handleSelectSubcategories = () => {
     const { selectedCategories } = this.state;
+    this._setErrorMessage('');
 
-    this.props.setVendorCategories(selectedCategories);
+    if (selectedCategories.length) {
+      this.props.setVendorCategories(selectedCategories);
 
-    Actions.selectSubcategories();
+      Actions.selectSubcategories();
+    } else {
+      this._setErrorMessage("Please select at least one category");
+    }
+  }
+
+  _setErrorMessage = (error) => {
+    this.setState({
+      error
+    });
   }
 
   render() {
@@ -53,6 +72,11 @@ class VendorSelectCategories extends Component {
             selectedIconName={"ios-checkmark-circle-outline"}
             unselectedIconName={"ios-radio-button-off-outline"}
           />
+
+          {this.state.error ?
+            <Text style={styles.errorMessageStyle}>{this.state.error}</Text> :
+            false
+          }
 
           <View style={styles.vendorNextButtonStyle}>
             <TouchableOpacity style={styles.buttonStyle} onPress={this._handleSelectSubcategories}>

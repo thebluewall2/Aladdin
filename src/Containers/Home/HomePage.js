@@ -18,6 +18,10 @@ class HomePage extends Component {
     }
   }
 
+  componentWillUnmount() {
+    NetInfo.isConnected.removeEventListener('connectionChange', this.handleInternetChange);
+  }
+
   _addInternetListener = () => {
       NetInfo.isConnected.addEventListener('connectionChange', this.handleInternetChange);
   }
