@@ -29,7 +29,8 @@ export function* handleMakePayment(paymentInfo) {
     yield call(create, 'Payments', () => ({
         [`Payments/${paymentInfo.PaymentID}`]: {
           ...paymentInfo,
-          TxnStatus: 'Pending',
+          status: 'Pending',
+          trxCode: 2,
           createdDate: dateNow,
         }
       })
