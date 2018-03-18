@@ -36,7 +36,7 @@ export function* watchGetPaymentInfo() {
 
     if (paymentDetails) {
       yield put(ReduxActions.requestsGetPaymentConfirmationSuccess(paymentDetails));
-      Actions.makePayment();
+      Actions.makePayment({ type: 'replace' });
     } else {
       const errorMsg = "Payment failed. Please try again";
       yield put(ReduxActions.requestsGetPaymentConfirmationFailure(errorMsg));

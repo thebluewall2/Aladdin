@@ -2,6 +2,7 @@ import { take, call, put } from 'redux-saga/effects';
 
 import firebase from 'firebase';
 import { create, update } from 'firebase-saga';
+import { Actions } from 'react-native-router-flux';
 
 import ReduxActions from '../../Redux/Actions';
 import Types from '../../Redux/Requests/types';
@@ -38,6 +39,7 @@ export function* handleMakePayment(paymentInfo) {
     yield call(createPaymentReference, paymentInfo, dateNow);
 
     yield put(ReduxActions.requestsMakePaymentSuccess());
+    Actions.paymentWebView({ type: 'replace' });
   } catch (error) {
     console.log(error);
     const errorMessage = "Payment failed, please try again later.";
