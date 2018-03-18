@@ -1,6 +1,6 @@
 import { take, call, put } from 'redux-saga/effects';
 
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, Alert } from 'react-native';
 import firebase from 'firebase';
 import { get, push, update } from 'firebase-saga';
 import { Actions } from 'react-native-router-flux';
@@ -11,12 +11,12 @@ import Types from '../../Redux/Auth/types';
 
 export function* watchLoginUser() {
   while (true) {
-    const { userType, email, password } = yield take(Types.AUTH_LOGIN_USER);
-    yield call(handleLoginUser, userType, email, password);
+    const { userType, email, password, isFromLoginPage } = yield take(Types.AUTH_LOGIN_USER);
+    yield call(handleLoginUser, userType, email, password, isFromLoginPage);
   }
 }
 
-export function* handleLoginUser(userType, email, password) {
+export function* handleLoginUser(userType, email, password, isFromLoginPage) {
   try {
     const userData = yield call(firebaseAuth, email, password);
     const userInfo = yield call(get, `Users/${userType}`, userData.uid);
@@ -62,7 +62,21 @@ export function* handleLoginUser(userType, email, password) {
       }
     }
 
-    yield put(ReduxActions.authUserLoginFail(error));
+    if (!isFromLoginPage) {
+      //if this is from opening the app's auto login
+      Alert.alert(
+        'App is offline',
+        'No Internet connection detected. Please check your Internet connection',
+        [
+          {text: 'Retry', onPress: Actions.landingPage }
+        ],
+        { cancelable: false }
+      )
+
+      yield put(ReduxActions.authUserLoginFail(''));
+    } else {
+      yield put(ReduxActions.authUserLoginFail(error));
+    }
   }
 }
 

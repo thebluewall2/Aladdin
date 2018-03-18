@@ -12,8 +12,9 @@ class UserLoginPage extends Component {
 
   _handleLoginUser = () => {
     const { userType, email, password } = this.props;
+    const isFromLoginPage = true;
 
-    this.props.loginUser(userType, email, password);
+    this.props.loginUser(userType, email, password, isFromLoginPage);
   }
 
   _handleEmailChanged = (text) => {
@@ -127,8 +128,8 @@ const mapStateToProps = ({ auth }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loginUser: (userType, email, password) =>
-      dispatch(ReduxActions.authLoginUser(userType, email, password)),
+    loginUser: (userType, email, password, isFromLoginPage) =>
+      dispatch(ReduxActions.authLoginUser(userType, email, password, isFromLoginPage)),
     emailChanged: (email) =>
       dispatch(ReduxActions.authEmailChanged(email)),
     passwordChanged: (password) =>

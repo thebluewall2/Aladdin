@@ -72,8 +72,9 @@ export function* autoLoginUser(userType) {
 
   if (credentials) {
     const { username, password } = credentials;
+    const isFromLoginPage = false;
 
-    yield put(ReduxActions.authLoginUser(userType, username, password));
+    yield put(ReduxActions.authLoginUser(userType, username, password, isFromLoginPage));
   } else {
     yield put(ReduxActions.authAppStartUp(false));
   }
