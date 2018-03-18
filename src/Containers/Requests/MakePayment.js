@@ -87,14 +87,18 @@ class MakePayment extends React.PureComponent {
   _renderWebView = () => {
     const { paymentInfo } = this.props;
     console.log(paymentInfo);
-
+    let requestBody = '';
+    for (let [key, value] of Object.entries(paymentInfo)) {
+      requestBody = requestBody.concat(key + '=' + value + '&');
+    }
+    console.log(requestBody);
     return (
       <View style={{ paddingTop: Config.navBarHeight, paddingBottom: Config.tabBarHeight, flex: 1 }}>
         <WebView
           source={{
             uri: Config.getPaymentGatewayDomain,
             method: 'POST',
-            body: JSON.stringify(paymentInfo)
+            body: requestBody
           }}
         />
       </View>
