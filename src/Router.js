@@ -28,6 +28,7 @@ import ChooseTimeForService from './Containers/Home/ChooseTimeForService';
 import RequestsHome from './Containers/Requests/RequestsHome';
 import CustomerRequestDetails from './Containers/Requests/CustomerRequestDetails';
 import MakePayment from './Containers/Requests/MakePayment';
+import PaymentWebView from './Containers/Requests/PaymentWebView';
 import QRCodePage from './Containers/Requests/QRCodePage';
 import VendorRequestDetails from './Containers/Requests/VendorRequestDetails';
 import VendorSelectTime from './Containers/Requests/VendorSelectTime';
@@ -180,6 +181,12 @@ const RouterComponent = () => {
           <Scene
             key="makePayment"
             component={MakePayment}
+            title={'Complete Service'}
+            {...navigatorProps}
+          />
+          <Scene
+            key="paymentWebView"
+            component={PaymentWebView}
             title={'Complete Service'}
             {...navigatorProps}
           />

@@ -2,7 +2,6 @@ const INITIAL_STATE = {
   loading: false,
   errorMessage: '',
   transactionList: [],
-  launchBrowser: false,
 };
 
 //Get Transaction List Section
@@ -82,7 +81,6 @@ const makePaymentAttempt = (state = INITIAL_STATE) => {
     ...state,
     loading: true,
     errorMessage: '',
-    launchBrowser: false,
   };
 };
 
@@ -90,7 +88,6 @@ const makePaymentSuccess = (state = INITIAL_STATE) => {
   return {
     ...state,
     loading: false,
-    launchBrowser: true,
   };
 };
 
@@ -99,7 +96,6 @@ const makePaymentFailure = (state = INITIAL_STATE, action) => {
     ...state,
     loading: false,
     errorMessage: action.error,
-    launchBrowser: false,
   };
 };
 
