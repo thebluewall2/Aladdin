@@ -64,14 +64,24 @@ export function* handleLoginUser(userType, email, password, isFromLoginPage) {
 
     if (!isFromLoginPage) {
       //if this is from opening the app's auto login
-      Alert.alert(
-        'App is offline',
-        'No Internet connection detected. Please check your Internet connection',
-        [
-          {text: 'Retry', onPress: Actions.landingPage }
-        ],
-        { cancelable: false }
-      )
+
+      switch (error.code) {
+        case 'auth/network-request-failed': {
+          Alert.alert(
+            'App is offline',
+            'No Internet connection detected. Please check your Internet connection',
+            [
+              {text: 'Retry', onPress: Actions.landingPage }
+            ],
+            { cancelable: false }
+          );
+
+          break;
+        }
+        case 'auth/wrong-password': {
+          Actions.landingPage();
+        }
+      }
 
       yield put(ReduxActions.authUserLoginFail(''));
     } else {
