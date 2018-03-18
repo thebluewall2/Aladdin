@@ -16,12 +16,12 @@ export function* watchCreateReview() {
 
 export function* handleCreateReview(vendorUID, review) {
   try {
-    const reviewScoreFromFirebase = yield call(get, `Users/vendor/${vendorUID}`, 'review');
+    const reviewScoreFromFirebase = yield call(get, `Users/vendor/${vendorUID}`, 'reviews');
     const newReview =
       { totalReviews: reviewScoreFromFirebase.totalReviews + 1,
-        totalScores: reviewScoreFromFirebase.totalRevi + review,
+        totalScores: reviewScoreFromFirebase.totalScores + review,
       };
-    yield call(update, `Users/vendor/${vendorUID}/reviews`, 'reviewScore', newReview);
+    yield call(update, `Users/vendor/${vendorUID}`, 'reviews', newReview);
 
     ReduxActions.sucessHeree
   } catch (error) {
