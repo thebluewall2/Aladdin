@@ -27,18 +27,13 @@ class HomePage extends Component {
   }
 
   handleInternetChange = (isConnected) => {
-    this.props.setIsOnline(isConnected);
-
     if (!isConnected) {
-      Alert.alert(
-        'App is offline',
-        'Please check your Internet settings',
-        [
-          { text: 'OK' }
-        ],
-        { cancelable: false }
-      );
+      Actions.offlinePage();
+    } else if (!this.props.isOnline && isConnected) {
+      Actions.pop();
     }
+
+    this.props.setIsOnline(isConnected);
   }
 
   _categoryPressed = (category) => {
@@ -90,9 +85,10 @@ class HomePage extends Component {
 const mapStateToProps = (state) => {
   const { userType } = state.auth;
   const { fullName } = state.auth.userData;
-  const { loading, serviceCategories } = state.home;
+  const { loading, serviceCategories, isOnline } = state.home;
 
   return {
+    isOnline,
     fullName,
     loading,
     serviceCategories,

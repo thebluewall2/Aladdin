@@ -2,6 +2,7 @@ import Types from './types';
 
 const homeSetIsOnline = (isOnline) => ({
   type: Types.HOME_SET_IS_ONLINE,
+  isOnline
 });
 
 const homeSetSearchCategory = (category) => ({
@@ -98,7 +99,7 @@ const homeCreateOrUpdateTransactionFailure = (error) => ({
 
 export default {
   homeSetIsOnline,
-  
+
   homeSetSearchCategory,
   homeSetSearchSubcategory,
   homeSetSearchAddress,

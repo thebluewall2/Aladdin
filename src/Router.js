@@ -24,6 +24,7 @@ import SelectSubcategory from './Containers/Home/SelectSubcategory';
 import SelectAddress from './Containers/Home/SelectAddress';
 import AddNewAddress from './Containers/Home/AddNewAddress';
 import ChooseTimeForService from './Containers/Home/ChooseTimeForService';
+import OfflinePage from './Containers/Home/OfflinePage';
 
 import RequestsHome from './Containers/Requests/RequestsHome';
 import CustomerRequestDetails from './Containers/Requests/CustomerRequestDetails';
@@ -160,6 +161,14 @@ const RouterComponent = () => {
             key="chooseTime"
             component={ChooseTimeForService}
             title={'Choose Time'}
+            {...navigatorProps}
+          />
+          <Scene
+            key="offlinePage"
+            component={OfflinePage}
+            title={"No Internet Detected"}
+            renderBackButton={() => null}
+            hideTabBar
             {...navigatorProps}
           />
         </Scene>
