@@ -63,6 +63,7 @@ const setSignUpAttempt = (state = INITIAL_STATE) => {
   return {
     ...state,
     loading: true,
+    errorMessage: '',
   };
 };
 

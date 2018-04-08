@@ -42,6 +42,10 @@ export function* handleSignUp(data) {
         errorMsg = 'Password requires 6 characters and above';
         break;
       }
+      case 'auth/invalid-email': {
+        errorMsg = 'Invalid email. Please enter a valid email';
+        break;
+      }
       case 'Location not found': {
         errorMsg = 'Location not found. Please try again';
         break;
@@ -98,7 +102,6 @@ export function* SignUp(data) {
 export function firebaseSignUp(data) {
   const userData = firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
   .catch((error) => {
-    console.log(error.message);
     throw error;//If fail dispatch error msg
   });
   return userData;
@@ -163,6 +166,7 @@ export function* VendorInfo(data, userData, coordinates) {
   yield put(ReduxActions.authUserSignUpSuccess());
   Actions.loginPage();
   } catch (error) {
+    console.log(error);
     yield put(ReduxActions.authUserSignUpFail(error));
   }
 }

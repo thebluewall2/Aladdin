@@ -17,6 +17,12 @@ class VendorSelectCategories extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.error) {
+      this._setErrorMessage(nextProps.error);
+    }
+  }
+
   handleSignUp = () => {
     const { vendorData } = this.props;
     const { categories } = this.state;
@@ -167,7 +173,8 @@ const mapStateToProps = ({ auth, home }) => {
     loading: auth.loading,
     vendorData: auth.vendorData,
     serviceCategories,
-    vendorSubcategories: subcategories
+    vendorSubcategories: subcategories,
+    error: auth.errorMessage,
   };
 };
 
