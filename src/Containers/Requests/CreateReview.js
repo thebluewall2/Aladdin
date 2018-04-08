@@ -1,17 +1,38 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons/Ionicons';
 
-import styles from './Styles';
+import Icon from 'react-native-vector-icons/Ionicons';
+import Modal from 'react-native-modalbox';
+
+import Config from '../../Services/config';
+import ReduxActions from '../../Redux/Actions';
+import { LoadingSpinner } from '../../Components/common';
 
 class CreateReview extends React.PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      ratingStars: 0
+      ratingStars: 0,
+      loading: false,
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { onClose, loading } = nextProps;
+
+    if (loading) {
+      this.setState({
+        loading: true,
+      });
+    } else {
+      this.setState({
+        loading: false,
+      });
+
+      onClose();
+    }
   }
 
   _selectStar = (ratingStars) => {
@@ -21,7 +42,10 @@ class CreateReview extends React.PureComponent {
   }
 
   _submitReview = () => {
-    console.log(this.state.ratingStars);
+    const { submitReview } = this.props;
+    const { ratingStars } = this.state;
+
+    submitReview();
   }
 
   _renderIcon = (stars) => {
@@ -52,25 +76,116 @@ class CreateReview extends React.PureComponent {
     );
   }
 
-  render() {
+  _renderButtons = () => {
+    const { onClose } = this.props;
+
+    if (this.state.loading) {
+      return (
+        <View style={{ paddingTop: 30 }}>
+          <LoadingSpinner size="small" />
+        </View>
+      );
+    }
+
     return (
-      <View style={styles.reviewContainerStyle}>
-        <Text>Please leave a review</Text>
+      <View style={styles.buttonRowStyle}>
+        <TouchableOpacity onPress={onClose} style={styles.buttonStyle}>
+          <Text>Cancel</Text>
+        </TouchableOpacity>
 
-        {this._renderReviews()}
-
-        <TouchableOpacity onPress={this._submitReview}>
+        <TouchableOpacity onPress={this._submitReview} style={styles.buttonStyle}>
           <Text>Submit review</Text>
         </TouchableOpacity>
       </View>
     );
   }
+
+  _renderModal = () => {
+    return (
+      <View style={styles.modalContainer}>
+        <Text style={styles.titleTextStyle}>Please leave a review</Text>
+
+        {this._renderReviews()}
+        {this._renderButtons()}
+      </View>
+    );
+  }
+
+  render() {
+    const { isOpen, onClose } = this.props;
+
+    return (
+      <Modal
+        isOpen={isOpen}
+        style={styles.reviewContainerStyle}
+        onClosed={onClose}
+      >
+        {this._renderModal()}
+      </Modal>
+    );
+  }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
+const styles = StyleSheet.create({
+  modalContainer: {
+      paddingHorizontal: 8,
+  },
 
+  reviewContainerStyle: {
+    paddingTop: 20,
+    height: 200,
+    width: Config.screenWidth * 0.85,
+  },
+
+  reviewListStyle: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 30,
+  },
+
+  reviewEmptyIconStyle: {
+    fontSize: 40,
+  },
+
+  reviewFullIconStyle: {
+    fontSize: 40,
+    color: 'yellow',
+  },
+
+  titleTextStyle: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
+
+  buttonRowStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    paddingTop: 30,
+    paddingHorizontal: 20
+  },
+
+  buttonStyle: {
+    borderWidth: 0.8,
+    borderRadius: 5,
+    padding: 8,
+  }
+});
+
+const mapStateToProps = (state) => {
+  return {
+    loading: state.requests.submittingReview,
   };
 };
 
-export default connect(null, mapDispatchToProps)(CreateReview);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    submitReview: (vendorUID, review) =>
+      dispatch(ReduxActions.requestsCreateReviewAttempt(vendorUID, review)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateReview);

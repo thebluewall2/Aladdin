@@ -37,7 +37,7 @@ class QRScanner extends PureComponent {
     return (
       <View style={{ paddingTop: 90, flex: 1, backgroundColor: '#000000' }}>
       <Text style={styles.qrCodeTextStyle}>
-        Please capture the QR code that displayed on customers phone
+        "Please capture the QR code that is displayed on the customer's phone"
       </Text>
       <View style={styles.containerStyle}>
         <Camera

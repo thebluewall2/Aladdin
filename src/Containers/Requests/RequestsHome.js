@@ -6,10 +6,19 @@ import { Actions } from 'react-native-router-flux';
 import ReduxActions from '../../Redux/Actions';
 import { LoadingSpinner } from '../../Components/common';
 import RequestsCard from '../../Components/RequestsCard';
+import CreateReviewModal from './CreateReview';
 
 import styles from './Styles';
 
 class RequestsHome extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+        isReviewModalOpen: false,
+    };
+  }
+
   componentWillMount() {
     const { userType, userUID } = this.props;
 
@@ -75,6 +84,11 @@ class RequestsHome extends PureComponent {
           :
           this._renderEmptyList()
         }
+
+        <CreateReviewModal
+          isOpen={this.state.isReviewModalOpen}
+          onClose={() => this.setState({ isReviewModalOpen: false })}
+        />
       </View>
     );
   }
