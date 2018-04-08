@@ -47,10 +47,10 @@ const requestsMakePaymentFailure = (error) => ({
   error
 });
 
-const requestsCreateReviewAttempt = (reviewInfo, stars) => ({
+const requestsCreateReviewAttempt = (vendorUID, review) => ({
   type: Types.REQ_CREATE_REVIEW_ATTEMPT,
-  reviewInfo,
-  stars
+  vendorUID,
+  review
 });
 
 const requestsCreateReviewSuccess = () => ({
