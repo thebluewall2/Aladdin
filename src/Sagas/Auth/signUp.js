@@ -52,10 +52,11 @@ export function* handleSignUp(data) {
       }
       default: {
         errorMsg = 'Something went wrong, please try again later';
-        break;
       }
     }
 
+    const ref = firebase.database().ref(`PhoneNumbers/${data.userType}/${data.phoneNo}`);
+    ref.remove();
     yield put(ReduxActions.authUserSignUpFail(errorMsg));
   }
 }
@@ -128,16 +129,18 @@ export function* CustomerInfo(data, userData, coordinates) {
 
 export function* VendorInfo(data, userData, coordinates) {
   try {
+    console.log(data);
     yield call(create, `Users/${data.userType}/${userData.uid}`, () => ({
       [`Users/${data.userType}/${userData.uid}`]:
         {
           companyName: data.companyName,
           name: data.name,
+          email: data.email,
           phoneNo: data.phoneNo,
           officeNo: data.officeNo,
           address: `${data.addressOne} ${data.addressTwo}`,
           postcode: data.postcode,
-          services: data.subcategories,
+          services: data.categories,
           city: data.city,
           coordinates,
           reviews: {
@@ -152,16 +155,6 @@ export function* VendorInfo(data, userData, coordinates) {
         }
     })
   );
-  // for (let count = 0; count < data.subcategories.length; count++) {
-  //   yield call(create, `Services/${data.subcategories[count].categoryName}/${data.subcategories[count].subcategory}`, () => ({
-  //       [`Services/${data.subcategories[count].categoryName}/${data.subcategories[count].subcategory}/vendors/${userData.uid}`]:
-  //         {
-  //           coordinates,
-  //           name: data.name
-  //         }
-  //     })
-  //   );
-  // }
 
   yield put(ReduxActions.authUserSignUpSuccess());
   Actions.loginPage();
