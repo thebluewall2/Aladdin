@@ -1,4 +1,5 @@
 import { Platform, StyleSheet } from 'react-native';
+import Config from '../../Services/config';
 
 export default StyleSheet.create({
   landingPageMainContainer: {
@@ -14,7 +15,7 @@ export default StyleSheet.create({
   loginPageMainContainer: {
     alignItems: 'center',
     flexDirection: 'column',
-    paddingTop: 70,
+    paddingTop: Config.navBarHeight,
     flex: 1,
     backgroundColor: 'white'
   },
@@ -22,7 +23,7 @@ export default StyleSheet.create({
   signUpPageMainContainer: {
     alignItems: 'center',
     flexDirection: 'column',
-    paddingTop: 90,
+    paddingTop: Config.navBarHeight,
     flex: 1,
     paddingBottom: 10,
     backgroundColor: 'white'

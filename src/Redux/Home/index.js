@@ -4,6 +4,8 @@ import Types from './types';
 
 export default {
   reducer: createReducer(Reducers.INITIAL_STATE, {
+    [Types.HOME_SET_IS_ONLINE]: Reducers.setIsOnline,
+    
     [Types.HOME_SET_SEARCH_CATEGORY]: Reducers.setSearchCategory,
     [Types.HOME_SET_SEARCH_SUBCATEGORY]: Reducers.setSearchSubcategory,
     [Types.HOME_SET_SEARCH_ADDRESS]: Reducers.setSearchAddress,

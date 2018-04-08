@@ -24,10 +24,12 @@ import SelectSubcategory from './Containers/Home/SelectSubcategory';
 import SelectAddress from './Containers/Home/SelectAddress';
 import AddNewAddress from './Containers/Home/AddNewAddress';
 import ChooseTimeForService from './Containers/Home/ChooseTimeForService';
+import OfflinePage from './Containers/Home/OfflinePage';
 
 import RequestsHome from './Containers/Requests/RequestsHome';
 import CustomerRequestDetails from './Containers/Requests/CustomerRequestDetails';
 import MakePayment from './Containers/Requests/MakePayment';
+import PaymentWebView from './Containers/Requests/PaymentWebView';
 import QRCodePage from './Containers/Requests/QRCodePage';
 import VendorRequestDetails from './Containers/Requests/VendorRequestDetails';
 import VendorSelectTime from './Containers/Requests/VendorSelectTime';
@@ -161,6 +163,14 @@ const RouterComponent = () => {
             title={'Choose Time'}
             {...navigatorProps}
           />
+          <Scene
+            key="offlinePage"
+            component={OfflinePage}
+            title={"No Internet Detected"}
+            renderBackButton={() => null}
+            hideTabBar
+            {...navigatorProps}
+          />
         </Scene>
 
         <Scene key="requests" title="Request" icon={TabIcon} >
@@ -180,6 +190,12 @@ const RouterComponent = () => {
           <Scene
             key="makePayment"
             component={MakePayment}
+            title={'Complete Service'}
+            {...navigatorProps}
+          />
+          <Scene
+            key="paymentWebView"
+            component={PaymentWebView}
             title={'Complete Service'}
             {...navigatorProps}
           />

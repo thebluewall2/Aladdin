@@ -8,25 +8,73 @@ import styles from '../Styles';
 import ReduxActions from '../../../Redux/Actions';
 
 class VendorSelectCategories extends Component {
+  constructor(props) {
+    super(props);
 
-  handleSignUp = () => {
-    this.props.vendorSignUp(this.props.vendorData);
+    this.state = {
+      error: '',
+      categories: {},
+    };
   }
 
-  _handleSelectSubcategories = (category, thisSubcategory, subcategories) => {
-    const { vendorSubcategories, setVendorSubcategories } = this.props;
-    const subcategoriesInRedux = vendorSubcategories ? vendorSubcategories : [];
+  handleSignUp = () => {
+    const { vendorData } = this.props;
+    const { categories } = this.state;
+    let canProceed = true;
 
-    const subcategoryToAddToState = thisSubcategory[subcategories[subcategories.length - 1]].id;
+    this._setErrorMessage('');
 
-    const newSubcatObject = {
-      categoryName: category,
-      subcategory: subcategoryToAddToState
-    };
+    this.props.categories.map(propCategory => {
+      let isAtLeastOneSubcategorySelected = false;
 
-    const newSubcatToState = subcategoriesInRedux.concat(newSubcatObject);
+      Object.keys(categories).map(stateCategory => {
+        if (categories[stateCategory].length && stateCategory === propCategory) {
+          isAtLeastOneSubcategorySelected = true;
+        }
+      });
 
-    setVendorSubcategories(newSubcatToState);
+      if (!isAtLeastOneSubcategorySelected) {
+        this._setErrorMessage("Please make sure at least one subcategory is chosen for each category.");
+        canProceed = false;
+      }
+    });
+
+    if (canProceed) {
+      const signUpData = {
+        ...vendorData,
+        categories,
+      };
+
+      this.props.vendorSignUp(signUpData);
+    }
+  }
+
+  _setErrorMessage = (error) => {
+    this.setState({
+      error
+    });
+  }
+
+
+  _renderError = () => {
+    const { error } = this.state;
+
+    if (error) {
+      return (
+        <Text style={styles.errorMessageStyle}>{error}</Text>
+      );
+    }
+
+    return false;
+  }
+
+  _handleSelectSubcategories = (category, subcategoriesSelected) => {
+    this.setState({
+      categories: {
+        ...this.state.categories,
+        [category]: subcategoriesSelected
+      }
+    });
   }
 
   _renderSubmitBtn = () => {
@@ -44,18 +92,18 @@ class VendorSelectCategories extends Component {
   };
 
   renderSelectSubcategory = (category) => {
-    let thisSubcategory = [];
+    let subcategoriesInThisCategory = [];
     let subcategoriesToDisplay = [];
 
     const categories = this.props.serviceCategories;
 
     for (let i = 0; i < categories.length; i++) {
       if (categories[i].category === category) {
-        thisSubcategory = categories[i].subcategories;
+        subcategoriesInThisCategory = categories[i].subcategories;
       }
     }
 
-    thisSubcategory.map(sub => {
+    subcategoriesInThisCategory.map(sub => {
       subcategoriesToDisplay = subcategoriesToDisplay.concat(sub.name);
     });
 
@@ -69,7 +117,12 @@ class VendorSelectCategories extends Component {
           options={subcategoriesToDisplay}
           search
           multiple
-          callback={(result) => this._handleSelectSubcategories(category, thisSubcategory, result)}
+          callback={(result) => {
+            let subcategoriesSelected = [];
+
+            result.map(index => subcategoriesSelected = subcategoriesSelected.concat(subcategoriesInThisCategory[index].id));
+            this._handleSelectSubcategories(category, subcategoriesSelected);
+          }}
           placeholder={"Search"}
           placeholderTextColor={'#47525E'}
           iconColor={"#589fd6"}
@@ -96,6 +149,8 @@ class VendorSelectCategories extends Component {
           ))
         }
 
+        {this._renderError()}
+
         {this._renderSubmitBtn()}
       </ScrollView>
     );
@@ -118,8 +173,6 @@ const mapStateToProps = ({ auth, home }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setVendorSubcategories: (subcategories) =>
-      dispatch(ReduxActions.authVendorSetSubcategories(subcategories)),
     vendorSignUp: (vendorData) =>
       dispatch(ReduxActions.authUserSignUpAttempt(vendorData)),
   };

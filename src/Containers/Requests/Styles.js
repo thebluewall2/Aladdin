@@ -5,7 +5,11 @@ export default StyleSheet.create({
 
   requestHomeContainerViewStyle: {
     flex: 1,
-    paddingBottom: Config.tabBarHeight
+    marginBottom: Config.tabBarHeight
+  },
+
+  requestHomeListContainerStyle: {
+    flex: 1,
   },
 
   orderDetailsContainerViewStyle: {

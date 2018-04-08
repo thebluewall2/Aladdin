@@ -1,7 +1,7 @@
 import { take, call, put } from 'redux-saga/effects';
 
-import uuid from 'uuid-v4';
 import { Actions } from 'react-native-router-flux';
+import firebase from 'firebase';
 
 import Config from '../../Services/config';
 import ReduxActions from '../../Redux/Actions';
@@ -28,7 +28,7 @@ export function* watchGetPaymentInfo() {
       CustName: paymentInfo.customerName,
       CustEmail: paymentInfo.userEmail,
       CustPhone: paymentInfo.userPhone,
-      PaymentID: uuid(),
+      PaymentID: firebase.database().ref(`Payments/`).push().key,
       ServiceID: '',
     };
 
@@ -36,7 +36,7 @@ export function* watchGetPaymentInfo() {
 
     if (paymentDetails) {
       yield put(ReduxActions.requestsGetPaymentConfirmationSuccess(paymentDetails));
-      Actions.makePayment();
+      Actions.makePayment({ type: 'replace' });
     } else {
       const errorMsg = "Payment failed. Please try again";
       yield put(ReduxActions.requestsGetPaymentConfirmationFailure(errorMsg));

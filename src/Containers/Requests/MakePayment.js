@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, WebView } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
@@ -52,7 +52,7 @@ class MakePayment extends React.PureComponent {
     Actions.pop();
   }
 
-  _renderContent = () => {
+  render() {
     const { PaymentDesc, CustName, CustEmail, Amount, CustPhone } = this.props.paymentInfo;
 
     return (
@@ -83,41 +83,15 @@ class MakePayment extends React.PureComponent {
       </View>
     );
   }
-
-  _renderWebView = () => {
-    const { paymentInfo } = this.props;
-    console.log(paymentInfo);
-
-    return (
-      <View style={{ paddingTop: Config.navBarHeight, paddingBottom: Config.tabBarHeight, flex: 1 }}>
-        <WebView
-          source={{
-            uri: Config.getPaymentGatewayDomain,
-            method: 'POST',
-            body: JSON.stringify(paymentInfo)
-          }}
-        />
-      </View>
-    );
-  }
-
-  render() {
-    if (this.props.launchBrowser) {
-      return this._renderWebView();
-    }
-
-    return this._renderContent();
-  }
 }
 
 const mapStateToProps = ({ requests }) => {
-  const { loading, paymentInfo, errorMessage, launchBrowser } = requests;
+  const { loading, paymentInfo, errorMessage } = requests;
 
   return {
     loading,
     paymentInfo,
     errorMessage,
-    launchBrowser
   };
 };
 

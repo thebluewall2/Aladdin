@@ -54,6 +54,7 @@ const setUserLoginFail = (state = INITIAL_STATE, action) => {
   return {
     ...state,
     loading: false,
+    password: '',
     errorMessage: action.error
   };
 };
@@ -96,16 +97,6 @@ const setVendorCategories = (state = INITIAL_STATE, action) => {
   };
 };
 
-const setVendorSubcategories = (state = INITIAL_STATE, action) => {
-  return {
-    ...state,
-    vendorData: {
-      ...state.vendorData,
-      subcategories: action.subcategories
-    }
-  };
-};
-
 //Reset Password Section
 const setResetPasswordAttempt = (state = INITIAL_STATE) => {
   return { ...state,
@@ -141,6 +132,35 @@ const addNewAddress = (state = INITIAL_STATE, action) => {
   };
 };
 
+const updateProfile = (state = INITIAL_STATE, action) => {
+  const { userInfo } = action;
+
+  const newProfile = {
+    address: [{
+      address: userInfo.address,
+      city: userInfo.city,
+      postcode: userInfo.postcode,
+      state: userInfo.state,
+      coordinates: userInfo.coordinates,
+    }],
+    awards: userInfo.awards,
+    companyName: userInfo.companyName,
+    noOfStaff: userInfo.noOfStaff,
+    officeNo: userInfo.officeNo,
+    phoneNo: userInfo.phoneNo,
+    yearsOfCompany: userInfo.yearsOfCompany,
+    yearsOfExp: userInfo.yearsOfExp,
+  };
+
+  return {
+    ...state,
+    userData: {
+      ...state.userData,
+      ...newProfile
+    }
+  };
+};
+
 const logout = () => {
   //reset state on logout
   return INITIAL_STATE;
@@ -164,13 +184,14 @@ export default {
 
   setVendorData,
   setVendorCategories,
-  setVendorSubcategories,
 
   setResetPasswordAttempt,
   setResetPasswordSuccess,
   setResetPasswordFail,
 
   addNewAddress,
+
+  updateProfile,
 
   logout,
 };

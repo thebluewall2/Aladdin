@@ -21,11 +21,12 @@ const authPasswordChanged = (password) => ({
   password,
 });
 
-const authLoginUser = (userType, email, password) => ({
+const authLoginUser = (userType, email, password, isFromLoginPage) => ({
   type: Types.AUTH_LOGIN_USER,
   userType,
   email,
-  password
+  password,
+  isFromLoginPage
 });
 
 const authUserLoginSuccess = (userData) => ({
@@ -62,11 +63,6 @@ const authVendorSetCategories = (categories) => ({
   categories
 });
 
-const authVendorSetSubcategories = (subcategories) => ({
-  type: Types.AUTH_VENDOR_SET_SUBCATEGORIES,
-  subcategories
-});
-
 //Reset Password section
 const authResetPasswordAttempt = (email, userType) => ({
   type: Types.AUTH_RESET_PASSWORD_ATTEMPT,
@@ -86,6 +82,11 @@ const authResetPasswordFail = (error) => ({
 const authAddNewAddress = (address) => ({
   type: Types.AUTH_ADD_NEW_ADDRESS,
   address
+});
+
+const authUpdateProfile = (userInfo) => ({
+  type: Types.AUTH_UPDATE_PROFILE,
+  userInfo
 });
 
 const authLogout = () => ({
@@ -109,7 +110,6 @@ export default {
   authUserSignUpFail,
   authVendorSetData,
   authVendorSetCategories,
-  authVendorSetSubcategories,
 
   //Reset Password section
   authResetPasswordAttempt,
@@ -117,6 +117,8 @@ export default {
   authResetPasswordFail,
 
   authAddNewAddress,
+
+  authUpdateProfile,
 
   authLogout,
 };

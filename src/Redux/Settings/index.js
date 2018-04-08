@@ -11,5 +11,9 @@ export default {
     [Types.SETTINGS_CHANGE_PASSWORD_ATTEMPT]: Reducers.changePasswordAttempt,
     [Types.SETTINGS_CHANGE_PASSWORD_SUCCESS]: Reducers.changePasswordSuccess,
     [Types.SETTINGS_CHANGE_PASSWORD_FAILURE]: Reducers.changePasswordFailure,
+
+    [Types.SETTINGS_EDIT_PROFILE_ATTEMPT]: Reducers.editProfileAttempt,
+    [Types.SETTINGS_EDIT_PROFILE_SUCCESS]: Reducers.editProfileSuccess,
+    [Types.SETTINGS_EDIT_PROFILE_FAILURE]: Reducers.editProfileFailure,
   })
 };

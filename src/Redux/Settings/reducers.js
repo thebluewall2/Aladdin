@@ -49,6 +49,29 @@ const changePasswordFailure = (state = INITIAL_STATE, action) => {
   };
 };
 
+const editProfileAttempt = (state = INITIAL_STATE) => {
+  return {
+    ...state,
+    attempting: true,
+    errorMsg: ''
+  };
+};
+
+const editProfileSuccess = (state = INITIAL_STATE) => {
+  return {
+    ...state,
+    attempting: false,
+  };
+};
+
+const editProfileFailure = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    attempting: false,
+    errorMsg: action.error,
+  };
+};
+
 export default {
   INITIAL_STATE,
 
@@ -59,4 +82,8 @@ export default {
   changePasswordAttempt,
   changePasswordSuccess,
   changePasswordFailure,
+
+  editProfileAttempt,
+  editProfileSuccess,
+  editProfileFailure,
 };

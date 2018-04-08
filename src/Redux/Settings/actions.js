@@ -26,6 +26,22 @@ const settingsChangePasswordFailure = (errorMsg) => ({
   errorMsg
 });
 
+const settingsEditProfileAttempt = (userType, userUID, profileInfo) => ({
+  type: Types.SETTINGS_EDIT_PROFILE_ATTEMPT,
+  userType,
+  userUID,
+  profileInfo,
+});
+
+const settingsEditProfileSuccess = () => ({
+  type: Types.SETTINGS_EDIT_PROFILE_SUCCESS,
+});
+
+const settingsEditProfileFailure = (error) => ({
+  type: Types.SETTINGS_EDIT_PROFILE_FAILURE,
+  error
+});
+
 export default {
   settingsSetSettings,
 
@@ -34,4 +50,8 @@ export default {
   settingsChangePasswordAttempt,
   settingsChangePasswordSuccess,
   settingsChangePasswordFailure,
+
+  settingsEditProfileAttempt,
+  settingsEditProfileSuccess,
+  settingsEditProfileFailure,
 };

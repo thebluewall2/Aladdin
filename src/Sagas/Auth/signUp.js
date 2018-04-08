@@ -149,16 +149,16 @@ export function* VendorInfo(data, userData, coordinates) {
         }
     })
   );
-  for (let count = 0; count < data.subcategories.length; count++) {
-    yield call(create, `Services/${data.subcategories[count].categoryName}/${data.subcategories[count].subcategory}`, () => ({
-        [`Services/${data.subcategories[count].categoryName}/${data.subcategories[count].subcategory}/vendors/${userData.uid}`]:
-          {
-            coordinates,
-            name: data.name
-          }
-      })
-    );
-  }
+  // for (let count = 0; count < data.subcategories.length; count++) {
+  //   yield call(create, `Services/${data.subcategories[count].categoryName}/${data.subcategories[count].subcategory}`, () => ({
+  //       [`Services/${data.subcategories[count].categoryName}/${data.subcategories[count].subcategory}/vendors/${userData.uid}`]:
+  //         {
+  //           coordinates,
+  //           name: data.name
+  //         }
+  //     })
+  //   );
+  // }
 
   yield put(ReduxActions.authUserSignUpSuccess());
   Actions.loginPage();
