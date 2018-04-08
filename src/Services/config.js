@@ -1,4 +1,6 @@
-import { Platform } from 'react-native';
+import { Platform, Dimensions } from 'react-native';
+
+ const { height, width } = Dimensions.get('window');
 
 export default {
   getFullParametersDomain: 'https://us-central1-aladdinapp-942fe.cloudfunctions.net/getFullParameters',
@@ -12,4 +14,8 @@ export default {
   tabBarHeight: 50,
 
   navBarHeight: Platform.OS === 'ios' ? 70 : 50,
+
+  screenWidth: width,
+
+  screenHeight: height,
 };

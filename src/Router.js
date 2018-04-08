@@ -121,6 +121,18 @@ const RouterComponent = () => {
           title={'Select subcategories'}
           {...navigatorProps}
         />
+        <Scene
+          key="termsOfUse"
+          component={TermsOfUse}
+          title={'Terms of Use'}
+          {...navigatorProps}
+        />
+        <Scene
+          key="privacyPolicy"
+          component={PrivacyPolicy}
+          title={'Privacy Policy'}
+          {...navigatorProps}
+        />
       </Scene>
 
       <Scene key="home" tabs >
@@ -255,18 +267,6 @@ const RouterComponent = () => {
             key="changePasswordPage"
             component={ChangePassword}
             title={'Change Password'}
-            {...navigatorProps}
-          />
-          <Scene
-            key="termsOfUse"
-            component={TermsOfUse}
-            title={'Terms of Use'}
-            {...navigatorProps}
-          />
-          <Scene
-            key="privacyPolicy"
-            component={PrivacyPolicy}
-            title={'Privacy Policy'}
             {...navigatorProps}
           />
         </Scene>

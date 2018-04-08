@@ -2,6 +2,7 @@ const INITIAL_STATE = {
   loading: false,
   errorMessage: '',
   transactionList: [],
+  submittingReview: false,
 };
 
 //Get Transaction List Section
@@ -102,7 +103,7 @@ const makePaymentFailure = (state = INITIAL_STATE, action) => {
 const createReviewAttempt = (state = INITIAL_STATE) => {
   return {
     ...state,
-    loading: true,
+    submittingReview: true,
     errorMessage: '',
   };
 };
@@ -110,15 +111,14 @@ const createReviewAttempt = (state = INITIAL_STATE) => {
 const createReviewSuccess = (state = INITIAL_STATE) => {
   return {
     ...state,
-    loading: false,
+    submittingReview: false,
   };
 };
 
-const createReviewFailure = (state = INITIAL_STATE, action) => {
+const createReviewFailure = (state = INITIAL_STATE) => {
   return {
     ...state,
-    loading: false,
-    errorMessage: action.error
+    submittingReview: false,
   };
 };
 
