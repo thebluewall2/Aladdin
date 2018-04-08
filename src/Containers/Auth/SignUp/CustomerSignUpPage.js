@@ -131,7 +131,7 @@ class CustomerSignUpPage extends Component {
               this._handleTextChanged(text, 'name');
             }}
             value={this.state.name}
-            componentStyle={styles.signUpTextFieldStyle}
+            componentStyle={styles.textFieldStyle}
             autoCorrect={false}
           />
 

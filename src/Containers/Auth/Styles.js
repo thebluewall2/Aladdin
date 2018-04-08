@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   landingPageMainContainer: {
@@ -144,9 +144,9 @@ export default StyleSheet.create({
   },
 
   signUpTextFieldStyle: {
-    height: 30,
     width: 330,
-    fontFamily: 'Quicksand-light'
+    fontFamily: 'Quicksand-light',
+    height: Platform.OS === 'ios' ? 30 : 40,
   },
 
   signUpButtonStyle: {
@@ -206,6 +206,12 @@ export default StyleSheet.create({
     width: 250,
     height: 120,
     paddingTop: 20
+  },
+
+  textFieldStyle: {
+    width: 330,
+    fontFamily: 'Quicksand-light',
+    height: Platform.OS === 'ios' ? 30 : 40,
   }
 
 });

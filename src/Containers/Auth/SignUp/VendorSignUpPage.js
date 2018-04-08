@@ -130,6 +130,7 @@ class VendorSignUpPage extends Component {
               }}
               value={this.state.companyName}
               autoCorrect={false}
+              componentStyle={styles.textFieldStyle}
             />
 
             <TextFieldComponent
@@ -139,6 +140,7 @@ class VendorSignUpPage extends Component {
               }}
               value={this.state.name}
               autoCorrect={false}
+              componentStyle={styles.textFieldStyle}
             />
 
             <TextFieldComponent
@@ -149,6 +151,7 @@ class VendorSignUpPage extends Component {
               value={this.state.email}
               keyboardType={'email-address'}
               autoCorrect={false}
+              componentStyle={styles.textFieldStyle}
             />
 
             <TextFieldComponent
@@ -158,6 +161,7 @@ class VendorSignUpPage extends Component {
                 this._handleTextChanged(text, 'password');
               }}
               value={this.state.password}
+              componentStyle={styles.textFieldStyle}
             />
 
             <TextFieldComponent
@@ -167,6 +171,7 @@ class VendorSignUpPage extends Component {
                 this._handleTextChanged(text, 'confirmPassword');
               }}
               value={this.state.confirmPassword}
+              componentStyle={styles.textFieldStyle}
             />
 
             <TextFieldComponent
@@ -176,6 +181,7 @@ class VendorSignUpPage extends Component {
               }}
               value={this.state.phoneNo}
               keyboardType={'phone-pad'}
+              componentStyle={styles.textFieldStyle}
             />
 
             <TextFieldComponent
@@ -185,6 +191,7 @@ class VendorSignUpPage extends Component {
               }}
               value={this.state.officeNo}
               keyboardType={'phone-pad'}
+              componentStyle={styles.textFieldStyle}
             />
 
             <TextFieldComponent
@@ -194,6 +201,7 @@ class VendorSignUpPage extends Component {
               }}
               value={this.state.addressOne}
               autoCorrect={false}
+              componentStyle={styles.textFieldStyle}
             />
 
             <TextFieldComponent
@@ -203,6 +211,7 @@ class VendorSignUpPage extends Component {
               }}
               value={this.state.addressTwo}
               autoCorrect={false}
+              componentStyle={styles.textFieldStyle}
             />
 
             <TextFieldComponent
@@ -212,6 +221,7 @@ class VendorSignUpPage extends Component {
               }}
               value={this.state.postcode}
               keyboardType={'numeric'}
+              componentStyle={styles.textFieldStyle}
             />
 
             <TextFieldComponent
@@ -221,6 +231,7 @@ class VendorSignUpPage extends Component {
               }}
               value={this.state.city}
               autoCorrect={false}
+              componentStyle={styles.textFieldStyle}
             />
 
             <TextFieldComponent
@@ -230,6 +241,7 @@ class VendorSignUpPage extends Component {
               }}
               value={this.state.state}
               autoCorrect={false}
+              componentStyle={styles.textFieldStyle}
             />
 
             <TextFieldComponent
@@ -239,6 +251,7 @@ class VendorSignUpPage extends Component {
               }}
               value={this.state.awards}
               autoCorrect={false}
+              componentStyle={styles.textFieldStyle}
             />
 
             <ModalPicker
