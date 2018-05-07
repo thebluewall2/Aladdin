@@ -1,8 +1,9 @@
-package com.aladdin;
+package com.ereno;
 
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.evollu.react.fcm.FIRMessagingPackage;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.toast.RCTToastPackage;
 import com.rnfs.RNFSPackage;
@@ -28,6 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new FIRMessagingPackage(),
             new RCTCameraPackage(),
             new RCTToastPackage(),
             new RNFSPackage(),
