@@ -1,4 +1,4 @@
-package com.aladdin;
+package com.ereno;
 
 import android.app.Application;
 
