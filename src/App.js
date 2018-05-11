@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
-import createSagaMiddleware from 'redux-saga';
 
 import Router from './Router';
 import reducers from './Redux/';
 import Sagas from './Sagas';
-import Config from './Services/config';
+import configureStore from './Services/configureStore';
 
 class App extends Component {
   componentWillMount() {
+    this.startUpFirebase();
+
+    this.store = configureStore(reducers, Sagas);
+  }
+
+  startUpFirebase = () => {
     const config = {
       apiKey: 'AIzaSyCoeUXmwEIwUdkF4BWZKLVaSGRcrQPLkvg',
       authDomain: 'aladdinapp-942fe.firebaseapp.com',
@@ -28,21 +32,8 @@ class App extends Component {
   }
 
   render() {
-    let middleware = [];
-    const sagaMiddleware = createSagaMiddleware();
-    middleware = [...middleware, sagaMiddleware];
-
-    if (Config.reduxLoggerEnabled) {
-      const { logger } = require('redux-logger');
-
-      middleware.push(logger);
-    }
-
-    const store = createStore(reducers, {}, applyMiddleware(...middleware));
-    sagaMiddleware.run(Sagas);
-
     return (
-      <Provider store={store}>
+      <Provider store={this.store}>
         <Router />
       </Provider>
     );

@@ -43,11 +43,13 @@ class HomePage extends Component {
   }
 
   _renderList = () => {
-    if (this.props.loading) {
+    const { serviceCategories, loading, userType } = this.props;
+
+    if (loading && !serviceCategories.length) {
       return <LoadingSpinner />;
     }
 
-    if (this.props.userType === 'vendor') {
+    if (userType === 'vendor') {
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignContent: 'center' }}>
           <View style={{ backgroundColor: '#e3f1f1', height: 70, padding: 15 }}>
@@ -61,7 +63,7 @@ class HomePage extends Component {
 
     return (
       <CustomerCategoryList
-        serviceCategories={this.props.serviceCategories}
+        serviceCategories={serviceCategories}
         onPress={(category) => this._categoryPressed(category)}
       />
     );
