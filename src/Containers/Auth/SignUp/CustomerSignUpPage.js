@@ -34,6 +34,10 @@ class CustomerSignUpPage extends Component {
     }
   }
 
+  focusNextField = (nextField) => {
+    this.refs[nextField].focus();
+  }
+
   _navToTermsOfUse = () => {
     Actions.termsOfUse();
   }
@@ -133,9 +137,11 @@ class CustomerSignUpPage extends Component {
             value={this.state.name}
             componentStyle={styles.textFieldStyle}
             autoCorrect={false}
+            onSubmitEditing={() => this.focusNextField('password')}
           />
 
           <TextFieldComponent
+            ref="password"
             label={"Password"}
             secureTextEntry
             onChangeText={(text) => {
@@ -143,9 +149,11 @@ class CustomerSignUpPage extends Component {
             }}
             value={this.state.password}
             componentStyle={styles.signUpTextFieldStyle}
+            onSubmitEditing={() => this.focusNextField('confirmPassword')}
           />
 
           <TextFieldComponent
+            ref="confirmPassword"
             label={"Confirm password"}
             secureTextEntry
             onChangeText={(text) => {
@@ -153,9 +161,11 @@ class CustomerSignUpPage extends Component {
             }}
             value={this.state.confirmPassword}
             componentStyle={styles.signUpTextFieldStyle}
+            onSubmitEditing={() => this.focusNextField('phoneNo')}
           />
 
           <TextFieldComponent
+            ref="phoneNo"
             label={"Phone number"}
             onChangeText={(text) => {
               this._handleTextChanged(text, 'phoneNo');
@@ -163,9 +173,11 @@ class CustomerSignUpPage extends Component {
             value={this.state.phoneNo}
             componentStyle={styles.signUpTextFieldStyle}
             keyboardType={"phone-pad"}
+            onSubmitEditing={() => this.focusNextField('address1')}
           />
 
           <TextFieldComponent
+            ref="address1"
             label={"Address 1"}
             onChangeText={(text) => {
               this._handleTextChanged(text, 'address1');
@@ -173,9 +185,11 @@ class CustomerSignUpPage extends Component {
             value={this.state.address1}
             componentStyle={styles.signUpTextFieldStyle}
             autoCorrect={false}
+            onSubmitEditing={() => this.focusNextField('address2')}
           />
 
           <TextFieldComponent
+            ref="address2"
             label={"Address 2"}
             onChangeText={(text) => {
               this._handleTextChanged(text, 'address2');
@@ -183,9 +197,11 @@ class CustomerSignUpPage extends Component {
             value={this.state.address2}
             componentStyle={styles.signUpTextFieldStyle}
             autoCorrect={false}
+            onSubmitEditing={() => this.focusNextField('city')}
           />
 
           <TextFieldComponent
+            ref="city"
             label={"City"}
             onChangeText={(text) => {
               this._handleTextChanged(text, 'city');
@@ -193,9 +209,11 @@ class CustomerSignUpPage extends Component {
             value={this.state.city}
             componentStyle={styles.signUpTextFieldStyle}
             autoCorrect={false}
+            onSubmitEditing={() => this.focusNextField('postcode')}
           />
 
           <TextFieldComponent
+            ref="postcode"
             label={"Postcode"}
             onChangeText={(text) => {
               this._handleTextChanged(text, 'postcode');
@@ -203,9 +221,11 @@ class CustomerSignUpPage extends Component {
             value={this.state.postcode}
             componentStyle={styles.signUpTextFieldStyle}
             keyboardType={"numeric"}
+            onSubmitEditing={() => this.focusNextField('state')}
           />
 
           <TextFieldComponent
+            ref="state"
             label={"State"}
             onChangeText={(text) => {
               this._handleTextChanged(text, 'state');
@@ -213,9 +233,11 @@ class CustomerSignUpPage extends Component {
             value={this.state.state}
             componentStyle={styles.signUpTextFieldStyle}
             autoCorrect={false}
+            onSubmitEditing={() => this.focusNextField('email')}
           />
 
           <TextFieldComponent
+            ref="email"
             label={"Email"}
             onChangeText={(text) => {
               this._handleTextChanged(text, 'email');
@@ -224,6 +246,7 @@ class CustomerSignUpPage extends Component {
             componentStyle={styles.signUpTextFieldStyle}
             keyboardType={"email-address"}
             autoCorrect={false}
+            onSubmitEditing={this._handleSubmitSignUp}
           />
 
             <Text style={styles.tAndCStyle}>

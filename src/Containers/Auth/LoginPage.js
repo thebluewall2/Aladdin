@@ -57,6 +57,10 @@ class UserLoginPage extends Component {
     );
   }
 
+  focusNextField = (nextField) => {
+    this.refs[nextField].focus();
+  }
+
   render() {
     return (
       <KeyboardAwareScrollView
@@ -80,9 +84,11 @@ class UserLoginPage extends Component {
           autoCapitalize={"none"}
           keyboardType={"email-address"}
           autoCorrect={false}
+          onSubmitEditing={() => this.focusNextField('password')}
         />
 
         <TextFieldComponent
+          ref="password"
           label={"Password"}
           secureTextEntry
           onChangeText={this._handlePasswordChanged}

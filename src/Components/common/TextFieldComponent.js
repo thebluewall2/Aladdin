@@ -1,20 +1,25 @@
 import React from 'react';
 import TextField from 'react-native-md-textinput';
-import Platform from 'react-native';
+import { Platform } from 'react-native';
 
-const TextFieldComponent = (props) => {
-  const {
-    componentStyle,
-  } = props;
+class TextFieldComponent extends React.PureComponent {
+  focus = () => {
+    this.refs.textInput.focus();
+  }
 
-  return (
-    <TextField
-      style={componentStyle || styles.textFieldStyle}
-      labelStyle={styles.labelStyle}
-      {...props}
-    />
-  );
-};
+  render() {
+    const { componentStyle } = this.props;
+
+    return (
+      <TextField
+        ref="textInput"
+        style={componentStyle || styles.textFieldStyle}
+        labelStyle={styles.labelStyle}
+        {...this.props}
+      />
+    );
+  }
+}
 
 const styles = {
   textFieldStyle: {

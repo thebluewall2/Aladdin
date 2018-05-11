@@ -82,6 +82,10 @@ class VendorSignUpPage extends Component {
     return data;
   }
 
+  focusNextField = (nextField) => {
+    this.refs[nextField].focus();
+  }
+
   _handleTextChanged = (text, property) => {
     this.setState({
       [property]: text
@@ -130,6 +134,7 @@ class VendorSignUpPage extends Component {
             <Text style={styles.titleSignUpStyle}>
               Sign up!
             </Text>
+
             <TextFieldComponent
               label={"Company name"}
               onChangeText={(text) => {
@@ -138,9 +143,11 @@ class VendorSignUpPage extends Component {
               value={this.state.companyName}
               autoCorrect={false}
               componentStyle={styles.textFieldStyle}
+              onSubmitEditing={() => this.focusNextField('name')}
             />
 
             <TextFieldComponent
+              ref="name"
               label={"Name"}
               onChangeText={(text) => {
                 this._handleTextChanged(text, 'name');
@@ -148,9 +155,11 @@ class VendorSignUpPage extends Component {
               value={this.state.name}
               autoCorrect={false}
               componentStyle={styles.textFieldStyle}
+              onSubmitEditing={() => this.focusNextField('email')}
             />
 
             <TextFieldComponent
+              ref="email"
               label={"Email"}
               onChangeText={(text) => {
                 this._handleTextChanged(text, 'email');
@@ -159,9 +168,11 @@ class VendorSignUpPage extends Component {
               keyboardType={'email-address'}
               autoCorrect={false}
               componentStyle={styles.textFieldStyle}
+              onSubmitEditing={() => this.focusNextField('password')}
             />
 
             <TextFieldComponent
+              ref="password"
               label={"Password"}
               secureTextEntry
               onChangeText={(text) => {
@@ -169,9 +180,11 @@ class VendorSignUpPage extends Component {
               }}
               value={this.state.password}
               componentStyle={styles.textFieldStyle}
+              onSubmitEditing={() => this.focusNextField('confirmPassword')}
             />
 
             <TextFieldComponent
+              ref="confirmPassword"
               label={"Confirm password"}
               secureTextEntry
               onChangeText={(text) => {
@@ -179,9 +192,11 @@ class VendorSignUpPage extends Component {
               }}
               value={this.state.confirmPassword}
               componentStyle={styles.textFieldStyle}
+              onSubmitEditing={() => this.focusNextField('phoneNo')}
             />
 
             <TextFieldComponent
+              ref="phoneNo"
               label={"Phone number"}
               onChangeText={(text) => {
                 this._handleTextChanged(text, 'phoneNo');
@@ -189,9 +204,11 @@ class VendorSignUpPage extends Component {
               value={this.state.phoneNo}
               keyboardType={'phone-pad'}
               componentStyle={styles.textFieldStyle}
+              onSubmitEditing={() => this.focusNextField('officeNo')}
             />
 
             <TextFieldComponent
+              ref="officeNo"
               label={"Office number"}
               onChangeText={(text) => {
                 this._handleTextChanged(text, 'officeNo');
@@ -199,9 +216,11 @@ class VendorSignUpPage extends Component {
               value={this.state.officeNo}
               keyboardType={'phone-pad'}
               componentStyle={styles.textFieldStyle}
+              onSubmitEditing={() => this.focusNextField('address1')}
             />
 
             <TextFieldComponent
+              ref="address1"
               label={"Address 1"}
               onChangeText={(text) => {
                 this._handleTextChanged(text, 'addressOne');
@@ -209,9 +228,11 @@ class VendorSignUpPage extends Component {
               value={this.state.addressOne}
               autoCorrect={false}
               componentStyle={styles.textFieldStyle}
+              onSubmitEditing={() => this.focusNextField('address2')}
             />
 
             <TextFieldComponent
+              ref="address2"
               label={"Address 2"}
               onChangeText={(text) => {
                 this._handleTextChanged(text, 'addressTwo');
@@ -219,9 +240,11 @@ class VendorSignUpPage extends Component {
               value={this.state.addressTwo}
               autoCorrect={false}
               componentStyle={styles.textFieldStyle}
+              onSubmitEditing={() => this.focusNextField('postcode')}
             />
 
             <TextFieldComponent
+              ref="postcode"
               label={"Postcode"}
               onChangeText={(text) => {
                 this._handleTextChanged(text, 'postcode');
@@ -229,9 +252,11 @@ class VendorSignUpPage extends Component {
               value={this.state.postcode}
               keyboardType={'numeric'}
               componentStyle={styles.textFieldStyle}
+              onSubmitEditing={() => this.focusNextField('city')}
             />
 
             <TextFieldComponent
+              ref="city"
               label={"City"}
               onChangeText={(text) => {
                 this._handleTextChanged(text, 'city');
@@ -239,9 +264,11 @@ class VendorSignUpPage extends Component {
               value={this.state.city}
               autoCorrect={false}
               componentStyle={styles.textFieldStyle}
+              onSubmitEditing={() => this.focusNextField('state')}
             />
 
             <TextFieldComponent
+              ref="state"
               label={"State"}
               onChangeText={(text) => {
                 this._handleTextChanged(text, 'state');
@@ -249,9 +276,11 @@ class VendorSignUpPage extends Component {
               value={this.state.state}
               autoCorrect={false}
               componentStyle={styles.textFieldStyle}
+              onSubmitEditing={() => this.focusNextField('awards')}
             />
 
             <TextFieldComponent
+              ref="awards"
               label={"Awards / Certificates"}
               onChangeText={(text) => {
                 this._handleTextChanged(text, 'awards');
