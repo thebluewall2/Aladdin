@@ -22,7 +22,36 @@ class RequestsHome extends PureComponent {
   componentWillMount() {
     const { userType, userUID } = this.props;
 
+    this.checkForNotifications();
+
     this.props.getTransactionList(userType, userUID);
+  }
+
+  checkForNotifications = () => {
+    const { transactionUID, transactionList, reviewTransactionUID } = this.props;
+
+    if (transactionUID) {
+      //will be present when user opens notification from tray
+      transactionList.map(transaction => {
+        if (transaction.transactionUID === transactionUID) {
+          this._handleCardPress(transaction);
+        }
+      });
+    } else if (reviewTransactionUID) {
+      //will be present when user opens review notification from tray
+      let vendorUID = '';
+
+      transactionList.map(transaction => {
+        if (transaction.transactionUID === reviewTransactionUID) {
+          vendorUID = transaction.vendorUID;
+        }
+      });
+
+      this.setState({
+        isReviewModalOpen: true,
+        reviewVendorUID: vendorUID,
+      });
+    }
   }
 
   _keyExtractor = (item) => item.transactionUID;
@@ -63,6 +92,14 @@ class RequestsHome extends PureComponent {
   }
 
   _renderEmptyList = () => {
+    const { loading } = this.props;
+
+    if (loading) {
+        return (
+          <LoadingSpinner />
+        );
+    }
+
     return (
       <Text style={{ flex: 1, alignSelf: 'center', fontFamily: "quicksand-regular", fontSize: 15, paddingTop: 120 }}>
         No ongoing requests.
@@ -71,11 +108,8 @@ class RequestsHome extends PureComponent {
   }
 
   render() {
-    const { loading, transactionList } = this.props;
-
-    if (loading) {
-      return <LoadingSpinner />;
-    }
+    const { transactionList } = this.props;
+    const { reviewVendorUID } = this.state;
 
     return (
       <View style={styles.requestHomeContainerViewStyle}>
@@ -88,6 +122,7 @@ class RequestsHome extends PureComponent {
         <CreateReviewModal
           isOpen={this.state.isReviewModalOpen}
           onClose={() => this.setState({ isReviewModalOpen: false })}
+          vendorUID={reviewVendorUID}
         />
       </View>
     );

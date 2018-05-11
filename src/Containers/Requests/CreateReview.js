@@ -20,17 +20,16 @@ class CreateReview extends React.PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { onClose, loading } = nextProps;
+    const { loading, onClose } = nextProps;
 
-    if (loading) {
+    if (this.props.loading !== loading) {
       this.setState({
-        loading: true,
+        loading,
       });
-    } else {
-      this.setState({
-        loading: false,
-      });
+    }
 
+    if (this.props.loading && !loading) {
+      //from loading to finished LoadingSpinner
       onClose();
     }
   }
@@ -42,10 +41,10 @@ class CreateReview extends React.PureComponent {
   }
 
   _submitReview = () => {
-    const { submitReview } = this.props;
+    const { submitReview, vendorUID } = this.props;
     const { ratingStars } = this.state;
 
-    submitReview();
+    submitReview(vendorUID, ratingStars);
   }
 
   _renderIcon = (stars) => {
@@ -101,9 +100,12 @@ class CreateReview extends React.PureComponent {
   }
 
   _renderModal = () => {
+    const { vendorUID } = this.props;
+
     return (
       <View style={styles.modalContainer}>
         <Text style={styles.titleTextStyle}>Please leave a review</Text>
+        <Text style={styles.titleTextStyle}>{vendorUID}</Text>
 
         {this._renderReviews()}
         {this._renderButtons()}

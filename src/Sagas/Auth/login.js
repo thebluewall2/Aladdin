@@ -8,6 +8,7 @@ import { setGenericPassword } from 'react-native-keychain';
 
 import ReduxActions from '../../Redux/Actions';
 import Types from '../../Redux/Auth/types';
+import { registerNotificationListener } from '../../Services/pushNotifications';
 
 export function* watchLoginUser() {
   while (true) {
@@ -29,6 +30,8 @@ export function* handleLoginUser(userType, email, password, isFromLoginPage) {
 
     yield put(ReduxActions.authUserLoginSuccess(response));
     yield put(ReduxActions.authAppStartUp(false));
+
+    registerNotificationListener();
 
     Actions.home({ type: 'replace' });
   } catch (error) {
