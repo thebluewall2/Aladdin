@@ -14,6 +14,7 @@
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* AladdinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* AladdinTests.m */; };
 		04468B55622E4F23933AB344 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A75D7C5AE7164EF2A6EDFABC /* SimpleLineIcons.ttf */; };
+		11237EE1208E199C008ABF4D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11237EE0208E199C008ABF4D /* GoogleService-Info.plist */; };
 		11E243E01FA452380041A124 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11E243C51FA44F990041A124 /* Ionicons.ttf */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		1374E49D2F4F432EAFB0ECD4 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56333B0828714A3A9E2181AE /* Foundation.ttf */; };
@@ -32,12 +33,14 @@
 		24D8B7E6F54C4921AE25EB09 /* libRNToastNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E361AE4A264086AF6CC64A /* libRNToastNative.a */; };
 		334A07C7FC624D83A6E2070E /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EAD92DB054141A792C15C78 /* MaterialCommunityIcons.ttf */; };
 		37977E8C75E8493B8DE6E5DC /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5D2D9C2204B4B2C8E95DB84 /* Entypo.ttf */; };
+		3D40EF548DAAA3B5565B25B8 /* libPods-Aladdin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A8ED089C392E27CC2CABA2A /* libPods-Aladdin.a */; };
 		4B3695EDBB0C4751AF953295 /* Quicksand-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = F6428621457B4696A4D2297C /* Quicksand-Light.otf */; };
 		4E1AD2FC2FDB4457A2E2AB2E /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E423B69DBF594CB4B902F482 /* libRNVectorIcons.a */; };
 		5B625F95DA314B029B1E7766 /* Quicksand_Dash.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2814CB9130CA4AE9AD955756 /* Quicksand_Dash.otf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		5EA456BD5FD44C07A7FF232E /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85475D5C98CA4B0A9371EB4B /* Feather.ttf */; };
 		6C03A0975A834733A48CAC17 /* Quicksand-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2E29A7DCC9984AE0A969DFEC /* Quicksand-LightItalic.otf */; };
+		8263D1C8DB391F7BCC0D109B /* libPods-AladdinTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F2C6CF45B75BB7F746A991 /* libPods-AladdinTests.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		A84946E1EEC9401FB34DE472 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFAE842B2C2241D1B6019CD1 /* FontAwesome.ttf */; };
 		AD2510C0B1A34F8E8E382657 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A68CCC8F29F4413956432E9 /* libRNFS.a */; };
@@ -45,6 +48,7 @@
 		AE106823AB6C4770B890E6AF /* Quicksand-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = FCA6D3C5C4A748EAA8C266C3 /* Quicksand-BoldItalic.otf */; };
 		AE743583352D4332AD91952B /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CD52C65D437474498BF7A6B /* MaterialIcons.ttf */; };
 		C165CFE9774F49A1A94A1013 /* Quicksand-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B12F3D86CED743009D7176F3 /* Quicksand-Regular.otf */; };
+		C73DD17BB0044A9C822BD0D5 /* libRNFIRMessaging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7C095CB6D1E4B60BA6F14BD /* libRNFIRMessaging.a */; };
 		CF96F649BCFC4A498430A2FA /* Quicksand-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5D5246ACE94A4D7193FDB60C /* Quicksand-Bold.otf */; };
 		E61DF9C7E66346CCAE12C585 /* libRNKeychain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 72D744267B224759B788BE68 /* libRNKeychain.a */; };
 		ED2B6D2B98904B71832070AA /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15C00426C60A4D0AB98A88E6 /* Zocial.ttf */; };
@@ -128,6 +132,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 5DBEB1501B18CEA900B34395;
 			remoteInfo = RNVectorIcons;
+		};
+		1184D42E2087851700075FB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C51B920565DF40318229688F /* RNFIRMessaging.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNFIRMessaging;
 		};
 		11E243D01FA44F990041A124 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -332,7 +343,8 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* AladdinTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AladdinTests.m; sourceTree = "<group>"; };
 		01E361AE4A264086AF6CC64A /* libRNToastNative.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNToastNative.a; sourceTree = "<group>"; };
-		115223A62017401000523F63 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		11237EE0208E199C008ABF4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1184D46D208788F800075FB9 /* Aladdin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Aladdin.entitlements; path = Aladdin/Aladdin.entitlements; sourceTree = "<group>"; };
 		11E243C01FA44F990041A124 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
 		11E243C11FA44F990041A124 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
 		11E243C21FA44F990041A124 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
@@ -360,6 +372,7 @@
 		2E29A7DCC9984AE0A969DFEC /* Quicksand-LightItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-LightItalic.otf"; path = "../assets/fonts/Quicksand/Quicksand-LightItalic.otf"; sourceTree = "<group>"; };
 		56333B0828714A3A9E2181AE /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		56395AC8060A4214A60BA548 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		5A8ED089C392E27CC2CABA2A /* libPods-Aladdin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Aladdin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D5246ACE94A4D7193FDB60C /* Quicksand-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-Bold.otf"; path = "../assets/fonts/Quicksand/Quicksand-Bold.otf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		6929AC987EF84FF1BEFD61B1 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
@@ -373,6 +386,7 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		85475D5C98CA4B0A9371EB4B /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		94DF79B8F44F42F9A53EEA7D /* RNFS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
+		97F2C6CF45B75BB7F746A991 /* libPods-AladdinTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AladdinTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EAD92DB054141A792C15C78 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		A27DDA92556F434B9F615DD5 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		A75D7C5AE7164EF2A6EDFABC /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
@@ -380,7 +394,9 @@
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		AFAE842B2C2241D1B6019CD1 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		B12F3D86CED743009D7176F3 /* Quicksand-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-Regular.otf"; path = "../assets/fonts/Quicksand/Quicksand-Regular.otf"; sourceTree = "<group>"; };
+		B7C095CB6D1E4B60BA6F14BD /* libRNFIRMessaging.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFIRMessaging.a; sourceTree = "<group>"; };
 		B85E58EE3E51434A8B7DD4FB /* libRCTCamera.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTCamera.a; sourceTree = "<group>"; };
+		C51B920565DF40318229688F /* RNFIRMessaging.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFIRMessaging.xcodeproj; path = "../node_modules/react-native-fcm/ios/RNFIRMessaging.xcodeproj"; sourceTree = "<group>"; };
 		C6E68BE1A0ED5811411DC674 /* Pods-AladdinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AladdinTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AladdinTests/Pods-AladdinTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C9BADC4698EE11ED152C322D /* Pods-AladdinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AladdinTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AladdinTests/Pods-AladdinTests.release.xcconfig"; sourceTree = "<group>"; };
 		E423B69DBF594CB4B902F482 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
@@ -396,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
+				8263D1C8DB391F7BCC0D109B /* libPods-AladdinTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +438,8 @@
 				AD2510C0B1A34F8E8E382657 /* libRNFS.a in Frameworks */,
 				24D8B7E6F54C4921AE25EB09 /* libRNToastNative.a in Frameworks */,
 				180E5FA2E13D45D5BAF96CAF /* libRCTCamera.a in Frameworks */,
+				C73DD17BB0044A9C822BD0D5 /* libRNFIRMessaging.a in Frameworks */,
+				3D40EF548DAAA3B5565B25B8 /* libPods-Aladdin.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +538,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		1184D40B2087851700075FB9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1184D42F2087851700075FB9 /* libRNFIRMessaging.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		11E243BF1FA44F990041A124 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -546,6 +573,7 @@
 				7A68CCC8F29F4413956432E9 /* libRNFS.a */,
 				01E361AE4A264086AF6CC64A /* libRNToastNative.a */,
 				B85E58EE3E51434A8B7DD4FB /* libRCTCamera.a */,
+				B7C095CB6D1E4B60BA6F14BD /* libRNFIRMessaging.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -579,6 +607,8 @@
 		13B07FAE1A68108700A75B9A /* Aladdin */ = {
 			isa = PBXGroup;
 			children = (
+				11237EE0208E199C008ABF4D /* GoogleService-Info.plist */,
+				1184D46D208788F800075FB9 /* Aladdin.entitlements */,
 				11E243BF1FA44F990041A124 /* Fonts */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -587,7 +617,6 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				115223A62017401000523F63 /* GoogleService-Info.plist */,
 			);
 			name = Aladdin;
 			sourceTree = "<group>";
@@ -674,6 +703,7 @@
 				94DF79B8F44F42F9A53EEA7D /* RNFS.xcodeproj */,
 				A905CF2D7B1948A2B37C26B5 /* RNToastNative.xcodeproj */,
 				6929AC987EF84FF1BEFD61B1 /* RCTCamera.xcodeproj */,
+				C51B920565DF40318229688F /* RNFIRMessaging.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -716,6 +746,8 @@
 		9153C6EADC2417096B936C73 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5A8ED089C392E27CC2CABA2A /* libPods-Aladdin.a */,
+				97F2C6CF45B75BB7F746A991 /* libPods-AladdinTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -796,12 +828,20 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = NK5NC3C8VZ;
+						DevelopmentTeam = M548KU5KYP;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = NK5NC3C8VZ;
+						DevelopmentTeam = M548KU5KYP;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -868,6 +908,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = 1184D40B2087851700075FB9 /* Products */;
+					ProjectRef = C51B920565DF40318229688F /* RNFIRMessaging.xcodeproj */;
 				},
 				{
 					ProductGroup = 114314401FDCE245006EE55E /* Products */;
@@ -963,6 +1007,13 @@
 			fileType = archive.ar;
 			path = libRNVectorIcons.a;
 			remoteRef = 1143144B1FDCE245006EE55E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1184D42F2087851700075FB9 /* libRNFIRMessaging.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFIRMessaging.a;
+			remoteRef = 1184D42E2087851700075FB9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		11E243D11FA44F990041A124 /* libRCTBlob-tvOS.a */ = {
@@ -1187,6 +1238,7 @@
 				334A07C7FC624D83A6E2070E /* MaterialCommunityIcons.ttf in Resources */,
 				AE743583352D4332AD91952B /* MaterialIcons.ttf in Resources */,
 				14F3EBE5434F498B8C9D904C /* Octicons.ttf in Resources */,
+				11237EE1208E199C008ABF4D /* GoogleService-Info.plist in Resources */,
 				04468B55622E4F23933AB344 /* SimpleLineIcons.ttf in Resources */,
 				ED2B6D2B98904B71832070AA /* Zocial.ttf in Resources */,
 			);
@@ -1221,7 +1273,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Aladdin/Pods-Aladdin-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6CFFA8033286CBE6082C81E7 /* [CP] Copy Pods Resources */ = {
@@ -1236,7 +1288,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AladdinTests/Pods-AladdinTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6FD485FF3EB897F4A3FE6709 /* [CP] Check Pods Manifest.lock */ = {
@@ -1245,13 +1297,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AladdinTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		83D1E3E6796B6D621AF378DE /* [CP] Embed Pods Frameworks */ = {
@@ -1266,7 +1321,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Aladdin/Pods-Aladdin-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BD93452FA2F177EDA73E8548 /* [CP] Check Pods Manifest.lock */ = {
@@ -1275,13 +1330,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Aladdin-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EF5CDA4FA4EFCA264829CEBF /* [CP] Embed Pods Frameworks */ = {
@@ -1296,7 +1354,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AladdinTests/Pods-AladdinTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1347,7 +1405,7 @@
 			baseConfigurationReference = C6E68BE1A0ED5811411DC674 /* Pods-AladdinTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = NK5NC3C8VZ;
+				DEVELOPMENT_TEAM = M548KU5KYP;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1359,12 +1417,14 @@
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-toast-native/ios",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
+					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
 				);
 				INFOPLIST_FILE = AladdinTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1386,7 +1446,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = NK5NC3C8VZ;
+				DEVELOPMENT_TEAM = M548KU5KYP;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
@@ -1394,12 +1454,14 @@
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-toast-native/ios",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
+					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
 				);
 				INFOPLIST_FILE = AladdinTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1420,11 +1482,13 @@
 			baseConfigurationReference = 7664A47277A434996FA67159 /* Pods-Aladdin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				CODE_SIGN_ENTITLEMENTS = Aladdin/Aladdin.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = NK5NC3C8VZ;
+				DEVELOPMENT_TEAM = M548KU5KYP;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
@@ -1432,6 +1496,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-toast-native/ios",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
+					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
 				);
 				INFOPLIST_FILE = Aladdin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1440,8 +1505,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.Aladdin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.benten.app;
 				PRODUCT_NAME = Aladdin;
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1452,10 +1518,12 @@
 			baseConfigurationReference = F06ABDE4B3E6A7A5F416B998 /* Pods-Aladdin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				CODE_SIGN_ENTITLEMENTS = Aladdin/Aladdin.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NK5NC3C8VZ;
+				DEVELOPMENT_TEAM = M548KU5KYP;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
@@ -1463,6 +1531,7 @@
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-toast-native/ios",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
+					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
 				);
 				INFOPLIST_FILE = Aladdin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1471,8 +1540,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.Aladdin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.benten.app;
 				PRODUCT_NAME = Aladdin;
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};

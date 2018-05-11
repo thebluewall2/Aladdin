@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>617243251381-lfn5d8i9989a3v7or7sshb3unpgrhmhd.apps.googleusercontent.com</string>
+	<string>617243251381-8jg16eh65qif594v22hem42kj9rhho3h.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.617243251381-lfn5d8i9989a3v7or7sshb3unpgrhmhd</string>
+	<string>com.googleusercontent.apps.617243251381-8jg16eh65qif594v22hem42kj9rhho3h</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDpzP9qID6uU6GHOyuklrucdAb_73vHAJs</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>org.reactjs.native.example.Aladdin</string>
+	<string>com.benten.app</string>
 	<key>PROJECT_ID</key>
 	<string>aladdinapp-942fe</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:617243251381:ios:3056d7853f676a42</string>
+	<string>1:617243251381:ios:0bd54a99d3058469</string>
 	<key>DATABASE_URL</key>
 	<string>https://aladdinapp-942fe.firebaseio.com</string>
 </dict>

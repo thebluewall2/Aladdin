@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux';
 
 import ReduxActions from '../../Redux/Actions';
 import styles from './Styles';
+import PushNotifications from './PushNotifications';
 import CustomerCategoryList from './CustomerCategoryList';
 import { LoadingSpinner } from '../../Components/common';
 
@@ -70,6 +71,8 @@ class HomePage extends Component {
   render() {
     return (
       <View style={styles.homePageContainer}>
+        <PushNotifications />
+
         <View style={styles.homePageWelcomeTextContainer}>
           <Text style={styles.homePageWelcomeText}>
             Welcome, {this.props.fullName}

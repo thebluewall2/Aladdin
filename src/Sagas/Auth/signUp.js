@@ -129,7 +129,6 @@ export function* CustomerInfo(data, userData, coordinates) {
 
 export function* VendorInfo(data, userData, coordinates) {
   try {
-    console.log(data);
     yield call(create, `Users/${data.userType}/${userData.uid}`, () => ({
       [`Users/${data.userType}/${userData.uid}`]:
         {
