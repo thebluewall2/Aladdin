@@ -20,7 +20,7 @@ class SelectSubcategory extends Component {
 
   _renderSubcategories = () => {
     const { subcategories } = this.props.category;
-    let subCategoriesToRender = [];
+    const subCategoriesToRender = [];
 
     subcategories.map(sub =>
       subCategoriesToRender.push(sub.name)
@@ -55,7 +55,10 @@ class SelectSubcategory extends Component {
           <Text style={styles.selectSubcategoryTextStyle} > {category.category}</Text>
         </View>
           <View style={{ paddingBottom: 50 }}>
-            <ScrollView>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              style={{ height: '100%' }}
+            >
               {this._renderSubcategories()}
             </ScrollView>
           </View>

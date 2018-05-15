@@ -45,6 +45,7 @@ export default StyleSheet.create({
     paddingTop: Config.navBarHeight,
     paddingLeft: 5,
     paddingRight: 5,
+    marginBottom: Config.tabBarHeight,
   },
 
   homePageTitle: {
@@ -58,7 +59,8 @@ export default StyleSheet.create({
     fontFamily: 'Quicksand-regular',
     fontSize: 20,
     paddingLeft: 5,
-    paddingTop: 20
+    paddingTop: 20,
+    paddingBottom: 5,
   },
 
   addAddressTextFieldStyle: {
