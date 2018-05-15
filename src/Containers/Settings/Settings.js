@@ -32,11 +32,11 @@ class Settings extends Component {
   }
 
   _navToTermsOfUse = () => {
-    Actions.termsOfUse();
+    Actions.settingsTermsOfUse();
   }
 
   _navToPrivacyPolicy = () => {
-    Actions.privacyPolicy();
+    Actions.settingsPrivacyPolicy();
   }
 
   _handleLogOut = () => {

@@ -269,6 +269,18 @@ const RouterComponent = () => {
             title={'Change Password'}
             {...navigatorProps}
           />
+          <Scene
+            key="settingsTermsOfUse"
+            component={TermsOfUse}
+            title={'Terms of Use'}
+            {...navigatorProps}
+          />
+          <Scene
+            key="settingsPrivacyPolicy"
+            component={PrivacyPolicy}
+            title={'Privacy Policy'}
+            {...navigatorProps}
+          />
         </Scene>
       </Scene>
 

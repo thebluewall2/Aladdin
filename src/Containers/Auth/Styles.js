@@ -151,7 +151,7 @@ export default StyleSheet.create({
 
   signUpButtonStyle: {
     paddingTop: 20,
-    paddingBottom: 10,
+    paddingBottom: 20,
     justifyContent: 'center',
     alignItems: 'center'
   },

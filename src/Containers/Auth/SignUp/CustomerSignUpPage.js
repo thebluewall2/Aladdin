@@ -259,7 +259,7 @@ class CustomerSignUpPage extends Component {
 
             {this._renderSignUpBtn()}
 
-          <View style={{ flexDirection: 'row', flex: 2, justifyContent: 'space-between', paddingTop: 15 }}>
+          <View style={{ flexDirection: 'row', flex: 2, justifyContent: 'space-between', paddingTop: 15, paddingBottom: 20 }}>
             <View style={{ bottom: 0, left: 10, right: 10, flexDirection: 'row' }} >
               <TouchableOpacity onPress={this._navToTermsOfUse}>
                   <Text style={styles.tAndCLinkStyle}>Terms of Use</Text>
