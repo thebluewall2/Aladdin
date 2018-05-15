@@ -233,4 +233,15 @@ export default StyleSheet.create({
     borderRadius: 5
   },
 
+  noVendorFoundStyle: {
+    alignItems: 'center',
+    paddingTop: 50,
+    paddingHorizontal: 20
+  },
+
+  noVendorFoundTextStyle: {
+    fontFamily: 'Quicksand-regular',
+    fontSize: 15
+  }
+
 });

@@ -18,6 +18,16 @@ class VendorList extends PureComponent {
 
   _keyExtractor = (item) => item.vendorUID;
 
+  _renderEmpty = () => {
+    return (
+      <View style={styles.noVendorFoundStyle}>
+        <Text style={styles.noVendorFoundTextStyle}>
+          No vendors for this service found. Please try again with another service.
+        </Text>
+      </View>
+    );
+  }
+
   _renderContent = () => {
     const { loading, vendorList } = this.props;
 
@@ -32,6 +42,7 @@ class VendorList extends PureComponent {
         data={vendorList}
         renderItem={this._renderItem}
         keyExtractor={this._keyExtractor}
+        ListEmptyComponent={this._renderEmpty}
       />
     );
   }
