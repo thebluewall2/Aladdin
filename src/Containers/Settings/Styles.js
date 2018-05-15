@@ -4,7 +4,6 @@ export default StyleSheet.create({
 
   legalContainer: {
     flex: 1,
-    paddingBottom: 40
   },
 
   legalTextStyle: {
@@ -23,7 +22,7 @@ export default StyleSheet.create({
 
   contentStyle: {
     padding: 20,
-    paddingLeft: 15
+    paddingLeft: 15,
   },
 
   buttonStyle: {

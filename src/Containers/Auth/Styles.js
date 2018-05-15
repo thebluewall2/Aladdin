@@ -25,7 +25,6 @@ export default StyleSheet.create({
     flexDirection: 'column',
     paddingTop: Config.navBarHeight,
     flex: 1,
-    paddingBottom: 10,
     backgroundColor: 'white'
   },
 
