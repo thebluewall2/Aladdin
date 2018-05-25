@@ -5,6 +5,7 @@ import firebase from 'firebase';
 import { get, push, update } from 'firebase-saga';
 import { Actions } from 'react-native-router-flux';
 import { setGenericPassword } from 'react-native-keychain';
+import fcm from 'react-native-fcm';
 
 import ReduxActions from '../../Redux/Actions';
 import Types from '../../Redux/Auth/types';
@@ -27,6 +28,10 @@ export function* handleLoginUser(userType, email, password, isFromLoginPage) {
     //save password so that we can autologin next time user opens app
     setGenericPassword(email, password);
     saveUserType(userType);
+
+    fcm.getFCMToken().then(token => {
+      firebase.database().ref(`Users/${userType}`).child(userData.uid).update({ fcmToken: token });
+    });
 
     yield put(ReduxActions.authUserLoginSuccess(response));
     yield put(ReduxActions.authAppStartUp(false));
