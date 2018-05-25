@@ -82,6 +82,20 @@ const homeGetVendorDataFailure = (error) => ({
   error
 });
 
+const homeUserCreateBookingAttempt = (serviceBooking) => ({
+  type: Types.HOME_USER_CREATE_BOOKING_ATTEMPT,
+  serviceBooking,
+});
+
+const homeUserCreateBookingSuccess = () => ({
+  type: Types.HOME_USER_CREATE_BOOKING_SUCCESS,
+});
+
+const homeUserCreateBookingFailure = (error) => ({
+  type: Types.HOME_USER_CREATE_BOOKING_FAILURE,
+  error
+});
+
 //Create or Update Transaction Section
 const homeCreateOrUpdateTransactionAttempt = (serviceBooking) => ({
   type: Types.HOME_CREATE_OR_UPDATE_TRANSACTION_ATTEMPT,
@@ -119,6 +133,10 @@ export default {
   homeGetVendorDataAttempt,
   homeGetVendorDataSuccess,
   homeGetVendorDataFailure,
+
+  homeUserCreateBookingAttempt,
+  homeUserCreateBookingSuccess,
+  homeUserCreateBookingFailure,
 
   homeCreateOrUpdateTransactionAttempt,
   homeCreateOrUpdateTransactionSuccess,

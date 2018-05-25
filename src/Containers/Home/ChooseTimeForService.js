@@ -146,8 +146,6 @@ class ChooseTimeForService extends React.PureComponent {
       } = this.props;
 
       const serviceBooking = {
-        trxCode: 1, //1 for create new trx
-        trxID: null, //null means new trx
         vendorUID,
         vendorName,
         customerUID,
@@ -155,14 +153,10 @@ class ChooseTimeForService extends React.PureComponent {
         selectedAddress,
         selectedCategory,
         selectedSubcategory,
-        price: 0,
         timeslots: timeslot,
-        confirmedTime: null, //no confirmed time yet
-        status: 'Pending'
       };
 
       this.props.createBooking(serviceBooking);
-      Actions.pop({ popNum: 5 });
     }
   }
 
@@ -258,7 +252,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     createBooking: (serviceBooking) =>
-      dispatch(ReduxActions.homeCreateOrUpdateTransactionAttempt(serviceBooking))
+      dispatch(ReduxActions.homeUserCreateBookingAttempt(serviceBooking)),
   };
 };
 

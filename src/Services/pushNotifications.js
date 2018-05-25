@@ -6,9 +6,10 @@ import { Actions } from 'react-native-router-flux';
 export function registerNotificationListener() {
   fcm.requestPermissions();
 
+
   fcm.getFCMToken().then(token => {
-    console.log("TOKEN");
-    console.log(token);
+    // console.log("TOKEN");
+    // console.log(token);
   });
 
   if (Platform.OS === 'ios') {
@@ -16,8 +17,8 @@ export function registerNotificationListener() {
   }
 
   fcm.getInitialNotification().then(notification => {
-    console.log("INTIIAL");
-    console.log(notification);
+    // console.log("INTIIAL");
+    // console.log(notification);
   });
 
   fcm.on(FCMEvent.Notification, notification => {
@@ -55,7 +56,7 @@ export function registerNotificationListener() {
   });
 
   fcm.on(FCMEvent.RefreshToken, token => {
-    console.log("REFRESH");
-    console.log(token);
+    // console.log("REFRESH");
+    // console.log(token);
   });
 }

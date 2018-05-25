@@ -52,8 +52,6 @@ export function* handleCreateTransaction(serviceBooking) {
   //store transaction reference in vendor
   yield call(update, `Users/vendor/${serviceBooking.vendorUID}/`, 'transactions',
   { [`${transactionUID}`]: serviceBooking.createdDate });
-
-  showToast('Booking requested!');
 }
 
 export function createTransaction(ref, serviceBooking) {

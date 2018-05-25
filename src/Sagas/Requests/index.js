@@ -5,7 +5,7 @@ import { watchGetPaymentInfo } from './getFullPaymentInfo';
 import { watchMakePayment } from './makePayment';
 import { watchCreateReview } from './createReview';
 
-export default () => {
+export default (api) => {
   function* rootSaga() {
     yield fork(watchGetTransactionList);
     yield fork(watchGetPaymentInfo);

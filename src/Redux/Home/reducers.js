@@ -139,6 +139,29 @@ const getVendorDataFailure = (state = INITIAL_STATE, action) => {
   };
 };
 
+const userCreateBookingAttempt = (state = INITIAL_STATE) => {
+  return {
+    ...state,
+    loading: true,
+    errorMsg: '',
+  };
+};
+
+const userCreateBookingSuccess = (state = INITIAL_STATE) => {
+  return {
+    ...state,
+    loading: false
+  };
+};
+
+const userCreateBookingFailure = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    loading: false,
+    errorMsg: action.error
+  };
+};
+
 //Create or Update Transaction Section
 const createOrUpdateTransactionAttempt = (state = INITIAL_STATE) => {
   return { ...state,
@@ -187,6 +210,10 @@ export default {
   getVendorDataAttempt,
   getVendorDataSuccess,
   getVendorDataFailure,
+
+  userCreateBookingAttempt,
+  userCreateBookingSuccess,
+  userCreateBookingFailure,
 
   createOrUpdateTransactionAttempt,
   createOrUpdateTransactionSuccess,
