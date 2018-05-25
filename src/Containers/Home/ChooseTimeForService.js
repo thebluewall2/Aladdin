@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import moment from 'moment';

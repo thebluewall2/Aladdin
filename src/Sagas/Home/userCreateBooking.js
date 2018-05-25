@@ -15,7 +15,7 @@ export function* watchUserCreateBooking(api) {
 }
 
 export function* handleCreateBooking(api, serviceBooking) {
-  // yield call(updateFirebaseDb, serviceBooking);
+  yield call(updateFirebaseDb, serviceBooking);
   yield call(sendNotifications, api, serviceBooking);
 
   Actions.pop({ popNum: 5 });
