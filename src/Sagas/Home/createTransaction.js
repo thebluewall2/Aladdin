@@ -67,8 +67,4 @@ export function* updateTransaction(serviceBooking) {
     `${serviceBooking.transactionUID}`, {
       ...serviceBooking,
     });
-
-    showToast("Status updated!");
-    Actions.requests();
-    // Actions.pop({ popNum: 2, refresh: {} });
 }

@@ -29,13 +29,8 @@ class VendorSelectTime extends PureComponent {
     const { transaction } = this.props.navigationState;
     // this.props.confirmTime(time);
     const transactionToUpdate = {
-      trxCode: 2, //2 is for updating transactions
-      transactionUID: transaction.transactionUID,
-      confirmedTime: time,
-      orderByDate: -time,
-      status: "Awaiting payment",
-      customerUID: transaction.customerUID,
-      vendorUID: transaction.vendorUID
+      time,
+      transaction
     };
 
     this.props.confirmTime(transactionToUpdate);
@@ -60,7 +55,7 @@ class VendorSelectTime extends PureComponent {
 const mapDispatchToProps = (dispatch) => {
   return {
     confirmTime: (serviceBooking) =>
-      dispatch(ReduxActions.homeCreateOrUpdateTransactionAttempt(serviceBooking))
+      dispatch(ReduxActions.requestsVendorSelectTimeAttempt(serviceBooking))
   };
 };
 

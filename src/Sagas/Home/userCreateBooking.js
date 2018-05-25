@@ -54,14 +54,14 @@ export function* updateFirebaseDb(serviceBooking) {
 }
 
 export function* sendNotifications(api, serviceBooking) {
-  const { trxID, vendorUID, vendorName, customerName } = serviceBooking;
+  const { trxID, vendorUID, customerName } = serviceBooking;
 
   try {
     //user is creating booking, so sender is customer and recipient is vendor
     const notificationData = {
       transactionUID: trxID,
       senderName: customerName,
-      recipientName: vendorName,
+      recipientUserType: 'vendor',
       recipientUID: vendorUID
     };
 
