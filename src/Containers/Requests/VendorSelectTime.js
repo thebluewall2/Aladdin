@@ -5,10 +5,8 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 
 import ReduxActions from '../../Redux/Actions';
-import { showToast } from '../../Services/helpers';
 
 import styles from './Styles';
-
 
 class VendorSelectTime extends PureComponent {
   _keyExtractor = (item) => item;
@@ -27,7 +25,7 @@ class VendorSelectTime extends PureComponent {
 
   _selectTimeslot = (time) => {
     const { transaction } = this.props.navigationState;
-    // this.props.confirmTime(time);
+
     const transactionToUpdate = {
       time,
       transaction

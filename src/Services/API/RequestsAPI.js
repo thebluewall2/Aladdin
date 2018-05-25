@@ -8,14 +8,14 @@ const create = (baseURL = 'https://us-central1-aladdinapp-942fe.cloudfunctions.n
   });
 
   const sendNotifications = (data) => {
-    const { transactionUID, senderName, recipientUserType, receipientUID } = data;
+    const { transactionUID, senderName, recipientUserType, recipientUID } = data;
 
     return api.post(`/sendPushNotification`, {
       method: 'UPDATE_TRANSACTION',
       transactionUID,
       senderName,
       recipientUserType,
-      receipientUID,
+      recipientUID,
     }, {});
   };
 

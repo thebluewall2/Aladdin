@@ -15,9 +15,9 @@ export function* watchVendorSelectTime(api) {
 
 export function* handleSelectTime(api, serviceBooking) {
   const updateSuccess = yield call(updateFirebaseDb, serviceBooking);
-  const notificationsSentSuccess = yield call(sendNotifications, api, serviceBooking);
+  yield call(sendNotifications, api, serviceBooking);
 
-  if (updateSuccess && notificationsSentSuccess) {
+  if (updateSuccess) {
     showToast("Status updated!");
     Actions.requests();
   }
@@ -50,12 +50,12 @@ export function* sendNotifications(api, serviceBooking) {
     transactionUID,
     senderName: vendorName,
     recipientUserType: 'customer',
-    receipientUID: customerUID
+    recipientUID: customerUID
   };
 
   try {
     const response = yield call(api.sendNotifications, data);
-
+    
     if (response.ok) {
       return true;
     }

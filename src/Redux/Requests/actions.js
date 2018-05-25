@@ -62,6 +62,20 @@ const requestsCreateReviewFailure = (error) => ({
   error,
 });
 
+const requestsVendorSelectTimeAttempt = (serviceBooking) => ({
+  type: Types.REQ_VENDOR_SELECT_TIME_ATTEMPT,
+  serviceBooking
+});
+
+const requestsVendorSelectTimeSuccess = () => ({
+  type: Types.REQ_VENDOR_SELECT_TIME_SUCCESS,
+});
+
+const requestsVendorSelectTimeFailure = (error) => ({
+  type: Types.REQ_VENDOR_SELECT_TIME_FAILURE,
+  error
+});
+
 const requestsClearErrorMessage = () => ({
   type: Types.REQ_CLEAR_ERROR,
 });
@@ -82,6 +96,10 @@ export default {
   requestsCreateReviewAttempt,
   requestsCreateReviewSuccess,
   requestsCreateReviewFailure,
+
+  requestsVendorSelectTimeAttempt,
+  requestsVendorSelectTimeSuccess,
+  requestsVendorSelectTimeFailure,
 
   requestsClearErrorMessage,
 };
