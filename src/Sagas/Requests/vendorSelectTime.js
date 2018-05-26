@@ -36,7 +36,7 @@ export function* updateFirebaseDb(serviceBooking) {
     vendorUID: transaction.vendorUID
   };
 
-  yield put(ReduxActions.homeCreateOrUpdateTransactionAttempt, dataToInsert);
+  yield put(ReduxActions.homeCreateOrUpdateTransactionAttempt(dataToInsert));
 
   return true;
 }
@@ -55,7 +55,7 @@ export function* sendNotifications(api, serviceBooking) {
 
   try {
     const response = yield call(api.sendNotifications, data);
-    
+
     if (response.ok) {
       return true;
     }
