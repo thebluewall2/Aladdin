@@ -6,24 +6,22 @@ import { Actions } from 'react-native-router-flux';
 export function registerNotificationListener() {
   fcm.requestPermissions();
 
-
-  fcm.getFCMToken().then(token => {
-    // console.log("TOKEN");
-    // console.log(token);
-  });
+  fcm.getFCMToken();
 
   if (Platform.OS === 'ios') {
     fcm.getAPNSToken();
   }
 
   fcm.getInitialNotification().then(notification => {
-    // console.log("INTIIAL");
-    // console.log(notification);
+    console.log("INTIIAL");
+    console.log(notification);
   });
 
   fcm.on(FCMEvent.Notification, notification => {
     if (notification.opened_from_tray) {
-      const { targetScreen, transactionUID } = notification;
+      const notifBody = JSON.parse(notification.aps.alert.body);
+
+      const { targetScreen, transactionUID } = notifBody;
 
       if (targetScreen) {
         if (targetScreen === 'requests') {
