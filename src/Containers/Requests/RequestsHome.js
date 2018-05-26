@@ -92,14 +92,6 @@ class RequestsHome extends PureComponent {
   }
 
   _renderEmptyList = () => {
-    const { loading } = this.props;
-
-    if (loading) {
-        return (
-          <LoadingSpinner />
-        );
-    }
-
     return (
       <Text style={{ flex: 1, alignSelf: 'center', fontFamily: "quicksand-regular", fontSize: 15, paddingTop: 120 }}>
         No ongoing requests.
@@ -108,8 +100,14 @@ class RequestsHome extends PureComponent {
   }
 
   render() {
-    const { transactionList } = this.props;
+    const { transactionList, loading } = this.props;
     const { reviewVendorUID } = this.state;
+
+    if (loading) {
+        return (
+          <LoadingSpinner />
+        );
+    }
 
     return (
       <View style={styles.requestHomeContainerViewStyle}>
