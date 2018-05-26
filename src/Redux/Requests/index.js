@@ -12,6 +12,10 @@ export default {
     [Types.REQ_GET_TRANSACTION_LIST_SUCCESS]: Reducers.getTransactionListSuccess,
     [Types.REQ_GET_TRANSACTION_LIST_FAILURE]: Reducers.getTransactionListFailure,
 
+    [Types.REQ_GET_SINGLE_TRANSACTION_ATTEMPT]: Reducers.getSingleTransactionAttempt,
+    [Types.REQ_GET_SINGLE_TRANSACTION_SUCCESS]: Reducers.getSingleTransactionSuccess,
+    [Types.REQ_GET_SINGLE_TRANSACTION_FAILURE]: Reducers.getSingleTransactionFailure,
+
     [Types.REQ_GET_PAYMENT_CONFIRMATION_ATTEMPT]: Reducers.getPaymentInfoAttempt,
     [Types.REQ_GET_PAYMENT_CONFIRMATION_SUCCESS]: Reducers.getPaymentInfoSuccess,
     [Types.REQ_GET_PAYMENT_CONFIRMATION_FAILURE]: Reducers.getPaymentInfoFailure,

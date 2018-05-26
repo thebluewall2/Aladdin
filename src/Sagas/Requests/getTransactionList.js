@@ -25,8 +25,8 @@ export function* handleGetTransactionList(userType, userUID) {
 
 export function* getTransactionList(userType, userUID) {
   const listOfTransactionUIDFromFirebase = yield call(getAll, `Users/${userType}/${userUID}/transactions`);
-  let listOfTransactionUID = [];
-  let listOfTransactions = [];
+  const listOfTransactionUID = [];
+  const listOfTransactions = [];
 
   Object.keys(listOfTransactionUIDFromFirebase)
     .map(transactionUID => {
@@ -45,6 +45,6 @@ export function* getTransactionList(userType, userUID) {
   }
 
   listOfTransactions.sort((a, b) => a.createdDate - b.createdDate);
-  
+
   return listOfTransactions;
 }

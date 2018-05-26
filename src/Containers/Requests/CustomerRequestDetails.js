@@ -17,7 +17,7 @@ class CustomerRequestDetails extends PureComponent {
   }
 
   _renderSuggestedDates = () => {
-    const { timeslots } = this.props.navigationState.transaction;
+    const { timeslots } = this.props.transaction;
 
     return (
       <View>
@@ -41,9 +41,9 @@ class CustomerRequestDetails extends PureComponent {
   }
 
   _renderMakePayment = () => {
-    const { loading } = this.props;
+    const { makingPayment } = this.props;
 
-    if (loading) {
+    if (makingPayment) {
       return (
         <View style={{ paddingTop: 15 }}>
           <TouchableOpacity style={styles.selectTimeButtonStyle}>
@@ -63,8 +63,7 @@ class CustomerRequestDetails extends PureComponent {
   }
 
   _makePayment = () => {
-    const { userPhone, userEmail } = this.props;
-    const { transaction } = this.props.navigationState;
+    const { userPhone, userEmail, transaction } = this.props;
 
     const paymentInfo = {
       ...transaction,
@@ -105,8 +104,8 @@ class CustomerRequestDetails extends PureComponent {
     return false;
   }
 
-  render() {
-    const { transaction } = this.props.navigationState;
+  _renderContent = () => {
+    const { transaction } = this.props;
 
     const {
       selectedCategory,
@@ -145,16 +144,37 @@ class CustomerRequestDetails extends PureComponent {
         </View>
     );
   }
+
+  render() {
+    const { gettingTransaction, transaction } = this.props;
+
+    if (gettingTransaction || !transaction) {
+      return <LoadingSpinner />;
+    }
+
+    return this._renderContent();
+  }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
+  const { transactionUID } = props.navigationState;
   const { auth, requests } = state;
+  let transaction = {};
+
+  requests.transactionList.map(trx => {
+    if (trx.transactionUID === transactionUID) {
+      transaction = trx;
+    }
+  });
 
   return {
     userEmail: auth.userData.email,
     userPhone: auth.userData.phoneNo,
     loading: requests.loading,
-    errorMessage: requests.errorMessage
+    errorMessage: requests.errorMessage,
+    makingPayment: requests.makingPayment,
+    gettingTransaction: requests.gettingTransaction,
+    transaction,
   };
 };
 

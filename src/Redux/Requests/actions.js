@@ -17,6 +17,20 @@ const requestsGetTransactionListFailure = (error) => ({
   error
 });
 
+const requestsGetSingleTransactionAttempt = (transactionUID) => ({
+  type: Types.REQ_GET_SINGLE_TRANSACTION_ATTEMPT,
+  transactionUID,
+});
+
+const requestsGetSingleTransactionSuccess = (transaction) => ({
+  type: Types.REQ_GET_SINGLE_TRANSACTION_SUCCESS,
+  transaction,
+});
+
+const requestsGetSingleTransactionFailure = () => ({
+  type: Types.REQ_GET_SINGLE_TRANSACTION_FAILURE
+});
+
 const requestsGetPaymentConfirmationAttempt = (paymentInfo) => ({
   type: Types.REQ_GET_PAYMENT_CONFIRMATION_ATTEMPT,
   paymentInfo
@@ -84,6 +98,10 @@ export default {
   requestsGetTransactionListAttempt,
   requestsGetTransactionListSuccess,
   requestsGetTransactionListFailure,
+
+  requestsGetSingleTransactionAttempt,
+  requestsGetSingleTransactionSuccess,
+  requestsGetSingleTransactionFailure,
 
   requestsGetPaymentConfirmationAttempt,
   requestsGetPaymentConfirmationSuccess,

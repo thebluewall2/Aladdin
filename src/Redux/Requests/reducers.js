@@ -3,6 +3,8 @@ const INITIAL_STATE = {
   errorMessage: '',
   transactionList: [],
   submittingReview: false,
+  gettingTransaction: false,
+  makingPayment: false,
 };
 
 //Get Transaction List Section
@@ -26,6 +28,37 @@ const getTransactionListFailure = (state = INITIAL_STATE, action) => {
     ...state,
     loading: false,
     errorMessage: action.error
+  };
+};
+
+const getSingleTransactionAttempt = (state = INITIAL_STATE) => {
+  return {
+    ...state,
+    gettingTransaction: true
+  };
+};
+
+const getSingleTransactionSuccess = (state = INITIAL_STATE, action) => {
+  const stateTransactions = state.transactionList;
+  const { transaction } = action;
+
+  for (let i = 0; i < stateTransactions.length; i++) {
+    if (stateTransactions[i].transactionUID === transaction.transactionUID) {
+      stateTransactions[i] = transaction;
+    }
+  }
+
+  return {
+    ...state,
+    gettingTransaction: false,
+    transactionList: stateTransactions
+  };
+};
+
+const getSingleTransactionFailure = (state = INITIAL_STATE) => {
+  return {
+    ...state,
+    gettingTransaction: false,
   };
 };
 
@@ -56,7 +89,7 @@ const getTransactionDataFailure = (state = INITIAL_STATE, action) => {
 const getPaymentInfoAttempt = (state = INITIAL_STATE) => {
   return {
     ...state,
-    loading: true,
+    makingPayment: true,
     errorMessage: '',
   };
 };
@@ -64,7 +97,7 @@ const getPaymentInfoAttempt = (state = INITIAL_STATE) => {
 const getPaymentInfoSuccess = (state = INITIAL_STATE, action) => {
   return {
     ...state,
-    loading: false,
+    makingPayment: false,
     paymentInfo: action.paymentInfo
   };
 };
@@ -72,7 +105,7 @@ const getPaymentInfoSuccess = (state = INITIAL_STATE, action) => {
 const getPaymentInfoFailure = (state = INITIAL_STATE, action) => {
   return {
     ...state,
-    loading: false,
+    makePayment: false,
     errorMessage: action.error,
   };
 };
@@ -135,6 +168,10 @@ export default {
   getTransactionListAttempt,
   getTransactionListSuccess,
   getTransactionListFailure,
+
+  getSingleTransactionAttempt,
+  getSingleTransactionSuccess,
+  getSingleTransactionFailure,
 
   getTransactionDataAttempt,
   getTransactionDataSuccess,

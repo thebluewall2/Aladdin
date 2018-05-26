@@ -32,11 +32,9 @@ class RequestsHome extends PureComponent {
 
     if (transactionUID) {
       //will be present when user opens notification from tray
-      transactionList.map(transaction => {
-        if (transaction.transactionUID === transactionUID) {
-          this._handleCardPress(transaction);
-        }
-      });
+      this.props.updateTransaction(transactionUID);
+
+      this._handleCardPress(transactionUID);
     } else if (reviewTransactionUID) {
       //will be present when user opens review notification from tray
       let vendorUID = '';
@@ -56,13 +54,13 @@ class RequestsHome extends PureComponent {
 
   _keyExtractor = (item) => item.transactionUID;
 
-  _handleCardPress = (transaction) => {
+  _handleCardPress = (transactionUID) => {
     const { userType } = this.props;
 
     if (userType === 'customer') {
-      Actions.customerRequestDetails({ transaction });
+      Actions.customerRequestDetails({ transactionUID });
     } else {
-      Actions.vendorRequestDetails({ transaction });
+      Actions.vendorRequestDetails({ transactionUID });
     }
   }
 
@@ -71,7 +69,7 @@ class RequestsHome extends PureComponent {
       <RequestsCard
         transaction={flatListItem.item}
         userType={this.props.userType}
-        onPress={this._handleCardPress}
+        onPress={(trx) => this._handleCardPress(trx.transactionUID)}
       />
     );
   }
@@ -143,6 +141,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getTransactionList: (userType, userUID) =>
       dispatch(ReduxActions.requestsGetTransactionListAttempt(userType, userUID)),
+    updateTransaction: (transactionUID) =>
+      dispatch(ReduxActions.requestsGetSingleTransactionAttempt(transactionUID)),
   };
 };
 
