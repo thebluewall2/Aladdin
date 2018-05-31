@@ -2,12 +2,9 @@ import { take, call, put } from 'redux-saga/effects';
 
 import firebase from 'firebase';
 import { update } from 'firebase-saga';
-import { Actions } from 'react-native-router-flux';
 
 import ReduxActions from '../../Redux/Actions';
 import Types from '../../Redux/Home/types';
-
-import { showToast } from '../../Services/helpers';
 
 export function* watchCreateOrUpdateTransaction() {
   while (true) {
