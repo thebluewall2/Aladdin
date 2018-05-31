@@ -10,7 +10,7 @@ import styles from './Styles';
 
 class VendorRequestDetails extends PureComponent {
   _renderSuggestedDates = () => {
-    const { timeslots } = this.props.navigationState.transaction;
+    const { timeslots } = this.props.transaction;
 
     return (
       <View>
@@ -36,7 +36,7 @@ class VendorRequestDetails extends PureComponent {
   }
 
   _renderVendorResponse = () => {
-    const { transaction } = this.props.navigationState;
+    const { transaction } = this.props;
 
     return (
       <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingTop: 15 }}>
@@ -72,7 +72,7 @@ class VendorRequestDetails extends PureComponent {
   }
 
   _renderQRScanner = () => {
-    const { transaction } = this.props.navigationState;
+    const { transaction } = this.props;
 
     return (
 
@@ -91,7 +91,7 @@ class VendorRequestDetails extends PureComponent {
   }
 
   render() {
-    const { transaction } = this.props.navigationState;
+    const { transaction } = this.props;
 
     const {
       selectedCategory,
@@ -129,6 +129,22 @@ class VendorRequestDetails extends PureComponent {
   }
 }
 
+const mapStateToProps = (state, props) => {
+  const { transactionUID } = props.navigationState;
+  const { requests } = state;
+  let transaction = {};
+
+  requests.transactionList.map(trx => {
+    if (trx.transactionUID === transactionUID) {
+      transaction = trx;
+    }
+  });
+
+  return {
+    transaction,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     cancelRequest: (serviceBooking) =>
@@ -136,4 +152,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(VendorRequestDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(VendorRequestDetails);
