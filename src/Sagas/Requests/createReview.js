@@ -18,6 +18,14 @@ export function* watchCreateReview() {
 export function* handleCreateReview(vendorUID, review) {
   try {
     const reviewScoreFromFirebase = yield call(get, `Users/vendor/${vendorUID}`, 'reviews');
+
+    if (reviewScoreFromFirebase === null) {
+      reviewScoreFromFirebase = {
+        totalReviews: 0,
+        totalScores: 0,
+      };
+    }
+
     const newReview =
       { totalReviews: reviewScoreFromFirebase.totalReviews + 1,
         totalScores: reviewScoreFromFirebase.totalScores + review,
