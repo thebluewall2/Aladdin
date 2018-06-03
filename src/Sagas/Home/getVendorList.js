@@ -40,7 +40,7 @@ export function* getVendorReviews(listOfVendor) {
   let newListOfVendor = listOfVendor;
 
   for (let count = 0; count < listOfVendor.length; count++) {
-    const reviewScoreFromFirebase = yield call(get, `Users/vendor/${listOfVendor[count].vendorUID}/reviews`, 'reviewScore');
+    const reviewScoreFromFirebase = yield call(get, `Users/vendor/${listOfVendor[count].vendorUID}`, 'reviews');
 
       if (reviewScoreFromFirebase) {
         newListOfVendor[count].reviewScore =
