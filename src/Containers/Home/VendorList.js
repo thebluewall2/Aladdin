@@ -8,6 +8,7 @@ import ReduxActions from '../../Redux/Actions';
 
 import { LoadingSpinner } from '../../Components/common';
 import VendorCard from '../../Components/VendorCard';
+import Config from '../../Services/config';
 
 class VendorList extends PureComponent {
   componentWillMount() {
@@ -33,7 +34,9 @@ class VendorList extends PureComponent {
 
     if (loading) {
       return (
-        <LoadingSpinner />
+        <View style={{ paddingTop: 50 }}>
+          <LoadingSpinner />
+        </View>
       );
     }
 
@@ -48,13 +51,23 @@ class VendorList extends PureComponent {
   }
 
   _renderItem = (vendor) => {
-    const { vendorUID, name, distance } = vendor.item;
+    const { vendorUID, name, distance, reviewScore } = vendor.item;
+
+    let reviews;
+    let totalReviews;
+
+    if (reviewScore && reviewScore.totalReviews >= Config.vendorMinimumReviewsToDisplay) {
+      reviews = reviewScore.avgReviews;
+      totalReviews = reviewScore.totalReviews;
+    }
 
     return (
       <VendorCard
         vendorUID={vendorUID}
         vendorName={name}
         distance={distance}
+        reviews={reviews}
+        totalReviews={totalReviews}
         onPress={(vendorID) => this._handleVendorPressed(vendorID)}
       />
     );

@@ -13,15 +13,15 @@ export function registerNotificationListener() {
   }
 
   fcm.getInitialNotification().then(notification => {
-    console.log("INTIIAL");
-    console.log(notification);
+    // console.log("INTIIAL");
+    // console.log(notification);
   });
 
   fcm.on(FCMEvent.Notification, notification => {
+    console.log(notification);
     if (notification.opened_from_tray) {
-      const notifBody = JSON.parse(notification.aps.alert.body);
-
-      const { targetScreen, transactionUID } = notifBody;
+      const targetScreen = notification["gcm.notification.targetScreen"];
+      const transactionUID = notification["gcm.notification.transactionUID"];
 
       if (targetScreen) {
         if (targetScreen === 'requests') {

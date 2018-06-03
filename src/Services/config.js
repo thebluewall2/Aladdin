@@ -18,4 +18,6 @@ export default {
   screenWidth: width,
 
   screenHeight: height,
+
+  vendorMinimumReviewsToDisplay: 20,
 };

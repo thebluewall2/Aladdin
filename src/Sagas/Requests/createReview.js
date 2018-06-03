@@ -17,7 +17,7 @@ export function* watchCreateReview() {
 
 export function* handleCreateReview(vendorUID, review) {
   try {
-    const reviewScoreFromFirebase = yield call(get, `Users/vendor/${vendorUID}`, 'reviews');
+    let reviewScoreFromFirebase = yield call(get, `Users/vendor/${vendorUID}`, 'reviews');
 
     if (reviewScoreFromFirebase === null) {
       reviewScoreFromFirebase = {
