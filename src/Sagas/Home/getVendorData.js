@@ -20,11 +20,11 @@ export function* handleGetVendorData(vendorUID) {
 
    vendorData.vendorUID = vendorUID;
 
-   if (vendorData === null) {
-     throw new Error('Vendor does not exist!');
+   if (vendorData) {
+     yield put(ReduxActions.homeGetVendorDataSuccess(vendorData));
+   } else {
+     yield put(ReduxActions.homeGetVendorDataFailure("An error has occured, please try again."));
    }
-
-   yield put(ReduxActions.homeGetVendorDataSuccess(vendorData));
   } catch (error) {
     yield put(ReduxActions.homeGetVendorDataFailure(error));
   }
