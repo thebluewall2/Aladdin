@@ -86,12 +86,13 @@ export function* sendNotifications(api, serviceBooking, transactionUID) {
   try {
     //user is creating booking, so sender is customer and recipient is vendor
     const notificationData = {
+      method: 'CREATE_TRANSACTION',
       transactionUID,
       senderName: customerName,
       recipientUserType: 'vendor',
       recipientUID: vendorUID
     };
-    console.log(notificationData);
+
     const response = yield call(api.sendNotifications, notificationData);
 
     if (response.ok) {

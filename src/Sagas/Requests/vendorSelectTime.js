@@ -47,6 +47,7 @@ export function* sendNotifications(api, serviceBooking) {
 
   //vendor choosing time, vendor is sender
   const data = {
+    method: 'UPDATE_TRANSACTION',
     transactionUID,
     senderName: vendorName,
     recipientUserType: 'customer',
