@@ -8,6 +8,12 @@ class PaymentWebView extends React.PureComponent {
   render() {
     const { paymentInfo } = this.props;
 
+    paymentInfo.Param6 = paymentInfo.customerUID;
+    paymentInfo.Param7 = paymentInfo.vendorUID;
+
+    delete paymentInfo.customerUID;
+    delete paymentInfo.vendorUID;
+
     let requestBody = '';
     for (const [key, value] of Object.entries(paymentInfo)) {
       requestBody = requestBody.concat(`${key}=${value}&`);
