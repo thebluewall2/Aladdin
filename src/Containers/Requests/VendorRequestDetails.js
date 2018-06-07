@@ -5,10 +5,15 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
 import ReduxActions from '../../Redux/Actions';
+import { LoadingSpinner } from '../../Components/common';
 
 import styles from './Styles';
 
 class VendorRequestDetails extends PureComponent {
+  _renderLoading = () => {
+    return <LoadingSpinner />;
+  }
+
   _renderSuggestedDates = () => {
     const { timeslots } = this.props.transaction;
 
@@ -92,6 +97,10 @@ class VendorRequestDetails extends PureComponent {
 
   render() {
     const { transaction } = this.props;
+
+    if (Object.keys(transaction).length <= 0) {
+      return this._renderLoading();
+    }
 
     const {
       selectedCategory,

@@ -148,7 +148,7 @@ class CustomerRequestDetails extends PureComponent {
   render() {
     const { gettingTransaction, transaction } = this.props;
 
-    if (gettingTransaction || !transaction) {
+    if (gettingTransaction || Object.keys(transaction).length <= 0) {
       return <LoadingSpinner />;
     }
 
@@ -166,7 +166,7 @@ const mapStateToProps = (state, props) => {
       transaction = trx;
     }
   });
-
+  
   return {
     userEmail: auth.userData.email,
     userPhone: auth.userData.phoneNo,
