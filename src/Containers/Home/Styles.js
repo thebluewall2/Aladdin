@@ -132,7 +132,7 @@ export default StyleSheet.create({
   addressButtonViewContainer: {
     flex: 1,
     justifyContent: 'space-between',
-    paddingTop: 10
+    paddingTop: 10,
   },
 
   addressDropdownBoxStyle: {
@@ -140,6 +140,7 @@ export default StyleSheet.create({
     width: 350,
     borderWidth: 0.5,
     justifyContent: 'center',
+    overflow: 'hidden',
   },
 
   addNewAddressContainer: {
