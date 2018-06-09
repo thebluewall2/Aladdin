@@ -23,8 +23,8 @@ export function* handleGetVendorList(category, subcategory, userAddress) {
 
     yield put(ReduxActions.homeGetVendorListSuccess(listOfVendor));
   } catch (error) {
-      const err = new Error("No Vendor Found!");
-      yield put(ReduxActions.homeGetVendorListFailure(err));
+      console.log(error);
+      yield put(ReduxActions.homeGetVendorListFailure(error));
   }
 }
 
@@ -54,18 +54,24 @@ export function* getVendorReviews(listOfVendor) {
 }
 
 export function convertToArray(listOfVendorsFromFirebase) {
-  let listOfVendor = [];
+  const { vendors } = listOfVendorsFromFirebase;
 
-  Object.keys(listOfVendorsFromFirebase.vendors)
-    .map(vendorUID => {
-        listOfVendor.push({
-          vendorUID,
-          name: listOfVendorsFromFirebase.vendors[vendorUID].name,
-          coordinates: listOfVendorsFromFirebase.vendors[vendorUID].coordinates,
-        });
-    });
+  if (vendors) {
+    const listOfVendor = [];
 
-    return listOfVendor;
+    Object.keys(vendors)
+      .map(vendorUID => {
+          listOfVendor.push({
+            vendorUID,
+            name: listOfVendorsFromFirebase.vendors[vendorUID].name,
+            coordinates: listOfVendorsFromFirebase.vendors[vendorUID].coordinates,
+          });
+      });
+
+      return listOfVendor;
+  }
+
+  return [];
 }
 
 export function getDistanceFromVendorList(userAddress, vendorList) {
