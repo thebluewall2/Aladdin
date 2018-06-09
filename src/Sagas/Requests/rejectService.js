@@ -17,10 +17,8 @@ export function* handleRejectService(data, api) {
   yield call(updateFirebase, data);
   yield call(sendNotifications, data, api);
 
-  setTimeout(() => {
-    Actions.refresh({ shouldRefresh: true });
-  }, 500);
-
+  yield put(ReduxActions.requestsRejectServiceSuccess());
+  yield put(ReduxActions.requestsGetTransactionListAttempt('vendor', data.vendorUID));
   Actions.pop();
 }
 

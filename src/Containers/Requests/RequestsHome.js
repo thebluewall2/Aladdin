@@ -24,12 +24,6 @@ class RequestsHome extends PureComponent {
     this._refreshData();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.shouldRefresh) {
-      this._refreshData();
-    }
-  }
-
   _refreshData = () => {
     const { userType, userUID } = this.props;
 
