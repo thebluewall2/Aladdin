@@ -90,7 +90,11 @@ class VendorRequestDetails extends PureComponent {
 
   _renderCompletedRequest = () => {
     return (
-      <Text>Service request completed</Text>
+      <View style={styles.serviceCompletedBackgroundViewStyle}>
+        <Text style={styles.serviceCompletedTextStyle}>
+          Service request completed
+        </Text>
+      </View>
     );
   }
 
