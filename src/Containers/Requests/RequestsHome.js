@@ -41,16 +41,19 @@ class RequestsHome extends PureComponent {
     } else if (reviewTransactionUID) {
       //will be present when user opens review notification from tray
       let vendorUID = '';
+      let vendorName = '';
 
       transactionList.map(transaction => {
         if (transaction.transactionUID === reviewTransactionUID) {
           vendorUID = transaction.vendorUID;
+          vendorName = transaction.vendorName;
         }
       });
 
       this.setState({
         isReviewModalOpen: true,
         reviewVendorUID: vendorUID,
+        reviewVendorName: vendorName,
       });
     }
   }
@@ -102,7 +105,7 @@ class RequestsHome extends PureComponent {
 
   render() {
     const { transactionList, loading } = this.props;
-    const { reviewVendorUID } = this.state;
+    const { reviewVendorUID, reviewVendorName } = this.state;
 
     if (loading) {
         return (
@@ -122,6 +125,7 @@ class RequestsHome extends PureComponent {
           isOpen={this.state.isReviewModalOpen}
           onClose={() => this.setState({ isReviewModalOpen: false })}
           vendorUID={reviewVendorUID}
+          vendorName={reviewVendorName}
         />
       </View>
     );

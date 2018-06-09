@@ -3,6 +3,8 @@ import { Platform } from 'react-native';
 import fcm, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm';
 import { Actions } from 'react-native-router-flux';
 
+import { showToast } from './helpers';
+
 export function registerNotificationListener() {
   fcm.requestPermissions();
 
@@ -30,6 +32,9 @@ export function registerNotificationListener() {
           Actions.requestPage({ reviewTransactionUID: transactionUID });
         }
       }
+    } else if (notification["gcm.notification.targetScreen"] === 'reviews') {
+      showToast("Service is complete!");
+      Actions.home();
     }
 
     if (Platform.OS === 'ios') {

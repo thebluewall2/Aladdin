@@ -100,12 +100,12 @@ class CreateReview extends React.PureComponent {
   }
 
   _renderModal = () => {
-    const { vendorUID } = this.props;
+    const { vendorName } = this.props;
 
     return (
       <View style={styles.modalContainer}>
         <Text style={styles.titleTextStyle}>Please leave a review</Text>
-        <Text style={styles.titleTextStyle}>{vendorUID}</Text>
+        <Text style={styles.titleTextStyle}>{vendorName}</Text>
 
         {this._renderReviews()}
         {this._renderButtons()}

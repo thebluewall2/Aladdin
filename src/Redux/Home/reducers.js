@@ -67,6 +67,10 @@ const getVendorListAttempt = (state = INITIAL_STATE) => {
   return { ...state,
     loading: true,
     errorMsg: '',
+    search: {
+      ...state.search,
+      vendorList: [],
+    }
   };
 };
 
