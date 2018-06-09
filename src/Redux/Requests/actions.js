@@ -90,6 +90,33 @@ const requestsVendorSelectTimeFailure = (error) => ({
   error
 });
 
+const requestsScanQrCodeAttempt = (data) => ({
+  type: Types.REQ_SCAN_QR_CODE_ATTEMPT,
+  data
+});
+
+const requestsScanQrCodeSuccess = () => ({
+  type: Types.REQ_SCAN_QR_CODE_SUCCESS,
+});
+
+const requestsScanQrCodeFailure = (error) => ({
+  type: Types.REQ_SCAN_QR_CODE_FAILURE,
+  error
+});
+
+const requestsRejectServiceAttempt = (data) => ({
+  type: Types.REQ_REJECT_SERVICE_ATTEMPT,
+  data,
+});
+
+const requestsRejectServiceSuccess = () => ({
+  type: Types.REQ_REJECT_SERVICE_SUCCESS,
+});
+
+const requestsRejectServiceFailure = () => ({
+  type: Types.REQ_REJECT_SERVICE_FAILURE,
+});
+
 const requestsClearErrorMessage = () => ({
   type: Types.REQ_CLEAR_ERROR,
 });
@@ -118,6 +145,14 @@ export default {
   requestsVendorSelectTimeAttempt,
   requestsVendorSelectTimeSuccess,
   requestsVendorSelectTimeFailure,
+
+  requestsScanQrCodeAttempt,
+  requestsScanQrCodeSuccess,
+  requestsScanQrCodeFailure,
+
+  requestsRejectServiceAttempt,
+  requestsRejectServiceSuccess,
+  requestsRejectServiceFailure,
 
   requestsClearErrorMessage,
 };
