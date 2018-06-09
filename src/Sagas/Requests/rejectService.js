@@ -40,7 +40,7 @@ export function* sendNotifications(data, api) {
   const { transactionUID, vendorName, customerUID } = data;
 
   const notificationToSend = {
-      method: 'REVIEW',
+      method: 'UPDATE_TRANSACTION',
       transactionUID,
       senderName: vendorName,
       recipientUserType: 'customer',
