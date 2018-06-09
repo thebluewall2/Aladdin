@@ -28,6 +28,10 @@ export default {
     [Types.REQ_CREATE_REVIEW_SUCCESS]: Reducers.createReviewSuccess,
     [Types.REQ_CREATE_REVIEW_FAILURE]: Reducers.createReviewFailure,
 
+    [Types.REQ_SCAN_QR_CODE_ATTEMPT]: Reducers.scanQrCodeAttempt,
+    [Types.REQ_SCAN_QR_CODE_SUCCESS]: Reducers.scanQrCodeSuccess,
+    [Types.REQ_SCAN_QR_CODE_FAILURE]: Reducers.scanQrCodeFailure,
+
     [Types.REQ_CLEAR_ERROR]: Reducers.clearError,
   })
 };
