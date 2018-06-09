@@ -20,9 +20,18 @@ class RequestsHome extends PureComponent {
   }
 
   componentWillMount() {
-    const { userType, userUID } = this.props;
-
     this.checkForNotifications();
+    this._refreshData();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.shouldRefresh) {
+      this._refreshData();
+    }
+  }
+
+  _refreshData = () => {
+    const { userType, userUID } = this.props;
 
     this.props.getTransactionList(userType, userUID);
   }

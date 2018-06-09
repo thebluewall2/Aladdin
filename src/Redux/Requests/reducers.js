@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   gettingTransaction: false,
   makingPayment: false,
   completingTransaction: false,
+  rejectingUser: false,
 };
 
 //Get Transaction List Section
@@ -177,6 +178,27 @@ const scanQrCodeFailure = (state = INITIAL_STATE) => {
   };
 };
 
+const rejectUserAttempt = (state = INITIAL_STATE) => {
+  return {
+    ...state,
+    rejectingUser: true,
+  };
+};
+
+const rejectUserSuccess = (state = INITIAL_STATE) => {
+  return {
+    ...state,
+    rejectingUser: false,
+  };
+};
+
+const rejectUserFailure = (state = INITIAL_STATE) => {
+  return {
+    ...state,
+    rejectingUser: false,
+  };
+};
+
 const clearError = (state = INITIAL_STATE) => {
   return {
     ...state,
@@ -214,6 +236,10 @@ export default {
   scanQrCodeAttempt,
   scanQrCodeSuccess,
   scanQrCodeFailure,
+
+  rejectUserAttempt,
+  rejectUserSuccess,
+  rejectUserFailure,
 
   clearError,
 };

@@ -32,6 +32,10 @@ export default {
     [Types.REQ_SCAN_QR_CODE_SUCCESS]: Reducers.scanQrCodeSuccess,
     [Types.REQ_SCAN_QR_CODE_FAILURE]: Reducers.scanQrCodeFailure,
 
+    [Types.REQ_REJECT_SERVICE_ATTEMPT]: Reducers.rejectUserAttempt,
+    [Types.REQ_REJECT_SERVICE_SUCCESS]: Reducers.rejectUserSuccess,
+    [Types.REQ_REJECT_SERVICE_FAILURE]: Reducers.rejectUserFailure,
+
     [Types.REQ_CLEAR_ERROR]: Reducers.clearError,
   })
 };

@@ -66,14 +66,13 @@ class VendorRequestDetails extends PureComponent {
 
   _handleRejectTime = (transaction) => {
     const transactionToUpdate = {
-      trxCode: 2, //2 is for updating transactions
       transactionUID: transaction.transactionUID,
-      status: "Rejected",
+      vendorName: transaction.vendorName,
       customerUID: transaction.customerUID,
       vendorUID: transaction.vendorUID
     };
 
-      this.props.cancelRequest(transactionToUpdate);
+    this.props.cancelRequest(transactionToUpdate);
   }
 
   _renderQRScanner = () => {
@@ -157,7 +156,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     cancelRequest: (serviceBooking) =>
-      dispatch(ReduxActions.homeCreateOrUpdateTransactionAttempt(serviceBooking))
+      dispatch(ReduxActions.requestsRejectServiceAttempt(serviceBooking))
   };
 };
 

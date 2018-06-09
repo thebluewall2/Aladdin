@@ -104,6 +104,19 @@ const requestsScanQrCodeFailure = (error) => ({
   error
 });
 
+const requestsRejectServiceAttempt = (data) => ({
+  type: Types.REQ_REJECT_SERVICE_ATTEMPT,
+  data,
+});
+
+const requestsRejectServiceSuccess = () => ({
+  type: Types.REQ_REJECT_SERVICE_SUCCESS,
+});
+
+const requestsRejectServiceFailure = () => ({
+  type: Types.REQ_REJECT_SERVICE_FAILURE,
+});
+
 const requestsClearErrorMessage = () => ({
   type: Types.REQ_CLEAR_ERROR,
 });
@@ -136,6 +149,10 @@ export default {
   requestsScanQrCodeAttempt,
   requestsScanQrCodeSuccess,
   requestsScanQrCodeFailure,
+
+  requestsRejectServiceAttempt,
+  requestsRejectServiceSuccess,
+  requestsRejectServiceFailure,
 
   requestsClearErrorMessage,
 };
