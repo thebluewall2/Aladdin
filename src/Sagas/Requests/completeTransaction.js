@@ -21,6 +21,7 @@ export function* handleCompleteTransaction(data, api) {
 
     showToast("Transaction complete!");
 
+    yield put(ReduxActions.requestsGetTransactionListAttempt('vendor', data.vendorUID));
     yield put(ReduxActions.requestsScanQrCodeSuccess());
   } else {
     showErrorToast("Something went wrong, please try again later");
