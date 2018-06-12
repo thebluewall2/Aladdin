@@ -6,6 +6,8 @@ import { Actions } from 'react-native-router-flux';
 import ReduxActions from '../../Redux/Actions';
 import Types from '../../Redux/Auth/types';
 
+import { showToast } from '../../Services/helpers';
+
 export function* watchResetPassword() {
   while (true) {
     const { email, userType } = yield take(Types.AUTH_RESET_PASSWORD_ATTEMPT);
@@ -14,19 +16,28 @@ export function* watchResetPassword() {
 }
 //might not need userType
 export function* handleResetPassword(email) {
-  try {
-    yield call(ResetPassword, email);
-    yield put(ReduxActions.authResetPasswordSuccess());
-    Actions.loginPage();
-  } catch (error) {
-    console.log(error);
-    yield put(ReduxActions.authResetPasswordFail(error));
-  }
+    const response = yield call(ResetPassword, email);
+
+    if (response === 1) {
+      yield put(ReduxActions.authResetPasswordSuccess());
+
+      showToast("Reset link emailed! Please check your email.");
+      Actions.pop();
+    } else if (response.indexOf('badly formatted') > -1) {
+      yield put(ReduxActions.authResetPasswordFail('Email address is invalid'));
+    } else {
+      yield put(ReduxActions.authResetPasswordFail('Something went wrong. Please try again'));
+    }
 }
 
 export function ResetPassword(email) {
-  firebase.auth().sendPasswordResetEmail(email)
-  .catch((error) => {
-    throw error;
-  });
+  return firebase.auth().sendPasswordResetEmail(email)
+    .then(() => {
+      return 1;
+    })
+    .catch((error) => {
+      console.log(error);
+
+      return error.message;
+    });
 }

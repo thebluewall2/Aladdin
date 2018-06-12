@@ -25,7 +25,7 @@ class ForgotPassword extends Component {
       return (
           //LOUISA: error message goes here
           <Text style={{ color: "red" }}>
-            errorMessage
+            {errorMessage}
           </Text>
       );
     }
@@ -68,7 +68,7 @@ class ForgotPassword extends Component {
           value={this.state.email}
         />
 
-        {this._renderErrorMessage}
+        {this._renderErrorMessage()}
 
         <View style={{ paddingTop: 20 }}>
           <TouchableOpacity style={styles.buttonStyle} onPress={this._handleResetPassword} >
