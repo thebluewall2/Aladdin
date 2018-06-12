@@ -46,6 +46,7 @@ import EditVendorProfile from './Containers/Settings/EditVendorProfile';
 //end importing screens
 
 import TabIcon from './Components/TabIcon';
+import RefreshButton from './Components/RefreshButton';
 
 const backButton = () => {
   return (
@@ -192,6 +193,7 @@ const RouterComponent = () => {
             title={'Requests'}
             {...navigatorProps}
             renderBackButton={() => (null)}
+            renderRightButton={() => <RefreshButton />}
           />
           <Scene
             key="customerRequestDetails"
