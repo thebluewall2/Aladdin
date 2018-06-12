@@ -66,6 +66,10 @@ class ForgotPassword extends Component {
           label={'Email'}
           onChangeText={text => this._handleTextChanged(text)}
           value={this.state.email}
+          autoCapitalize={"none"}
+          keyboardType={"email-address"}
+          autoCorrect={false}
+          onSubmitEditing={this._handleResetPassword}
         />
 
         {this._renderErrorMessage()}

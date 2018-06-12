@@ -122,9 +122,9 @@ class ChooseTimeForService extends React.PureComponent {
   }
 
   _handleSubmit = () => {
-    const { date1 } = this.state;
+    const { date1, date2, date3 } = this.state;
 
-    if (!date1) {
+    if (!date1 && !date2 && !date3) {
       this.setState({
         errorMsg: "Please select at least one time for servicing"
       });
