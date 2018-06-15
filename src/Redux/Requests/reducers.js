@@ -10,6 +10,12 @@ const INITIAL_STATE = {
 };
 
 //Get Transaction List Section
+const resetRedux = () => {
+  return {
+    ...INITIAL_STATE
+  };
+};
+
 const getTransactionListAttempt = (state = INITIAL_STATE) => {
   return { ...state,
     loading: true,
@@ -208,6 +214,8 @@ const clearError = (state = INITIAL_STATE) => {
 
 export default {
   INITIAL_STATE,
+
+  resetRedux,
 
   getTransactionListAttempt,
   getTransactionListSuccess,

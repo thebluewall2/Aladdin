@@ -12,6 +12,12 @@ const setIsOnline = (state = INITIAL_STATE, action) => {
   };
 };
 
+const resetRedux = () => {
+  return {
+    ...INITIAL_STATE
+  };
+};
+
 const setSearchCategory = (state = INITIAL_STATE, action) => {
   return { ...state,
     search: {
@@ -194,6 +200,7 @@ export default {
   INITIAL_STATE,
 
   setIsOnline,
+  resetRedux,
 
   setSearchCategory,
   setSearchSubcategory,

@@ -1,6 +1,10 @@
 import Types from './types';
 
 //Get Transaction List Section
+const requestsResetRedux = () => ({
+    type: Types.REQ_RESET_REDUX,
+});
+
 const requestsGetTransactionListAttempt = (userType, userUID) => ({
   type: Types.REQ_GET_TRANSACTION_LIST_ATTEMPT,
   userType,
@@ -122,6 +126,8 @@ const requestsClearErrorMessage = () => ({
 });
 
 export default {
+  requestsResetRedux,
+  
   requestsGetTransactionListAttempt,
   requestsGetTransactionListSuccess,
   requestsGetTransactionListFailure,

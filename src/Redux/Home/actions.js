@@ -5,6 +5,10 @@ const homeSetIsOnline = (isOnline) => ({
   isOnline
 });
 
+const homeResetRedux = () => ({
+  type: Types.HOME_RESET_REDUX,
+});
+
 const homeSetSearchCategory = (category) => ({
   type: Types.HOME_SET_SEARCH_CATEGORY,
   category
@@ -113,6 +117,7 @@ const homeCreateOrUpdateTransactionFailure = (error) => ({
 
 export default {
   homeSetIsOnline,
+  homeResetRedux,
 
   homeSetSearchCategory,
   homeSetSearchSubcategory,
