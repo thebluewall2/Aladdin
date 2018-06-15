@@ -43,18 +43,28 @@ class Settings extends Component {
     this.props.logout();
   }
 
-  render() {
-    const { pushNotifications } = this.props.settings;
+  _renderPushNotificationsSwitch = () => {
+    // const { pushNotifications } = this.props.settings;
 
+    //for now
+    return false;
+
+    // return (
+    //   <SettingsCard
+    //     title={"Push Notification"}
+    //     icon={"ios-notifications-outline"}
+    //     hasSwitch
+    //     toggleValue={pushNotifications}
+    //     onPress={this._handleTogglePushNotifications}
+    //   />
+    // );
+  }
+
+  render() {
     return (
       <View style={{ paddingTop: 80 }}>
-        <SettingsCard
-          title={"Push Notification"}
-          icon={"ios-notifications-outline"}
-          hasSwitch
-          toggleValue={pushNotifications}
-          onPress={this._handleTogglePushNotifications}
-        />
+
+        {this._renderPushNotificationsSwitch()}
 
         <SettingsCard
           title={"Profile"}
