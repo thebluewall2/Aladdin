@@ -38,7 +38,6 @@ class SelectSubcategory extends Component {
         iconSize={20}
         rowHeight={50}
         rowRadius={6}
-        scrollViewHeight={400}
         fontFamily={'Quicksand'}
         selectedIconName={"ios-arrow-dropright-circle"}
         unselectedIconName={"ios-arrow-dropright"}
