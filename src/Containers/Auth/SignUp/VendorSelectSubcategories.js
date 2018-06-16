@@ -18,8 +18,14 @@ class VendorSelectCategories extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.error) {
-      this._setErrorMessage(nextProps.error);
+    const { error } = nextProps;
+
+    if (error) {
+      if (error.message) {
+        this._setErrorMessage(error.message);
+      } else {
+          this._setErrorMessage(error);
+      }
     }
   }
 
