@@ -13,7 +13,7 @@ export default {
 
   tabBarHeight: 50,
 
-  navBarHeight: Platform.OS === 'ios' ? 70 : 50,
+  navBarHeight: Platform.OS === 'ios' ? 70 : 60,
 
   screenWidth: width,
 

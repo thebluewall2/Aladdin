@@ -15,7 +15,7 @@ class RefreshButton extends React.PureComponent {
 
   render() {
     const { loading } = this.props;
-
+    
     if (loading) {
       return false;
     }
@@ -31,10 +31,12 @@ class RefreshButton extends React.PureComponent {
 const styles = StyleSheet.create({
   buttonStyle: {
     paddingRight: 10,
-    paddingBottom: 10,
+    paddingBottom: 20,
   },
   iconStyle: {
     fontSize: 30,
+    color: 'white',
+    paddingBottom: 10,
   },
 });
 

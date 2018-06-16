@@ -8,6 +8,7 @@ import { LoadingSpinner } from '../../Components/common';
 import RequestsCard from '../../Components/RequestsCard';
 import CreateReviewModal from './CreateReview';
 
+import Config from '../../Services/config';
 import styles from './Styles';
 
 class RequestsHome extends PureComponent {
@@ -88,7 +89,7 @@ class RequestsHome extends PureComponent {
             data={transactionList}
             keyExtractor={this._keyExtractor}
             renderItem={this._renderItem}
-            style={{ paddingTop: 70 }}
+            style={{ paddingTop: Config.navBarHeight }}
           />
         </ScrollView>
       </View>
