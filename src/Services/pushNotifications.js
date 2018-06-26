@@ -21,10 +21,8 @@ export function registerNotificationListener() {
 
   fcm.on(FCMEvent.Notification, notification => {
     console.log(notification);
+    const { targetScreen, transactionUID } = notification;
     if (notification.opened_from_tray) {
-      const targetScreen = notification["gcm.notification.targetScreen"];
-      const transactionUID = notification["gcm.notification.transactionUID"];
-
       if (targetScreen) {
         if (targetScreen === 'requests') {
           Actions.requestPage({ transactionUID });
@@ -32,7 +30,7 @@ export function registerNotificationListener() {
           Actions.requestPage({ reviewTransactionUID: transactionUID });
         }
       }
-    } else if (notification["gcm.notification.targetScreen"] === 'reviews') {
+    } else if (targetScreen === 'reviews') {
       showToast("Service is complete!");
       Actions.home();
     }

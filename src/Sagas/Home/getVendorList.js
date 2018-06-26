@@ -17,9 +17,12 @@ export function* handleGetVendorList(category, subcategory, userAddress) {
     const listOfVendorsFromFirebase = yield call(get, `Services/${category}`, subcategory.id);
 
     let listOfVendor = yield call(convertToArray, listOfVendorsFromFirebase);
-    listOfVendor = yield call(getVendorReviews, listOfVendor);
-    listOfVendor = yield call(getDistanceFromVendorList, userAddress, listOfVendor);
-    listOfVendor = yield call(sortByDistance, listOfVendor);
+
+    if (listOfVendor.length) {
+      listOfVendor = yield call(getVendorReviews, listOfVendor);
+      listOfVendor = yield call(getDistanceFromVendorList, userAddress, listOfVendor);
+      listOfVendor = yield call(sortByDistance, listOfVendor);
+    }
 
     yield put(ReduxActions.homeGetVendorListSuccess(listOfVendor));
   } catch (error) {
