@@ -128,7 +128,6 @@ export function* CustomerInfo(data, userData, coordinates) {
 
 
 export function* VendorInfo(data, userData, coordinates) {
-  try {
     yield call(create, `Users/${data.userType}/${userData.uid}`, () => ({
       [`Users/${data.userType}/${userData.uid}`]:
         {
@@ -154,13 +153,6 @@ export function* VendorInfo(data, userData, coordinates) {
         }
     })
   );
-
-  yield put(ReduxActions.authUserSignUpSuccess());
-  Actions.loginPage();
-  } catch (error) {
-    console.log(error);
-    yield put(ReduxActions.authUserSignUpFail(error));
-  }
 }
 
 export function getCoordinatesFromAddress(address) {
