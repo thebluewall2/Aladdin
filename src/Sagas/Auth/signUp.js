@@ -155,6 +155,12 @@ export function* VendorInfo(data, userData, coordinates) {
     })
   );
 
+  for (var category in data.categories) {
+    for (let count = 0; count < data.categories[category].length; count++) {
+      yield call(setVendorServices, category, data.categories[category][count], data, userData.uid);
+    }
+  }
+
   yield put(ReduxActions.authUserSignUpSuccess());
   Actions.loginPage();
   } catch (error) {
@@ -162,6 +168,18 @@ export function* VendorInfo(data, userData, coordinates) {
     yield put(ReduxActions.authUserSignUpFail(error));
   }
 }
+
+export function* setVendorServices(category, subcategory, data, uid) {
+  yield call(create, `Services/${category}/${subcategory}`, () => ({
+      [`Services/${category}/${subcategory}/vendors/${uid}`]:
+        {
+          address: `${data.addressOne} ${data.addressTwo}`,
+          name: data.name
+        }
+    })
+  );
+}
+
 
 export function getCoordinatesFromAddress(address) {
   Geocoder.setApiKey(Config.googleGeocoderAPI);
