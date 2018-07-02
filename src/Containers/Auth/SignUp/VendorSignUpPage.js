@@ -22,7 +22,9 @@ class VendorSignUpPage extends Component {
     return {
       userType: 'vendor',
       companyName: '',
+      companyRegNumber: '',
       name: '',
+      icNo: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -102,9 +104,9 @@ class VendorSignUpPage extends Component {
     const data = this.state;
 
     if (!data.addressOne || !data.addressTwo || !data.awards || !data.city || !data.companyName
-      || !data.confirmPassword || !data.email || !data.name || !data.noOfStaff || !data.officeNo
-      || !data.password || !data.phoneNo || !data.postcode || !data.state || !data.yearsOfCompany
-      || !data.yearsOfExp) {
+      || !data.confirmPassword || !data.email || !data.name || !data.icNo || !data.noOfStaff
+      || !data.officeNo || !data.password || !data.phoneNo || !data.postcode || !data.state
+      || !data.yearsOfCompany || !data.yearsOfExp) {
         this._setErrorMessage('Please fill up all fields');
     } else {
       this._setErrorMessage('');
@@ -143,6 +145,18 @@ class VendorSignUpPage extends Component {
               value={this.state.companyName}
               autoCorrect={false}
               componentStyle={styles.textFieldStyle}
+              onSubmitEditing={() => this.focusNextField('companyReg')}
+            />
+
+            <TextFieldComponent
+              ref="companyReg"
+              label={"Company registration number"}
+              onChangeText={(text) => {
+                this._handleTextChanged(text, 'companyRegNumber');
+              }}
+              value={this.state.companyRegNumber}
+              autoCorrect={false}
+              componentStyle={styles.textFieldStyle}
               onSubmitEditing={() => this.focusNextField('name')}
             />
 
@@ -153,6 +167,19 @@ class VendorSignUpPage extends Component {
                 this._handleTextChanged(text, 'name');
               }}
               value={this.state.name}
+              autoCorrect={false}
+              componentStyle={styles.textFieldStyle}
+              onSubmitEditing={() => this.focusNextField('icNo')}
+            />
+
+            <TextFieldComponent
+              ref="icNo"
+              label={"IC Number"}
+              onChangeText={(text) => {
+                this._handleTextChanged(text, 'icNo');
+              }}
+              value={this.state.icNo}
+              keyboardType={'phone-pad'}
               autoCorrect={false}
               componentStyle={styles.textFieldStyle}
               onSubmitEditing={() => this.focusNextField('email')}

@@ -132,7 +132,9 @@ export function* VendorInfo(data, userData, coordinates) {
       [`Users/${data.userType}/${userData.uid}`]:
         {
           companyName: data.companyName,
+          companyRegistrationNumber: data.companyRegNumber,
           name: data.name,
+          icNumber: data.icNo,
           email: data.email,
           phoneNo: data.phoneNo,
           officeNo: data.officeNo,
