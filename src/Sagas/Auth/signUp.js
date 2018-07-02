@@ -128,12 +128,13 @@ export function* CustomerInfo(data, userData, coordinates) {
 
 
 export function* VendorInfo(data, userData, coordinates) {
-  try {
     yield call(create, `Users/${data.userType}/${userData.uid}`, () => ({
       [`Users/${data.userType}/${userData.uid}`]:
         {
           companyName: data.companyName,
+          companyRegistrationNumber: data.companyRegNumber,
           name: data.name,
+          icNumber: data.icNo,
           email: data.email,
           phoneNo: data.phoneNo,
           officeNo: data.officeNo,
@@ -159,13 +160,6 @@ export function* VendorInfo(data, userData, coordinates) {
     for (let count = 0; count < data.categories[category].length; count++) {
       yield call(setVendorServices, category, data.categories[category][count], data, userData.uid);
     }
-  }
-
-  yield put(ReduxActions.authUserSignUpSuccess());
-  Actions.loginPage();
-  } catch (error) {
-    console.log(error);
-    yield put(ReduxActions.authUserSignUpFail(error));
   }
 }
 

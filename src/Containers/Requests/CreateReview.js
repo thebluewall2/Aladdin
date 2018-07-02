@@ -41,10 +41,10 @@ class CreateReview extends React.PureComponent {
   }
 
   _submitReview = () => {
-    const { submitReview, vendorUID } = this.props;
+    const { submitReview, vendorUID, reviewTransactionUID } = this.props;
     const { ratingStars } = this.state;
 
-    submitReview(vendorUID, ratingStars);
+    submitReview(vendorUID, ratingStars, reviewTransactionUID);
   }
 
   _renderIcon = (stars) => {
@@ -185,8 +185,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    submitReview: (vendorUID, review) =>
-      dispatch(ReduxActions.requestsCreateReviewAttempt(vendorUID, review)),
+    submitReview: (vendorUID, review, reviewTransactionUID) =>
+      dispatch(ReduxActions.requestsCreateReviewAttempt(vendorUID, review, reviewTransactionUID)),
   };
 };
 
