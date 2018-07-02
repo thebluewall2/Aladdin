@@ -65,10 +65,11 @@ const requestsMakePaymentFailure = (error) => ({
   error
 });
 
-const requestsCreateReviewAttempt = (vendorUID, review) => ({
+const requestsCreateReviewAttempt = (vendorUID, review, reviewTransactionUID) => ({
   type: Types.REQ_CREATE_REVIEW_ATTEMPT,
   vendorUID,
-  review
+  review,
+  reviewTransactionUID
 });
 
 const requestsCreateReviewSuccess = () => ({
@@ -127,7 +128,7 @@ const requestsClearErrorMessage = () => ({
 
 export default {
   requestsResetRedux,
-  
+
   requestsGetTransactionListAttempt,
   requestsGetTransactionListSuccess,
   requestsGetTransactionListFailure,

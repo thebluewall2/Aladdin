@@ -55,6 +55,7 @@ class RequestsHome extends PureComponent {
         isReviewModalOpen: true,
         reviewVendorUID: vendorUID,
         reviewVendorName: vendorName,
+        reviewTransactionUID
       });
     }
   }
@@ -106,7 +107,7 @@ class RequestsHome extends PureComponent {
 
   render() {
     const { transactionList, loading } = this.props;
-    const { reviewVendorUID, reviewVendorName } = this.state;
+    const { reviewVendorUID, reviewVendorName, reviewTransactionUID } = this.state;
 
     if (loading) {
         return (
@@ -127,6 +128,7 @@ class RequestsHome extends PureComponent {
           onClose={() => this.setState({ isReviewModalOpen: false })}
           vendorUID={reviewVendorUID}
           vendorName={reviewVendorName}
+          reviewTransactionUID={reviewTransactionUID}
         />
       </View>
     );

@@ -10,8 +10,8 @@ import { showToast, showErrorToast } from '../../Services/helpers';
 
 export function* watchCreateReview() {
   while (true) {
-    const { vendorUID, review } = yield take(Types.REQ_CREATE_REVIEW_ATTEMPT);
-    yield call(handleCreateReview, vendorUID, review);
+    const { vendorUID, review, reviewTransactionUID } = yield take(Types.REQ_CREATE_REVIEW_ATTEMPT);
+    yield call(handleCreateReview, vendorUID, review, reviewTransactionUID);
   }
 }
 
