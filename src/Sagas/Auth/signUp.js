@@ -155,6 +155,24 @@ export function* VendorInfo(data, userData, coordinates) {
         }
     })
   );
+
+  for (var category in data.categories) {
+    for (let count = 0; count < data.categories[category].length; count++) {
+      yield call(setVendorServices, category, data.categories[category][count], data, userData.uid, coordinates);
+    }
+  }
+}
+
+export function* setVendorServices(category, subcategory, data, uid, coordinates) {
+  yield call(create, `Services/${category}/${subcategory}`, () => ({
+      [`Services/${category}/${subcategory}/vendors/${uid}`]:
+        {
+          address: `${data.addressOne} ${data.addressTwo}`,
+          name: data.name,
+          coordinates
+        }
+    })
+  );
 }
 
 export function getCoordinatesFromAddress(address) {
