@@ -89,8 +89,9 @@ const authUpdateProfile = (userInfo) => ({
   userInfo
 });
 
-const authLogout = () => ({
+const authLogout = (userUID) => ({
   type: Types.AUTH_LOG_OUT,
+  userUID
 });
 
 

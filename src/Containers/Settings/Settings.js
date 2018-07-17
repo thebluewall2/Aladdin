@@ -40,7 +40,9 @@ class Settings extends Component {
   }
 
   _handleLogOut = () => {
-    this.props.logout();
+    const { logout, userUID } = this.props;
+
+    logout(userUID);
   }
 
   _renderPushNotificationsSwitch = () => {
@@ -109,7 +111,8 @@ const mapStateToProps = (state) => {
 
   return {
     settings: settings.settings,
-    userType: auth.userType
+    userType: auth.userType,
+    userUID: auth.userData.uid,
   };
 };
 
@@ -117,8 +120,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setPushNotifications: (pushNotifications) =>
       dispatch(ReduxActions.settingsSetPushNotifications(pushNotifications)),
-    logout: () =>
-      dispatch(ReduxActions.authLogout()),
+    logout: (userUID) =>
+      dispatch(ReduxActions.authLogout(userUID)),
   };
 };
 

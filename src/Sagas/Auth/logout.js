@@ -12,8 +12,8 @@ import Types from '../../Redux/Auth/types';
 
 export function* watchLogout() {
   while (true) {
-    yield take(Types.AUTH_LOG_OUT);
-
+    const { userUID } = yield take(Types.AUTH_LOG_OUT);
+    // console.log(userUID);
     yield call(handleLogout);
   }
 }
