@@ -4,6 +4,7 @@ import firebase from 'firebase';
 
 import { AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { remove } from 'firebase-saga';
 import { resetGenericPassword } from 'react-native-keychain';
 
 import ReduxActions from '../../Redux/Actions';
@@ -14,17 +15,20 @@ export function* watchLogout() {
   while (true) {
     const { userUID } = yield take(Types.AUTH_LOG_OUT);
     // console.log(userUID);
-    yield call(handleLogout);
+    yield call(handleLogout, userUID);
   }
 }
 
-export function* handleLogout() {
+export function* handleLogout(userUID) {
   firebase.auth().signOut();
+  const userType = yield call(getUserTypeFromStorage);
 
   //remove password from user device, so autologin will not work when user reopens app
   resetGenericPassword();
   yield call(resetAsyncStorage);
   yield call(resetRedux);
+
+  yield call(remove, `Users/${userType}/${userUID}`, 'fcmToken');
 
   Actions.auth({ type: 'reset' });
 }
@@ -38,4 +42,12 @@ export function resetAsyncStorage() {
 export function* resetRedux() {
   yield put(ReduxActions.homeResetRedux());
   yield put(ReduxActions.requestsResetRedux());
+}
+
+async function getUserTypeFromStorage() {
+  const userType = await AsyncStorage.getItem('userType');
+  if (userType) {
+    return userType;
+  }
+  return null;
 }
