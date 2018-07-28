@@ -33,18 +33,48 @@ export function* getTransactionList(userType, userUID) {
       listOfTransactionUID.push(transactionUID);
     });
 
-  for (let i = 0; i < listOfTransactionUID.length; i++) {
-    const transaction = yield call(get, 'Transactions/', listOfTransactionUID[i]);
-    listOfTransactions.push({
-      ...transaction,
-      transactionUID: listOfTransactionUID[i],
-    });
-  }
+  const listOfTransactionFromFirebase = yield call(get, 'Transactions/', '');
+
+  Object.keys(listOfTransactionFromFirebase).map(transactionUID => {
+    if (listOfTransactionUID.includes(transactionUID)) {
+      listOfTransactions.push({
+        ...listOfTransactionFromFirebase[transactionUID],
+        transactionUID,
+      });
+    }
+  });
+
   if (listOfTransactions === null) {
     return [];
   }
-
-  listOfTransactions.sort((a, b) => a.createdDate - b.createdDate);
-
+  listOfTransactions.sort((a, b) => {
+    return b.createdDate - a.createdDate;
+  });
+  console.log(listOfTransactions);
   return listOfTransactions;
 }
+
+//TODO: try to figure out Promises to utilize snapshot
+
+// export function getCustomerTransactions(listOfTransactionUID) {
+//   const templistOfTransactions = [];
+//   return new Promise(resolve => {
+//     const ref = firebase.database().ref();
+//     const key = "Transactions";
+//     const keyRef = ref.child(key);
+//     keyRef.on('value', (snap) => {
+//       Object.keys(snap.val()).map(transactionUID => {
+//         console.log(listOfTransactionUID.includes(transactionUID));
+//         if (listOfTransactionUID.includes(transactionUID)) {
+//           templistOfTransactions.push({
+//             ...snap.val()[transactionUID],
+//             transactionUID,
+//           });
+//         }
+//       });
+//       console.log(templistOfTransactions);
+//       keyRef.off('value', resolve);
+//       resolve(templistOfTransactions);
+//     });
+//   });
+// }
