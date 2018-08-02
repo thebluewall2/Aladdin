@@ -21,12 +21,13 @@ const authPasswordChanged = (password) => ({
   password,
 });
 
-const authLoginUser = (userType, email, password, isFromLoginPage) => ({
+const authLoginUser = (userType, email, password, isFromLoginPage, rememberMe) => ({
   type: Types.AUTH_LOGIN_USER,
   userType,
   email,
   password,
-  isFromLoginPage
+  isFromLoginPage,
+  rememberMe
 });
 
 const authUserLoginSuccess = (userData) => ({

@@ -13,12 +13,12 @@ import { registerNotificationListener } from '../../Services/pushNotifications';
 
 export function* watchLoginUser() {
   while (true) {
-    const { userType, email, password, isFromLoginPage } = yield take(Types.AUTH_LOGIN_USER);
-    yield call(handleLoginUser, userType, email, password, isFromLoginPage);
+    const { userType, email, password, isFromLoginPage, rememberMe } = yield take(Types.AUTH_LOGIN_USER);
+    yield call(handleLoginUser, userType, email, password, isFromLoginPage, rememberMe);
   }
 }
 
-export function* handleLoginUser(userType, email, password, isFromLoginPage) {
+export function* handleLoginUser(userType, email, password, isFromLoginPage, rememberMe) {
   try {
     const userData = yield call(firebaseAuth, email, password);
     const userInfo = yield call(get, `Users/${userType}`, userData.uid);
@@ -26,7 +26,10 @@ export function* handleLoginUser(userType, email, password, isFromLoginPage) {
     const response = cleanResponse(email, userData.uid, userInfo, userType);
 
     //save password so that we can autologin next time user opens app
-    setGenericPassword(email, password);
+    if (rememberMe) {
+        setGenericPassword(email, password);
+    }
+
     saveUserType(userType);
 
     fcm.getFCMToken().then(token => {
