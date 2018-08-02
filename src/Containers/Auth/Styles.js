@@ -14,10 +14,8 @@ export default StyleSheet.create({
 
   loginPageMainContainer: {
     alignItems: 'center',
-    flexDirection: 'column',
     paddingTop: Config.navBarHeight,
     flex: 1,
-    backgroundColor: 'white'
   },
 
   signUpPageMainContainer: {
@@ -94,9 +92,8 @@ export default StyleSheet.create({
     backgroundColor: '#C1E1FA'
   },
   buttonTextStyle: {
-    color: '#FFFFFF',
-    fontFamily: 'Quicksand-Regular',
-    fontSize: 18
+    color: 'white',
+    fontSize: 15
   },
   buttonStyle: {
     backgroundColor: '#37474F',
@@ -112,17 +109,17 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  linkStyleForgetPassword: {
-    color: '#0284CC',
-    fontFamily: 'Quicksand-bold',
-    paddingTop: 10,
-    fontSize: 15
+  linkForgetPasswordStyle: {
+    color: '#212121',
+    fontSize: 13,
+    backgroundColor: 'transparent',
   },
-  linkStyleSignUpNow: {
-    color: '#FFCC00',
-    fontFamily: 'Quicksand-bold',
-    paddingTop: 30,
-    fontSize: 17
+  forgetPasswordContainerStyle: {
+    flexDirection: 'row',
+    width: '80%',
+    paddingHorizontal: 5,
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   titleSignUpStyle: {
     fontFamily: 'Quicksand',
@@ -199,19 +196,50 @@ export default StyleSheet.create({
   errorMessageStyle: {
     color: 'red',
     fontFamily: 'Quicksand',
-    textAlign: 'center'
+    textAlign: 'center',
+    backgroundColor: 'transparent',
+    paddingTop: 10,
   },
 
   iconStyle: {
-    width: 250,
-    height: 120,
-    paddingTop: 20
+    width: 130,
+    height: 130,
+  },
+
+  loginPageTextInputStyle: {
+    flex: 1,
+    backgroundColor: 'white',
+    padding: 8,
+    fontSize: 14,
+    color: '#707588'
   },
 
   textFieldStyle: {
     width: 330,
     fontFamily: 'Quicksand-light',
     height: Platform.OS === 'ios' ? 30 : 40,
+  },
+
+  textInputViewStyle: {
+    flexDirection: 'row',
+    paddingTop: 20,
+    width: '80%',
+    height: 60
+  },
+
+  loginIconTextInputViewStyle: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    paddingLeft: 10,
+    paddingRight: 5
+  },
+
+  loginButtonStyle: {
+    backgroundColor: '#003366',
+    height: 35,
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 
 });

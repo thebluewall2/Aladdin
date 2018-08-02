@@ -1,14 +1,23 @@
  import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text, View, TouchableOpacity, Image } from 'react-native';
+import { Text, View, TouchableOpacity, Image, TextInput, ImageBackground } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import { TextFieldComponent, LoadingSpinner } from '../../Components/common';
+import { LoadingSpinner, Checkbox } from '../../Components/common';
 import ReduxActions from '../../Redux/Actions';
 import styles from './Styles';
 
 class UserLoginPage extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      rememberMe: false,
+    };
+  }
 
   _handleLoginUser = () => {
     const { userType, email, password } = this.props;
@@ -49,9 +58,9 @@ class UserLoginPage extends Component {
     }
 
     return (
-      <View style={{ paddingTop: 20, paddingBottom: 20 }}>
-        <TouchableOpacity style={styles.buttonStyle} onPress={this._handleLoginUser} >
-          <Text style={styles.buttonTextStyle}>Sign In</Text>
+      <View style={{ paddingTop: 20, paddingBottom: 20, width: '80%' }}>
+        <TouchableOpacity style={styles.loginButtonStyle} onPress={this._handleLoginUser} >
+          <Text style={styles.buttonTextStyle}>LOGIN</Text>
         </TouchableOpacity>
       </View>
     );
@@ -61,67 +70,115 @@ class UserLoginPage extends Component {
     this.refs[nextField].focus();
   }
 
+  _toggleCheckbox = () => {
+    this.setState({
+      rememberMe: !this.state.rememberMe,
+    });
+  }
+
   render() {
     return (
-      <KeyboardAwareScrollView
-        contentContainerStyle={styles.loginPageMainContainer}
-        enableResetScrollToCoords={false}
-        showsVerticalScrollIndicator={false}
+      <ImageBackground
+        source={require('../../../assets/pictures/backgroundImage.png')}
+        style={{ flex: 1 }}
       >
-        <Image
-          source={require('../../../assets/pictures/ERenoLogo.png')}
-          style={styles.iconStyle}
-        />
+        <KeyboardAwareScrollView
+          contentContainerStyle={styles.loginPageMainContainer}
+          enableResetScrollToCoords={false}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={{ alignItems: 'center', paddingTop: 50 }}>
+            <Image
+              source={require('../../../assets/pictures/ERenoLogo.png')}
+              style={styles.iconStyle}
+              resizeMode="contain"
+            />
 
-        <Text style={styles.quicksandTextSlogan}>
-          Find the best service here in e Reno
-        </Text>
-
-        <TextFieldComponent
-          label={'Email'}
-          onChangeText={this._handleEmailChanged}
-          value={this.props.email}
-          autoCapitalize={"none"}
-          keyboardType={"email-address"}
-          autoCorrect={false}
-          onSubmitEditing={() => this.focusNextField('password')}
-        />
-
-        <TextFieldComponent
-          ref="password"
-          label={"Password"}
-          secureTextEntry
-          onChangeText={this._handlePasswordChanged}
-          value={this.props.password}
-          onSubmitEditing={this._handleLoginUser}
-        />
-
-        {this.props.errorMessage !== "" ? (
-          <View>
-            <Text style={styles.errorMessageStyle}>{this.props.errorMessage.message}</Text>
+            <Image
+              source={require('../../../assets/pictures/eRenoTextIcon.png')}
+              style={{ height: 100, width: 100, marginTop: -20 }}
+              resizeMode="contain"
+            />
           </View>
-        ) :
-          false
-        }
 
-        {this._renderLoginBtn()}
+          <View style={styles.textInputViewStyle} >
+            <View style={styles.loginIconTextInputViewStyle}>
+              <Ionicons name="md-person" style={{ fontSize: 14, color: '#707588' }} />
+            </View>
 
-        <TouchableOpacity onPress={this._navToForgetPassword}>
-          <View>
-            <Text style={styles.linkStyleForgetPassword}>
-              Forget Password?
-            </Text>
+            <TextInput
+              label="Email"
+              onChangeText={this._handleEmailChanged}
+              value={this.props.email}
+              placeholder="Username"
+              placeholderTextColor="#707588"
+              autoCapitalize="none"
+              keyboardType="email-address"
+              autoCorrect={false}
+              onSubmitEditing={() => this.focusNextField('password')}
+              style={styles.loginPageTextInputStyle}
+            />
           </View>
-        </TouchableOpacity>
 
-        <TouchableOpacity onPress={this._navToSignUp}>
-          <View>
-            <Text style={styles.linkStyleSignUpNow}>
-              New User? Sign Up now!
-            </Text>
+          <View style={styles.textInputViewStyle} >
+            <View style={styles.loginIconTextInputViewStyle}>
+              <Ionicons name="md-lock" style={{ fontSize: 14, color: '#707588' }} />
+            </View>
+
+            <TextInput
+              ref="password"
+              label={"Password"}
+              placeholder="Password"
+              placeholderTextColor="#707588"
+              secureTextEntry
+              onChangeText={this._handlePasswordChanged}
+              value={this.props.password}
+              onSubmitEditing={this._handleLoginUser}
+              style={styles.loginPageTextInputStyle}
+            />
           </View>
-        </TouchableOpacity>
-      </KeyboardAwareScrollView>
+
+
+          {this.props.errorMessage !== "" ? (
+            <View>
+              <Text style={styles.errorMessageStyle}>{this.props.errorMessage.message}</Text>
+            </View>
+          ) :
+            false
+          }
+
+          {this._renderLoginBtn()}
+
+          <View style={styles.forgetPasswordContainerStyle} >
+            <TouchableOpacity onPress={this._toggleCheckbox}>
+              <View style={{ flexDirection: 'row', flex: 1 }}>
+                <Checkbox isChecked={this.state.rememberMe} toggleCheck={this._toggleCheckbox} />
+
+                <Text style={[styles.linkForgetPasswordStyle, { paddingLeft: 5 }]}>
+                  Remember me
+                </Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={this._navToForgetPassword}>
+              <View>
+                <Text style={[styles.linkForgetPasswordStyle, { fontStyle: 'italic' }]}>
+                  Forget Password?
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+
+          <TouchableOpacity onPress={this._navToSignUp} style={{ paddingTop: 30 }}>
+            <View>
+              <Text style={styles.linkForgetPasswordStyle}>
+                New User? Sign Up now!
+              </Text>
+            </View>
+          </TouchableOpacity>
+
+        </KeyboardAwareScrollView>
+      </ImageBackground>
     );
   }
 }
