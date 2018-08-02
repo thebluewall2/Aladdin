@@ -5,7 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Checkbox = (props) => {
   const { isChecked, toggleCheck } = props;
-  console.log(isChecked);
+  
   return (
     <TouchableOpacity
       onPress={toggleCheck}
