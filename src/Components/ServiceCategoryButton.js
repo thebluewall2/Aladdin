@@ -8,19 +8,20 @@ const ServiceCategoryButton = ({ onPress, category }) => {
 
   return (
     <View style={styles.viewStyle}>
-    <TouchableOpacity onPress={onPress}>
-      <View style={styles.circleStyle}>
+      <TouchableOpacity onPress={onPress}>
+        <View style={styles.circleStyle}>
 
-        <CacheableImage
-          source={{ uri: imageURL }}
-          style={styles.buttonImage}
-        />
+          <CacheableImage
+            source={{ uri: imageURL }}
+            style={styles.buttonImage}
+            resizeMode="contain"
+          />
+        </View>
 
         <Text style={styles.textStyle}>
           {category.category}
         </Text>
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -31,8 +32,9 @@ const styles = {
     paddingTop: 10
   },
   buttonImage: {
-    height: 45,
-    width: 45,
+    height: 60,
+    width: 60,
+    opacity: 0.7
   },
   circleStyle: {
     alignItems: 'center',
@@ -40,13 +42,16 @@ const styles = {
     width: 110,
     height: 110,
     borderRadius: 5,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'rgba(255, 255, 255, 0.35)',
   },
   textStyle: {
-    fontFamily: 'Quicksand',
-    fontSize: 14,
+    fontSize: 11,
     textAlign: 'center',
-    paddingTop: 10
+    paddingTop: 3,
+    color: 'white',
+    width: 110,
+    height: 30,
+    backgroundColor: 'transparent'
   }
 };
 

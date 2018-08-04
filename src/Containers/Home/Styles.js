@@ -11,7 +11,6 @@ export default StyleSheet.create({
   homePageCategoriesContainer: {
     flex: 1,
     paddingBottom: 50,
-    paddingTop: 20
   },
 
   homePageCategoriesViewStyle: {
@@ -20,7 +19,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     flexWrap: 'wrap',
     alignContent: 'center',
-    padding: 3
+    padding: 3,
+    paddingTop: 10
   },
 
   homePageWelcomeTextContainer: {

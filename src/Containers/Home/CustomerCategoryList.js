@@ -25,11 +25,11 @@ class CustomerCategoryList extends Component {
   render() {
     return (
       <View style={styles.homePageCategoriesContainer}>
-      <ScrollView>
-        <View style={styles.homePageCategoriesViewStyle}>
-          {this._renderCategories()}
-        </View>
-      </ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false} >
+          <View style={styles.homePageCategoriesViewStyle}>
+            {this._renderCategories()}
+          </View>
+        </ScrollView>
       </View>
     );
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, NetInfo } from 'react-native';
+import { View, Text, NetInfo, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
@@ -72,14 +72,18 @@ class HomePage extends Component {
   render() {
     return (
       <View style={styles.homePageContainer}>
+        <ImageBackground
+          source={require('../../../assets/pictures/backgroundImage.png')}
+          style={{ flex: 1 }}
+        >
+          <View style={styles.homePageWelcomeTextContainer}>
+            <Text style={styles.homePageWelcomeText}>
+              Welcome, {this.props.fullName}
+            </Text>
+          </View>
 
-        <View style={styles.homePageWelcomeTextContainer}>
-          <Text style={styles.homePageWelcomeText}>
-            Welcome, {this.props.fullName}
-          </Text>
-        </View>
-
-        {this._renderList()}
+          {this._renderList()}
+        </ImageBackground>
       </View>
     );
   }

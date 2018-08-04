@@ -15,7 +15,7 @@ class UserLoginPage extends Component {
     super(props);
 
     this.state = {
-      rememberMe: false,
+      rememberMe: true,
     };
   }
 
