@@ -254,6 +254,14 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 10,
+    marginRight: 20,
+  },
+
+  chooseTimeForServiceScrollViewStyle: {
+    justifyContent: 'flex-start',
+    paddingTop: 80,
+    padding: 15,
+    paddingBottom: Config.tabBarHeight
   }
 
 });

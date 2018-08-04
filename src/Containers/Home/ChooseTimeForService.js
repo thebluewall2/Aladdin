@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 
 import DateTimePicker from 'react-native-modal-datetime-picker';
@@ -10,6 +10,7 @@ import moment from 'moment';
 import styles from './Styles';
 import ReduxActions from '../../Redux/Actions';
 import { showErrorToast } from '../../Services/helpers';
+import Config from '../../Services/config';
 import { LoadingSpinner } from '../../Components/common';
 
 class ChooseTimeForService extends React.PureComponent {
@@ -235,8 +236,10 @@ class ChooseTimeForService extends React.PureComponent {
   }
 
   _renderImagePicker = () => {
+    const { imageAttached } = this.state;
+
     return (
-      <View style={{ paddingTop: 10 }}>
+      <View style={{ paddingTop: 30 }}>
         <Text style={styles.selectAddressSubTitleStyle}>
           You can also select a photo to be attached for the vendor to view
         </Text>
@@ -247,6 +250,14 @@ class ChooseTimeForService extends React.PureComponent {
           <TouchableOpacity onPress={this._showImagePicker} style={styles.attachStyle}>
             <Ionicons name="ios-attach-outline" style={{ fontSize: 25 }} />
           </TouchableOpacity>
+
+          {imageAttached ?
+            <TouchableOpacity onPress={() => this.setState({ imageAttached: '' })} style={styles.attachStyle}>
+              <Ionicons name="md-close" style={{ fontSize: 25, color: 'red' }} />
+            </TouchableOpacity>
+            :
+            false
+          }
         </View>
       </View>
     );
@@ -260,7 +271,7 @@ class ChooseTimeForService extends React.PureComponent {
     }
 
     return (
-      <View style={{ paddingTop: 30 }}>
+      <View style={{ paddingTop: 30, paddingBottom: 20 }}>
         <TouchableOpacity style={styles.chooseConfirmButtonStyle} onPress={this._handleSubmit} >
           <Text style={styles.buttonTextStyle}>Confirm Booking</Text>
         </TouchableOpacity>
@@ -270,7 +281,10 @@ class ChooseTimeForService extends React.PureComponent {
 
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'flex-start', paddingTop: 80, padding: 15 }}>
+      <ScrollView
+        contentContainerStyle={styles.chooseTimeForServiceScrollViewStyle}
+        showsVerticalScrollIndicator={false}
+      >
         <Text style={styles.selectAddressTitleStyle}>
         Make an Appointment{"\n"}
         </Text>
@@ -293,7 +307,7 @@ class ChooseTimeForService extends React.PureComponent {
 
         {this._renderTimeDatePicker()}
 
-      </View>
+      </ScrollView>
     );
   }
 }
