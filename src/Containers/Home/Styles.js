@@ -243,6 +243,17 @@ export default StyleSheet.create({
   noVendorFoundTextStyle: {
     fontFamily: 'Quicksand-regular',
     fontSize: 15
+  },
+
+  attachStyle: {
+    height: 40,
+    width: 40,
+    borderRadius: 5,
+    borderWidth: 0.8,
+    borderColor: 'gray',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
   }
 
 });

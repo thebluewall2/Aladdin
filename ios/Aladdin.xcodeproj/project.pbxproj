@@ -50,6 +50,7 @@
 		C165CFE9774F49A1A94A1013 /* Quicksand-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B12F3D86CED743009D7176F3 /* Quicksand-Regular.otf */; };
 		C73DD17BB0044A9C822BD0D5 /* libRNFIRMessaging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7C095CB6D1E4B60BA6F14BD /* libRNFIRMessaging.a */; };
 		CF96F649BCFC4A498430A2FA /* Quicksand-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5D5246ACE94A4D7193FDB60C /* Quicksand-Bold.otf */; };
+		E0AE0BBDD0734076987395B1 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BBAF911917E4B30A3746FBF /* libRNImagePicker.a */; };
 		E61DF9C7E66346CCAE12C585 /* libRNKeychain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 72D744267B224759B788BE68 /* libRNKeychain.a */; };
 		ED2B6D2B98904B71832070AA /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15C00426C60A4D0AB98A88E6 /* Zocial.ttf */; };
 		F9546E50D45043D886B2F923 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 783E8F12B50A41C09C3EF8E2 /* Ionicons.ttf */; };
@@ -139,6 +140,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNFIRMessaging;
+		};
+		11ACCFCD21159C0B0040AA3C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EFD1F7AD81E44C3D99F7F279 /* RNImagePicker.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
+			remoteInfo = RNImagePicker;
 		};
 		11E243D01FA44F990041A124 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -385,6 +393,7 @@
 		7A68CCC8F29F4413956432E9 /* libRNFS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFS.a; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		85475D5C98CA4B0A9371EB4B /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		8BBAF911917E4B30A3746FBF /* libRNImagePicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNImagePicker.a; sourceTree = "<group>"; };
 		94DF79B8F44F42F9A53EEA7D /* RNFS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		97F2C6CF45B75BB7F746A991 /* libPods-AladdinTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AladdinTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EAD92DB054141A792C15C78 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
@@ -401,6 +410,7 @@
 		C9BADC4698EE11ED152C322D /* Pods-AladdinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AladdinTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AladdinTests/Pods-AladdinTests.release.xcconfig"; sourceTree = "<group>"; };
 		E423B69DBF594CB4B902F482 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		E5D2D9C2204B4B2C8E95DB84 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		EFD1F7AD81E44C3D99F7F279 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		F06ABDE4B3E6A7A5F416B998 /* Pods-Aladdin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aladdin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Aladdin/Pods-Aladdin.release.xcconfig"; sourceTree = "<group>"; };
 		F6428621457B4696A4D2297C /* Quicksand-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-Light.otf"; path = "../assets/fonts/Quicksand/Quicksand-Light.otf"; sourceTree = "<group>"; };
 		FCA6D3C5C4A748EAA8C266C3 /* Quicksand-BoldItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Quicksand-BoldItalic.otf"; path = "../assets/fonts/Quicksand/Quicksand-BoldItalic.otf"; sourceTree = "<group>"; };
@@ -440,6 +450,7 @@
 				180E5FA2E13D45D5BAF96CAF /* libRCTCamera.a in Frameworks */,
 				C73DD17BB0044A9C822BD0D5 /* libRNFIRMessaging.a in Frameworks */,
 				3D40EF548DAAA3B5565B25B8 /* libPods-Aladdin.a in Frameworks */,
+				E0AE0BBDD0734076987395B1 /* libRNImagePicker.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +557,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		11ACCFCA21159C0A0040AA3C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				11ACCFCE21159C0B0040AA3C /* libRNImagePicker.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		11E243BF1FA44F990041A124 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -574,6 +593,7 @@
 				01E361AE4A264086AF6CC64A /* libRNToastNative.a */,
 				B85E58EE3E51434A8B7DD4FB /* libRCTCamera.a */,
 				B7C095CB6D1E4B60BA6F14BD /* libRNFIRMessaging.a */,
+				8BBAF911917E4B30A3746FBF /* libRNImagePicker.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -704,6 +724,7 @@
 				A905CF2D7B1948A2B37C26B5 /* RNToastNative.xcodeproj */,
 				6929AC987EF84FF1BEFD61B1 /* RCTCamera.xcodeproj */,
 				C51B920565DF40318229688F /* RNFIRMessaging.xcodeproj */,
+				EFD1F7AD81E44C3D99F7F279 /* RNImagePicker.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -918,6 +939,10 @@
 					ProjectRef = 94DF79B8F44F42F9A53EEA7D /* RNFS.xcodeproj */;
 				},
 				{
+					ProductGroup = 11ACCFCA21159C0A0040AA3C /* Products */;
+					ProjectRef = EFD1F7AD81E44C3D99F7F279 /* RNImagePicker.xcodeproj */;
+				},
+				{
 					ProductGroup = 11E360791FD2A010004A4268 /* Products */;
 					ProjectRef = 00B68080F99A41A2AE67F22A /* RNKeychain.xcodeproj */;
 				},
@@ -1014,6 +1039,13 @@
 			fileType = archive.ar;
 			path = libRNFIRMessaging.a;
 			remoteRef = 1184D42E2087851700075FB9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		11ACCFCE21159C0B0040AA3C /* libRNImagePicker.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNImagePicker.a;
+			remoteRef = 11ACCFCD21159C0B0040AA3C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		11E243D11FA44F990041A124 /* libRCTBlob-tvOS.a */ = {
@@ -1418,12 +1450,14 @@
 					"$(SRCROOT)/../node_modules/react-native-toast-native/ios",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
+					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
 				);
 				INFOPLIST_FILE = AladdinTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1455,12 +1489,14 @@
 					"$(SRCROOT)/../node_modules/react-native-toast-native/ios",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
+					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
 				);
 				INFOPLIST_FILE = AladdinTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1497,6 +1533,7 @@
 					"$(SRCROOT)/../node_modules/react-native-toast-native/ios",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
+					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
 				);
 				INFOPLIST_FILE = Aladdin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1532,6 +1569,7 @@
 					"$(SRCROOT)/../node_modules/react-native-toast-native/ios",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
+					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
 				);
 				INFOPLIST_FILE = Aladdin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

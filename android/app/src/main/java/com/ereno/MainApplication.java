@@ -3,6 +3,7 @@ package com.ereno;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.imagepicker.ImagePickerPackage;
 import com.evollu.react.fcm.FIRMessagingPackage;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.toast.RCTToastPackage;
@@ -29,6 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ImagePickerPackage(),
             new FIRMessagingPackage(),
             new RCTCameraPackage(),
             new RCTToastPackage(),

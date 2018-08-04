@@ -42,7 +42,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>e Reno requires the camera to scan QR codes</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>e Reno requires this to attach images from your gallery</string>
 	<key>NSPhotoLibraryUsageDescription</key>

@@ -1,12 +1,15 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { connect } from 'react-redux';
 
 import DateTimePicker from 'react-native-modal-datetime-picker';
+import ImagePicker from 'react-native-image-picker';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import moment from 'moment';
 
 import styles from './Styles';
 import ReduxActions from '../../Redux/Actions';
+import { showErrorToast } from '../../Services/helpers';
 import { LoadingSpinner } from '../../Components/common';
 
 class ChooseTimeForService extends React.PureComponent {
@@ -20,6 +23,7 @@ class ChooseTimeForService extends React.PureComponent {
       date3: '',
       dateNumber: '',
       errorMsg: '',
+      imageAttached: '',
     };
   }
 
@@ -187,6 +191,67 @@ class ChooseTimeForService extends React.PureComponent {
     );
   }
 
+  _renderImageAttached = () => {
+    const { imageAttached } = this.state;
+
+    if (!imageAttached) {
+      return false;
+    }
+
+    return (
+      <Image
+        source={{ uri: imageAttached }}
+        style={{ height: 60, width: 60, marginRight: 20 }}
+      />
+    );
+  }
+
+  _showImagePicker = () => {
+    const options = {
+      title: 'Select image',
+      quality: 0.7,
+      noData: true,
+      storageOptions: {
+        skipBackup: true,
+        cameraRoll: false,
+      }
+    };
+
+    ImagePicker.showImagePicker(options, (response) => {
+      if (response.didCancel) {
+        //user cancelled image picker
+        return;
+      }
+
+      if (response.error) {
+        showErrorToast("Unable to attach image, please try again later");
+        return;
+      }
+
+      this.setState({
+        imageAttached: response.uri
+      });
+    });
+  }
+
+  _renderImagePicker = () => {
+    return (
+      <View style={{ paddingTop: 10 }}>
+        <Text style={styles.selectAddressSubTitleStyle}>
+          You can also select a photo to be attached for the vendor to view
+        </Text>
+
+        <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 15 }} >
+          {this._renderImageAttached()}
+
+          <TouchableOpacity onPress={this._showImagePicker} style={styles.attachStyle}>
+            <Ionicons name="ios-attach-outline" style={{ fontSize: 25 }} />
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  }
+
   _renderSubmitButton = () => {
     if (this.props.loading) {
       return (
@@ -219,6 +284,8 @@ class ChooseTimeForService extends React.PureComponent {
         {this._renderContent("date1", 1)}
         {this._renderContent("date2", 2)}
         {this._renderContent("date3", 3)}
+
+        {this._renderImagePicker()}
 
 
         {this._renderErrorMsg()}
