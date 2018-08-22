@@ -1,5 +1,6 @@
 import { take, call, put } from 'redux-saga/effects';
 import firebase from 'firebase';
+import { Platform } from 'react-native';
 import RNFetchBlob from 'react-native-fetch-blob';
 import ReduxActions from '../../Redux/Actions';
 import Types from '../../Redux/Requests/types';
@@ -14,7 +15,8 @@ export function* watchImageUploader() {
 
 export function* imageUploaderHandler(uploadUri, trxid) {
   try {
-    yield call(uploadImage, uploadUri, trxid);
+    const properUri = Platform.OS === 'ios' ? uploadUri.replace('file://', '') : uploadUri;
+    yield call(uploadImage, properUri, trxid);
     yield put(ReduxActions.requestsImageUploaderSuccess());
   } catch (erorr) {
     yield put(ReduxActions.requestsImageUploaderFailure());
