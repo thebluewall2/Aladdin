@@ -17,7 +17,15 @@ export function* watchUserCreateBooking(api) {
 }
 
 export function* handleCreateBooking(api, serviceBooking) {
+  const { imageAttached } = serviceBooking;
+
+  // we create the transaction first
   const transactionUID = yield call(updateFirebaseDb, serviceBooking);
+
+  // and after creating the transaction, we upload the image attached, if any
+  if (imageAttached) {
+    yield put(ReduxActions.requestsUploadImage(imageAttached, transactionUID));
+  }
 
   if (transactionUID) {
     yield call(sendNotifications, api, serviceBooking, transactionUID);

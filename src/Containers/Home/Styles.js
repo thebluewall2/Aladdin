@@ -97,7 +97,8 @@ export default StyleSheet.create({
   buttonContainerStyle: {
     flex: 1,
     paddingTop: 140,
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 
   buttonTextStyle: {
@@ -125,7 +126,7 @@ export default StyleSheet.create({
 
   addressNextButtonContainerStyle: {
      flex: 1,
-     paddingTop: 50,
+     paddingTop: 20,
      justifyContent: 'space-between'
   },
 

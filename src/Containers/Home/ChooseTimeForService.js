@@ -10,7 +10,6 @@ import moment from 'moment';
 import styles from './Styles';
 import ReduxActions from '../../Redux/Actions';
 import { showErrorToast } from '../../Services/helpers';
-import Config from '../../Services/config';
 import { LoadingSpinner } from '../../Components/common';
 
 class ChooseTimeForService extends React.PureComponent {
@@ -127,7 +126,7 @@ class ChooseTimeForService extends React.PureComponent {
   }
 
   _handleSubmit = () => {
-    const { date1, date2, date3 } = this.state;
+    const { date1, date2, date3, imageAttached } = this.state;
 
     if (!date1 && !date2 && !date3) {
       this.setState({
@@ -158,6 +157,7 @@ class ChooseTimeForService extends React.PureComponent {
         selectedCategory,
         selectedSubcategory,
         timeslots: timeslot,
+        imageAttached,
       };
 
       this.props.createBooking(serviceBooking);

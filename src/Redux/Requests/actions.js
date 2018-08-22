@@ -126,6 +126,12 @@ const requestsClearErrorMessage = () => ({
   type: Types.REQ_CLEAR_ERROR,
 });
 
+const requestsUploadImage = (imageUrl, trxId) => ({
+  type: Types.REQ_UPLOAD_IMAGE,
+  imageUrl,
+  trxId,
+});
+
 export default {
   requestsResetRedux,
 
@@ -162,4 +168,5 @@ export default {
   requestsRejectServiceFailure,
 
   requestsClearErrorMessage,
+  requestsUploadImage,
 };

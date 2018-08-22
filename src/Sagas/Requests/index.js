@@ -8,6 +8,7 @@ import { watchCreateReview } from './createReview';
 import { watchVendorSelectTime } from './vendorSelectTime';
 import { watchCompleteTransactions } from './completeTransaction';
 import { watchRejectService } from './rejectService';
+import { watchUploadImage } from './uploadImage';
 
 export default (api) => {
   function* rootSaga() {
@@ -19,6 +20,7 @@ export default (api) => {
     yield fork(watchVendorSelectTime, api);
     yield fork(watchCompleteTransactions, api);
     yield fork(watchRejectService, api);
+    yield fork(watchUploadImage);
   }
 
   return {

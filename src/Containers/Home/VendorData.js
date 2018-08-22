@@ -67,7 +67,7 @@ class VendorData extends React.PureComponent {
             Years of experience: {"\n"}{yearsOfExp}
           </Text>
 
-          <View style={{ paddingTop: 20 }}>
+          <View style={{ paddingTop: 20, alignItems: 'center' }}>
             <TouchableOpacity style={styles.buttonStyle} onPress={this._handleBookNow} >
               <Text style={styles.buttonTextStyle}>Book Now</Text>
             </TouchableOpacity>
