@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+import ImageView from 'react-native-image-view';
 
 import ReduxActions from '../../Redux/Actions';
 import { LoadingSpinner } from '../../Components/common';
@@ -10,6 +11,20 @@ import { LoadingSpinner } from '../../Components/common';
 import styles from './Styles';
 
 class VendorRequestDetails extends PureComponent {
+  constructor(props) {
+      super(props);
+
+      this.state = {
+        isImageViewModalOpen: false,
+      };
+  }
+
+  _setIsImageViewModalOpen = (isImageViewModalOpen) => {
+    this.setState({
+      isImageViewModalOpen
+    });
+  }
+
   _renderLoading = () => {
     return <LoadingSpinner />;
   }
@@ -88,6 +103,55 @@ class VendorRequestDetails extends PureComponent {
     );
   }
 
+  _renderImageView = () => {
+    const imageUrl = 'https://i.ytimg.com/vi/SfLV8hD7zX4/maxresdefault.jpg';
+    const { isImageViewModalOpen } = this.state;
+
+    if (!imageUrl) {
+      return false;
+    }
+
+    const arrayOfImages = [
+      {
+        source: {
+          uri: imageUrl,
+        }
+      }
+    ];
+
+    return (
+      <ImageView
+        images={arrayOfImages}
+        imageIndex={0}
+        isVisible={isImageViewModalOpen}
+        onClose={() => this._setIsImageViewModalOpen(false)}
+      />
+    );
+  }
+
+  _renderAttachedImage = () => {
+    const imageUrl = 'https://i.ytimg.com/vi/SfLV8hD7zX4/maxresdefault.jpg';
+
+    if (!imageUrl) {
+      return false;
+    }
+
+    return (
+      <View>
+        <Text style={styles.orderSectionTextStyle}>Image attached</Text>
+
+        <View style={{ paddingVertical: 10 }}>
+          <TouchableOpacity onPress={() => this._setIsImageViewModalOpen(true)}>
+            <Image
+              source={{ uri: imageUrl }}
+              style={{ height: 50, width: 50 }}
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  }
+
   _renderCompletedRequest = () => {
     return (
       <View style={styles.serviceCompletedBackgroundViewStyle}>
@@ -130,6 +194,9 @@ class VendorRequestDetails extends PureComponent {
           <Text style={styles.orderContentTextStyle}>{selectedAddress.city}</Text>
 
           {confirmedTime ? this._renderConfirmedDate(confirmedTime) : this._renderSuggestedDates()}
+
+          {this._renderAttachedImage()}
+          {this._renderImageView()}
 
           {status === 'Pending' && this._renderVendorResponse()}
 

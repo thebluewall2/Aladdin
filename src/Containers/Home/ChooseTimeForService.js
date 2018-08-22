@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import ImagePicker from 'react-native-image-picker';
+import ImageView from 'react-native-image-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import moment from 'moment';
 
@@ -24,6 +25,7 @@ class ChooseTimeForService extends React.PureComponent {
       dateNumber: '',
       errorMsg: '',
       imageAttached: '',
+      isImageViewModalOpen: false,
     };
   }
 
@@ -200,11 +202,44 @@ class ChooseTimeForService extends React.PureComponent {
     }
 
     return (
-      <Image
-        source={{ uri: imageAttached }}
-        style={{ height: 60, width: 60, marginRight: 20 }}
+      <TouchableOpacity onPress={() => this._setIsImageViewModalOpen(true)} >
+        <Image
+          source={{ uri: imageAttached }}
+          style={{ height: 60, width: 60, marginRight: 20 }}
+        />
+      </TouchableOpacity>
+    );
+  }
+
+  _renderImageView = () => {
+    const { isImageViewModalOpen, imageAttached } = this.state;
+
+    if (!imageAttached) {
+      return false;
+    }
+
+    const imagesArray = [
+      {
+        source: {
+          uri: imageAttached,
+        }
+      }
+    ];
+
+    return (
+      <ImageView
+        images={imagesArray}
+        imageIndex={0}
+        isVisible={isImageViewModalOpen}
+        onClose={() => this._setIsImageViewModalOpen(false)}
       />
     );
+  }
+
+  _setIsImageViewModalOpen = (isImageViewModalOpen) => {
+    this.setState({
+      isImageViewModalOpen,
+    });
   }
 
   _showImagePicker = () => {
@@ -246,6 +281,7 @@ class ChooseTimeForService extends React.PureComponent {
 
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 15 }} >
           {this._renderImageAttached()}
+          {this._renderImageView()}
 
           <TouchableOpacity onPress={this._showImagePicker} style={styles.attachStyle}>
             <Ionicons name="ios-attach-outline" style={{ fontSize: 25 }} />
