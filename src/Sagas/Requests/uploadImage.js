@@ -2,6 +2,7 @@ import { take, call, put } from 'redux-saga/effects';
 import { Platform } from 'react-native';
 
 import firebase from 'firebase';
+import { update } from 'firebase-saga';
 import RNFetchBlob from 'react-native-fetch-blob';
 
 import Types from '../../Redux/Requests/types';
@@ -22,7 +23,8 @@ export function* imageUploaderHandler(imageUrl, trxId) {
   try {
     const properUrl = Platform.OS === 'ios' ? imageUrl.replace('file://', '') : imageUrl;
 
-    yield call(uploadImage, properUrl, trxId);
+    const downloadUrl = yield call(uploadImage, properUrl, trxId);
+    yield call(update, `Transactions/`, `${trxId}`, { downloadUrl });
   } catch (error) {
     console.log(error);
     showErrorToast("Something went wrong. Image not attached");
