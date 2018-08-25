@@ -104,7 +104,7 @@ class VendorRequestDetails extends PureComponent {
   }
 
   _renderImageView = () => {
-    const imageUrl = 'https://i.ytimg.com/vi/SfLV8hD7zX4/maxresdefault.jpg';
+    const imageUrl = this.props.transaction.downloadUrl;
     const { isImageViewModalOpen } = this.state;
 
     if (!imageUrl) {
@@ -130,7 +130,7 @@ class VendorRequestDetails extends PureComponent {
   }
 
   _renderAttachedImage = () => {
-    const imageUrl = 'https://i.ytimg.com/vi/SfLV8hD7zX4/maxresdefault.jpg';
+    const imageUrl = this.props.transaction.downloadUrl;
 
     if (!imageUrl) {
       return false;
