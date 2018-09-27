@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import moment from 'moment';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
+import ImageView from 'react-native-image-view';
 
 import styles from './Styles';
 import Config from '../../Services/config';
@@ -10,10 +11,24 @@ import ReduxActions from '../../Redux/Actions';
 import { LoadingSpinner } from '../../Components/common';
 
 class CustomerRequestDetails extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isImageViewModalOpen: false,
+    };
+  }
+
   componentWillReceiveProps(nextProps) {
     if (this.props.transaction.transactionUID !== nextProps.transaction.transactionUID) {
       this.props.clearError();
     }
+  }
+
+  _setIsImageViewModalOpen = (isImageViewModalOpen) => {
+    this.setState({
+      isImageViewModalOpen
+    });
   }
 
   _renderSuggestedDates = () => {
@@ -94,6 +109,56 @@ class CustomerRequestDetails extends PureComponent {
     );
   }
 
+  _renderImageView = () => {
+    const imageUrl = this.props.transaction.downloadUrl;
+    const { isImageViewModalOpen } = this.state;
+
+    if (!imageUrl) {
+      return false;
+    }
+
+    const arrayOfImages = [
+      {
+        source: {
+          uri: imageUrl,
+        }
+      }
+    ];
+
+    return (
+      <ImageView
+        images={arrayOfImages}
+        imageIndex={0}
+        isVisible={isImageViewModalOpen}
+        onClose={() => this._setIsImageViewModalOpen(false)}
+      />
+    );
+  }
+
+  _renderAttachedImage = () => {
+    const imageUrl = this.props.transaction.downloadUrl;
+
+    if (!imageUrl) {
+      return false;
+    }
+
+    return (
+      <View>
+        <Text style={styles.orderSectionTextStyle}>Image attached</Text>
+
+        <View style={{ paddingVertical: 10 }}>
+          <TouchableOpacity onPress={() => this._setIsImageViewModalOpen(true)}>
+            <Image
+              source={{ uri: imageUrl }}
+              style={{ height: 50, width: 50 }}
+              defaultSource={require('../../../assets/pictures/imagePlaceholder.png')}
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  }
+
   _renderErrorMessage = () => {
     const { errorMessage } = this.props;
 
@@ -133,6 +198,9 @@ class CustomerRequestDetails extends PureComponent {
 
           {confirmedTime ? this._renderConfirmedDate(confirmedTime) : this._renderSuggestedDates()}
 
+          {this._renderAttachedImage()}
+          {this._renderImageView()}
+
           {this._renderErrorMessage()}
 
           {status === 'Awaiting payment' && this._renderMakePayment()}
@@ -166,7 +234,7 @@ const mapStateToProps = (state, props) => {
       transaction = trx;
     }
   });
-  
+
   return {
     userEmail: auth.userData.email,
     userPhone: auth.userData.phoneNo,

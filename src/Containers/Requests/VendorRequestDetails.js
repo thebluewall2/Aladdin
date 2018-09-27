@@ -12,11 +12,11 @@ import styles from './Styles';
 
 class VendorRequestDetails extends PureComponent {
   constructor(props) {
-      super(props);
+    super(props);
 
-      this.state = {
-        isImageViewModalOpen: false,
-      };
+    this.state = {
+      isImageViewModalOpen: false,
+    };
   }
 
   _setIsImageViewModalOpen = (isImageViewModalOpen) => {
@@ -145,6 +145,7 @@ class VendorRequestDetails extends PureComponent {
             <Image
               source={{ uri: imageUrl }}
               style={{ height: 50, width: 50 }}
+              defaultSource={require('../../../assets/pictures/imagePlaceholder.png')}
             />
           </TouchableOpacity>
         </View>
@@ -174,7 +175,6 @@ class VendorRequestDetails extends PureComponent {
       selectedSubcategory,
       selectedAddress,
       status,
-      createdDate,
       customerName,
       confirmedTime,
     } = transaction;

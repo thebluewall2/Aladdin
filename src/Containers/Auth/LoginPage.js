@@ -1,11 +1,11 @@
  import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text, View, TouchableOpacity, Image, TextInput, ImageBackground } from 'react-native';
+import { Text, View, TouchableOpacity, Image, TextInput, ImageBackground, ActivityIndicator } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import { LoadingSpinner, Checkbox } from '../../Components/common';
+import { Checkbox } from '../../Components/common';
 import ReduxActions from '../../Redux/Actions';
 import styles from './Styles';
 
@@ -54,7 +54,7 @@ class UserLoginPage extends Component {
     if (this.props.loading) {
       return (
         <View style={{ height: 40, width: 40, paddingVertical: 30 }}>
-          <LoadingSpinner />
+          <ActivityIndicator color="black" />
         </View>
       );
     }
