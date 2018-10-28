@@ -120,7 +120,8 @@ export function* CustomerInfo(data, userData, coordinates) {
           city: data.city,
           state: data.state,
           coordinates,
-          email: data.email
+          email: data.email,
+          SignUpDate: firebase.database.ServerValue.TIMESTAMP,
         }
     })
   );
@@ -151,7 +152,8 @@ export function* VendorInfo(data, userData, coordinates) {
           yearsOfExp: data.yearsOfExp,
           yearsOfCompany: data.yearsOfCompany,
           noOfStaff: data.noOfStaff,
-          awards: data.awards
+          awards: data.awards,
+          SignUpDate: firebase.database.ServerValue.TIMESTAMP,
         }
     })
   );

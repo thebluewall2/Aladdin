@@ -20,6 +20,8 @@ export function* watchLoginUser() {
 
 export function* handleLoginUser(userType, email, password, isFromLoginPage, rememberMe) {
   try {
+    const LastLoginDate = firebase.database.ServerValue.TIMESTAMP;
+
     const userData = yield call(firebaseAuth, email, password);
     const userInfo = yield call(get, `Users/${userType}`, userData.uid);
 
@@ -33,7 +35,11 @@ export function* handleLoginUser(userType, email, password, isFromLoginPage, rem
     saveUserType(userType);
 
     fcm.getFCMToken().then(token => {
-      firebase.database().ref(`Users/${userType}`).child(userData.uid).update({ fcmToken: token });
+      firebase.database().ref(`Users/${userType}`).child(userData.uid)
+        .update({
+          fcmToken: token,
+          LastLoginDate
+        });
     });
 
     yield put(ReduxActions.authUserLoginSuccess(response));
