@@ -154,6 +154,7 @@ export function* VendorInfo(data, userData, coordinates) {
           noOfStaff: data.noOfStaff,
           awards: data.awards,
           SignUpDate: firebase.database.ServerValue.TIMESTAMP,
+          ApprovalStatus: 'Unapproved',
         }
     })
   );
