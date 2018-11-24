@@ -21,6 +21,7 @@ export function* handleGetVendorList(category, subcategory, userAddress) {
     if (listOfVendor.length) {
       listOfVendor = yield call(getVendorReviews, listOfVendor);
       listOfVendor = yield call(getDistanceFromVendorList, userAddress, listOfVendor);
+      listOfVendor = yield call(getApprovedVendors, listOfVendor);
       listOfVendor = yield call(sortByDistance, listOfVendor);
     }
 
@@ -50,6 +51,20 @@ export function* getVendorReviews(listOfVendor) {
           { totalReviews: reviewScoreFromFirebase.totalReviews,
             avgReviews: ((reviewScoreFromFirebase.totalScores / (reviewScoreFromFirebase.totalReviews)))
           };
+      }
+    }
+
+    return newListOfVendor;
+}
+
+export function* getApprovedVendors(listOfVendor) {
+  let newListOfVendor = [];
+
+  for (let count = 0; count < listOfVendor.length; count++) {
+    const vendorApprovalStatus = yield call(get, `Users/vendor/${listOfVendor[count].vendorUID}`, 'ApprovalStatus');
+
+      if (vendorApprovalStatus === "Approved") {
+        newListOfVendor.push(listOfVendor[count]);
       }
     }
 
